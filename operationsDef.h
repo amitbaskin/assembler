@@ -13,20 +13,16 @@
 #define IS_RELATIVE_DEST_LST {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0}
 #define IS_REGISTRY_DEST_LST {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0}
 #define OPS_AMOUNT 16
-struct op{
-    char *name;
-    unsigned char funct : 5;
-    unsigned char opcode : 5;
-    unsigned char isImSrc : 1;
-    unsigned char isDirSrc : 1;
-    unsigned char isRelSrc : 1;
-    unsigned char isRegSrc : 1;
-    unsigned char isImDest : 1;
-    unsigned char isDirDest : 1;
-    unsigned char isRelDest : 1;
-    unsigned char isRegDest : 1;
-};
-struct op *ops[OPS_AMOUNT];
-void initializeOps();
+static char *names[] = OPERATIONS;
+static const unsigned char functs[] = FUNCTS;
+static const unsigned char opcodes[] = OPCODES;
+static const unsigned char isImSrcLst[] = IS_IMMEDIATE_SOURCE_LST;
+static const unsigned char isDirSrcLst[] = IS_DIRECT_SOURCE_LST;
+static const unsigned char isRelSrcLst[] = IS_RELATIVE_SOURCE_LST;
+static const unsigned char isRegSrcLst[] = IS_REGISTRY_SOURCE_LST;
+static const unsigned char isImDestLst[] = IS_IMMEDIATE_DEST_LST;
+static const unsigned char isDirDestLst[] = IS_DIRECT_DEST_LST;
+static const unsigned char isRelDestLst[] = IS_RELATIVE_DEST_LST;
+static const unsigned char isRegDestLst[] = IS_REGISTRY_DEST_LST;
 void printOps();
 #endif

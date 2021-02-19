@@ -5,46 +5,50 @@
 int isOp(char *word){
     int i;
     for (i=0; i<OPS_AMOUNT; i++){
-        if (!strcmp(ops[i]->name, word)) return i;
-    } return -1;
+        if (!strcmp(names[i], word)) return i;
+    } return NOT_OP;
+}
+
+char *getOpName(int i){
+    return names[i];
 }
 
 unsigned char getFunct(int i){
-    return ops[i]->funct;
+    return functs[i];
 }
 
 unsigned char getOpCode(int i){
-    return ops[i]->opcode;
+    return opcodes[i];
 }
 
 unsigned char getIsImSrc(int i){
-    return ops[i]->isImSrc;
+    return isImSrcLst[i];
 }
 
 unsigned char getIsDirSrc(int i){
-    return ops[i]->isDirSrc;
+    return isDirSrcLst[i];
 }
 
 unsigned char getIsRelSrc(int i){
-    return ops[i]->isRelSrc;
+    return isRelSrcLst[i];
 }
 
 unsigned char getIsRegSrc(int i){
-    return ops[i]->isRegSrc;
+    return isRegSrcLst[i];
 }
 
 unsigned char getIsImDest(int i){
-    return ops[i]->isImDest;
+    return isImDestLst[i];
 }
 
 unsigned char getIsDirDest(int i){
-    return ops[i]->isDirDest;
+    return isDirDestLst[i];
 }
 
 unsigned char getIsRelDest(int i){
-    return ops[i]->isRelDest;
+    return isRelDestLst[i];
 }
 
 unsigned char getIsRegDest(int i){
-    return ops[i]->isRegDest;
+    return isRegDestLst[i];
 }

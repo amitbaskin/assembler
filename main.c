@@ -1,10 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "operationsDef.h"
+#include "utils.h"
+#include "wordTranslation.h"
 
-int main() {
-    long num;
-    char *word = "-1";
-    num = strtol(word, &word, 10);
-    return 0;
+
+int main(int argc, char **args) {
+    printf("%d", transOpcode(1));
 }
