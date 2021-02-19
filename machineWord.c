@@ -1,64 +1,67 @@
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include "machineWord.h"
+#include "wordIdentifiers.h"
+#include "utils.h"
 
-int isReg(char *r){
-    int i;
-    for (i=0; i<REGS_LEN; i++){
-        if (!strcmp(r, regs[i])) return i;
-    } return NOT_REG;
+void addWord(sWord *word, sWord *last){
+    last->next = word;
 }
 
-unsigned char isLabel(char *word){
-    unsigned long len;
-    len = strlen(word);
-    int i;
-    if (word[len-2] != LABEL_SUFFIX) return FALSE;
-    if (!isalpha(word[0])) return ERR;
-    for (i=1; i<len-2; i++){
-        if(!isalnum(word[i])) return ERR;
-    } return TRUE;
+initial *getInitial(char *op, ref src, ref dest){
+    void *initPtr;
+    getAlloc(sizeof(initial), &initPtr);
+    initial *init = (initial *) initPtr;
+    init->op = op;
+    init->src = src;
+    init->dest = dest;
+    return init;
 }
 
-unsigned char isData(char *word){
-    if (!strcmp(word, DATA_ORDER)) return TRUE;
-    return FALSE;
+uWord *getUWord(){
+    void *uPtr;
+    getAlloc(sizeof(uWord), &uPtr);
+    uWord *word = (uWord*) uPtr;
+    return word;
 }
 
-unsigned char isStringOrder(char *word){
-    if (!strcmp(word, STRING_ORDER)) return TRUE;
-    return FALSE;
+void setInit(uWord **word, initial *init){
+    (*word)->init = init;
 }
 
-unsigned char isEntryOrder(char *word){
-    if (!strcmp(word, ENTRY_ORDER)) return TRUE;
-    return FALSE;
+void setLab(uWord **uWord, label *lab){
+    (*uWord)->lab = lab;
 }
 
-unsigned char isExternOrder(char *word){
-    if (!strcmp(word, EXTERN_ORDER)) return TRUE;
-    return FALSE;
+void setReg(uWord **uWord, reg r){
+    (*uWord)->reg = r;
 }
 
-unsigned char isString(char *word){
-    unsigned long len;
-    len = strlen(word);
-    if (word[0] == '"' && word[len-1] == '"') return TRUE;
-    return FALSE;
+void setNumData(uWord **uWord, int num){
+    (*uWord)->numData = num;
 }
 
-unsigned char isImNum(long *got, char *word){
-    unsigned long len;
-    len = strlen(word);
-    if (len < 2 || word[0] != NUM_PREFIX) return FALSE;
-    *got = strtol(word+1, &word, 10);
-    if (strcmp(word, "\0") != 0) return ERR;
-    else return TRUE;
+void setChrData(uWord **uWord, char chr){
+    (*uWord)->chrData = chr;
 }
 
-unsigned char isNumData(long *got, char *word){
-    *got = strtol(word, &word, 10);
-    if (strcmp(word, "\0") != 0) return ERR;
-    else return TRUE;
+sWord *getSword(){
+    void *sPtr;
+    getAlloc(sizeof(sWord), &sPtr);
+    sWord *word = (sWord*) sPtr;
+    return word;
+}
+
+void setUWord(sWord **sWord, uWord *uWord){
+    (*sWord)->uWord = uWord;
+}
+
+void setSWordStatus(sWord **sWord, wordStatus status){
+    (*sWord)->status = status;
+}
+
+void setSwordAddress(sWord **sWord, unsigned address){
+    (*sWord)->address = address;
+}
+
+void setSWordAddressType(sWord **sWord, char addressType){
+    (*sWord)->addressType = addressType;
 }

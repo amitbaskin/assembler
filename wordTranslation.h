@@ -1,4 +1,4 @@
-#include "machineWord.h"
+#include "wordIdentifiers.h"
 #include "operationsApi.h"
 #ifndef ASSEMBLER_WORD_TRANSLATION_H
 #define ASSEMBLER_WORD_TRANSLATION_H
