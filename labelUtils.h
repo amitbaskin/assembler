@@ -1,10 +1,9 @@
 #include "machineWordIdentifiers.h"
 #ifndef ASSEMBLER_LABEL_UTILS_H
 #define ASSEMBLER_LABEL_UTILS_H
-#define SUCCESS 0
 int isRel(const char *word);
-unsigned char isLabel(char *word, unsigned long len);
-unsigned char isLabelDeclaration(const char *word, unsigned long len);
+enum result isLegalLabel(char *word, unsigned long len);
+enum result isLabelDeclaration(const char *word, unsigned long len);
 void addDataLabel(label **last, char *name);
 void addLabel(label *last, label *next);
 label *getBasicLabel(char *name, int address);

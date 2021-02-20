@@ -11,7 +11,7 @@ int isRel(const char *word){
     return FALSE;
 }
 
-unsigned char isLabel(char *word, unsigned long len){
+enum result isLegalLabel(char *word, unsigned long len){
     int i;
     if (!isalpha(word[0])) return ERR;
     for (i=1; i<len-2; i++){
@@ -19,7 +19,7 @@ unsigned char isLabel(char *word, unsigned long len){
     } return TRUE;
 }
 
-unsigned char isLabelDeclaration(const char *word, unsigned long len){
+enum result isLabelDeclaration(const char *word, unsigned long len){
     if (word[len-2] != LABEL_SUFFIX) return FALSE;
     return TRUE;
 }

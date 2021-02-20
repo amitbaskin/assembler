@@ -7,7 +7,7 @@
 #include "manageMachineWord.h"
 #include "dataCollection.h"
 
-unsigned char dataScenario(char *line, sWord **lastWord, data *dat){
+enum result dataScenario(char *line, sWord **lastWord, data *dat){
     uWord *unionWord;
     sWord *structWord;
     if (collectData(&line, dat) == ERR) return ERR;

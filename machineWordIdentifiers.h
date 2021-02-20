@@ -1,9 +1,5 @@
 #ifndef ASSEMBLER_MACHINE_WORD_H
 #define ASSEMBLER_MACHINE_WORD_H
-#define ERR 2
-#define TRUE 1
-#define FALSE 0
-#define NOT_REG -1
 #define LABEL_SUFFIX ':'
 #define NUM_PREFIX '#'
 #define REL_PREFIX '%'

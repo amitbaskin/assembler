@@ -3,7 +3,7 @@
 #include <string.h>
 #include "generalUtils.h"
 
-int getFile(char *name, FILE **fp, char *mode, char *suffix){
+result getFile(char *name, FILE **fp, char *mode, char *suffix){
     unsigned long nameLen = strlen(name);
     unsigned long sufLen = strlen(suffix);
     char *fullName = malloc(nameLen+sufLen-1);
@@ -24,7 +24,7 @@ int getWriteFile(char *name, FILE **fp){
     return getFile(name, fp, "w", WRITE_FILE_SUFFIX);
 }
 
-int getAlloc(size_t size, void **ptr){
+result getAlloc(size_t size, void **ptr){
     *ptr = malloc(size);
     if (ptr == NULL){
         return ERR;
@@ -35,7 +35,7 @@ int getLineLoopCond(char chr, int i){
     return (chr != '\n') && (chr != EOF) && (i <= MAX_LINE_LEN);
 }
 
-int getLine(char **line, FILE *fp){
+result getLine(char **line, FILE *fp){
     int chr;
     int i;
     for (; (chr = fgetc(fp)) == ' ' || chr == '\t'; (*line)++);
@@ -51,12 +51,13 @@ int getWordLoopCond(char chr, int i){
     return (chr != ' ') && (chr != '\t') && (chr != '\n') && (chr != EOF) && (i <= MAX_LINE_LEN);
 }
 
-int getWord(char **line, char **word){
+result getWord(char **line, char **word){
     char chr;
     int i;
     for (; (chr = **line) == ' ' || chr == '\t'; (*line)++);
     for (i=0; getWordLoopCond((chr = **line), i); (*word)[i] = (char) chr, (*line)++, i++);
     (*word)[i] = '\0';
+    if (chr == SEPARATOR) return SEP;
     if (chr == '\n') return LINE_END;
     if (chr == EOF) return FILE_END;
     if ((chr = **line) != ' ' && chr != '\t') return ERR;

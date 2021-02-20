@@ -41,6 +41,7 @@ void setNumData(uWord *uWord, int num){
 }
 
 void setChrData(uWord *uWord, char chr){
+    dataCounter++;
     uWord->chrData = chr;
 }
 
