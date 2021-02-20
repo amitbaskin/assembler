@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include "generalUtils.h"
 #include "machineWordIdentifiers.h"
 
 int isReg(char *r){

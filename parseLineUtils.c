@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "firstParseUtils.h"
+#include "parseLineUtils.h"
 #include "generalUtils.h"
 #include "machineWordIdentifiers.h"
 #include "labelUtils.h"
@@ -44,3 +44,42 @@ void strScenario(char *str, sWord **lastWord){
         *lastWord = structWord;
     }
 }
+
+void breakDownLineHelper(rawWord **word, char *str){
+    void *ptr;
+    (*word)->word = str;
+    getAlloc(sizeof(rawWord), &ptr);
+    (*word)->next = (rawWord *) ptr;
+    *word = (rawWord *) ptr;
+}
+
+result breakDownLine(char **line, rawWord *word){
+    result res;
+    char *str;
+    while ((res = getWord(line, &str)) == SUCCESS){
+        breakDownLineHelper(&word, str);
+    } if (res == SEP) {
+        breakDownLineHelper(&word, SEP_STR);
+        return breakDownLine(line, word);
+    } return res;
+}
+
+result collectData(char **line, data *dat){
+    char *word;
+    long num;
+    data *next;
+    void *ptr;
+    result res;
+    while((res = getWord(line, &word)) != LINE_END && res != FILE_END){
+        if (isNumData(&num, word) == ERR) return ERR;
+        dat->num = (int) num;
+        getAlloc(sizeof(data), &ptr);
+        next = (data *) ptr;
+        dat->next = next;
+        dat = next;
+        if (getWord(line, &word) != LINE_END && res != SEP) return ERR;
+    } if (res == FILE_END) return res;
+    return SUCCESS;
+}
+
+

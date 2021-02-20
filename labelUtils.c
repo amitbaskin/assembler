@@ -11,7 +11,7 @@ int isRel(const char *word){
     return FALSE;
 }
 
-enum result isLegalLabel(char *word, unsigned long len){
+result isLegalLabel(char *word, unsigned long len){
     int i;
     if (!isalpha(word[0])) return ERR;
     for (i=1; i<len-2; i++){
@@ -19,7 +19,7 @@ enum result isLegalLabel(char *word, unsigned long len){
     } return TRUE;
 }
 
-enum result isLabelDeclaration(const char *word, unsigned long len){
+result isLabelDeclaration(const char *word, unsigned long len){
     if (word[len-2] != LABEL_SUFFIX) return FALSE;
     return TRUE;
 }
@@ -80,4 +80,12 @@ unsigned char getRelLabelAddress(char *name, label *lst, int address, int *dist)
             return SUCCESS;
         } lst = lst->next;
     } return ERR;
+}
+
+result isLabelInLst(label *lst, char *name){
+    while (lst != NULL){
+        if (!strcmp(lst->name, name)) return TRUE;
+        lst = lst->next;
+    } return FALSE;
+
 }

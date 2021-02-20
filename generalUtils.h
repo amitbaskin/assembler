@@ -5,7 +5,7 @@
 #define WRITE_FILE_SUFFIX ".ob"
 #define MAX_LINE_LEN 81
 #define SEPARATOR ','
-enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, CONTINUE};
+enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG};
 typedef enum result result;
 enum result getFile(char *name, FILE **fp, char *mode, char *suffix);
 int getReadFile(char *name, FILE **fp);

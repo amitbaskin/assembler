@@ -13,4 +13,5 @@ void setEntLabel(label *lab);
 void setExtLabel(label *lab);
 unsigned char getLabelAddress(char *name, label *lst, int *address);
 unsigned char getRelLabelAddress(char *name, label *lst, int address, int *dist);
+result isLabelInLst(label *lst, char *name);
 #endif
