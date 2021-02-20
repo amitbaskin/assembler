@@ -4,6 +4,7 @@
 #include "generalUtils.h"
 #include "labelUtils.h"
 #include "machineWordIdentifiers.h"
+#include "manageMachineWord.h"
 
 int isRel(const char *word){
     if (word[0] == REL_PREFIX) return TRUE;
@@ -27,14 +28,23 @@ void addLabel(label *last, label *next){
     last->next = next;
 }
 
-label *getBasicLabel(label **last, char *name, int address){
+void addDataLabel(label **last, char *name){
+    void *ptr;
+    getAlloc(sizeof(label), &ptr);
+    label *lab = (label *) ptr;
+    lab->name = name;
+    lab->address = dataCounter;
+    lab->isData = 1;
+    (*last)->next = lab;
+    *last = lab;
+}
+
+label *getBasicLabel(char *name, int address){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
     struct label *lab = (label *) ptr;
     lab->name = name;
     lab->address = address;
-    (*last)->next = lab;
-    *last = lab;
     return lab;
 }
 

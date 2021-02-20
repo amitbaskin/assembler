@@ -23,24 +23,25 @@ uWord *getUWord(){
     return word;
 }
 
-void setInit(uWord **word, initial *init){
-    (*word)->init = init;
+void setInit(uWord *word, initial *init){
+    word->init = init;
 }
 
-void setLab(uWord **uWord, label *lab){
-    (*uWord)->lab = lab;
+void setLab(uWord *uWord, label *lab){
+    uWord->lab = lab;
 }
 
-void setReg(uWord **uWord, reg r){
-    (*uWord)->reg = r;
+void setReg(uWord *uWord, reg r){
+    uWord->reg = r;
 }
 
-void setNumData(uWord **uWord, int num){
-    (*uWord)->numData = num;
+void setNumData(uWord *uWord, int num){
+    dataCounter++;
+    uWord->numData = num;
 }
 
-void setChrData(uWord **uWord, char chr){
-    (*uWord)->chrData = chr;
+void setChrData(uWord *uWord, char chr){
+    uWord->chrData = chr;
 }
 
 sWord *getSword(){
@@ -50,18 +51,18 @@ sWord *getSword(){
     return word;
 }
 
-void setUWord(sWord **sWord, uWord *uWord){
-    (*sWord)->uWord = uWord;
+void setUWord(sWord *sWord, uWord *uWord){
+    sWord->uWord = uWord;
 }
 
-void setSWordStatus(sWord **sWord, wordStatus status){
-    (*sWord)->status = status;
+void setSWordStatus(sWord *sWord, wordStatus status){
+    sWord->status = status;
 }
 
-void setSwordAddress(sWord **sWord, int address){
-    (*sWord)->address = address;
+void setSwordAddress(sWord *sWord, int address){
+    sWord->address = address;
 }
 
-void setSWordAddressType(sWord **sWord, char addressType){
-    (*sWord)->addressType = addressType;
+void setSWordAddressType(sWord *sWord, char addressType){
+    sWord->addressType = addressType;
 }

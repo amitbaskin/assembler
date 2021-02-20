@@ -5,8 +5,9 @@
 int isRel(const char *word);
 unsigned char isLabel(char *word, unsigned long len);
 unsigned char isLabelDeclaration(const char *word, unsigned long len);
+void addDataLabel(label **last, char *name);
 void addLabel(label *last, label *next);
-label *getBasicLabel(label **last, char *name, int address);
+label *getBasicLabel(char *name, int address);
 void setDataLabel(label *lab);
 void setCodeLabel(label *lab);
 void setEntLabel(label *lab);
