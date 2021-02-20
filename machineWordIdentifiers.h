@@ -40,7 +40,7 @@ typedef struct initial initial;
 
 struct label{
     char *name;
-    unsigned int address;
+    int address;
     struct label *next;
     unsigned char isCode : 1;
     unsigned char isData : 1;
@@ -63,11 +63,20 @@ typedef union uWord uWord;
 struct sWord{
     uWord *uWord;
     wordStatus status;
-    unsigned int address;
+    int address;
     char addressType;
     struct sWord *next;
 };
 
 typedef struct sWord sWord;
+
+int isReg(char *r);
+unsigned char isData(char *word);
+unsigned char isStringOrder(char *word);
+unsigned char isEntryOrder(char *word);
+unsigned char isExternOrder(char *word);
+unsigned char isString(char *word);
+unsigned char isImmediateNum(long *got, char *word);
+unsigned char isNumData(long *got, char *word);
 
 #endif

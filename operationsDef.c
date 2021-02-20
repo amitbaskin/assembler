@@ -2,7 +2,7 @@
 #include "operationsDef.h"
 #include "operationsApi.h"
 
-#include "utils.h"
+#include "generalUtils.h"
 
 void printOps(){
     /*function for debugging purposes*/

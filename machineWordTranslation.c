@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "wordTranslation.h"
-#include "wordIdentifiers.h"
+#include "machineWordTranslation.h"
+#include "machineWordIdentifiers.h"
 #include "operationsApi.h"
 
 unsigned int transDest(enum ref ref){
@@ -28,12 +28,12 @@ unsigned int getInitialWord(unsigned int dest, unsigned int src, unsigned int fu
     return dest + src + funct + opcode;
 }
 
-void printWordToFile(FILE *fp, signed int word){
-    fprintf(fp, "%03X", word);
+void printWordToFile(FILE *fp, int word){
+    fprintf(fp, WORD_FORMAT, word);
 }
 
-void printAddressToFile(FILE *fp, unsigned int address){
-    fprintf(fp, "%04u", address);
+void printAddressToFile(FILE *fp, int address){
+    fprintf(fp, ADDRESS_FORMAT, address);
 }
 
 void printAddressTypeToFile(FILE *fp, char type){

@@ -1,6 +1,6 @@
 #include "operationsDef.h"
-#include "utils.h"
-#include "wordTranslation.h"
+#include "generalUtils.h"
+#include "machineWordTranslation.h"
 
 
 int main(int argc, char **args) {

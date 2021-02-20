@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include "utils.h"
-#include "labels.h"
-#include "wordIdentifiers.h"
+#include "generalUtils.h"
+#include "labelUtils.h"
+#include "machineWordIdentifiers.h"
 
 int isRel(const char *word){
     if (word[0] == REL_PREFIX) return TRUE;
@@ -27,7 +27,7 @@ void addLabel(label *last, label *next){
     last->next = next;
 }
 
-label *getBasicLabel(label **last, char *name, unsigned int address){
+label *getBasicLabel(label **last, char *name, int address){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
     struct label *lab = (label *) ptr;
@@ -54,7 +54,7 @@ void setExtLabel(label *lab){
     lab->isExt = 1;
 }
 
-unsigned char getLabelAddress(char *name, label *lst, unsigned int *address){
+unsigned char getLabelAddress(char *name, label *lst, int *address){
     while (lst != NULL){
         if (!strcmp(name, lst->name)) {
             *address = lst->address;
@@ -63,10 +63,10 @@ unsigned char getLabelAddress(char *name, label *lst, unsigned int *address){
     } return ERR;
 }
 
-unsigned char getRelLabelAddress(char *name, label *lst, unsigned int address, int *dist){
+unsigned char getRelLabelAddress(char *name, label *lst, int address, int *dist){
     while (lst != NULL){
         if (!strcmp(name, lst->name)) {
-            *dist = ((signed) address - (signed) lst->address);
+            *dist = (address - lst->address);
             return SUCCESS;
         } lst = lst->next;
     } return ERR;

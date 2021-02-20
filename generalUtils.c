@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "utils.h"
+#include "generalUtils.h"
 
 int getFile(char *name, FILE **fp, char *mode, char *suffix){
     unsigned long nameLen = strlen(name);
@@ -32,7 +32,7 @@ int getAlloc(size_t size, void **ptr){
 }
 
 int getLineLoopCond(char chr, int i){
-    return chr != '\n' && chr != EOF && i <= MAX_LINE_LEN;
+    return (chr != '\n') && (chr != EOF) && (i <= MAX_LINE_LEN);
 }
 
 int getLine(char **line, FILE *fp){
@@ -48,7 +48,7 @@ int getLine(char **line, FILE *fp){
 }
 
 int getWordLoopCond(char chr, int i){
-    return chr != ' ' && chr != '\t' && chr != '\n' && chr != EOF && i <= MAX_LINE_LEN;
+    return (chr != ' ') && (chr != '\t') && (chr != '\n') && (chr != EOF) && (i <= MAX_LINE_LEN);
 }
 
 int getWord(char **line, char **word){

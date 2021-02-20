@@ -3,4 +3,4 @@ project(assembler C)
 
 set(CMAKE_C_STANDARD 90)
 
-add_executable(assembler main.c operationsDef.h operationsDef.c utils.c utils.h operationsApi.c operationsApi.h wordIdentifiers.c wordIdentifiers.h errors.c errors.h wordTranslation.c wordTranslation.h labels.c labels.h machineWord.c machineWord.h)
+add_executable(assembler main.c operationsDef.h operationsDef.c generalUtils.c generalUtils.h operationsApi.c operationsApi.h machineWordIdentifiers.c machineWordIdentifiers.h errors.c errors.h machineWordTranslation.c machineWordTranslation.h labelUtils.c labelUtils.h manageMachineWord.c manageMachineWord.h)

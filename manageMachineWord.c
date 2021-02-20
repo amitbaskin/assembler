@@ -1,6 +1,6 @@
-#include "machineWord.h"
-#include "wordIdentifiers.h"
-#include "utils.h"
+#include "manageMachineWord.h"
+#include "machineWordIdentifiers.h"
+#include "generalUtils.h"
 
 void addWord(sWord *word, sWord *last){
     last->next = word;
@@ -58,7 +58,7 @@ void setSWordStatus(sWord **sWord, wordStatus status){
     (*sWord)->status = status;
 }
 
-void setSwordAddress(sWord **sWord, unsigned address){
+void setSwordAddress(sWord **sWord, int address){
     (*sWord)->address = address;
 }
 

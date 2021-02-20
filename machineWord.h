@@ -1,4 +1,0 @@
-#ifndef ASSEMBLER_MACHINEWORD_H
-#define ASSEMBLER_MACHINEWORD_H
-
-#endif
