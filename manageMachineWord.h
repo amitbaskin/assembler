@@ -1,7 +1,8 @@
 #include "machineWordIdentifiers.h"
+#include "generalUtils.h"
 #ifndef ASSEMBLER_MANAGE_MACHINE_WORD_H
 #define ASSEMBLER_MANAGE_MACHINE_WORD_H
-static unsigned char labelFlag = 0;
+static result labelFlag = FALSE;
 static unsigned char instructionCounter = 100;
 static unsigned char dataCounter = 0;
 void addWord(sWord *word, sWord *last);

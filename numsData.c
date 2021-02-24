@@ -1,8 +1,12 @@
+#include <string.h>
 #include "numsData.h"
 #include "parseLineUtils.h"
 #include "generalUtils.h"
+#include "manageMachineWord.h"
+#include "parseLabel.h"
+#include "labelApi.h"
 
-result isDataScenario(char *word, char **line, sWord **words) {
+result isDataScenario(char *word, char **line, sWord **words, label *head, label *lab, label **labLst) {
     void *ptr;
     data *dat;
     rawWord *raw;
@@ -13,7 +17,7 @@ result isDataScenario(char *word, char **line, sWord **words) {
         getAlloc(sizeof(data), &ptr);
         dat = (data *) ptr;
         if (collectData(raw, dat) == ERR) return ERR;
-        addData(words, dat);
+        addData(words, dat, head, lab, labLst);
         return TRUE;
     } return FALSE;
 }
@@ -36,9 +40,10 @@ result collectData(rawWord *raw, data *dat){
     } return res;
 }
 
-result addData(sWord **lastWord, data *dat){
+result addData(sWord **lastWord, data *dat, label *head, label *lab, label **labLst){
     uWord *unionWord;
     sWord *structWord;
+    if (labelFlag) setLabelScenario(head, lab, labLst, setDataLabel);
     while (dat != NULL){
         dataCounter++;
         unionWord = getUWord();

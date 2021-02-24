@@ -7,8 +7,7 @@ struct data{
     struct data *next;
 };
 typedef struct data data;
-result isDataScenario(char *word, char **line, sWord **words);
+result isDataScenario(char *word, char **line, sWord **words, label *head, label *lab, label **labLst) ;
 result collectData(rawWord *raw, data *dat);
-result addData(sWord **lastWord, data *dat);
-
+result addData(sWord **lastWord, data *dat, label *head, label *lab, label **labLst);
 #endif

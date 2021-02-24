@@ -8,7 +8,7 @@ result isLabelScenario(char **line, char **word, label **lab, unsigned long len)
     void *ptr;
     if (isLabelDeclaration(*word, len) == TRUE){
         if (isLegalLabel(*word, len) != TRUE) return ERR;
-        labelFlag = 1;
+        labelFlag = TRUE;
         getAlloc(sizeof(label), &ptr);
         lab = ptr;
         getAlloc(len + 1, ptr);
@@ -19,10 +19,10 @@ result isLabelScenario(char **line, char **word, label **lab, unsigned long len)
     } return FALSE;
 }
 
-result dataLabelScenario(label *head, label *lab, label **labLst){
+result setLabelScenario(label *head, label *lab, label **labLst, void setter(label *)){
     if (!isLabelInLst(head, lab->name)){
         (*labLst)->next = lab;
-        setDataLabel(lab);
+        setter(lab);
         lab->address = dataCounter;
         return SUCCESS;
     } else return ERR;
