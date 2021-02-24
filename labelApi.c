@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include <string.h>
 #include "generalUtils.h"
-#include "labelUtils.h"
+#include "labelApi.h"
 #include "machineWordIdentifiers.h"
 #include "manageMachineWord.h"
 

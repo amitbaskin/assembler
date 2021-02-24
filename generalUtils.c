@@ -47,19 +47,21 @@ result getLine(char **line, FILE *fp){
     return SUCCESS;
 }
 
-int getWordLoopCond(char chr, int i){
-    return (chr != ' ') && (chr != '\t') && (chr != '\n') && (chr != EOF) && (i <= MAX_LINE_LEN);
+unsigned char isSepFunc(unsigned char isSep, char chr){
+    return isSep ? chr != SEPARATOR : 1;
 }
 
-result getWord(char **line, char **word){
+int getWordLoopCond(char chr, unsigned char isSep){
+    return (chr != ' ') && (chr != '\t') && (chr != '\n') && isSepFunc(isSep, chr);
+}
+
+result getWord(char **line, char **word, unsigned char isSep){
     char chr;
     int i;
     for (; (chr = **line) == ' ' || chr == '\t'; (*line)++);
     for (i=0; getWordLoopCond((chr = **line), i); (*word)[i] = (char) chr, (*line)++, i++);
     (*word)[i] = '\0';
-    if (chr == SEPARATOR) return SEP;
-    if (chr == '\n') return LINE_END;
-    if (chr == EOF) return FILE_END;
-    if ((chr = **line) != ' ' && chr != '\t') return ERR;
+    if (chr == '\0') return LINE_END;
+    if (isSep && chr == SEPARATOR) return SEP;
     return SUCCESS;
 }

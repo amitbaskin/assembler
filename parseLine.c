@@ -3,31 +3,22 @@
 #include "parseLine.h"
 #include "generalUtils.h"
 #include "parseLineUtils.h"
-#include "labelUtils.h"
+#include "labelApi.h"
 #include "manageMachineWord.h"
 
-result parseLine(rawWord *raw, label **labLst){
+result parseLine(char **line, label **labLst, sWord **words){
     label *lab;
-    void *ptr;
-    unsigned long len = strlen(raw->word);
+    result res;
+    char *word;
+    res = getWord(line, &word, 0);
+    if (res == LINE_END) return LINE_END;
+    unsigned long len = strlen(word);
     label *head = *labLst;
-    if (isLabelDeclaration(raw->word, len) == TRUE){
-        if (isLegalLabel(raw->word, len) != TRUE) return ERR;
-        labelFlag = 1;
-        raw = raw->next;
-        getAlloc(sizeof(label), &ptr);
-        lab = ptr;
-        raw->word[len-1] = '\0';
-        lab->name = raw->word;
-    } if (isData(raw->word) == TRUE){
-        if (labelFlag){
-            if (!isLabelInLst(head, lab->name)){
-                (*labLst)->next = lab;
-                setDataLabel(lab);
-                lab->address = dataCounter;
-            }
-        }
-    } else return ERR;
+    if (isLabelScenario(line, &word, &lab, len) == ERR) return ERR;
+    if ((res = isDataScenario(word, line, words)) == ERR) return ERR;
+    if (res == FALSE) res = isStrScenario(line, word, words);
+    if (res == TRUE && labelFlag) res = dataLabelScenario(head, lab, labLst);
+    if (res == ERR) return ERR;
     return SUCCESS;
 }
 

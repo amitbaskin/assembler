@@ -66,13 +66,20 @@ struct sWord{
 
 typedef struct sWord sWord;
 
+struct rawWord{
+    char *word;
+    struct rawWord *next;
+};
+typedef struct rawWord rawWord;
+
+
 int isReg(char *r);
-unsigned char isData(char *word);
-unsigned char isStringOrder(char *word);
-unsigned char isEntryOrder(char *word);
-unsigned char isExternOrder(char *word);
-unsigned char isString(char *word);
-unsigned char isImmediateNum(long *got, char *word);
-unsigned char isNumData(long *got, char *word);
+result isData(char *word);
+result isStringOrder(char *word);
+result isEntryOrder(char *word);
+result isExternOrder(char *word);
+result isString(char *word);
+result isImmediateNum(long *got, char *word);
+result isNumData(long *got, char *word);
 
 #endif

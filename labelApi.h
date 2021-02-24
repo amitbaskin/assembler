@@ -1,6 +1,6 @@
 #include "machineWordIdentifiers.h"
-#ifndef ASSEMBLER_LABEL_UTILS_H
-#define ASSEMBLER_LABEL_UTILS_H
+#ifndef ASSEMBLER_LABEL_API_H
+#define ASSEMBLER_LABEL_API_H
 int isRel(const char *word);
 enum result isLegalLabel(char *word, unsigned long len);
 enum result isLabelDeclaration(const char *word, unsigned long len);

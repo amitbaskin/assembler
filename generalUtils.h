@@ -7,12 +7,12 @@
 #define SEPARATOR ','
 enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG};
 typedef enum result result;
-enum result getFile(char *name, FILE **fp, char *mode, char *suffix);
+result getFile(char *name, FILE **fp, char *mode, char *suffix);
 int getReadFile(char *name, FILE **fp);
 int getWriteFile(char *name, FILE **fp);
-enum result getAlloc(size_t size, void **ptr);
+result getAlloc(size_t size, void **ptr);
 int getLineLoopCond(char chr, int i);
-enum result getLine(char **line, FILE *fp);
-int getWordLoopCond(char chr, int i);
-enum result getWord(char **line, char **word);
+result getLine(char **line, FILE *fp);
+int getWordLoopCond(char chr, unsigned char isSep);
+result getWord(char **line, char **word, unsigned char isSep);
 #endif
