@@ -5,12 +5,12 @@
 int isOp(char *word){
     int i;
     for (i=0; i < OPERATIONS_AMOUNT; i++){
-        if (!strcmp(names[i], word)) return i;
+        if (!strcmp(operations[i], word)) return i;
     } return NOT_OP;
 }
 
 char *getOpName(int opIndex){
-    return names[opIndex];
+    return operations[opIndex];
 }
 
 unsigned char getFunct(int opIndex){

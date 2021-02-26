@@ -1,9 +1,11 @@
+#include <string.h>
 #include "parseOpUtils.h"
 #include "generalUtils.h"
 #include "machineWordIdentifiers.h"
 #include "operationsApi.h"
 #include "parseLineUtils.h"
 #include "labelApi.h"
+#include "manageMachineWord.h"
 
 result validateTwoOps(char **line, char **firstOp, char **secOp){
     char *sep;
@@ -38,11 +40,11 @@ result validateOperandsAmount(char **line, int operandsAmount, char **firstOp, c
     }
 }
 
-ref getOperandType(char *operand, int *regType, long *num, label **lab, label *labHead){
+ref getOperandType(char *operand, int *regType, long *num){
     if ((*regType = isReg(operand)) != NOT_REG) return R_REG;
-    if (isImmediateNum(num, operand)) return IM;
-    if (isLabelInLst(labHead, lab, operand)) return DIR;
-    if (isRel(operand, lab, labHead)) return REL;
+    if (isImmediateNum(num, operand) == TRUE) return IM;
+    if (isRel(operand) == TRUE) return REL;
+    if (isLegalLabel(operand, strlen(operand)) == TRUE) return DIR;
     return NOT_REF;
 }
 
@@ -74,4 +76,31 @@ result validateDestOp(ref type, int opIndex){
         default:
             return ERR;
     }
+}
+
+ref addOperandWord(char *operand, label *labHead, sWord **sWordLst){
+    int regType;
+    long num;
+    ref r = getOperandType(operand, &regType, &num);
+    switch(r){
+        case IM:
+            addNumWord(num, sWordLst);
+            return IM;
+        case DIR:
+            addLabWord(sWordLst, strlen(operand), operand, labHead, 0);
+            return DIR;
+        case REL:
+            addLabWord(sWordLst, strlen(operand), operand, labHead, 1);
+            return REL;
+        case R_REG:
+            addRegWord(regType, sWordLst);
+            return R_REG;
+        default:
+            return NOT_REF;
+    }
+}
+
+void addAllOperandsWord(int operandsAmount, char *firstOp, char *secOp, label *labHead, sWord **sWordLst){
+    if (operandsAmount > 0) addOperandWord(firstOp, labHead, sWordLst);
+    if (operandsAmount == 2) addOperandWord(secOp, labHead, sWordLst);
 }

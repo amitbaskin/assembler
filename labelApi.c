@@ -6,11 +6,10 @@
 #include "machineWordIdentifiers.h"
 #include "manageMachineWord.h"
 
-int isRel(char *word, label **lab, label *labHead){
+int isRel(char *word){
     if (word[0] != REL_PREFIX) return FALSE;
     word++;
-    if (isLabelInLst(labHead, lab, word)) return TRUE;
-    return FALSE;
+    return isLegalLabel(word, strlen(word));
 }
 
 result isLegalLabel(char *word, unsigned long len){
@@ -66,21 +65,26 @@ void setExtLabel(label *lab){
     lab->isExt = 1;
 }
 
-unsigned char getLabelAddress(char *name, label *lst, int *address){
-    while (lst != NULL){
-        if (!strcmp(name, lst->name)) {
-            *address = lst->address;
+void setRel(label *lab){
+    lab->isRel = 1;
+}
+
+
+unsigned char getLabelAddress(char *name, label *headLab, int *address){
+    while (headLab != NULL){
+        if (!strcmp(name, headLab->name)) {
+            *address = headLab->address;
             return SUCCESS;
-        } lst = lst->next;
+        } headLab = headLab->next;
     } return ERR;
 }
 
-unsigned char getRelLabelAddress(char *name, label *lst, int address, int *dist){
-    while (lst != NULL){
-        if (!strcmp(name, lst->name)) {
-            *dist = (address - lst->address);
+unsigned char getRelLabelAddress(char *name, label *headLab, int address, int *dist){
+    while (headLab != NULL){
+        if (!strcmp(name, headLab->name)) {
+            *dist = (address - headLab->address);
             return SUCCESS;
-        } lst = lst->next;
+        } headLab = headLab->next;
     } return ERR;
 }
 

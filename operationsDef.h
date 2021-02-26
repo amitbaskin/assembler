@@ -14,7 +14,7 @@
 #define IS_RELATIVE_DEST_LST {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0}
 #define IS_REGISTRY_DEST_LST {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0}
 #define OPERATIONS_AMOUNT 16
-static char *names[] = OPERATIONS;
+static char *operations[] = OPERATIONS;
 static const unsigned char functs[] = FUNCTS;
 static const unsigned char opcodes[] = OPCODES;
 static const unsigned char opAmounts[] = OPERANDS_AMOUNT;

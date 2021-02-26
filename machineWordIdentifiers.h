@@ -27,7 +27,7 @@ enum labelType {COD, DAT, ENT, EXT};
 typedef enum labelType labelType;
 
 struct initial{
-    char *op;
+    int opIndex;
     enum ref src;
     enum ref dest;
 };
@@ -42,6 +42,7 @@ struct label{
     unsigned char isData : 1;
     unsigned char isEnt : 1;
     unsigned char isExt : 1;
+    unsigned char isRel : 1;
 };
 
 typedef struct label label;
@@ -50,7 +51,7 @@ union uWord{
   initial *init;
   label *lab;
   reg reg;
-  int numData;
+  long numData;
   char chrData;
 };
 
