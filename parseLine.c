@@ -8,26 +8,31 @@
 #include "parseLabel.h"
 #include "numsData.h"
 #include "strData.h"
+#include "operationsApi.h"
 
-result lookForData(char **line, label **labLst, sWord **words){
+result lookForData(char **word, char **line, label *labHead, label **labLst, sWord **words){
     label *lab;
     result res;
-    char *word;
-    res = getWord(line, &word, 0);
+    res = getWord(line, word, 0);
     if (res == LINE_END) return LINE_END;
-    unsigned long len = strlen(word);
-    label *head = *labLst;
-    if ((res = isLabelScenario(line, &word, &lab, len)) == ERR) return ERR;
+    unsigned long len = strlen(*word);
+    if ((res = isLabelScenario(line, word, &lab, len)) == ERR) return ERR;
     if (res == LINE_END) return SUCCESS;
-    if ((res = isDataScenario(word, line, words, head, lab, labLst)) == ERR) return ERR;
-    if (res == FALSE) res = isStrScenario(line, word, words, head, lab, labLst);
+    if ((res = isDataScenario(*word, line, words, labHead, lab, labLst)) == ERR) return ERR;
+    if (res == FALSE) res = isStrScenario(line, *word, words, labHead, lab, labLst);
     if (res == ERR) return ERR;
-    if (res == FALSE) res = isEntryOrder(word);
+    if (res == FALSE) res = isEntryOrder(*word);
     if (res == TRUE) return SUCCESS;
-    else {
-        res = isExternOrder(word);
-        if (res == TRUE) setLabelScenario(head, lab, labLst, setExtLabel);
+    else if (isExternOrder(*word) == TRUE) {
+        setLabelScenario(labHead, lab, labLst, setExtLabel);
+        res = getWord(line, word, 0);
     } return res;
+}
+
+result lookForOperation(char **word, char **line, label **labLst, sWord **words){
+    int isOperation = isOp(*word);
+    if (isOperation == NOT_OP) return ERR;
+    return SUCCESS;
 }
 
 

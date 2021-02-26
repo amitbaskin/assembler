@@ -4,51 +4,55 @@
 
 int isOp(char *word){
     int i;
-    for (i=0; i<OPS_AMOUNT; i++){
+    for (i=0; i < OPERATIONS_AMOUNT; i++){
         if (!strcmp(names[i], word)) return i;
     } return NOT_OP;
 }
 
-char *getOpName(int i){
-    return names[i];
+char *getOpName(int opIndex){
+    return names[opIndex];
 }
 
-unsigned char getFunct(int i){
-    return functs[i];
+unsigned char getFunct(int opIndex){
+    return functs[opIndex];
 }
 
-unsigned char getOpCode(int i){
-    return opcodes[i];
+unsigned char getOperandsAmount(int opIndex){
+    return opAmounts[opIndex];
 }
 
-unsigned char getIsImSrc(int i){
-    return isImSrcLst[i];
+unsigned char getOpCode(int opIndex){
+    return opcodes[opIndex];
 }
 
-unsigned char getIsDirSrc(int i){
-    return isDirSrcLst[i];
+unsigned char getIsImSrc(int opIndex){
+    return isImSrcLst[opIndex];
 }
 
-unsigned char getIsRelSrc(int i){
-    return isRelSrcLst[i];
+unsigned char getIsDirSrc(int opIndex){
+    return isDirSrcLst[opIndex];
 }
 
-unsigned char getIsRegSrc(int i){
-    return isRegSrcLst[i];
+unsigned char getIsRelSrc(int opIndex){
+    return isRelSrcLst[opIndex];
 }
 
-unsigned char getIsImDest(int i){
-    return isImDestLst[i];
+unsigned char getIsRegSrc(int opIndex){
+    return isRegSrcLst[opIndex];
 }
 
-unsigned char getIsDirDest(int i){
-    return isDirDestLst[i];
+unsigned char getIsImDest(int opIndex){
+    return isImDestLst[opIndex];
 }
 
-unsigned char getIsRelDest(int i){
-    return isRelDestLst[i];
+unsigned char getIsDirDest(int opIndex){
+    return isDirDestLst[opIndex];
 }
 
-unsigned char getIsRegDest(int i){
-    return isRegDestLst[i];
+unsigned char getIsRelDest(int opIndex){
+    return isRelDestLst[opIndex];
+}
+
+unsigned char getIsRegDest(int opIndex){
+    return isRegDestLst[opIndex];
 }

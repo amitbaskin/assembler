@@ -19,7 +19,7 @@
 static const char *regs[] = REGS;
 enum reg {R0, R1, R2, R3, R4, R5, R6, R7};
 typedef enum reg reg;
-enum ref {IM, DIR, REL, R_REG};
+enum ref {IM, DIR, REL, R_REG, NOT_REF};
 typedef enum ref ref;
 enum wordStatus {INIT, LAB, W_REG, NUM, CHR};
 typedef enum wordStatus wordStatus;

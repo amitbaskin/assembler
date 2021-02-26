@@ -2,15 +2,16 @@
 #define ASSEMBLER_OPERATIONS_API_H
 #define NOT_OP -1
 int isOp(char *word);
-char *getOpName(int i);
-unsigned char getFunct(int i);
-unsigned char getOpCode(int i);
-unsigned char getIsImSrc(int i);
-unsigned char getIsDirSrc(int i);
-unsigned char getIsRelSrc(int i);
-unsigned char getIsRegSrc(int i);
-unsigned char getIsImDest(int i);
-unsigned char getIsDirDest(int i);
-unsigned char getIsRelDest(int i);
-unsigned char getIsRegDest(int i);
+char *getOpName(int opIndex);
+unsigned char getOperandsAmount(int opIndex);
+unsigned char getFunct(int opIndex);
+unsigned char getOpCode(int opIndex);
+unsigned char getIsImSrc(int opIndex);
+unsigned char getIsDirSrc(int opIndex);
+unsigned char getIsRelSrc(int opIndex);
+unsigned char getIsRegSrc(int opIndex);
+unsigned char getIsImDest(int opIndex);
+unsigned char getIsDirDest(int opIndex);
+unsigned char getIsRelDest(int opIndex);
+unsigned char getIsRegDest(int opIndex);
 #endif
