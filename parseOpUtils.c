@@ -5,10 +5,11 @@
 #include "parseLineUtils.h"
 #include "labelApi.h"
 
-result validateTwoOps(char **line, char **firstOp, char **sep, char **secOp){
+result validateTwoOps(char **line, char **firstOp, char **secOp){
+    char *sep;
     result res = getWord(line, firstOp, 0);
     if (res == LINE_END) return ERR;
-    res = getWord(line, sep, 1);
+    res = getWord(line, &sep, 1);
     if (res != SEP) return ERR;
     getWord(line, secOp, 0);
     return finishLine(line);
@@ -24,10 +25,10 @@ result validateZeroOps(char **line){
     return finishLine(line);
 }
 
-result validateOperandsAmount(char **line, int operandsAmount, char **firstOp, char **sep, char **secOp){
+result validateOperandsAmount(char **line, int operandsAmount, char **firstOp, char **secOp){
     switch (operandsAmount) {
         case 2:
-            return validateTwoOps(line, firstOp, sep, secOp);
+            return validateTwoOps(line, firstOp, secOp);
         case 1:
             return validateOneOp(line, firstOp);
         case 0:
@@ -37,11 +38,11 @@ result validateOperandsAmount(char **line, int operandsAmount, char **firstOp, c
     }
 }
 
-ref getOperandType(char *operand, long *got, label *labHead){
-    if (isReg(operand)) return R_REG;
-    if (isImmediateNum(got, operand)) return IM;
-    if (isLabelInLst(labHead, operand)) return DIR;
-    if (isRel(operand, labHead)) return REL;
+ref getOperandType(char *operand, int *regType, long *num, label **lab, label *labHead){
+    if ((*regType = isReg(operand)) != NOT_REG) return R_REG;
+    if (isImmediateNum(num, operand)) return IM;
+    if (isLabelInLst(labHead, lab, operand)) return DIR;
+    if (isRel(operand, lab, labHead)) return REL;
     return NOT_REF;
 }
 
@@ -74,10 +75,3 @@ result validateDestOp(ref type, int opIndex){
             return ERR;
     }
 }
-
-result validateOpsTypes(int operandsAmount, char **firstOp, char **sep, char **secOp){
-    return SUCCESS;
-}
-
-
-

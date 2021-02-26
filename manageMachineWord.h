@@ -5,7 +5,7 @@
 static result labelFlag = FALSE;
 static unsigned char instructionCounter = 100;
 static unsigned char dataCounter = 0;
-void addWord(sWord *word, sWord *last);
+void addWord(sWord *word, sWord **sWordLst);
 initial *getInitial(char *op, ref src, ref dest);
 uWord *getUWord();
 void setInit(uWord *word, initial *init);
@@ -18,4 +18,9 @@ void setUWord(sWord *sWord, uWord *uWord);
 void setSWordStatus(sWord *sWord, wordStatus status);
 void setSwordAddress(sWord *sWord, int address);
 void setSWordAddressType(sWord *sWord, char addressType);
+void addInitWord(initial *init, sWord **sWordLst);
+void addLabWord(label *lab, sWord **sWordLst);
+void addRegWord(int reg, sWord **sWordLst);
+void addNumWord(int num, sWord **sWordLst);
+void addChrWord(char chr, sWord **sWordLst);
 #endif

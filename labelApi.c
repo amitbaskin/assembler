@@ -6,10 +6,10 @@
 #include "machineWordIdentifiers.h"
 #include "manageMachineWord.h"
 
-int isRel(char *word, label *labHead){
+int isRel(char *word, label **lab, label *labHead){
     if (word[0] != REL_PREFIX) return FALSE;
     word++;
-    if (isLabelInLst(labHead, word)) return TRUE;
+    if (isLabelInLst(labHead, lab, word)) return TRUE;
     return FALSE;
 }
 
@@ -84,9 +84,12 @@ unsigned char getRelLabelAddress(char *name, label *lst, int address, int *dist)
     } return ERR;
 }
 
-result isLabelInLst(label *labHead, char *name){
+result isLabelInLst(label *labHead, label **lab, char *name){
     while (labHead != NULL){
-        if (!strcmp(labHead->name, name)) return TRUE;
+        if (!strcmp(labHead->name, name)) {
+            *lab = labHead;
+            return TRUE;
+        }
         labHead = labHead->next;
     } return FALSE;
 

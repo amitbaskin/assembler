@@ -5,18 +5,15 @@
 #include "parseLineUtils.h"
 
 
-result parseOp(char *word, char **line){
+result getOperands(char *word, char **line, int *opsAmount, char **firstOp, char **secOp){
     result res;
-    char *firstOp;
-    char *sep;
-    char *secOp;
-    int opsAmount;
     int opIndex = isOp(word);
     if (opIndex == NOT_OP) return ERR;
-    opsAmount = getOperandsAmount(opIndex);
-    res = validateOperandsAmount(line, opsAmount, &firstOp, &sep, &secOp);
-    if (res == ERR) return ERR;
+    *opsAmount = getOperandsAmount(opIndex);
+    res = validateOperandsAmount(line, *opsAmount, firstOp, secOp);
+    if (res == ERR) return res;
     res = finishLine(line);
-    if (res == ERR) return ERR;
-
+    if (res == ERR) return res;
+    return SUCCESS;
 }
+
