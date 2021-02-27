@@ -2,7 +2,7 @@
 #include "operationsApi.h"
 #include "operationsDef.h"
 
-int isOp(char *word){
+int getOpIndex(char *word){
     int i;
     for (i=0; i < OPERATIONS_AMOUNT; i++){
         if (!strcmp(operations[i], word)) return i;

@@ -5,11 +5,14 @@
 #include "labelApi.h"
 
 void addWord(sWord *word, sWord **sWordLst){
-    (*sWordLst)->next = word;
+    if ((*sWordLst)->uWord == NULL) {
+        (*sWordLst) = word;
+        return;
+    } (*sWordLst)->next = word;
     *sWordLst = (*sWordLst)->next;
 }
 
-initial *getInitial(int opIndex, ref src, ref dest){
+initial *getInitWord(int opIndex, ref src, ref dest){
     void *initPtr;
     getAlloc(sizeof(initial), &initPtr);
     initial *init = (initial *) initPtr;
@@ -117,8 +120,8 @@ void addInitWord(initial *init, sWord **sWordLst){
 void addLabWord(sWord **sWordLst, unsigned long len, char *name, label *labHead, unsigned char isRel){
     sWord *sWordLab = createAndAddWord(setLabStatus, W_REG, sWordLst);
     label *lab;
-    if (isLabelInLst(labHead, &lab, name) == TRUE);
-    else lab = getLabel(len, name);
+    if (labHead->name == NULL) setName(lab, name, len);
+    if (isLabInLst(labHead, &lab, name) != TRUE) lab = getLabel(len, name);
     setLab(sWordLab->uWord, lab);
     setSwordAddress(sWordLab, instructionCounter++);
     if (isRel) setRel(lab);

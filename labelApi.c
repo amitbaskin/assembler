@@ -25,25 +25,30 @@ result isLabelDeclaration(const char *word, unsigned long len){
     return TRUE;
 }
 
-void addLabel(label *last, label *next){
-    last->next = next;
+void addLabel(label **labLst, label *next){
+    (*labLst)->next = next;
 }
 
-void addDataLabel(label **last, char *name){
+void addDataLabel(label **labLst, char *name){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
     label *lab = (label *) ptr;
     lab->name = name;
-    lab->address = dataCounter;
+    lab->address = dataCounter++;
     lab->isData = 1;
-    (*last)->next = lab;
-    *last = lab;
+    (*labLst)->next = lab;
+    *labLst = lab;
 }
 
-label *getBasicLabel(char *name, int address){
+label *getEmptyLabel(){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
     struct label *lab = (label *) ptr;
+    return lab;
+}
+
+label *getBasicLabel(char *name, int address){
+    label *lab = getEmptyLabel();
     lab->name = name;
     lab->address = address;
     return lab;
@@ -69,6 +74,18 @@ void setRel(label *lab){
     lab->isRel = 1;
 }
 
+void setAddress(label *lab, int address){
+    lab->address = address;
+}
+
+result setName(label *lab, char *name, unsigned long len){
+    void *ptr;
+    if (getAlloc(len+1, &ptr) == ERR) return ERR;
+    lab->name = (char *) ptr;
+    strcpy(lab->name, name);
+    (lab->name)[len] = '\0';
+    return SUCCESS;
+}
 
 unsigned char getLabelAddress(char *name, label *headLab, int *address){
     while (headLab != NULL){
@@ -88,13 +105,11 @@ unsigned char getRelLabelAddress(char *name, label *headLab, int address, int *d
     } return ERR;
 }
 
-result isLabelInLst(label *labHead, label **lab, char *name){
+result isLabInLst(label *labHead, label **lab, char *name){
     while (labHead != NULL){
         if (!strcmp(labHead->name, name)) {
             *lab = labHead;
             return TRUE;
-        }
-        labHead = labHead->next;
+        } labHead = labHead->next;
     } return FALSE;
-
 }

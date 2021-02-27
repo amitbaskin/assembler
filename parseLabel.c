@@ -19,11 +19,11 @@ result isLabelScenario(char **line, char **word, label **lab, unsigned long len)
     } return FALSE;
 }
 
-result setLabelScenario(label *head, label *lab, label **labLst, void setter(label *)){
-    if (!isLabelInLst(head, lab->name)){
-        (*labLst)->next = lab;
-        setter(lab);
-        lab->address = dataCounter;
+result addLabelScenario(label *head, label **lab, label **labLst, void setter(label *), int address){
+    if (!isLabInLst(head, lab, (*lab)->name)){
+        (*labLst)->next = *lab;
+        setter(*lab);
+        (*lab)->address = address;
         return SUCCESS;
     } else return ERR;
 }

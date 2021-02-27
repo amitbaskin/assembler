@@ -5,8 +5,9 @@
 static result labelFlag = FALSE;
 static unsigned char instructionCounter = 100;
 static unsigned char dataCounter = 0;
+static unsigned char lineCounter = 1;
 void addWord(sWord *word, sWord **sWordLst);
-initial *getInitial(int opIndex, ref src, ref dest);
+initial *getInitWord(int opIndex, ref src, ref dest);
 uWord *getUWord();
 void setInit(uWord *word, initial *init);
 void setLab(uWord *uWord, label *lab);

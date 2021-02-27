@@ -43,7 +43,7 @@ result collectData(rawWord *raw, data *dat){
 result addData(sWord **lastWord, data *dat, label *head, label *lab, label **labLst){
     uWord *unionWord;
     sWord *structWord;
-    if (labelFlag) setLabelScenario(head, lab, labLst, setDataLabel);
+    if (labelFlag) addLabelScenario(head, &lab, labLst, setDataLabel, dataCounter++);
     while (dat != NULL){
         dataCounter++;
         unionWord = getUWord();

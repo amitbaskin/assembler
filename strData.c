@@ -24,7 +24,7 @@ void strScenario(char *str, sWord **lastWord, label *head, label *lab, label **l
     unsigned long len = strlen(str);
     int i;
     char chr;
-    if (labelFlag) setLabelScenario(head, lab, labLst, setDataLabel);
+    if (labelFlag) addLabelScenario(head, &lab, labLst, setDataLabel, dataCounter++);
     for (i=1; i<len-1; i++){
         dataCounter++;
         chr = str[i];
