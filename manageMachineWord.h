@@ -6,6 +6,8 @@ static result labelFlag = FALSE;
 static unsigned char instructionCounter = 100;
 static unsigned char dataCounter = 0;
 static unsigned char lineCounter = 1;
+static unsigned char ICF = 0;
+static unsigned char DCF = 0;
 void addWord(sWord *word, sWord **sWordLst);
 initial *getInitWord(int opIndex, ref src, ref dest);
 uWord *getUWord();

@@ -2,7 +2,7 @@
 #include <string.h>
 #include "generalUtils.h"
 #include "machineWordIdentifiers.h"
-#include "parseLineUtils.h"
+#include "firstParseLineUtils.h"
 
 int isReg(char *r){
     int i;

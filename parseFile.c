@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "parseFile.h"
 #include "generalUtils.h"
-#include "parseLine.h"
+#include "firstParseLine.h"
 #include "labelApi.h"
 #include "manageMachineWord.h"
 #define MAX_LINE_LEN 81
@@ -28,5 +28,8 @@ result firstParse(FILE *fp){
         if (res == ERR) return ERR;
         res = lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst);
         if (res == ERR) return ERR;
-    } return SUCCESS;
+    } ICF = instructionCounter;
+    DCF = dataCounter;
+    return SUCCESS;
 }
+
