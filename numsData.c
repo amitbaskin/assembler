@@ -1,10 +1,10 @@
 #include <string.h>
 #include "numsData.h"
-#include "firstParseLineUtils.h"
+#include "parseLineUtils.h"
 #include "generalUtils.h"
-#include "manageMachineWord.h"
+#include "sWordSetters.h"
 #include "parseLabel.h"
-#include "labelApi.h"
+#include "labelUtils.h"
 
 result isDataScenario(char *word, char **line, sWord **words, label *head, label *lab, label **labLst) {
     void *ptr;
@@ -40,21 +40,11 @@ result collectData(rawWord *raw, data *dat){
     } return res;
 }
 
-result addData(sWord **lastWord, data *dat, label *head, label *lab, label **labLst){
-    uWord *unionWord;
-    sWord *structWord;
-    if (labelFlag) addLabelScenario(head, &lab, labLst, setDataLabel, dataCounter++);
-    while (dat != NULL){
-        dataCounter++;
-        unionWord = getUWord();
-        setNumData(unionWord, dat->num);
-        dat = dat->next;
-        structWord = getSword();
-        structWord->status = NUM;
-        structWord->uWord = unionWord;
-        structWord->address = dataCounter;
-        structWord->addressType = R_TYPE;
-        (*lastWord)->next = structWord;
-        *lastWord = structWord;
+result addData(sWord **sWordLst, data *dat, label *head, label *lab, label **labLst){
+    if (labelFlag) {
+        addLabToLabLst(head, &lab, labLst, NONE, dataCounter++);
+        setDataLabel(lab);
+    } while (dat != NULL){
+        addNumWord(dat->num, sWordLst);
     } return SUCCESS;
 }

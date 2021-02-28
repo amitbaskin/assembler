@@ -1,9 +1,9 @@
-#include "machineWordIdentifiers.h"
+#include "wordIdentifiers.h"
 #include "generalUtils.h"
 #include "numsData.h"
 
-#ifndef ASSEMBLER_FIRST_PARSE_LINE_UTILS_H
-#define ASSEMBLER_FIRST_PARSE_LINE_UTILS_H
+#ifndef ASSEMBLER_PARSE_LINE_UTILS_H
+#define ASSEMBLER_PARSE_LINE_UTILS_H
 #define SEP_STR ","
 result finishLine(char **line);
 void breakDownLineHelper(rawWord **raw, char *str);

@@ -1,8 +1,8 @@
 #include "parseLabel.h"
 #include "generalUtils.h"
-#include "machineWordIdentifiers.h"
-#include "labelApi.h"
-#include "manageMachineWord.h"
+#include "wordIdentifiers.h"
+#include "labelUtils.h"
+#include "sWordSetters.h"
 
 result isLabelScenario(char **line, char **word, label **lab, unsigned long len){
     void *ptr;
@@ -19,10 +19,11 @@ result isLabelScenario(char **line, char **word, label **lab, unsigned long len)
     } return FALSE;
 }
 
-result addLabelScenario(label *head, label **lab, label **labLst, void setter(label *), int address){
-    if (!isLabInLst(head, lab, (*lab)->name)){
+result addLabToLabLst(label *head, label **lab, label **labLst, labelType type, int address){
+    result res = isLabInLst(head, lab, type, (*lab)->name);
+    if (res == FALSE){
         (*labLst)->next = *lab;
-        setter(*lab);
+        setLabelType(*lab, type);
         (*lab)->address = address;
         return SUCCESS;
     } else return ERR;

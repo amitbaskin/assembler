@@ -1,5 +1,5 @@
 #include "generalUtils.h"
-#include "machineWordIdentifiers.h"
+#include "wordIdentifiers.h"
 #ifndef ASSEMBLER_NUMS_DATA_H
 #define ASSEMBLER_NUMS_DATA_H
 struct data{
@@ -9,5 +9,5 @@ struct data{
 typedef struct data data;
 result isDataScenario(char *word, char **line, sWord **words, label *head, label *lab, label **labLst) ;
 result collectData(rawWord *raw, data *dat);
-result addData(sWord **lastWord, data *dat, label *head, label *lab, label **labLst);
+result addData(sWord **sWordLst, data *dat, label *head, label *lab, label **labLst);
 #endif

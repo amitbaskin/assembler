@@ -15,12 +15,12 @@ result getFile(char *name, FILE **fp, char *mode, char *suffix){
     } return SUCCESS;
 }
 
-int getReadFile(char *name, FILE **fp){
+result getReadFile(char *name, FILE **fp){
     return getFile(name, fp, "r", READ_FILE_SUFFIX);
 }
 
 
-int getWriteFile(char *name, FILE **fp){
+result getWriteFile(char *name, FILE **fp){
     return getFile(name, fp, "w", WRITE_FILE_SUFFIX);
 }
 

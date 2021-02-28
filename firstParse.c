@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include "parseFile.h"
+#include "firstParse.h"
 #include "generalUtils.h"
-#include "firstParseLine.h"
-#include "labelApi.h"
-#include "manageMachineWord.h"
+#include "parseLine.h"
+#include "labelUtils.h"
+#include "sWordSetters.h"
 #define MAX_LINE_LEN 81
 
-result firstParse(FILE *fp){
+result parseFile(FILE *fp){
     void *ptr;
     char *line;
     result res;
@@ -15,6 +15,7 @@ result firstParse(FILE *fp){
     label *labHead;
     label *labLst;
     sWord *sWordLst;
+    sWord *dataLst;
     getAlloc(MAX_LINE_LEN, &ptr);
     line = (char *) ptr;
     getAlloc(MAX_LINE_LEN, &ptr);
@@ -24,7 +25,7 @@ result firstParse(FILE *fp){
     labLst = labHead;
     sWordLst = getSword();
     while (getLine(&line, fp) != FILE_END){
-        res = lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst);
+        res = lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst);
         if (res == ERR) return ERR;
         res = lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst);
         if (res == ERR) return ERR;
@@ -32,4 +33,3 @@ result firstParse(FILE *fp){
     DCF = dataCounter;
     return SUCCESS;
 }
-

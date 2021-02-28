@@ -2,9 +2,9 @@
 #include <ctype.h>
 #include <string.h>
 #include "generalUtils.h"
-#include "labelApi.h"
-#include "machineWordIdentifiers.h"
-#include "manageMachineWord.h"
+#include "labelUtils.h"
+#include "wordIdentifiers.h"
+#include "sWordSetters.h"
 
 int isRel(char *word){
     if (word[0] != REL_PREFIX) return FALSE;
@@ -62,16 +62,18 @@ void setCodeLabel(label *lab){
     lab->isCode = 1;
 }
 
-void setEntLabel(label *lab){
-    lab->isEnt = 1;
-}
-
-void setExtLabel(label *lab){
-    lab->isExt = 1;
-}
-
 void setRel(label *lab){
     lab->isRel = 1;
+}
+
+label *getLabel(unsigned long len, char *name){
+    void *ptr;
+    getAlloc(sizeof(label), &ptr);
+    label *lab = (label*) ptr;
+    getAlloc(len, &ptr);
+    lab->name = (char *) ptr;
+    strcpy(lab->name, name);
+    return lab;
 }
 
 void setAddress(label *lab, int address){
@@ -87,7 +89,11 @@ result setName(label *lab, char *name, unsigned long len){
     return SUCCESS;
 }
 
-unsigned char getLabelAddress(char *name, label *headLab, int *address){
+void setLabelType(label *lab, labelType type){
+    lab->type = type;
+}
+
+result getLabelAddress(char *name, label *headLab, int *address){
     while (headLab != NULL){
         if (!strcmp(name, headLab->name)) {
             *address = headLab->address;
@@ -96,7 +102,9 @@ unsigned char getLabelAddress(char *name, label *headLab, int *address){
     } return ERR;
 }
 
-unsigned char getRelLabelAddress(char *name, label *headLab, int address, int *dist){
+
+
+result getRelLabelAddress(char *name, label *headLab, int address, int *dist){
     while (headLab != NULL){
         if (!strcmp(name, headLab->name)) {
             *dist = (address - headLab->address);
@@ -105,10 +113,26 @@ unsigned char getRelLabelAddress(char *name, label *headLab, int address, int *d
     } return ERR;
 }
 
-result isLabInLst(label *labHead, label **lab, char *name){
+result checkLabelLegality(label *lab, labelType type){
+    switch (type) {
+        case L_ENT:
+            if (lab->type == EXT) return ERR;
+            break;
+
+        case EXT:
+            if (lab->type == L_ENT) return ERR;
+            break;
+
+        default:
+            return SUCCESS;
+    } return SUCCESS;
+}
+
+result isLabInLst(label *labHead, label **lab, labelType type, char *name){
     while (labHead != NULL){
         if (!strcmp(labHead->name, name)) {
             *lab = labHead;
+            if (checkLabelLegality(*lab, type) == ERR) return ERR;
             return TRUE;
         } labHead = labHead->next;
     } return FALSE;

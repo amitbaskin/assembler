@@ -1,4 +1,0 @@
-#ifndef ASSEMBLER_SEC_PARSE_LINE_H
-#define ASSEMBLER_SEC_PARSE_LINE_H
-
-#endif

@@ -21,34 +21,33 @@ enum reg {R0, R1, R2, R3, R4, R5, R6, R7};
 typedef enum reg reg;
 enum ref {IM, DIR, REL, R_REG, NOT_REF};
 typedef enum ref ref;
-enum wordStatus {INIT, LAB, W_REG, NUM, CHR};
+enum wordStatus {OP, LAB, W_ENT, W_REG, NUM, CHR};
 typedef enum wordStatus wordStatus;
-enum labelType {COD, DAT, ENT, EXT};
+enum labelType {L_ENT, EXT, NONE};
 typedef enum labelType labelType;
 
-struct initial{
+struct opWord{
     int opIndex;
     enum ref src;
     enum ref dest;
 };
 
-typedef struct initial initial;
+typedef struct opWord opWord;
 
 struct label{
     char *name;
     int address;
     struct label *next;
+    labelType type;
     unsigned char isCode : 1;
     unsigned char isData : 1;
-    unsigned char isEnt : 1;
-    unsigned char isExt : 1;
     unsigned char isRel : 1;
 };
 
 typedef struct label label;
 
 union uWord{
-  initial *init;
+  opWord *init;
   label *lab;
   reg reg;
   long numData;

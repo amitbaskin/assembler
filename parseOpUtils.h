@@ -1,5 +1,5 @@
 #include "generalUtils.h"
-#include "machineWordIdentifiers.h"
+#include "wordIdentifiers.h"
 #ifndef ASSEMBLER_PARSE_OP_UTILS_H
 #define ASSEMBLER_PARSE_OP_UTILS_H
 result validateTwoOps(char **line, char **firstOp, char **secOp, int opIndex, ref *srcType, ref *destType);

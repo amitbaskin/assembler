@@ -1,4 +1,4 @@
-#include "machineWordIdentifiers.h"
+#include "wordIdentifiers.h"
 #ifndef ASSEMBLER_LABEL_API_H
 #define ASSEMBLER_LABEL_API_H
 int isRel(char *word);
@@ -14,8 +14,10 @@ void setExtLabel(label *lab);
 void setRel(label *lab);
 void setAddress(label *lab, int address);
 result setName(label *lab, char *name, unsigned long len);
+void setLabelType(label *lab, labelType type);
 label *getEmptyLabel();
-unsigned char getLabelAddress(char *name, label *headLab, int *address);
-unsigned char getRelLabelAddress(char *name, label *headLab, int address, int *dist);
-result isLabInLst(label *labHead, label **lab, char *name);
+result getLabelAddress(char *name, label *headLab, int *address);
+result getRelLabelAddress(char *name, label *headLab, int address, int *dist);
+result isLabInLst(label *labHead, label **lab, labelType type, char *name);
+label *getLabel(unsigned long len, char *name);
 #endif

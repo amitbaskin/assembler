@@ -2,8 +2,8 @@
 #include "generalUtils.h"
 #include "operationsApi.h"
 #include "parseOpUtils.h"
-#include "firstParseLineUtils.h"
-#include "manageMachineWord.h"
+#include "parseLineUtils.h"
+#include "sWordSetters.h"
 
 result validateOperation(char *word, char **line, char **firstOp, char **secOp, ref *srcType, ref *destType){
     result res;

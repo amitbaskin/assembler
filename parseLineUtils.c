@@ -1,7 +1,7 @@
-#include "firstParseLineUtils.h"
+#include "parseLineUtils.h"
 #include "generalUtils.h"
-#include "machineWordIdentifiers.h"
-#include "manageMachineWord.h"
+#include "wordIdentifiers.h"
+#include "sWordSetters.h"
 
 result finishLine(char **line){
     char chr;
