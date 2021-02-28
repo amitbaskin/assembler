@@ -7,4 +7,5 @@ labelType getLabelType(label *lab);
 unsigned char isCodeLabel(label *lab);
 unsigned char isDataLabel(label *lab);
 unsigned char isRelLabel(label *lab);
+label *getNextLabel(label *lab);
 #endif

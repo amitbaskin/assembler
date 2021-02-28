@@ -5,7 +5,7 @@
 #include "labelUtils.h"
 #include "uWordSetters.h"
 
-void setUWord(sWord *sWord, uWord *uWord){
+void setSUWord(sWord *sWord, uWord *uWord){
     sWord->uWord = uWord;
 }
 
@@ -43,4 +43,8 @@ void setRegStatus(sWord *sWord){
 
 void setOpWordStatus(sWord *sWord){
     sWord->status = OP;
+}
+
+void setThisSWord(sWord **this, sWord *other){
+    *this = other;
 }

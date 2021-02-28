@@ -5,6 +5,8 @@
 #include "labelUtils.h"
 #include "wordIdentifiers.h"
 #include "sWordSetters.h"
+#include "labelSetters.h"
+#include "labelGetters.h"
 
 result checkRel(char *word){
     if (word[0] != REL_PREFIX) return FALSE;
@@ -25,42 +27,29 @@ result isLabelDeclaration(const char *word, unsigned long len){
     return TRUE;
 }
 
-label *getEmptyLabel(){
+label *getNewEmptyLabel(){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
-    struct label *lab = (label *) ptr;
+    label *lab = (label *) ptr;
     return lab;
 }
 
-label *getBasicLabel(char *name, int address){
-    label *lab = getEmptyLabel();
-    lab->name = name;
-    lab->address = address;
-    return lab;
-}
-
-label *getLabel(unsigned long len, char *name){
+label *getNewLabelByName(char *name){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
     label *lab = (label*) ptr;
-    getAlloc(len, &ptr);
-    lab->name = (char *) ptr;
-    strcpy(lab->name, name);
+    setLabelName(lab, name);
     return lab;
-}
-
-void addLabel(label **labLst, label *next){
-    (*labLst)->next = next;
 }
 
 result isLabelTypeLegal(label *lab, labelType type){
     switch (type) {
         case L_ENT:
-            if (lab->type == EXT) return ERR;
+            if (getLabelType(lab) == EXT) return ERR;
             break;
 
         case EXT:
-            if (lab->type == L_ENT) return ERR;
+            if (getLabelType(lab) == L_ENT) return ERR;
             break;
 
         default:

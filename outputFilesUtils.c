@@ -3,8 +3,7 @@
 #include "sWordSetters.h"
 #include "wordTrans.h"
 #include "labelUtils.h"
-#define HEADER_FORMAT "%d %d\n"
-
+#include "sWordGetters.h"
 void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
     printAddressToFile(fp, *ptr);
     printWordToFile(fp, toPrint);
@@ -16,7 +15,7 @@ void printIntsLst(FILE *fp, sWord *instHead){
     sWord *ptr = instHead;
     fprintf(fp, HEADER_FORMAT, instructionCounter, dataCounter);
     while (ptr != NULL){
-        switch (ptr->status){
+        switch (getSWordStatus(ptr)){
             case OP:
                 printInst(fp, &ptr, transInit(ptr->uWord->op));
                 break;

@@ -23,3 +23,7 @@ unsigned char isDataLabel(label *lab){
 unsigned char isRelLabel(label *lab){
     return lab->isRel;
 }
+
+label *getNextLabel(label *lab){
+    return lab->next;
+}

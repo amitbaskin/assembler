@@ -1,23 +1,27 @@
 #include "uWordSetters.h"
 
-void setOpWord(uWord *uWord, opWord *init){
+void setUOpWord(uWord *uWord, opWord *init){
     uWord->op = init;
 }
 
-void setLab(uWord *uWord, label *lab){
+void setULab(uWord *uWord, label *lab){
     uWord->lab = lab;
 }
 
-void setReg(uWord *uWord, reg r){
+void setUReg(uWord *uWord, reg r){
     uWord->reg = r;
 }
 
-void setNumData(uWord *uWord, long num){
+void setUNumData(uWord *uWord, long num){
     dataCounter++;
     uWord->numData = num;
 }
 
-void setChrData(uWord *uWord, char chr){
+void setUChrData(uWord *uWord, char chr){
     dataCounter++;
     uWord->chrData = chr;
+}
+
+void setThisUWord(uWord **this, uWord *other){
+    *this = other;
 }

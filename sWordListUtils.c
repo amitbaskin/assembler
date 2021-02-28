@@ -2,6 +2,10 @@
 #include "sWordSetters.h"
 #include "uWordSetters.h"
 #include "labelUtils.h"
+#include "labelSetters.h"
+#include "uWordSetters.h"
+#include "sWordSetters.h"
+#include "sWordGetters.h"
 
 void addWord(sWord *word, sWord **sWordLst){
     if ((*sWordLst)->uWord == NULL) {
@@ -13,39 +17,39 @@ void addWord(sWord *word, sWord **sWordLst){
 
 void addOpWord(opWord *opWord, sWord **sWordLst){
     sWord *sOpWord = createAndAddWord(setOpWordStatus, W_REG, sWordLst);
-    setOpWord(sOpWord->uWord, opWord);
+    setUOpWord(sOpWord->uWord, opWord);
     setSWordAddress(sOpWord, instructionCounter++);
 }
 
 sWord *createAndAddWord(void setStatus(), wordStatus status, sWord **sWordLst){
-    uWord *uWord = getUWord();
-    sWord *sWord = getSword();
-    setUWord(sWord, uWord);
+    uWord *uWord = getSUWord();
+    sWord *sWord = getNewEmptySword();
+    setSUWord(sWord, uWord);
     setStatus(status);
     addWord(sWord, sWordLst);
 }
 
-void addLabToInstLst(sWord **sWordLst, unsigned long len, char *name, labelType type, label *labHead, unsigned char
+void addLabToInstLst(sWord **sWordLst, char *name, labelType type, label *labHead, unsigned char
 isRel){
     sWord *sWordLab = createAndAddWord(setLabStatus, W_REG, sWordLst);
     label *lab;
-    if (labHead->name == NULL) setName(lab, name, len);
-    if (isLabInLst(labHead, &lab, type, name) != TRUE) lab = getLabel(len, name);
+    if (labHead->name == NULL) setLabelName(lab, name);
+    if (isLabInLst(labHead, &lab, type, name) != TRUE) lab = getNewLabelByName(name);
     setLabelType(lab, type);
-    setLab(sWordLab->uWord, lab);
+    setULab(sWordLab->uWord, lab);
     setSWordAddress(sWordLab, instructionCounter++);
-    if (isRel) setRel(lab);
+    if (isRel) setRelLabel(lab);
 }
 
 void addRegWord(int reg, sWord **sWordLst){
     sWord *sWordReg = createAndAddWord(setRegStatus, W_REG, sWordLst);
-    setReg(sWordReg->uWord, reg);
+    setUReg(sWordReg->uWord, reg);
     setSWordAddress(sWordReg, instructionCounter++);
 }
 
 void addNumWord(long num, sWord **sWordLst){
     sWord *sWordNum = createAndAddWord(setNumStatus, W_REG, sWordLst);
-    setNumData(sWordNum->uWord, num);
+    setUNumData(sWordNum->uWord, num);
     setSWordStatus(sWordNum, NUM);
     setSWordAddressType(sWordNum, R_TYPE);
     setSWordAddress(sWordNum, dataCounter++);
@@ -53,7 +57,7 @@ void addNumWord(long num, sWord **sWordLst){
 
 void addChrWord(char chr, sWord **sWordLst){
     sWord *sWordChr = createAndAddWord(setChrStatus, W_REG, sWordLst);
-    setChrData(sWordChr->uWord, chr);
+    setUChrData(sWordChr->uWord, chr);
     setSWordStatus(sWordChr, CHR);
     setSWordAddressType(sWordChr, R_TYPE);
     setSWordAddress(sWordChr, dataCounter++);

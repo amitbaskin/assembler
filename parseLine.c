@@ -13,6 +13,7 @@
 #include "sWordSetters.h"
 #include "sWordListUtils.h"
 #include "opWordGetters.h"
+#include "labelSetters.h"
 
 result lookForData(char **word, char **line, label **lab, label *labHead, label **labLst, sWord **instLst, sWord
 **dataLst){
@@ -29,8 +30,8 @@ result lookForData(char **word, char **line, label **lab, label *labHead, label 
     if (res == TRUE) {
         res = lookForLabel(line, word, &len);
         if (res == ERR) return res;
-        addLabToInstLst(instLst, len, *word, L_ENT, labHead, 0);
-        setEntLabel((*instLst)->uWord->lab);
+        addLabToInstLst(instLst, *word, L_ENT, labHead, 0);
+        setLabelType((*instLst)->uWord->lab, L_ENT);
     } else if (isExternOrder(*word) == TRUE) {
         res = lookForLabel(line, word, &len);
         if (res == ERR) return res;

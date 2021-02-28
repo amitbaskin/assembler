@@ -18,9 +18,10 @@ void setLabelAddress(label *lab, int address){
     lab->address = address;
 }
 
-result setName(label *lab, char *name, unsigned long len){
+result setLabelName(label *lab, char *name){
     void *ptr;
-    if (getAlloc(len+1, &ptr) == ERR) return ERR;
+    unsigned long len = strlen(name)+1;
+    if (getAlloc(len, &ptr) == ERR) return ERR;
     lab->name = (char *) ptr;
     strcpy(lab->name, name);
     (lab->name)[len] = '\0';
@@ -29,4 +30,12 @@ result setName(label *lab, char *name, unsigned long len){
 
 void setLabelType(label *lab, labelType type){
     lab->type = type;
+}
+
+void setNextLabel(label *lab, label *next){
+    lab->next = next;
+}
+
+void setThisLabel(label **this, label *other){
+    *this = other;
 }

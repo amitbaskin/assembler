@@ -3,7 +3,8 @@
 #include "parseLine.h"
 #include "labelUtils.h"
 #include "sWordSetters.h"
-#define MAX_LINE_LEN 81
+#include "generalUtils.h"
+#include "sWordGetters.h"
 
 result parseFile(FILE *fp){
     void *ptr;
@@ -19,10 +20,10 @@ result parseFile(FILE *fp){
     line = (char *) ptr;
     getAlloc(MAX_LINE_LEN, &ptr);
     word = (char *) ptr;
-    lab = getEmptyLabel();
-    labHead = getEmptyLabel();
+    lab = getNewEmptyLabel();
+    labHead = getNewEmptyLabel();
     labLst = labHead;
-    sWordLst = getSword();
+    sWordLst = getNewEmptySword();
     while (getLine(&line, fp) != FILE_END){
         res = lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst);
         if (res == ERR) return ERR;

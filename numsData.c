@@ -5,6 +5,8 @@
 #include "sWordSetters.h"
 #include "parseLabel.h"
 #include "labelUtils.h"
+#include "labelSetters.h"
+#include "sWordListUtils.h"
 
 result isDataScenario(char *word, char **line, sWord **words, label *head, label *lab, label **labLst) {
     void *ptr;

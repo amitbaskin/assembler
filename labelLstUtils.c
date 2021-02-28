@@ -1,42 +1,47 @@
 #include <string.h>
 #include "labelLstUtils.h"
 #include "labelUtils.h"
+#include "labelSetters.h"
+#include "labelGetters.h"
 
-void addDataLabel(label **labLst, char *name){
+void addLabelToLst(label **labLst, label *next){
+    setNextLabel(*labLst, next);
+}
+
+void addDataLabelToLst(label **labLst, char *name){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
     label *lab = (label *) ptr;
-    lab->name = name;
-    lab->address = dataCounter++;
-    lab->isData = 1;
-    (*labLst)->next = lab;
-    *labLst = lab;
+    setLabelName(lab, name);
+    setLabelAddress(lab, dataCounter++);
+    setDataLabel(lab);
+    addLabelToLst(labLst, lab);
 }
 
-result getLabelAddress(char *name, label *headLab, int *address){
+result getLabelAddressFromLst(char *name, label *headLab, int *address){
     while (headLab != NULL){
-        if (!strcmp(name, headLab->name)) {
-            *address = headLab->address;
+        if (!strcmp(name, getLabelName(headLab))) {
+            *address = getLabelAddress(headLab);
             return SUCCESS;
-        } headLab = headLab->next;
+        } setThisLabel(&headLab, getNextLabel(headLab));
     } return ERR;
 }
 
-result getRelLabelAddress(char *name, label *headLab, int address, int *dist){
+result getRelLabelAddressFromLst(char *name, label *headLab, int address, int *dist){
     while (headLab != NULL){
-        if (!strcmp(name, headLab->name)) {
-            *dist = (address - headLab->address);
+        if (!strcmp(name, getLabelName(headLab))) {
+            *dist = (address - getLabelAddress(headLab));
             return SUCCESS;
-        } headLab = headLab->next;
+        } setThisLabel(&headLab, getNextLabel(headLab));
     } return ERR;
 }
 
-result isLabInLst(label *labHead, label **lab, labelType type, char *name){
-    while (labHead != NULL){
-        if (!strcmp(labHead->name, name)) {
-            *lab = labHead;
+result isLabInLst(label *headLab, label **lab, labelType type, char *name){
+    while (headLab != NULL){
+        if (!strcmp(getLabelName(headLab), name)) {
+            *lab = headLab;
             if (isLabelTypeLegal(*lab, type) == ERR) return ERR;
             return TRUE;
-        } labHead = labHead->next;
+        } setThisLabel(&headLab, getNextLabel(headLab));
     } return FALSE;
 }

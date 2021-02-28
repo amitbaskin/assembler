@@ -2,9 +2,10 @@
 #include "sWordSetters.h"
 #ifndef ASSEMBLER_U_WORD_UTILS_H
 #define ASSEMBLER_U_WORD_UTILS_H
-void setOpWord(uWord *uWord, opWord *init);
-void setLab(uWord *uWord, label *lab);
-void setReg(uWord *uWord, reg r);
-void setNumData(uWord *uWord, long num);
-void setChrData(uWord *uWord, char chr);
+void setUOpWord(uWord *uWord, opWord *init);
+void setULab(uWord *uWord, label *lab);
+void setUReg(uWord *uWord, reg r);
+void setUNumData(uWord *uWord, long num);
+void setUChrData(uWord *uWord, char chr);
+void setThisUWord(uWord **this, uWord *other);
 #endif
