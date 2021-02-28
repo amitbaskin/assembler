@@ -1,6 +1,6 @@
 #include "sWordListUtils.h"
 #include "sWordSetters.h"
-#include "uWordUtils.h"
+#include "uWordSetters.h"
 #include "labelUtils.h"
 
 void addWord(sWord *word, sWord **sWordLst){

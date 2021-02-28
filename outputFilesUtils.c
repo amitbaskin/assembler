@@ -18,7 +18,7 @@ void printIntsLst(FILE *fp, sWord *instHead){
     while (ptr != NULL){
         switch (ptr->status){
             case OP:
-                printInst(fp, &ptr, transInit(ptr->uWord->init));
+                printInst(fp, &ptr, transInit(ptr->uWord->op));
                 break;
 
             case LAB:

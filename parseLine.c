@@ -12,7 +12,7 @@
 #include "parseOp.h"
 #include "sWordSetters.h"
 #include "sWordListUtils.h"
-#include "opWordUtils.h"
+#include "opWordGetters.h"
 
 result lookForData(char **word, char **line, label **lab, label *labHead, label **labLst, sWord **instLst, sWord
 **dataLst){

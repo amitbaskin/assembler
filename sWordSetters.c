@@ -3,7 +3,7 @@
 #include "wordIdentifiers.h"
 #include "generalUtils.h"
 #include "labelUtils.h"
-#include "uWordUtils.h"
+#include "uWordSetters.h"
 
 void setUWord(sWord *sWord, uWord *uWord){
     sWord->uWord = uWord;

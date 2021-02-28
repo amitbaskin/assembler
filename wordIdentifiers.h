@@ -28,8 +28,8 @@ typedef enum labelType labelType;
 
 struct opWord{
     int opIndex;
-    enum ref src;
-    enum ref dest;
+    ref src;
+    ref dest;
 };
 
 typedef struct opWord opWord;
@@ -47,7 +47,7 @@ struct label{
 typedef struct label label;
 
 union uWord{
-  opWord *init;
+  opWord *op;
   label *lab;
   reg reg;
   long numData;

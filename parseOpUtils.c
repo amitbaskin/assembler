@@ -63,7 +63,7 @@ result validateOperandsAmount(char **line, int operandsAmount, char **firstOp, c
 ref getOperandType(char *operand, int *regType, long *num){
     if ((*regType = isReg(operand)) != NOT_REG) return R_REG;
     if (isImmediateNum(num, operand) == TRUE) return IM;
-    if (isRel(operand) == TRUE) return REL;
+    if (checkRel(operand) == TRUE) return REL;
     if (isLegalLabel(operand, strlen(operand)) == TRUE) return DIR;
     return NOT_REF;
 }

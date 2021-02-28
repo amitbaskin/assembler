@@ -1,7 +1,7 @@
-#include "uWordUtils.h"
+#include "uWordSetters.h"
 
-void setOpWord(uWord *word, opWord *init){
-    word->init = init;
+void setOpWord(uWord *uWord, opWord *init){
+    uWord->op = init;
 }
 
 void setLab(uWord *uWord, label *lab){
