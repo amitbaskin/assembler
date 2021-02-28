@@ -2,10 +2,13 @@
 #include "strData.h"
 #include "parseLineUtils.h"
 #include "generalUtils.h"
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #include "sWordSetters.h"
-#include "parseLabel.h"
-#include "labelUtils.h"
+#include "labUtils.h"
+#include "parseLine.h"
+#include "labLstUtils.h"
+#include "labSetters.h"
+#include "sWordListUtils.h"
 
 result isStrScenario(char **line, char *word, sWord **sWordLst, label *head, label *lab, label **labLst){
     result res;
@@ -24,10 +27,9 @@ void strScenario(char *str, sWord **sWordLst, label *head, label *lab, label **l
     char chr;
     if (labelFlag) {
         addLabToLabLst(head, &lab, labLst, NONE, dataCounter++);
-        setDataLabel(lab);
+        setDataLab(lab);
     } for (i=1; i<len-1; i++){
         chr = str[i];
         addChrWord(chr, sWordLst);
     }
 }
-

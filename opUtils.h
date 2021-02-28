@@ -1,7 +1,7 @@
 #include "generalUtils.h"
-#include "wordIdentifiers.h"
-#ifndef ASSEMBLER_PARSE_OP_UTILS_H
-#define ASSEMBLER_PARSE_OP_UTILS_H
+#include "wordId.h"
+#ifndef ASSEMBLER_OP_UTILS_H
+#define ASSEMBLER_OP_UTILS_H
 result validateTwoOps(char **line, char **firstOp, char **secOp, int opIndex, ref *srcType, ref *destType);
 result validateOneOp(char **line, char **op, int opIndex, ref *destType);
 result validateZeroOps(char **line);

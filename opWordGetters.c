@@ -3,15 +3,15 @@
 #include "sWordSetters.h"
 #include "generalUtils.h"
 
-int getOpIndex(opWord *op){
+int getOpIndexByObject(opWord *op){
     return op->opIndex;
 }
 
-ref getOpSrcRef(opWord *op){
+ref getOpSrc(opWord *op){
     return op->src;
 }
 
-ref getOpDestRef(opWord *op){
+ref getOpDest(opWord *op){
     return op->dest;
 }
 

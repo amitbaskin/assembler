@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "wordTrans.h"
-#include "wordIdentifiers.h"
-#include "operationsApi.h"
+#include "wordId.h"
+#include "opWordGetters.h"
+#include "sWordGetters.h"
 
 unsigned int transDest(enum ref ref){
     return ref << DEST_BITS_PREFIX;
@@ -24,9 +25,9 @@ unsigned int transReg(reg reg){
     else return 1 << reg;
 }
 
-unsigned int transInit(opWord *init){
-    return transDest(init->dest) + transSrc(init->src) +transFunct(getFunct(init->opIndex)) + transOpcode(getOpCode
-    (init->opIndex));
+unsigned int transOp(opWord *op){
+    return transDest(getOpDest(op)) + transSrc(getOpSrc(op)) + transFunct(getFunct(getOpIndexByObject(op)))
+    + transOpcode(getOpCode(getOpIndexByObject(op)));
 }
 
 void printWordToFile(FILE *fp, unsigned int word){
@@ -34,9 +35,9 @@ void printWordToFile(FILE *fp, unsigned int word){
 }
 
 void printAddressToFile(FILE *fp, sWord *word){
-    fprintf(fp, ADDRESS_FORMAT, word->address);
+    fprintf(fp, ADDRESS_FORMAT, getSWordAddress(word));
 }
 
 void printAddressTypeToFile(FILE *fp, sWord *word){
-    fprintf(fp, "%c\n", word->addressType);
+    fprintf(fp, "%c\n", getSWordAddress(word));
 }

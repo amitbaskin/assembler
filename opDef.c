@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include "operationsDef.h"
-#include "operationsApi.h"
-
+#include "opDef.h"
+#include "opDefGetters.h"
 #include "generalUtils.h"
 
 void printOps(){

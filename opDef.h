@@ -1,5 +1,5 @@
-#ifndef ASSEMBLER_OPERATIONSDEF_H
-#define ASSEMBLER_OPERATIONSDEF_H
+#ifndef ASSEMBLER_OP_DEF_H
+#define ASSEMBLER_OP_DEF_H
 #define OPERATIONS {"mov", "cmp", "add", "sub", "lea", "clr", "not", "inc", "dec", "jmp", "bne", "jsr", "red", "prn", \
 "rts", "stop"}
 #define FUNCTS {0, 0, 10, 11, 0, 10, 11, 12, 13, 10, 11, 12, 0, 0, 0, 0}

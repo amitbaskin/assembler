@@ -1,11 +1,14 @@
 #include <string.h>
-#include "parseOpUtils.h"
+#include "opUtils.h"
 #include "generalUtils.h"
-#include "wordIdentifiers.h"
-#include "operationsApi.h"
+#include "wordId.h"
+#include "opDefGetters.h"
 #include "parseLineUtils.h"
-#include "labelUtils.h"
+#include "labUtils.h"
 #include "sWordSetters.h"
+#include "parseLine.h"
+#include "labSetters.h"
+#include "sWordListUtils.h"
 
 result validateTwoOps(char **line, char **firstOp, char **secOp, int opIndex, ref *srcType, ref *destType){
     int srcReg;
@@ -107,10 +110,10 @@ ref addOperandWord(char *operand, label *labHead, sWord **sWordLst){
             addNumWord(num, sWordLst);
             return IM;
         case DIR:
-            addLabToInstLst(sWordLst, strlen(operand), operand, NONE, labHead, 0);
+            addLabToInstLst(sWordLst, operand, NONE, labHead, 0);
             return DIR;
         case REL:
-            addLabToInstLst(sWordLst, strlen(operand), operand, NONE, labHead, 1);
+            addLabToInstLst(sWordLst, operand, NONE, labHead, 1);
             return REL;
         case R_REG:
             addRegWord(regType, sWordLst);

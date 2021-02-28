@@ -1,4 +1,4 @@
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #ifndef ASSEMBLER_S_WORD_GETTERS_H
 #define ASSEMBLER_S_WORD_GETTERS_H
 uWord *getSUWord(sWord *word);
@@ -14,9 +14,9 @@ long getSUNumData(sWord *word);
 char getSUChrData(sWord *word);
 char *getSULabelName(sWord *word);
 int getSULabelAddress(sWord *word);
-labelType getSULabelType(sWord *word);
-unsigned char isSUCodeLabel(sWord *word);
-unsigned char isSUDataLabel(sWord *word);
-unsigned char isSURelLabel(sWord *word);
-label *getSUNextLabel(sWord *word);
+labelType getSULabType(sWord *word);
+unsigned char isSUCodeLab(sWord *word);
+unsigned char isSUDataLab(sWord *word);
+unsigned char isSURelLab(sWord *word);
+label *getSUNextLab(sWord *word);
 #endif

@@ -1,5 +1,5 @@
 #include "uWordGetters.h"
-#include "labelGetters.h"
+#include "labGetters.h"
 #include "generalUtils.h"
 
 opWord *getUOpWord(uWord *word){
@@ -22,30 +22,30 @@ char getUChrData(uWord *word){
     return word->chrData;
 }
 
-char *getULabelName(uWord *word){
-    return getLabelName(getULab(word));
+char *getULabName(uWord *word){
+    return getLabName(getULab(word));
 }
 
-int getULabelAddress(uWord *word){
-    return getLabelAddress(getULab(word));
+int getULabAddress(uWord *word){
+    return getLabAddress(getULab(word));
 }
 
-labelType getULabelType(uWord *word){
-    return getLabelType(getULab(word));
+labelType getULabType(uWord *word){
+    return getLabType(getULab(word));
 }
 
-unsigned char isUCodeLabel(uWord *word){
-    return isCodeLabel(getULab(word));
+unsigned char isUCodeLab(uWord *word){
+    return isCodeLab(getULab(word));
 }
 
-unsigned char isUDataLabel(uWord *word){
-    return isDataLabel(getULab(word));
+unsigned char isUDataLab(uWord *word){
+    return isDataLab(getULab(word));
 }
 
-unsigned char isURelLabel(uWord *word){
-    return isRelLabel(getULab(word));
+unsigned char isURelLab(uWord *word){
+    return isRelLab(getULab(word));
 }
 
-label *getUNextLabel(uWord *word){
-    return getNextLabel(getULab(word));
+label *getUNextLab(uWord *word){
+    return getNextLab(getULab(word));
 }

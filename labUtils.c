@@ -1,12 +1,11 @@
-#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 #include "generalUtils.h"
-#include "labelUtils.h"
-#include "wordIdentifiers.h"
+#include "labUtils.h"
+#include "wordId.h"
 #include "sWordSetters.h"
-#include "labelSetters.h"
-#include "labelGetters.h"
+#include "labSetters.h"
+#include "labGetters.h"
 
 result checkRel(char *word){
     if (word[0] != REL_PREFIX) return FALSE;
@@ -27,6 +26,13 @@ result isLabelDeclaration(const char *word, unsigned long len){
     return TRUE;
 }
 
+result isLabel(char **word, label **lab, unsigned long len){
+    if (isLabelDeclaration(*word, len) == TRUE){
+        if (isLegalLabel(*word, len) != TRUE) return ERR;
+        setLabName(*lab, *word);
+    } return FALSE;
+}
+
 label *getNewEmptyLabel(){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
@@ -38,18 +44,18 @@ label *getNewLabelByName(char *name){
     void *ptr;
     getAlloc(sizeof(label), &ptr);
     label *lab = (label*) ptr;
-    setLabelName(lab, name);
+    setLabName(lab, name);
     return lab;
 }
 
 result isLabelTypeLegal(label *lab, labelType type){
     switch (type) {
         case L_ENT:
-            if (getLabelType(lab) == EXT) return ERR;
+            if (getLabType(lab) == EXT) return ERR;
             break;
 
         case EXT:
-            if (getLabelType(lab) == L_ENT) return ERR;
+            if (getLabType(lab) == L_ENT) return ERR;
             break;
 
         default:

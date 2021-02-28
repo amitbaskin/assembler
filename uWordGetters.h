@@ -1,4 +1,4 @@
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #ifndef ASSEMBLER_U_WORD_GETTERS_H
 #define ASSEMBLER_U_WORD_GETTERS_H
 opWord *getUOpWord(uWord *word);
@@ -6,11 +6,11 @@ label *getULab(uWord *word);
 reg getUReg(uWord *word);
 long getUNumData(uWord *word);
 char getUChrData(uWord *v);
-char *getULabelName(uWord *word);
-int getULabelAddress(uWord *word);
-labelType getULabelType(uWord *word);
-unsigned char isUCodeLabel(uWord *word);
-unsigned char isUDataLabel(uWord *word);
-unsigned char isURelLabel(uWord *word);
-label *getUNextLabel(uWord *word);
+char *getULabName(uWord *word);
+int getULabAddress(uWord *word);
+labelType getULabType(uWord *word);
+unsigned char isUCodeLab(uWord *word);
+unsigned char isUDataLab(uWord *word);
+unsigned char isURelLab(uWord *word);
+label *getUNextLab(uWord *word);
 #endif

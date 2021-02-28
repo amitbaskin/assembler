@@ -1,6 +1,6 @@
 #include <stdio.h>
-#ifndef ASSEMBLER_UTILS_H
-#define ASSEMBLER_UTILS_H
+#ifndef ASSEMBLER_GENERAL_UTILS_H
+#define ASSEMBLER_GENERAL_UTILS_H
 #define READ_FILE_SUFFIX ".as"
 #define WRITE_FILE_SUFFIX ".ob"
 #define MAX_LINE_LEN 81

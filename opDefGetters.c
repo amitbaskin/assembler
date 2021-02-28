@@ -1,8 +1,8 @@
 #include <string.h>
-#include "operationsApi.h"
-#include "operationsDef.h"
+#include "opDefGetters.h"
+#include "opDef.h"
 
-int getOpIndex(char *word){
+int getOpIndexByStr(char *word){
     int i;
     for (i=0; i < OPERATIONS_AMOUNT; i++){
         if (!strcmp(operations[i], word)) return i;

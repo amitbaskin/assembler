@@ -3,10 +3,10 @@
 #include "parseLineUtils.h"
 #include "generalUtils.h"
 #include "sWordSetters.h"
-#include "parseLabel.h"
-#include "labelUtils.h"
-#include "labelSetters.h"
+#include "labUtils.h"
+#include "labSetters.h"
 #include "sWordListUtils.h"
+#include "labLstUtils.h"
 
 result isDataScenario(char *word, char **line, sWord **words, label *head, label *lab, label **labLst) {
     void *ptr;
@@ -45,7 +45,7 @@ result collectData(rawWord *raw, data *dat){
 result addData(sWord **sWordLst, data *dat, label *head, label *lab, label **labLst){
     if (labelFlag) {
         addLabToLabLst(head, &lab, labLst, NONE, dataCounter++);
-        setDataLabel(lab);
+        setDataLab(lab);
     } while (dat != NULL){
         addNumWord(dat->num, sWordLst);
     } return SUCCESS;

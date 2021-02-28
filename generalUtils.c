@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "generalUtils.h"
@@ -9,4 +8,3 @@ result getAlloc(size_t size, void **ptr){
         return ERR;
     } return SUCCESS;
 }
-

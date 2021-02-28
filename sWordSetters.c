@@ -1,8 +1,7 @@
-#include <string.h>
 #include "sWordSetters.h"
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #include "generalUtils.h"
-#include "labelUtils.h"
+#include "labUtils.h"
 #include "uWordSetters.h"
 #include "sWordGetters.h"
 
@@ -46,34 +45,60 @@ void setOpWordStatus(sWord *sWord){
     sWord->status = OP;
 }
 
+void setNextSWord(sWord *this, sWord *other){
+    this->next = other;
+}
+
 void setThisSWord(sWord **this, sWord *other){
     *this = other;
 }
 
-void setSUDataLabel(sWord *word){
-    setUDataLabel(getSUWord(word));
+void setSUOpWord(sWord *word, opWord *op){
+    setUOpWord(getSUWord(word), op);
 }
 
-void setSUCodeLabel(sWord *word){
-    setUCodeLabel(getSUWord(word));
+void setSULab(sWord *word, label *lab){
+    setULab(getSUWord(word), lab);
 }
 
-void setSURelLabel(sWord *word){
-    setURelLabel(getSUWord(word));
+void setSUReg(sWord *word, reg r){
+    setUReg(getSUWord(word), r);
 }
 
-void setSULabelAddress(sWord *word, int address){
-    setULabelAddress(getSUWord(word), address);
+void setSUNumData(sWord *word, long num){
+    dataCounter++;
+    setUNumData(getSUWord(word), num);
 }
 
-result setSULabelName(sWord *word, char *name){
-    return setULabelName(getSUWord(word), name);
+void setSUChrData(sWord *word, char chr){
+    dataCounter++;
+    setUChrData(getSUWord(word), chr);
 }
 
-void setSULabelType(sWord *word, labelType type){
-    setULabelType(getSUWord(word), type);
+void setSUDataLab(sWord *word){
+    setUDataLab(getSUWord(word));
 }
 
-void setSUNextLabel(sWord *word, label *next){
-    setUNextLabel(getSUWord(word), next);
+void setSUCodeLab(sWord *word){
+    setUCodeLab(getSUWord(word));
+}
+
+void setSURelLab(sWord *word){
+    setURelLab(getSUWord(word));
+}
+
+void setSULabAddress(sWord *word, int address){
+    setULabAddress(getSUWord(word), address);
+}
+
+result setSULabName(sWord *word, char *name){
+    return setULabName(getSUWord(word), name);
+}
+
+void setSULabType(sWord *word, labelType type){
+    setULabType(getSUWord(word), type);
+}
+
+void setSUNextLab(sWord *word, label *next){
+    setUNextLab(getSUWord(word), next);
 }

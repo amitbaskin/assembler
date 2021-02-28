@@ -1,14 +1,18 @@
-#include "outputFilesUtils.h"
+#include "outputUtils.h"
 #include "generalUtils.h"
 #include "sWordSetters.h"
 #include "wordTrans.h"
-#include "labelUtils.h"
+#include "labUtils.h"
 #include "sWordGetters.h"
+#include "sWordSetters.h"
+#include "labGetters.h"
+#include "labSetters.h"
+
 void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
     printAddressToFile(fp, *ptr);
     printWordToFile(fp, toPrint);
     printAddressTypeToFile(fp, *ptr);
-    *ptr = (*ptr)->next;
+    setNextSWord(*ptr, getNextSWord(*ptr));
 }
 
 void printIntsLst(FILE *fp, sWord *instHead){
@@ -17,23 +21,23 @@ void printIntsLst(FILE *fp, sWord *instHead){
     while (ptr != NULL){
         switch (getSWordStatus(ptr)){
             case OP:
-                printInst(fp, &ptr, transInit(ptr->uWord->op));
+                printInst(fp, &ptr, transOp(getSUOpWord(ptr)));
                 break;
 
             case LAB:
-                printInst(fp, &ptr, ptr->uWord->lab->address);
+                printInst(fp, &ptr, getSULabelAddress(ptr));
                 break;
 
             case W_REG:
-                printInst(fp, &ptr, transReg(ptr->uWord->reg));
+                printInst(fp, &ptr, transReg(getSUReg(ptr)));
                 break;
 
             case NUM:
-                printInst(fp, &ptr, ptr->uWord->numData);
+                printInst(fp, &ptr, getSUNumData(ptr));
                 break;
 
             default:
-                ptr = ptr->next;
+                setThisSWord(&ptr, getNextSWord(ptr));
         }
     }
 }
@@ -41,37 +45,37 @@ void printIntsLst(FILE *fp, sWord *instHead){
 void printDataLst(FILE *fp, sWord *dataHead){
     sWord *ptr = dataHead;
     while (ptr != NULL) {
-        switch (ptr->status) {
+        switch (getSWordStatus(ptr)) {
             case NUM:
-                printInst(fp, &ptr, ptr->uWord->numData);
+                printInst(fp, &ptr, getSUNumData(ptr));
                 break;
 
             case CHR:
-                printInst(fp, &ptr, ptr->uWord->chrData);
+                printInst(fp, &ptr, getSUChrData(ptr));
                 break;
 
             default:
-                ptr = ptr->next;
+                setThisSWord(&ptr, getNextSWord(ptr));
         }
     }
 }
 
 void printLabel(FILE *fp, label *lab){
-    fprintf(fp, "%s ", lab->name);
-    fprintf(fp, "%du\n", lab->address);
+    fprintf(fp, "%s ", getLabName(lab));
+    fprintf(fp, "%du\n", getLabAddress(lab));
 }
 
 void printEntLst(FILE *fp, label *labHead){
     label *ptr = labHead;
     while (ptr != NULL){
-        switch (ptr->type){
+        switch (getLabType(ptr)){
             case L_ENT:
                 printLabel(fp, ptr);
-                ptr = ptr->next;
+                setNextLab(ptr, getNextLab(ptr));
                 break;
 
             default:
-                ptr = ptr->next;
+                setThisLab(&ptr, getNextLab(ptr));
         }
     }
 }
@@ -80,15 +84,15 @@ void printExtLst(FILE *fp, sWord *instHead) {
     sWord *ptr = instHead;
     label *lab;
     while (ptr != NULL) {
-        switch (ptr->status) {
+        switch (getSWordStatus(instHead)) {
             case LAB:
-                lab = ptr->uWord->lab;
-                if (lab->type == EXT) printLabel(fp, lab);
-                ptr = ptr->next;
+                lab = getSULab(ptr);
+                if (getLabType(lab) == EXT) printLabel(fp, lab);
+                setNextSWord(ptr, getNextSWord(ptr));
                 break;
 
             default:
-                ptr = ptr->next;
+                setThisSWord(&ptr, ptr);
         }
     }
 }

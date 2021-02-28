@@ -1,41 +1,40 @@
 #include <string.h>
-#include "labelSetters.h"
+#include "labSetters.h"
 #include "generalUtils.h"
 
-void setDataLabel(label *lab){
+void setDataLab(label *lab){
     lab->isData = 1;
 }
 
-void setCodeLabel(label *lab){
+void setCodeLab(label *lab){
     lab->isCode = 1;
 }
 
-void setRelLabel(label *lab){
+void setRelLab(label *lab){
     lab->isRel = 1;
 }
 
-void setLabelAddress(label *lab, int address){
+void setLabAddress(label *lab, int address){
     lab->address = address;
 }
 
-result setLabelName(label *lab, char *name){
+result setLabName(label *lab, char *name){
     void *ptr;
     unsigned long len = strlen(name)+1;
     if (getAlloc(len, &ptr) == ERR) return ERR;
     lab->name = (char *) ptr;
     strcpy(lab->name, name);
-    (lab->name)[len] = '\0';
     return SUCCESS;
 }
 
-void setLabelType(label *lab, labelType type){
+void setLabType(label *lab, labelType type){
     lab->type = type;
 }
 
-void setNextLabel(label *lab, label *next){
+void setNextLab(label *lab, label *next){
     lab->next = next;
 }
 
-void setThisLabel(label **this, label *other){
+void setThisLab(label **this, label *other){
     *this = other;
 }

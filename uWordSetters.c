@@ -1,57 +1,57 @@
 #include "uWordSetters.h"
-#include "labelSetters.h"
+#include "labSetters.h"
 #include "uWordGetters.h"
 
-void setUOpWord(uWord *uWord, opWord *init){
-    uWord->op = init;
+void setUOpWord(uWord *word, opWord *init){
+    word->op = init;
 }
 
-void setULab(uWord *uWord, label *lab){
-    uWord->lab = lab;
+void setULab(uWord *word, label *lab){
+    word->lab = lab;
 }
 
-void setUReg(uWord *uWord, reg r){
-    uWord->reg = r;
+void setUReg(uWord *word, reg r){
+    word->reg = r;
 }
 
-void setUNumData(uWord *uWord, long num){
+void setUNumData(uWord *word, long num){
     dataCounter++;
-    uWord->numData = num;
+    word->numData = num;
 }
 
-void setUChrData(uWord *uWord, char chr){
+void setUChrData(uWord *word, char chr){
     dataCounter++;
-    uWord->chrData = chr;
+    word->chrData = chr;
 }
 
 void setThisUWord(uWord **this, uWord *other){
     *this = other;
 }
 
-void setUDataLabel(uWord *word){
-    setDataLabel(getULab(word));
+void setUDataLab(uWord *word){
+    setDataLab(getULab(word));
 }
 
-void setUCodeLabel(uWord *word){
-    setCodeLabel(getULab(word));
+void setUCodeLab(uWord *word){
+    setCodeLab(getULab(word));
 }
 
-void setURelLabel(uWord *word){
-    setRelLabel(getULab(word));
+void setURelLab(uWord *word){
+    setRelLab(getULab(word));
 }
 
-void setULabelAddress(uWord *word, int address){
-    setLabelAddress(getULab(word), address);
+void setULabAddress(uWord *word, int address){
+    setLabAddress(getULab(word), address);
 }
 
-result setULabelName(uWord *word, char *name){
-    return setLabelName(getULab(word), name);
+result setULabName(uWord *word, char *name){
+    return setLabName(getULab(word), name);
 }
 
-void setULabelType(uWord *word, labelType type){
-    setLabelType(getULab(word), type);
+void setULabType(uWord *word, labelType type){
+    setLabType(getULab(word), type);
 }
 
-void setUNextLabel(uWord *word, label *next){
-    setNextLabel(getULab(word), next);
+void setUNextLab(uWord *word, label *next){
+    setNextLab(getULab(word), next);
 }

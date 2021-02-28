@@ -1,4 +1,4 @@
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #ifndef ASSEMBLER_S_WORD_LIST_UTILS_H
 #define ASSEMBLER_S_WORD_LIST_UTILS_H
 void addWord(sWord *word, sWord **sWordLst);
@@ -9,5 +9,4 @@ isRel);
 void addRegWord(int reg, sWord **sWordLst);
 void addNumWord(long num, sWord **sWordLst);
 void addChrWord(char chr, sWord **sWordLst);
-
 #endif

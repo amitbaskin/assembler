@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "firstParse.h"
 #include "parseLine.h"
-#include "labelUtils.h"
+#include "parseLineUtils.h"
+#include "labUtils.h"
 #include "sWordSetters.h"
 #include "generalUtils.h"
 #include "sWordGetters.h"

@@ -1,7 +1,7 @@
-#ifndef ASSEMBLER_OPERATIONS_API_H
-#define ASSEMBLER_OPERATIONS_API_H
+#ifndef ASSEMBLER_OP_INFO_GETTERS_H
+#define ASSEMBLER_OP_INFO_GETTERS_H
 #define NOT_OP -1
-int getOpIndex(char *word);
+int getOpIndexByStr(char *word);
 char *getOpName(int opIndex);
 unsigned char getOperandsAmount(int opIndex);
 unsigned char getFunct(int opIndex);

@@ -1,4 +1,4 @@
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #ifndef ASSEMBLER_OP_WORD_SETTERS_H
 #define ASSEMBLER_OP_WORD_SETTERS_H
 void setOpIndex(opWord *op, int index);

@@ -1,8 +1,8 @@
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #ifndef ASSEMBLER_OP_WORD_GETTERS_H
 #define ASSEMBLER_OP_WORD_GETTERS_H
-int getOpIndex(opWord *op);
-ref getOpSrcRef(opWord *op);
-ref getOpDestRef(opWord *op);
+int getOpIndexByObject(opWord *op);
+ref getOpSrc(opWord *op);
+ref getOpDest(opWord *op);
 opWord *getOpWord(int opIndex, ref src, ref dest);
 #endif

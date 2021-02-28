@@ -1,5 +1,5 @@
-#ifndef ASSEMBLER_MACHINE_WORD_H
-#define ASSEMBLER_MACHINE_WORD_H
+#ifndef ASSEMBLER_WORD_ID_H
+#define ASSEMBLER_WORD_ID_H
 #define LABEL_SUFFIX ':'
 #define NUM_PREFIX '#'
 #define REL_PREFIX '%'

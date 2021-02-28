@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "generalUtils.h"
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #include "parseLineUtils.h"
 
 int isReg(char *r){

@@ -1,5 +1,5 @@
 #include "generalUtils.h"
-#include "wordIdentifiers.h"
+#include "wordId.h"
 #ifndef ASSEMBLER_NUMS_DATA_H
 #define ASSEMBLER_NUMS_DATA_H
 struct data{

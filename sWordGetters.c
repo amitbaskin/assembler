@@ -43,29 +43,29 @@ char getSUChrData(sWord *word){
 }
 
 char *getSULabelName(sWord *word){
-    return getULabelName(getSUWord(word));
+    return getULabName(getSUWord(word));
 }
 
 int getSULabelAddress(sWord *word){
-    return getULabelAddress(getSUWord(word));
+    return getULabAddress(getSUWord(word));
 }
 
-labelType getSULabelType(sWord *word){
-    return getULabelType(getSUWord(word));
+labelType getSULabType(sWord *word){
+    return getULabType(getSUWord(word));
 }
 
-unsigned char isSUCodeLabel(sWord *word){
-    return isUCodeLabel(getSUWord(word));
+unsigned char isSUCodeLab(sWord *word){
+    return isUCodeLab(getSUWord(word));
 }
 
-unsigned char isSUDataLabel(sWord *word){
-    return isUDataLabel(getSUWord(word));
+unsigned char isSUDataLab(sWord *word){
+    return isUDataLab(getSUWord(word));
 }
 
-unsigned char isSURelLabel(sWord *word){
-    return isURelLabel(getSUWord(word));
+unsigned char isSURelLab(sWord *word){
+    return isURelLab(getSUWord(word));
 }
 
-label *getSUNextLabel(sWord *word){
-    return getUNextLabel(getSUWord(word));
+label *getSUNextLab(sWord *word){
+    return getUNextLab(getSUWord(word));
 }
