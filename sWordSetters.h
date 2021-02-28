@@ -13,4 +13,11 @@ void setChrStatus(sWord *sWord);
 void setRegStatus(sWord *sWord);
 void setOpWordStatus(sWord *sWord);
 void setThisSWord(sWord **this, sWord *other);
+void setSUDataLabel(sWord *word);
+void setSUCodeLabel(sWord *word);
+void setSURelLabel(sWord *word);
+void setSULabelAddress(sWord *word, int address);
+result setSULabelName(sWord *word, char *name);
+void setSULabelType(sWord *word, labelType type);
+void setSUNextLabel(sWord *word, label *next);
 #endif

@@ -10,7 +10,7 @@ void setCodeLabel(label *lab){
     lab->isCode = 1;
 }
 
-void setRel(label *lab){
+void setRelLabel(label *lab){
     lab->isRel = 1;
 }
 

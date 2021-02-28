@@ -4,6 +4,7 @@
 #include "generalUtils.h"
 #include "labelUtils.h"
 #include "uWordSetters.h"
+#include "sWordGetters.h"
 
 void setSUWord(sWord *sWord, uWord *uWord){
     sWord->uWord = uWord;
@@ -47,4 +48,32 @@ void setOpWordStatus(sWord *sWord){
 
 void setThisSWord(sWord **this, sWord *other){
     *this = other;
+}
+
+void setSUDataLabel(sWord *word){
+    setUDataLabel(getSUWord(word));
+}
+
+void setSUCodeLabel(sWord *word){
+    setUCodeLabel(getSUWord(word));
+}
+
+void setSURelLabel(sWord *word){
+    setURelLabel(getSUWord(word));
+}
+
+void setSULabelAddress(sWord *word, int address){
+    setULabelAddress(getSUWord(word), address);
+}
+
+result setSULabelName(sWord *word, char *name){
+    return setULabelName(getSUWord(word), name);
+}
+
+void setSULabelType(sWord *word, labelType type){
+    setULabelType(getSUWord(word), type);
+}
+
+void setSUNextLabel(sWord *word, label *next){
+    setUNextLabel(getSUWord(word), next);
 }
