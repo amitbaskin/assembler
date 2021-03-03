@@ -1,11 +1,19 @@
-#include <stdlib.h>
 #include <string.h>
 #include "fileUtils.h"
+#include "generalUtils.h"
+
+result getNameAlloc(size_t size, char **fName){
+    void *ptr;
+    if (getAlloc(size, &ptr) == ERR) return ERR;
+    *fName = ptr;
+    return SUCCESS;
+}
 
 result getFile(char *name, FILE **fp, char *mode, char *suffix){
     unsigned long nameLen = strlen(name);
     unsigned long sufLen = strlen(suffix);
-    char *fullName = malloc(nameLen+sufLen-1);
+    char *fullName;
+    if (getNameAlloc(nameLen + sufLen + 1, &fullName) == ERR) return ERR;
     strcpy(fullName, name);
     strcat(fullName, suffix);
     *fp = fopen(fullName, mode);

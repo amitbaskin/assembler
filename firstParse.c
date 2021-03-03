@@ -7,25 +7,30 @@
 #include "generalUtils.h"
 #include "sWordGetters.h"
 
-result parseFile(FILE *fp, sWord *sWordLst, sWord *dataLst, label *labLst){
+result getLineAlloc(char **output){
     void *ptr;
+    if (getAlloc(MAX_LINE_LEN, &ptr) == ERR) return ERR;
+    *output = ptr;
+    return SUCCESS;
+}
+
+result parseFile(FILE *fp, sWord *sWordLst, sWord *dataLst, label *labLst){
     char *line;
     result res;
     char *word;
     label *lab;
     label *labHead;
-    getAlloc(MAX_LINE_LEN, &ptr);
-    line = (char *) ptr;
-    getAlloc(MAX_LINE_LEN, &ptr);
-    word = (char *) ptr;
-    lab = getNewEmptyLabel();
+    if (getLineAlloc(&line) == ERR) return ERR;
+    if (getLineAlloc(&word) == ERR) return ERR;
+    if (getNewEmptyLabel(&lab) == ERR) return ERR;
     labHead = labLst;
-    while (getLine(&line, fp) != FILE_END){
+    while ((res = getLine(&line, fp)) != FILE_END){
         res = lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst);
         if (res == ERR) return ERR;
         res = lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst);
         if (res == ERR) return ERR;
-    } ICF = instructionCounter;
+    } if (res == ERR) return res;
+    ICF = instructionCounter;
     DCF = dataCounter;
     return SUCCESS;
 }

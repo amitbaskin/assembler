@@ -33,11 +33,11 @@ result isLabel(char **word, label **lab, unsigned long len){
     } return FALSE;
 }
 
-label *getNewEmptyLabel(){
+result getNewEmptyLabel(label **lab){
     void *ptr;
-    getAlloc(sizeof(label), &ptr);
-    label *lab = (label *) ptr;
-    return lab;
+    if (getAlloc(sizeof(label), &ptr) == ERR) return ERR;
+    *lab = (label *) ptr;
+    return SUCCESS;
 }
 
 label *getNewLabelByName(char *name){

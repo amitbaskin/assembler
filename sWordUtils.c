@@ -1,9 +1,9 @@
 #include "sWordUtils.h"
 #include "generalUtils.h"
 
-sWord *getNewEmptySword(){
+result getNewEmptySword(sWord **word){
     void *sPtr;
-    getAlloc(sizeof(sWord), &sPtr);
-    sWord *word = (sWord*) sPtr;
-    return word;
+    if (getAlloc(sizeof(sWord), &sPtr) == ERR) return ERR;
+    *word = (sWord*) sPtr;
+    return SUCCESS;
 }
