@@ -4,7 +4,6 @@
 
 result getAlloc(size_t size, void **ptr){
     *ptr = malloc(size);
-    if (ptr == NULL){
-        return ERR;
-    } return SUCCESS;
+    if (ptr == NULL) return ERR;
+    return SUCCESS;
 }

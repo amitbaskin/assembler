@@ -16,9 +16,8 @@ result checkRel(char *word){
 result isLegalLabel(char *word, unsigned long len){
     int i;
     if (!isalpha(word[0])) return ERR;
-    for (i=1; i<len-2; i++){
-        if(!isalnum(word[i])) return ERR;
-    } return TRUE;
+    for (i=1; i<len-2; i++) if (!isalnum(word[i])) return ERR;
+    return TRUE;
 }
 
 result isLabelDeclaration(const char *word, unsigned long len){
@@ -35,7 +34,7 @@ result isLabel(char **word, label **lab, unsigned long len){
 
 result getNewEmptyLabel(label **lab){
     void *ptr;
-    if (getAlloc(sizeof(label), &ptr) == ERR) return ERR;
+    VALIDATE_FUNC_CALL(getAlloc(sizeof(label), &ptr), "")
     *lab = (label *) ptr;
     return SUCCESS;
 }

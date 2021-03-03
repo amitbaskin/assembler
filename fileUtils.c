@@ -4,7 +4,7 @@
 
 result getNameAlloc(size_t size, char **fName){
     void *ptr;
-    if (getAlloc(size, &ptr) == ERR) return ERR;
+    VALIDATE_FUNC_CALL(getAlloc(size, &ptr), "")
     *fName = ptr;
     return SUCCESS;
 }
@@ -13,13 +13,12 @@ result getFile(char *name, FILE **fp, char *mode, char *suffix){
     unsigned long nameLen = strlen(name);
     unsigned long sufLen = strlen(suffix);
     char *fullName;
-    if (getNameAlloc(nameLen + sufLen + 1, &fullName) == ERR) return ERR;
+    VALIDATE_FUNC_CALL(getNameAlloc(nameLen + sufLen + 1, &fullName), "")
     strcpy(fullName, name);
     strcat(fullName, suffix);
     *fp = fopen(fullName, mode);
-    if (*fp == NULL) {
-        return ERR;
-    } return SUCCESS;
+    if (*fp == NULL) return ERR;
+    return SUCCESS;
 }
 
 result getReadFile(char *name, FILE **fp){

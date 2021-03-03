@@ -18,7 +18,7 @@ result isDataScenario(char *word, char **line, sWord **dataLst, label *head, lab
         breakDownLine(line, &raw, 1);
         getAlloc(sizeof(data), &ptr);
         dat = (data *) ptr;
-        if (collectData(raw, dat) == ERR) return ERR;
+        VALIDATE_FUNC_CALL(collectData(raw, dat), "")
         addData(dataLst, dat, head, lab, labLst);
         return TRUE;
     } return FALSE;
@@ -28,18 +28,17 @@ result collectData(rawWord *raw, data *dat){
     long num;
     data *next;
     void *ptr;
-    result res;
     while (dat->next != NULL){
-        if ((res = isNumData(&num, raw->word) == ERR)) return ERR;
+        VALIDATE_FUNC_CALL(isNumData(&num, raw->word) == ERR, "")
         dat->num = (int) num;
-        getAlloc(sizeof(data), &ptr);
+        VALIDATE_FUNC_CALL(getAlloc(sizeof(data), &ptr), "");
         next = (data *) ptr;
         dat->next = next;
         dat = next;
         raw = raw->next;
         if (raw != NULL && !(strcmp(raw->word, SEP_STR))) return ERR;
         raw = raw->next;
-    } return res;
+    } return SUCCESS;
 }
 
 result addData(sWord **sWordLst, data *dat, label *head, label *lab, label **labLst){

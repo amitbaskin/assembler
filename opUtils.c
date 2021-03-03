@@ -10,38 +10,56 @@
 #include "labSetters.h"
 #include "sWordListUtils.h"
 
+#define VALIDATE_OP(opValidation, msg) { \
+    if (opValidation == FALSE) {         \
+        printf(msg);                     \
+        return ERR;                      \
+    }                                    \
+}
+
+#define VALIDATE_LINE_CONTINUATION(wordResult, msg){ \
+    if (wordResult == FALSE) {                       \
+        printf(msg);                                 \
+        return ERR;                                  \
+    }                                                \
+}
+
+#define VALIDATE_SEP(wordResult, msg){ \
+    if (wordResult != SEP) {           \
+        printf(msg);                   \
+        return ERR;                    \
+    }                                  \
+}
+
+#define CHECK_REF_TYPE(checkFunc, type){ \
+    if (checkFunc == TRUE) return type;\
+}
+
 result validateTwoOps(char **line, char **firstOp, char **secOp, int opIndex, ref *srcType, ref *destType){
     int srcReg;
     long srcNum;
     int destReg;
     long destNum;
     char *sep;
-    result res = getWord(line, firstOp, 0);
-    if (res == LINE_END) return ERR;
-    res = getWord(line, &sep, 1);
-    if (res != SEP) return ERR;
+    VALIDATE_LINE_CONTINUATION(getWord(line, firstOp, 0), "")
+    VALIDATE_SEP(getWord(line, &sep, 1), "")
     getWord(line, secOp, 0);
-    res = finishLine(line);
-    if (res == ERR) return res;
+    VALIDATE_FUNC_CALL(finishLine(line), "")
     *srcType = getOperandType(*firstOp, &srcReg, &srcNum);
     *destType = getOperandType(*secOp, &destReg, &destNum);
-    res = validateSrcOp(*srcType, opIndex);
-    if (res == FALSE) return ERR;
-    res = validateDestOp(*destType, opIndex);
-    if (res == FALSE) return ERR;
+    VALIDATE_OP(validateSrcOp(*srcType, opIndex),"")
+    VALIDATE_OP(validateDestOp(*destType, opIndex),"")
     return SUCCESS;
 }
 
 result validateOneOp(char **line, char **op, int opIndex, ref *destType){
     int destReg;
     long destNum;
-    result res = getWord(line, op, 0);
-    if (res == LINE_END) return ERR;
-    res = finishLine(line);
-    if (res == ERR) return res;
+    VALIDATE_LINE_CONTINUATION(getWord(line, op, 0), "");
+    result res;
+    VALIDATE_FUNC_CALL(finishLine(line), "");
     *destType = getOperandType(*op, &destReg, &destNum);
-    res = validateDestOp(*destType, opIndex);
-    if (res == FALSE) return ERR;
+    VALIDATE_OP(validateDestOp(*destType, opIndex), "")
     return SUCCESS;
 }
 
@@ -54,10 +72,13 @@ result validateOperandsAmount(char **line, int operandsAmount, char **firstOp, c
     switch (operandsAmount) {
         case 2:
             return validateTwoOps(line, firstOp, secOp, opIndex, srcType, destType);
+
         case 1:
             return validateOneOp(line, firstOp, opIndex, destType);
+
         case 0:
             return validateZeroOps(line);
+
         default:
             return ERR;
     }
@@ -65,9 +86,9 @@ result validateOperandsAmount(char **line, int operandsAmount, char **firstOp, c
 
 ref getOperandType(char *operand, int *regType, long *num){
     if ((*regType = isReg(operand)) != NOT_REG) return R_REG;
-    if (isImmediateNum(num, operand) == TRUE) return IM;
-    if (checkRel(operand) == TRUE) return REL;
-    if (isLegalLabel(operand, strlen(operand)) == TRUE) return DIR;
+    CHECK_REF_TYPE(isImmediateNum(num, operand), IM)
+    CHECK_REF_TYPE(checkRel(operand), REL)
+    CHECK_REF_TYPE(isLegalLabel(operand, strlen(operand)), DIR)
     return NOT_REF;
 }
 
@@ -75,12 +96,16 @@ result validateSrcOp(ref type, int opIndex){
     switch(type){
         case IM:
             return getIsImSrc(opIndex);
+
         case DIR:
             return getIsDirSrc(opIndex);
+
         case REL:
             return getIsRelSrc(opIndex);
+
         case R_REG:
             return getIsRegSrc(opIndex);
+
         default:
             return ERR;
     }
@@ -90,12 +115,16 @@ result validateDestOp(ref type, int opIndex){
     switch(type){
         case IM:
             return getIsImDest(opIndex);
+
         case DIR:
             return getIsDirDest(opIndex);
+
         case REL:
             return getIsRelDest(opIndex);
+
         case R_REG:
             return getIsRegDest(opIndex);
+
         default:
             return ERR;
     }
@@ -109,15 +138,19 @@ ref addOperandWord(char *operand, label *labHead, sWord **sWordLst){
         case IM:
             addNumWord(num, DIR_NUM, sWordLst);
             return IM;
+
         case DIR:
             addLabToInstLst(sWordLst, operand, NONE, labHead, 0);
             return DIR;
+
         case REL:
             addLabToInstLst(sWordLst, operand, NONE, labHead, 1);
             return REL;
+
         case R_REG:
             addRegWord(regType, sWordLst);
             return R_REG;
+
         default:
             return NOT_REF;
     }

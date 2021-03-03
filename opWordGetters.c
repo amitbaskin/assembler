@@ -1,7 +1,6 @@
 #include "opWordGetters.h"
 #include "uWordSetters.h"
 #include "sWordSetters.h"
-#include "generalUtils.h"
 
 int getOpIndexByObject(opWord *op){
     return op->opIndex;
@@ -15,12 +14,12 @@ ref getOpDest(opWord *op){
     return op->dest;
 }
 
-opWord *getOpWord(int opIndex, ref src, ref dest){
+result getOpWord(int opIndex, ref src, ref dest, opWord **op){
     void *initPtr;
-    getAlloc(sizeof(opWord), &initPtr);
-    opWord *op = (opWord *) initPtr;
-    op->opIndex = opIndex;
-    op->src = src;
-    op->dest = dest;
-    return op;
+    VALIDATE_FUNC_CALL(getAlloc(sizeof(opWord), &initPtr), "");
+    *op = (opWord *) initPtr;
+    (*op)->opIndex = opIndex;
+    (*op)->src = src;
+    (*op)->dest = dest;
+    return SUCCESS;
 }

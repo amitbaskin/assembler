@@ -9,7 +9,7 @@
 
 result getLineAlloc(char **output){
     void *ptr;
-    if (getAlloc(MAX_LINE_LEN, &ptr) == ERR) return ERR;
+    VALIDATE_FUNC_CALL(getAlloc(MAX_LINE_LEN, &ptr), "")
     *output = ptr;
     return SUCCESS;
 }
@@ -20,12 +20,12 @@ result parseFile(FILE *fp, sWord *sWordLst, sWord *dataLst, label *labLst){
     char *word;
     label *lab;
     label *labHead;
-    VALIDATE_FUNC_CALL(getLineAlloc(&line))
-    VALIDATE_FUNC_CALL(getNewEmptyLabel(&lab))
     labHead = labLst;
+    VALIDATE_FUNC_CALL(getLineAlloc(&line), "")
+    VALIDATE_FUNC_CALL(getNewEmptyLabel(&lab), "")
     while ((res = getLine(&line, fp)) != FILE_END){
-        if (lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst) == ERR) return ERR;
-        if (lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst) == ERR) return ERR;
+        VALIDATE_FUNC_CALL(lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst), "")
+        VALIDATE_FUNC_CALL(lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst), "")
     } if (res == ERR) return res;
     ICF = instructionCounter;
     DCF = dataCounter;

@@ -11,12 +11,9 @@
 #include "sWordListUtils.h"
 
 result isStrScenario(char **line, char *word, sWord **sWordLst, label *head, label *lab, label **labLst){
-    result res;
     if (isStringOrder(word) == FALSE) return FALSE;
-    res = getWord(line, &word, 0);
+    if (getWord(line, &word, 0) != LINE_END) VALIDATE_FUNC_CALL(finishLine(line), "");
     if (isString(word) == FALSE) return ERR;
-    if (res != LINE_END) res = finishLine(line);
-    if (res == ERR) return ERR;
     strScenario(word, sWordLst, head, lab, labLst);
     return SUCCESS;
 }

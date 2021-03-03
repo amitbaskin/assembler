@@ -5,8 +5,6 @@
 #include "labSetters.h"
 #include "sWordGetters.h"
 
-void handleLabErr(){}
-
 result parseInstLst(sWord *sWordLst, label *labHead){
     label *lab;
     result res;
@@ -14,18 +12,17 @@ result parseInstLst(sWord *sWordLst, label *labHead){
     while (ptr != NULL){
         switch (getSWordStatus(ptr)) {
             case W_ENT:
-                res = isLabInLst(labHead, &lab, L_ENT, getSULabName(ptr));
-                if (res == FALSE) {
-                    handleLabErr();
+                if (isLabInLst(labHead, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
+                    res = ERR;
+                    printf("");
                     continue;
-                }
-                setLabType(lab, L_ENT);
+                } setLabType(lab, L_ENT);
                 setThisSWord(&ptr, getNextSWord(ptr));
 
             case LAB:
-                res = isLabInLst(labHead, &lab, NONE, getSULabName(ptr));
-                if (res == FALSE) {
-                    handleLabErr();
+                if (isLabInLst(labHead, &lab, NONE, getSULabName(ptr)) == FALSE) {
+                    res = ERR;
+                    printf("");
                     continue;
                 } setSULab(ptr, lab);
                 setThisSWord(&ptr, getNextSWord(ptr));
