@@ -48,10 +48,10 @@ void addRegWord(int reg, sWord **sWordLst){
     setSWordAddress(sWordReg, instructionCounter++);
 }
 
-void addNumWord(long num, sWord **sWordLst){
+void addNumWord(long num, wordStatus status, sWord **sWordLst){
     sWord *sWordNum = createAndAddWord(setNumStatus, W_REG, sWordLst);
     setSUNumData(sWordNum, num);
-    setSWordStatus(sWordNum, NUM);
+    setSWordStatus(sWordNum, status);
     setSWordAddressType(sWordNum, R_TYPE);
     setSWordAddress(sWordNum, dataCounter++);
 }
@@ -59,7 +59,7 @@ void addNumWord(long num, sWord **sWordLst){
 void addChrWord(char chr, sWord **sWordLst){
     sWord *sWordChr = createAndAddWord(setChrStatus, W_REG, sWordLst);
     setSUChrData(sWordChr, chr);
-    setSWordStatus(sWordChr, CHR);
+    setSWordStatus(sWordChr, CHR_DATA);
     setSWordAddressType(sWordChr, R_TYPE);
     setSWordAddress(sWordChr, dataCounter++);
 }

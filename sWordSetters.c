@@ -30,11 +30,11 @@ void setEntStatus(sWord *sWord){
 }
 
 void setNumStatus(sWord *sWord){
-    sWord->status = NUM;
+    sWord->status = NUM_DATA;
 }
 
 void setChrStatus(sWord *sWord){
-    sWord->status = CHR;
+    sWord->status = CHR_DATA;
 }
 
 void setRegStatus(sWord *sWord){

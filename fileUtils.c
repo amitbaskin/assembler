@@ -18,7 +18,14 @@ result getReadFile(char *name, FILE **fp){
     return getFile(name, fp, "r", READ_FILE_SUFFIX);
 }
 
+result getMainOutputFIle(char *name, FILE **fp){
+    return getFile(name, fp, "w", MAIN_OUTPUT_SUFFIX);
+}
 
-result getWriteFile(char *name, FILE **fp){
-    return getFile(name, fp, "w", WRITE_FILE_SUFFIX);
+result getEntOutputFIle(char *name, FILE **fp){
+    return getFile(name, fp, "w", ENT_SUFFIX);
+}
+
+result getExtOutputFIle(char *name, FILE **fp){
+    return getFile(name, fp, "w", EXT_SUFFIX);
 }

@@ -47,6 +47,6 @@ result addData(sWord **sWordLst, data *dat, label *head, label *lab, label **lab
         addLabToLabLst(head, &lab, labLst, NONE, dataCounter++);
         setDataLab(lab);
     } while (dat != NULL){
-        addNumWord(dat->num, sWordLst);
+        addNumWord(dat->num, NUM_DATA, sWordLst);
     } return SUCCESS;
 }

@@ -7,6 +7,6 @@ void addOpWord(opWord *opWord, sWord **sWordLst);
 void addLabToInstLst(sWord **sWordLst, char *name, labelType type, label *labHead, unsigned char
 isRel);
 void addRegWord(int reg, sWord **sWordLst);
-void addNumWord(long num, sWord **sWordLst);
+void addNumWord(long num, wordStatus status, sWord **sWordLst);
 void addChrWord(char chr, sWord **sWordLst);
 #endif

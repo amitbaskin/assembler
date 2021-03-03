@@ -7,16 +7,12 @@
 #include "sWordSetters.h"
 #include "labGetters.h"
 #include "labSetters.h"
+#include "fileUtils.h"
 
-void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
-    printAddressToFile(fp, *ptr);
-    printWordToFile(fp, toPrint);
-    printAddressTypeToFile(fp, *ptr);
-    setNextSWord(*ptr, getNextSWord(*ptr));
-}
-
-void printIntsLst(FILE *fp, sWord *instHead){
+void printIntsLst(char *fName, sWord *instHead){
     sWord *ptr = instHead;
+    FILE *fp;
+    getMainOutputFIle(fName, &fp);
     fprintf(fp, HEADER_FORMAT, instructionCounter, dataCounter);
     while (ptr != NULL){
         switch (getSWordStatus(ptr)){
@@ -32,7 +28,7 @@ void printIntsLst(FILE *fp, sWord *instHead){
                 printInst(fp, &ptr, transReg(getSUReg(ptr)));
                 break;
 
-            case NUM:
+            case DIR_NUM:
                 printInst(fp, &ptr, getSUNumData(ptr));
                 break;
 
@@ -46,11 +42,13 @@ void printDataLst(FILE *fp, sWord *dataHead){
     sWord *ptr = dataHead;
     while (ptr != NULL) {
         switch (getSWordStatus(ptr)) {
-            case NUM:
+            case NUM_DATA:
+                setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
                 printInst(fp, &ptr, getSUNumData(ptr));
                 break;
 
-            case CHR:
+            case CHR_DATA:
+                setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
                 printInst(fp, &ptr, getSUChrData(ptr));
                 break;
 
@@ -60,12 +58,9 @@ void printDataLst(FILE *fp, sWord *dataHead){
     }
 }
 
-void printLabel(FILE *fp, label *lab){
-    fprintf(fp, "%s ", getLabName(lab));
-    fprintf(fp, "%du\n", getLabAddress(lab));
-}
-
-void printEntLst(FILE *fp, label *labHead){
+void printEntLst(char *fName, label *labHead){
+    FILE *fp;
+    getEntOutputFIle(fName, &fp);
     label *ptr = labHead;
     while (ptr != NULL){
         switch (getLabType(ptr)){
@@ -80,7 +75,9 @@ void printEntLst(FILE *fp, label *labHead){
     }
 }
 
-void printExtLst(FILE *fp, sWord *instHead) {
+void printExtLst(char *fName, sWord *instHead) {
+    FILE *fp;
+    getEntOutputFIle(fName, &fp);
     sWord *ptr = instHead;
     label *lab;
     while (ptr != NULL) {
@@ -95,4 +92,16 @@ void printExtLst(FILE *fp, sWord *instHead) {
                 setThisSWord(&ptr, ptr);
         }
     }
+}
+
+void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
+    printAddressToFile(fp, *ptr);
+    printWordToFile(fp, toPrint);
+    printAddressTypeToFile(fp, *ptr);
+    setNextSWord(*ptr, getNextSWord(*ptr));
+}
+
+void printLabel(FILE *fp, label *lab){
+    fprintf(fp, "%s ", getLabName(lab));
+    fprintf(fp, "%du\n", getLabAddress(lab));
 }

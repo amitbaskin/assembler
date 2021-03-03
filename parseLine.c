@@ -14,6 +14,7 @@
 #include "labSetters.h"
 #include "labLstUtils.h"
 #include "sWordGetters.h"
+#include "opUtils.h"
 
 result lookForData(char **word, char **line, label **lab, label *labHead, label **labLst, sWord **instLst, sWord
 **dataLst){
@@ -48,14 +49,16 @@ result lookForOperation(char **word, char **line, label **lab, label *labHead, l
     ref destType = 0;
     int opIndex = getOpIndexByStr(*word);
     if (opIndex == NOT_OP) return ERR;
-    res = validateOperation(*word, line, &firstOp, &secOp, &srcType, &destType);
+    int opsAmount = getOperandsAmount(opIndex);
+    res = validateOperation(*word, opsAmount, line, &firstOp, &secOp, &srcType, &destType);
     if (res == ERR) return ERR;
     init = getOpWord(opIndex, srcType, destType);
     addOpWord(init, sWordLst);
     if (labelFlag) {
         setCodeLab(*lab);
         addLabToLabLst(labHead, labLst, labLst, NONE, instructionCounter++);
-    } return SUCCESS;
+    } addAllOperandsWord(opsAmount, firstOp, secOp, labHead, sWordLst);
+    return SUCCESS;
 }
 
 result lookForLabel(char **line, char **word, unsigned long *len){

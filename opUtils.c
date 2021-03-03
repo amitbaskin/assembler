@@ -107,7 +107,7 @@ ref addOperandWord(char *operand, label *labHead, sWord **sWordLst){
     ref r = getOperandType(operand, &regType, &num);
     switch(r){
         case IM:
-            addNumWord(num, sWordLst);
+            addNumWord(num, DIR_NUM, sWordLst);
             return IM;
         case DIR:
             addLabToInstLst(sWordLst, operand, NONE, labHead, 0);
