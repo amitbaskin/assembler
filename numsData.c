@@ -8,7 +8,7 @@
 #include "sWordListUtils.h"
 #include "labLstUtils.h"
 
-result isDataScenario(char *word, char **line, sWord **words, label *head, label *lab, label **labLst) {
+result isDataScenario(char *word, char **line, sWord **dataLst, label *head, label *lab, label **labLst) {
     void *ptr;
     data *dat;
     rawWord *raw;
@@ -19,7 +19,7 @@ result isDataScenario(char *word, char **line, sWord **words, label *head, label
         getAlloc(sizeof(data), &ptr);
         dat = (data *) ptr;
         if (collectData(raw, dat) == ERR) return ERR;
-        addData(words, dat, head, lab, labLst);
+        addData(dataLst, dat, head, lab, labLst);
         return TRUE;
     } return FALSE;
 }

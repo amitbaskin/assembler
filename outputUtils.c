@@ -9,10 +9,8 @@
 #include "labSetters.h"
 #include "fileUtils.h"
 
-void printIntsLst(char *fName, sWord *instHead){
+void printIntsLst(FILE *fp, sWord *instHead){
     sWord *ptr = instHead;
-    FILE *fp;
-    getMainOutputFIle(fName, &fp);
     fprintf(fp, HEADER_FORMAT, instructionCounter, dataCounter);
     while (ptr != NULL){
         switch (getSWordStatus(ptr)){
@@ -58,9 +56,9 @@ void printDataLst(FILE *fp, sWord *dataHead){
     }
 }
 
-void printEntLst(char *fName, label *labHead){
+result printEntLst(char *fName, label *labHead){
     FILE *fp;
-    getEntOutputFIle(fName, &fp);
+    if (getEntOutputFIle(fName, &fp) == ERR) return ERR;
     label *ptr = labHead;
     while (ptr != NULL){
         switch (getLabType(ptr)){
@@ -72,12 +70,12 @@ void printEntLst(char *fName, label *labHead){
             default:
                 setThisLab(&ptr, getNextLab(ptr));
         }
-    }
+    } return SUCCESS;
 }
 
-void printExtLst(char *fName, sWord *instHead) {
+result printExtLst(char *fName, sWord *instHead) {
     FILE *fp;
-    getEntOutputFIle(fName, &fp);
+    if (getEntOutputFIle(fName, &fp) == ERR) return ERR;
     sWord *ptr = instHead;
     label *lab;
     while (ptr != NULL) {
@@ -91,7 +89,7 @@ void printExtLst(char *fName, sWord *instHead) {
             default:
                 setThisSWord(&ptr, ptr);
         }
-    }
+    } return SUCCESS;
 }
 
 void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
