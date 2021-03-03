@@ -42,11 +42,11 @@ char getSUChrData(sWord *word){
     return getUChrData(getSUWord(word));
 }
 
-char *getSULabelName(sWord *word){
+char *getSULabName(sWord *word){
     return getULabName(getSUWord(word));
 }
 
-int getSULabelAddress(sWord *word){
+int getSULabAddress(sWord *word){
     return getULabAddress(getSUWord(word));
 }
 

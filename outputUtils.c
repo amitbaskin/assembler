@@ -8,8 +8,9 @@
 #include "labGetters.h"
 #include "labSetters.h"
 #include "fileUtils.h"
+#include "labLstUtils.h"
 
-void printIntsLst(FILE *fp, sWord *instHead){
+void printIntsLst(FILE *fp, sWord *instHead, label *labHead){
     sWord *ptr = instHead;
     fprintf(fp, HEADER_FORMAT, instructionCounter, dataCounter);
     while (ptr != NULL){
@@ -19,7 +20,12 @@ void printIntsLst(FILE *fp, sWord *instHead){
                 break;
 
             case LAB:
-                printInst(fp, &ptr, getSULabelAddress(ptr));
+                if (isSURelLab(ptr)) {
+                    int dist;
+                    getRelLabelAddressFromLst(getSULabName(ptr), labHead, getSULabAddress(ptr), &dist);
+                    printInst(fp, &ptr, dist);
+                }
+                else printInst(fp, &ptr, getSULabAddress(ptr));
                 break;
 
             case W_REG:
@@ -75,7 +81,7 @@ result printEntLst(char *fName, label *labHead){
 
 result printExtLst(char *fName, sWord *instHead) {
     FILE *fp;
-    if (getEntOutputFIle(fName, &fp) == ERR) return ERR;
+    if (getExtOutputFIle(fName, &fp) == ERR) return ERR;
     sWord *ptr = instHead;
     label *lab;
     while (ptr != NULL) {

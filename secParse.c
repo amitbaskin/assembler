@@ -14,7 +14,7 @@ result parseInstLst(sWord *sWordLst, label *labHead){
     while (ptr != NULL){
         switch (getSWordStatus(ptr)) {
             case W_ENT:
-                res = isLabInLst(labHead, &lab, L_ENT, getSULabelName(ptr));
+                res = isLabInLst(labHead, &lab, L_ENT, getSULabName(ptr));
                 if (res == FALSE) {
                     handleLabErr();
                     continue;
@@ -23,7 +23,7 @@ result parseInstLst(sWord *sWordLst, label *labHead){
                 setThisSWord(&ptr, getNextSWord(ptr));
 
             case LAB:
-                res = isLabInLst(labHead, &lab, NONE, getSULabelName(ptr));
+                res = isLabInLst(labHead, &lab, NONE, getSULabName(ptr));
                 if (res == FALSE) {
                     handleLabErr();
                     continue;

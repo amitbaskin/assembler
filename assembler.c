@@ -19,7 +19,7 @@ result assemble(char *fName){
     parseFile(fp, sWordLst, dataLst, labLst);
     parseInstLst(sWordLst, labLst);
     getMainOutputFIle(fName, &fp);
-    printIntsLst(fp, sWordLst);
+    printIntsLst(fp, sWordLst, labLst);
     printDataLst(fp, sWordLst);
     if (printEntLst(fName, labLst) == ERR) return ERR;
     if (printExtLst(fName, sWordLst) == ERR) return ERR;

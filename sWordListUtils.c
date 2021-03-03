@@ -30,16 +30,16 @@ sWord *createAndAddWord(void setStatus(), wordStatus status, sWord **sWordLst){
     addWord(sWord, sWordLst);
 }
 
-void addLabToInstLst(sWord **sWordLst, char *name, labelType type, label *labHead, unsigned char
-isRel){
+void addLabToInstLst(sWord **sWordLst, char *name, labelType type, label *labHead, unsigned char isRel){
     sWord *sWordLab = createAndAddWord(setLabStatus, W_REG, sWordLst);
     label *lab;
     if (getLabName(labHead) == NULL) setLabName(lab, name);
-    if (isLabInLst(labHead, &lab, type, name) != TRUE) lab = getNewLabelByName(name);
-    setLabType(lab, type);
-    setSULab(sWordLab, lab);
-    setSWordAddress(sWordLab, instructionCounter++);
+    if (isLabInLst(labHead, &lab, type, name) != TRUE) {
+        lab = getNewLabelByName(name);
+        setSWordAddress(sWordLab, instructionCounter++);
+    } setLabType(lab, type);
     if (isRel) setRelLab(lab);
+    setSULab(sWordLab, lab);
 }
 
 void addRegWord(int reg, sWord **sWordLst){
