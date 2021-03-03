@@ -5,5 +5,5 @@
 result lookForData(char **word, char **line, label **lab, label *labHead, label **labLst, sWord **instLst, sWord
 **dataLst);
 result lookForOperation(char **word, char **line, label **lab, label *labHead, label **labLst, sWord **sWordLst);
-result lookForLabel(char **line, char **word, unsigned long *len);
+result lookForLabel(char **line, char **word);
 #endif

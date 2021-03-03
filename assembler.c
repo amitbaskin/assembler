@@ -6,22 +6,23 @@
 #include "fileUtils.h"
 #include "secParse.h"
 #include "outputUtils.h"
+#include "generalUtils.h"
 
 result assemble(char *fName){
     label *labLst;
     sWord *sWordLst;
     sWord *dataLst;
     FILE *fp;
-    if (getNewEmptySword(&sWordLst) == ERR) return ERR;
-    if (getNewEmptySword(&dataLst) == ERR) return ERR;
-    if (getNewEmptyLabel(&labLst) == ERR) return ERR;
-    if (getReadFile(fName, &fp) == ERR) return ERR;
-    if (parseFile(fp, sWordLst, dataLst, labLst) == ERR) return ERR;
-    if (parseInstLst(sWordLst, labLst) == ERR) return ERR;
-    if (getMainOutputFIle(fName, &fp) == ERR) return ERR;
+    VALIDATE_FUNC_CALL(getNewEmptySword(&sWordLst))
+    VALIDATE_FUNC_CALL(getNewEmptySword(&dataLst))
+    VALIDATE_FUNC_CALL(getNewEmptyLabel(&labLst))
+    VALIDATE_FUNC_CALL(getReadFile(fName, &fp))
+    VALIDATE_FUNC_CALL(parseFile(fp, sWordLst, dataLst, labLst))
+    VALIDATE_FUNC_CALL(parseInstLst(sWordLst, labLst))
+    VALIDATE_FUNC_CALL(getMainOutputFIle(fName, &fp))
     printIntsLst(fp, sWordLst, labLst);
     printDataLst(fp, sWordLst);
-    if (printEntLst(fName, labLst) == ERR) return ERR;
-    if (printExtLst(fName, sWordLst) == ERR) return ERR;
+    VALIDATE_FUNC_CALL(printEntLst(fName, labLst))
+    VALIDATE_FUNC_CALL(printExtLst(fName, sWordLst))
     return SUCCESS;
 }

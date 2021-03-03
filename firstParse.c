@@ -20,15 +20,12 @@ result parseFile(FILE *fp, sWord *sWordLst, sWord *dataLst, label *labLst){
     char *word;
     label *lab;
     label *labHead;
-    if (getLineAlloc(&line) == ERR) return ERR;
-    if (getLineAlloc(&word) == ERR) return ERR;
-    if (getNewEmptyLabel(&lab) == ERR) return ERR;
+    VALIDATE_FUNC_CALL(getLineAlloc(&line))
+    VALIDATE_FUNC_CALL(getNewEmptyLabel(&lab))
     labHead = labLst;
     while ((res = getLine(&line, fp)) != FILE_END){
-        res = lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst);
-        if (res == ERR) return ERR;
-        res = lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst);
-        if (res == ERR) return ERR;
+        if (lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst) == ERR) return ERR;
+        if (lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst) == ERR) return ERR;
     } if (res == ERR) return res;
     ICF = instructionCounter;
     DCF = dataCounter;

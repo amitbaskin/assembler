@@ -8,6 +8,9 @@
 #define MAX_LINE_LEN 81
 #define INITIAL_INSTRUCTION_NUM 100
 #define SEPARATOR ','
+#define VALIDATE_FUNC_CALL(funcCall) { \
+    if (funcCall == ERR) return ERR;\
+}
 enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG};
 typedef enum result result;
 static result labelFlag = FALSE;
