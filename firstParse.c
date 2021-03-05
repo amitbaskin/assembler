@@ -27,7 +27,9 @@ result parseFile(FILE *fp, sWord *sWordLst, sWord *dataLst, label *labLst){
         if (*line == COMMENT_CHR) continue;
         VALIDATE_FUNC_CALL(lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst), "")
         VALIDATE_FUNC_CALL(lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst), "")
-    } if (res == ERR) return res;
+    } freeHelper(line);
+    freeLab(lab);
+    if (res == ERR) return res;
     ICF = instructionCounter;
     DCF = dataCounter;
     return SUCCESS;

@@ -17,6 +17,7 @@ result getFile(char *name, FILE **fp, char *mode, char *suffix){
     strcpy(fullName, name);
     strcat(fullName, suffix);
     *fp = fopen(fullName, mode);
+    freeHelper(fullName);
     if (*fp == NULL) return ERR;
     return SUCCESS;
 }

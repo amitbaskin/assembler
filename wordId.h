@@ -40,6 +40,7 @@ struct label{
     int address;
     struct label *next;
     labelType type;
+    unsigned char isNameAlloc : 1;
     unsigned char isCode : 1;
     unsigned char isData : 1;
     unsigned char isRel : 1;

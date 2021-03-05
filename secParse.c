@@ -33,7 +33,5 @@ result parseInstLst(sWord *sWordLst, label *labHead){
             default:
                 setThisSWord(&ptr, getSWordNext(ptr));
         }
-    } freeSWordLst(sWordLst);
-    freeLabLst(labHead);
-    return res;
+    } return res;
 }

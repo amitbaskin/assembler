@@ -7,6 +7,8 @@
 #include "secParse.h"
 #include "outputUtils.h"
 #include "generalUtils.h"
+#include "sWordListUtils.h"
+#include "labLstUtils.h"
 
 result assemble(char *fName) {
     label *labLst;
@@ -24,5 +26,8 @@ result assemble(char *fName) {
     printDataLst(fp, sWordLst);
     VALIDATE_FUNC_CALL(printEntLst(fName, labLst), "")
     VALIDATE_FUNC_CALL(printExtLst(fName, sWordLst), "")
+    freeLabLst(labLst);
+    freeSWordLst(sWordLst);
+    freeSWordLst(dataLst);
     return SUCCESS;
 }

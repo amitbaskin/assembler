@@ -63,6 +63,6 @@ result isLabelTypeLegal(label *lab, labelType type){
 }
 
 void freeLab(label *lab){
-    freeHelper(lab->name);
+    if (lab->isNameAlloc) freeHelper(lab->name);
     freeHelper(lab);
 }
