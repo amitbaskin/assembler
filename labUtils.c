@@ -39,12 +39,12 @@ result getNewEmptyLabel(label **lab){
     return SUCCESS;
 }
 
-label *getNewLabelByName(char *name){
+result getNewLabelByName(label **lab, char *name){
     void *ptr;
-    getAlloc(sizeof(label), &ptr);
-    label *lab = (label*) ptr;
-    setLabName(lab, name);
-    return lab;
+    VALIDATE_FUNC_CALL(getAlloc(sizeof(label), &ptr), "");
+    *lab = (label*) ptr;
+    setLabName(*lab, name);
+    return SUCCESS;
 }
 
 result isLabelTypeLegal(label *lab, labelType type){

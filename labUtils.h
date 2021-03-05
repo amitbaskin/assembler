@@ -8,7 +8,7 @@ result isLabelDeclaration(const char *word, unsigned long len);
 result getNewEmptyLabel(label **lab);
 result getRelLabelAddressFromLst(char *name, label *headLab, int address, int *dist);
 result isLabInLst(label *headLab, label **lab, labelType type, char *name);
-label *getNewLabelByName(char *name);
+result getNewLabelByName(label **lab, char *name);
 result isLabelTypeLegal(label *lab, labelType type);
 void freeLab(label *lab);
 #endif

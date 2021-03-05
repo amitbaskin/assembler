@@ -17,40 +17,50 @@ void addWord(sWord *word, sWord **sWordLst){
     setThisSWord(sWordLst, getSWordNext(*sWordLst));
 }
 
-void addOpWord(opWord *opWord, sWord **sWordLst){
-    sWord *sOpWord = createAndAddWord(setSUOpWordStatus, W_REG, sWordLst);
+result addOpWord(opWord *opWord, sWord **sWordLst){
+    sWord *sOpWord;
+    VALIDATE_FUNC_CALL(createAndAddWord(&sOpWord, setSUOpWordStatus, W_REG, sWordLst), "");
     setSUOpWord(sOpWord, opWord);
     setSWordAddress(sOpWord, instructionCounter++);
+    return SUCCESS;
 }
 
-sWord *createAndAddWord(void setStatus(), wordStatus status, sWord **sWordLst){
+result createAndAddWord(sWord **word, void setStatus(), wordStatus status, sWord **sWordLst){
     uWord *uWord = getSUWord(*sWordLst);
-    sWord *sWord = getNewEmptySword();
-    setSUWord(sWord, uWord);
+    VALIDATE_FUNC_CALL(getNewEmptySword(word), "");
+    setSUWord(*word, uWord);
     setStatus(status);
-    addWord(sWord, sWordLst);
+    addWord(*word, sWordLst);
+    return SUCCESS;
 }
 
-void addLabToInstLst(sWord **sWordLst, char *name, labelType type, label *labHead, unsigned char isRel){
-    sWord *sWordLab = createAndAddWord(setSULabStatus, W_REG, sWordLst);
+result addLabToInstLst(sWord **sWordLst, char *name, labelType type, label *labHead, unsigned char isRel){
+    sWord *sWordLab;
+    VALIDATE_FUNC_CALL(createAndAddWord(&sWordLab, setSULabStatus, W_REG, sWordLst), "");
     label *lab;
-    if (getLabName(labHead) == NULL) setLabName(lab, name);
-    if (isLabInLst(labHead, &lab, type, name) != TRUE) {
-        lab = getNewLabelByName(name);
+    if (getLabName(labHead) == NULL) {
+        getNewLabelByName(&lab, getLabName(labHead));
+        setLabName(lab, name);
+    } if (isLabInLst(labHead, &lab, type, name) != TRUE) {
+        getNewLabelByName(&lab, name);
         setSWordAddress(sWordLab, instructionCounter++);
     } setLabType(lab, type);
     if (isRel) setRelLab(lab);
     setSULab(sWordLab, lab);
+    return SUCCESS;
 }
 
-void addRegWord(int reg, sWord **sWordLst){
-    sWord *sWordReg = createAndAddWord(setSURegStatus, W_REG, sWordLst);
+result addRegWord(int reg, sWord **sWordLst){
+    sWord *sWordReg;
+    VALIDATE_FUNC_CALL(createAndAddWord(&sWordReg, setSURegStatus, W_REG, sWordLst), "");
     setSUReg(sWordReg, reg);
     setSWordAddress(sWordReg, instructionCounter++);
+    return SUCCESS;
 }
 
 void addNumWord(long num, wordStatus status, sWord **sWordLst){
-    sWord *sWordNum = createAndAddWord(setSUNumStatus, W_REG, sWordLst);
+    sWord *sWordNum;
+    createAndAddWord(&sWordNum, setSUNumStatus, W_REG, sWordLst);
     setSUNumData(sWordNum, num);
     setSUWordStatus(sWordNum, status);
     setSWordAddressType(sWordNum, R_TYPE);
@@ -58,7 +68,8 @@ void addNumWord(long num, wordStatus status, sWord **sWordLst){
 }
 
 void addChrWord(char chr, sWord **sWordLst){
-    sWord *sWordChr = createAndAddWord(setSUChrStatus, W_REG, sWordLst);
+    sWord *sWordChr;
+    createAndAddWord(&sWordChr, setSUChrStatus, W_REG, sWordLst);
     setSUChrData(sWordChr, chr);
     setSUWordStatus(sWordChr, CHR_DATA);
     setSWordAddressType(sWordChr, R_TYPE);

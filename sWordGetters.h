@@ -6,7 +6,6 @@ wordStatus getSUWordStatus(sWord *word);
 int getSWordAddress(sWord *word);
 char getSWordAddressType(sWord *word);
 sWord *getSWordNext(sWord *word);
-sWord *getNewEmptySword();
 opWord *getSUOpWord(sWord *word);
 label *getSULab(sWord *word);
 reg getSUReg(sWord *word);

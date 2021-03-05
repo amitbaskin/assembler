@@ -4,6 +4,7 @@
 #ifndef ASSEMBLER_PARSE_LINE_UTILS_H
 #define ASSEMBLER_PARSE_LINE_UTILS_H
 #define SEP_STR ","
+#define COMMENT_CHR ';'
 result finishLine(char **line);
 void breakDownLineHelper(rawWord **raw, char *str);
 result breakDownLine(char **line, rawWord **raw, unsigned char isSep);
