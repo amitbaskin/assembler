@@ -6,8 +6,8 @@ uWord *getSUWord(sWord *word){
     return word->uWord;
 }
 
-wordStatus getSWordStatus(sWord *word){
-    return word->status;
+wordStatus getSUWordStatus(sWord *word){
+    return getUStatus(getSUWord(word));
 }
 
 int getSWordAddress(sWord *word){
@@ -18,7 +18,7 @@ char getSWordAddressType(sWord *word){
     return word->addressType;
 }
 
-sWord *getNextSWord(sWord *word){
+sWord *getSWordNext(sWord *word){
     return word->next;
 }
 

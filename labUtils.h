@@ -10,4 +10,5 @@ result getRelLabelAddressFromLst(char *name, label *headLab, int address, int *d
 result isLabInLst(label *headLab, label **lab, labelType type, char *name);
 label *getNewLabelByName(char *name);
 result isLabelTypeLegal(label *lab, labelType type);
+void freeLab(label *lab);
 #endif

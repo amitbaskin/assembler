@@ -8,4 +8,5 @@ void addDataLabelToLst(label **labLst, char *name);
 result isLabInLst(label *headLab, label **lab, labelType type, char *name);
 result getLabelAddressFromLst(char *name, label *headLab, int *address);
 result getRelLabelAddressFromLst(char *name, label *headLab, int address, int *dist);
+void freeLabLst(label *lab);
 #endif

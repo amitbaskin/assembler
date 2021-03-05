@@ -2,10 +2,10 @@
 #ifndef ASSEMBLER_S_WORD_GETTERS_H
 #define ASSEMBLER_S_WORD_GETTERS_H
 uWord *getSUWord(sWord *word);
-wordStatus getSWordStatus(sWord *word);
+wordStatus getSUWordStatus(sWord *word);
 int getSWordAddress(sWord *word);
 char getSWordAddressType(sWord *word);
-sWord *getNextSWord(sWord *word);
+sWord *getSWordNext(sWord *word);
 sWord *getNewEmptySword();
 opWord *getSUOpWord(sWord *word);
 label *getSULab(sWord *word);

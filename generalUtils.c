@@ -7,3 +7,7 @@ result getAlloc(size_t size, void **ptr){
     if (ptr == NULL) return ERR;
     return SUCCESS;
 }
+
+void freeHelper(void *ptr){
+    free(ptr);
+}

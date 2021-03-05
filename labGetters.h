@@ -7,5 +7,5 @@ labelType getLabType(label *lab);
 unsigned char isCodeLab(label *lab);
 unsigned char isDataLab(label *lab);
 unsigned char isRelLab(label *lab);
-label *getNextLab(label *lab);
+label *getLabNext(label *lab);
 #endif

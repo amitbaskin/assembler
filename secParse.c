@@ -4,20 +4,22 @@
 #include "labUtils.h"
 #include "labSetters.h"
 #include "sWordGetters.h"
+#include "labLstUtils.h"
+#include "sWordListUtils.h"
 
 result parseInstLst(sWord *sWordLst, label *labHead){
     label *lab;
     result res;
     sWord *ptr = sWordLst;
     while (ptr != NULL){
-        switch (getSWordStatus(ptr)) {
+        switch (getSUWordStatus(ptr)) {
             case W_ENT:
                 if (isLabInLst(labHead, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
                     res = ERR;
                     printf("");
                     continue;
                 } setLabType(lab, L_ENT);
-                setThisSWord(&ptr, getNextSWord(ptr));
+                setThisSWord(&ptr, getSWordNext(ptr));
 
             case LAB:
                 if (isLabInLst(labHead, &lab, NONE, getSULabName(ptr)) == FALSE) {
@@ -25,11 +27,13 @@ result parseInstLst(sWord *sWordLst, label *labHead){
                     printf("");
                     continue;
                 } setSULab(ptr, lab);
-                setThisSWord(&ptr, getNextSWord(ptr));
+                setThisSWord(&ptr, getSWordNext(ptr));
                 break;
 
             default:
-                setThisSWord(&ptr, getNextSWord(ptr));
+                setThisSWord(&ptr, getSWordNext(ptr));
         }
-    } return res;
+    } freeSWordLst(sWordLst);
+    freeLabLst(labHead);
+    return res;
 }

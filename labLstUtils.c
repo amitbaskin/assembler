@@ -15,7 +15,7 @@ result addLabToLabLst(label *head, label **lab, label **labLst, labelType type, 
 
 result getRelLabelAddressFromLst(char *name, label *headLab, int address, int *dist){
     while (headLab != NULL){
-        if (strcmp(name, getLabName(headLab)) != 0) setThisLab(&headLab, getNextLab(headLab));
+        if (strcmp(name, getLabName(headLab)) != 0) setThisLab(&headLab, getLabNext(headLab));
         else {
             *dist = (address - getLabAddress(headLab));
             return SUCCESS;
@@ -25,11 +25,20 @@ result getRelLabelAddressFromLst(char *name, label *headLab, int address, int *d
 
 result isLabInLst(label *headLab, label **lab, labelType type, char *name){
     while (headLab != NULL){
-        if (strcmp(getLabName(headLab), name) != 0) setThisLab(&headLab, getNextLab(headLab));
+        if (strcmp(getLabName(headLab), name) != 0) setThisLab(&headLab, getLabNext(headLab));
         else {
             *lab = headLab;
             VALIDATE_FUNC_CALL(isLabelTypeLegal(*lab, type), "")
             return TRUE;
         }
     } return FALSE;
+}
+
+void freeLabLst(label *lab){
+    label *tmp;
+    while(getLabNext(lab) != NULL){
+        tmp = lab;
+        setThisLab(&lab, getLabNext(lab));
+        freeLab(tmp);
+    } freeLab(lab);
 }

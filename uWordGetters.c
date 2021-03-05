@@ -22,6 +22,10 @@ char getUChrData(uWord *word){
     return word->chrData;
 }
 
+char getUStatus(uWord *word){
+    return word->status;
+}
+
 char *getULabName(uWord *word){
     return getLabName(getULab(word));
 }
@@ -47,5 +51,5 @@ unsigned char isURelLab(uWord *word){
 }
 
 label *getUNextLab(uWord *word){
-    return getNextLab(getULab(word));
+    return getLabNext(getULab(word));
 }

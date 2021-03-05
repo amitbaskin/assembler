@@ -25,4 +25,5 @@ static unsigned char lineCounter = 1;
 static unsigned char ICF = 0;
 static unsigned char DCF = 0;
 result getAlloc(size_t size, void **ptr);
+void freeHelper(void *ptr);
 #endif

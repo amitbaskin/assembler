@@ -24,6 +24,35 @@ void setUChrData(uWord *word, char chr){
     word->chrData = chr;
 }
 
+void setUStatus(uWord *word, wordStatus status){
+    word->status = status;
+}
+
+void setULabStatus(uWord *word){
+    word->status = LAB;
+}
+
+void setUEntStatus(uWord *word){
+    word->status = W_ENT;
+}
+
+void setUNumStatus(uWord *word){
+    word->status = NUM_DATA;
+}
+
+void setUChrStatus(uWord *word){
+    word->status = CHR_DATA;
+}
+
+void setURegStatus(uWord *word){
+    word->status = W_REG;
+}
+
+void setUOpStatus(uWord *word){
+    word->status = OP;
+}
+
+
 void setThisUWord(uWord **this, uWord *other){
     *this = other;
 }

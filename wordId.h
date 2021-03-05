@@ -1,3 +1,4 @@
+#include "generalUtils.h"
 #ifndef ASSEMBLER_WORD_ID_H
 #define ASSEMBLER_WORD_ID_H
 #define LABEL_SUFFIX ':'
@@ -52,13 +53,13 @@ union uWord{
   reg reg;
   long numData;
   char chrData;
+  wordStatus status;
 };
 
 typedef union uWord uWord;
 
 struct sWord{
     uWord *uWord;
-    wordStatus status;
     int address;
     char addressType;
     struct sWord *next;

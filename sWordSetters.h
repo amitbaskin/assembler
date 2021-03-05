@@ -3,15 +3,15 @@
 #ifndef ASSEMBLER_S_WORD_SETTERS_H
 #define ASSEMBLER_S_WORD_SETTERS_H
 void setSUWord(sWord *sWord, uWord *uWord);
-void setSWordStatus(sWord *sWord, wordStatus status);
-void setSWordAddress(sWord *sWord, int address);
+void setSUWordStatus(sWord *word, wordStatus status);
+void setSWordAddress(sWord *word, int address);
 void setSWordAddressType(sWord *sWord, char addressType);
-void setLabStatus(sWord *sWord);
-void setEntStatus(sWord *sWord);
-void setNumStatus(sWord *sWord);
-void setChrStatus(sWord *sWord);
-void setRegStatus(sWord *sWord);
-void setOpWordStatus(sWord *sWord);
+void setSULabStatus(sWord *word);
+void setSUEntStatus(sWord *word);
+void setSUNumStatus(sWord *word);
+void setSUChrStatus(sWord *word);
+void setSURegStatus(sWord *word);
+void setSUOpWordStatus(sWord *word);
 void setNextSWord(sWord *this, sWord *other);
 void setThisSWord(sWord **this, sWord *other);
 void setSUOpWord(sWord *word, opWord *op);

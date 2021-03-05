@@ -47,5 +47,15 @@ result addData(sWord **sWordLst, data *dat, label *head, label *lab, label **lab
         setDataLab(lab);
     } while (dat != NULL){
         addNumWord(dat->num, NUM_DATA, sWordLst);
-    } return SUCCESS;
+    } freeDataLst(dat);
+    return SUCCESS;
+}
+
+void freeDataLst(data *dat){
+    data *tmp;
+    while (dat->next != NULL){
+        tmp = dat;
+        dat = dat->next;
+        freeHelper(tmp);
+    } freeHelper(dat);
 }

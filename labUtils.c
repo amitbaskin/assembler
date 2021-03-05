@@ -61,3 +61,8 @@ result isLabelTypeLegal(label *lab, labelType type){
             return SUCCESS;
     } return SUCCESS;
 }
+
+void freeLab(label *lab){
+    freeHelper(lab->name);
+    freeHelper(lab);
+}

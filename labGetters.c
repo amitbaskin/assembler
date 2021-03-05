@@ -24,6 +24,6 @@ unsigned char isRelLab(label *lab){
     return lab->isRel;
 }
 
-label *getNextLab(label *lab){
+label *getLabNext(label *lab){
     return lab->next;
 }

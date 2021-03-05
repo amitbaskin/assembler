@@ -14,7 +14,7 @@ void printIntsLst(FILE *fp, sWord *instHead, label *labHead){
     sWord *ptr = instHead;
     fprintf(fp, HEADER_FORMAT, instructionCounter, dataCounter);
     while (ptr != NULL){
-        switch (getSWordStatus(ptr)){
+        switch (getSUWordStatus(ptr)){
             case OP:
                 printInst(fp, &ptr, transOp(getSUOpWord(ptr)));
                 break;
@@ -37,7 +37,7 @@ void printIntsLst(FILE *fp, sWord *instHead, label *labHead){
                 break;
 
             default:
-                setThisSWord(&ptr, getNextSWord(ptr));
+                setThisSWord(&ptr, getSWordNext(ptr));
         }
     }
 }
@@ -45,7 +45,7 @@ void printIntsLst(FILE *fp, sWord *instHead, label *labHead){
 void printDataLst(FILE *fp, sWord *dataHead){
     sWord *ptr = dataHead;
     while (ptr != NULL) {
-        switch (getSWordStatus(ptr)) {
+        switch (getSUWordStatus(ptr)) {
             case NUM_DATA:
                 setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
                 printInst(fp, &ptr, getSUNumData(ptr));
@@ -57,7 +57,7 @@ void printDataLst(FILE *fp, sWord *dataHead){
                 break;
 
             default:
-                setThisSWord(&ptr, getNextSWord(ptr));
+                setThisSWord(&ptr, getSWordNext(ptr));
         }
     }
 }
@@ -70,11 +70,11 @@ result printEntLst(char *fName, label *labHead){
         switch (getLabType(ptr)){
             case L_ENT:
                 printLabel(fp, ptr);
-                setNextLab(ptr, getNextLab(ptr));
+                setNextLab(ptr, getLabNext(ptr));
                 break;
 
             default:
-                setThisLab(&ptr, getNextLab(ptr));
+                setThisLab(&ptr, getLabNext(ptr));
         }
     } return SUCCESS;
 }
@@ -85,11 +85,11 @@ result printExtLst(char *fName, sWord *instHead) {
     sWord *ptr = instHead;
     label *lab;
     while (ptr != NULL) {
-        switch (getSWordStatus(instHead)) {
+        switch (getSUWordStatus(instHead)) {
             case LAB:
                 lab = getSULab(ptr);
                 if (getLabType(lab) == EXT) printLabel(fp, lab);
-                setNextSWord(ptr, getNextSWord(ptr));
+                setNextSWord(ptr, getSWordNext(ptr));
                 break;
 
             default:
@@ -102,7 +102,7 @@ void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
     printAddressToFile(fp, *ptr);
     printWordToFile(fp, toPrint);
     printAddressTypeToFile(fp, *ptr);
-    setNextSWord(*ptr, getNextSWord(*ptr));
+    setNextSWord(*ptr, getSWordNext(*ptr));
 }
 
 void printLabel(FILE *fp, label *lab){

@@ -9,8 +9,8 @@ void setSUWord(sWord *sWord, uWord *uWord){
     sWord->uWord = uWord;
 }
 
-void setSWordStatus(sWord *sWord, wordStatus status){
-    sWord->status = status;
+void setSUWordStatus(sWord *sWord, wordStatus status){
+    setUStatus(getSUWord(sWord), status);
 }
 
 void setSWordAddress(sWord *sWord, int address){
@@ -21,28 +21,28 @@ void setSWordAddressType(sWord *sWord, char addressType){
     sWord->addressType = addressType;
 }
 
-void setLabStatus(sWord *sWord){
-    sWord->status = LAB;
+void setSULabStatus(sWord *word){
+    setULabStatus(getSUWord(word));
 }
 
-void setEntStatus(sWord *sWord){
-    sWord->status = W_ENT;
+void setSUEntStatus(sWord *word){
+    setUEntStatus(getSUWord(word));
 }
 
-void setNumStatus(sWord *sWord){
-    sWord->status = NUM_DATA;
+void setSUNumStatus(sWord *word){
+    setUNumStatus(getSUWord(word));
 }
 
-void setChrStatus(sWord *sWord){
-    sWord->status = CHR_DATA;
+void setSUChrStatus(sWord *word){
+    setUChrStatus(getSUWord(word));
 }
 
-void setRegStatus(sWord *sWord){
-    sWord->status = W_REG;
+void setSURegStatus(sWord *word){
+    setURegStatus(getSUWord(word));
 }
 
-void setOpWordStatus(sWord *sWord){
-    sWord->status = OP;
+void setSUOpWordStatus(sWord *word){
+    setUOpStatus(getSUWord(word));
 }
 
 void setNextSWord(sWord *this, sWord *other){

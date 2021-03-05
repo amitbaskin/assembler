@@ -9,4 +9,5 @@ isRel);
 void addRegWord(int reg, sWord **sWordLst);
 void addNumWord(long num, wordStatus status, sWord **sWordLst);
 void addChrWord(char chr, sWord **sWordLst);
+void freeSWordLst(sWord *word);
 #endif
