@@ -9,8 +9,8 @@ void setSUWord(sWord *sWord, uWord *uWord){
     sWord->uWord = uWord;
 }
 
-void setSUWordStatus(sWord *sWord, wordStatus status){
-    setUStatus(getSUWord(sWord), status);
+void setSWordStatus(sWord *word, wordStatus status){
+    word->status = status;
 }
 
 void setSWordAddress(sWord *sWord, int address){
@@ -21,31 +21,31 @@ void setSWordAddressType(sWord *sWord, char addressType){
     sWord->addressType = addressType;
 }
 
-void setSULabStatus(sWord *word){
-    setULabStatus(getSUWord(word));
+void setSLabStatus(sWord *word){
+    word->status = LAB;
 }
 
-void setSUEntStatus(sWord *word){
-    setUEntStatus(getSUWord(word));
+void setSEntStatus(sWord *word){
+    word->status = W_ENT;
 }
 
-void setSUNumStatus(sWord *word){
-    setUNumStatus(getSUWord(word));
+void setSNumStatus(sWord *word){
+    word->status = NUM_DATA;
 }
 
-void setSUChrStatus(sWord *word){
-    setUChrStatus(getSUWord(word));
+void setSChrStatus(sWord *word){
+    word->status = CHR_DATA;
 }
 
-void setSURegStatus(sWord *word){
-    setURegStatus(getSUWord(word));
+void setSRegStatus(sWord *word){
+    word->status = W_REG;
 }
 
-void setSUOpWordStatus(sWord *word){
-    setUOpStatus(getSUWord(word));
+void setSOpWordStatus(sWord *word){
+    word->status = OP;
 }
 
-void setSWordNext(sWord *this, sWord *other){
+void setSWordNext(sWord *this, sWord **other){
     this->next = other;
 }
 
@@ -75,7 +75,7 @@ void setSUChrData(sWord *word, char chr){
     setUChrData(getSUWord(word), chr);
 }
 
-void setSUDataLab(sWord *word, unsigned char toSet){
+void setSWordStatusDataLab(sWord *word, unsigned char toSet){
     setUDataLab(getSUWord(word), toSet);
 }
 

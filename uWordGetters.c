@@ -22,10 +22,6 @@ char getUChrData(uWord *word){
     return word->chrData;
 }
 
-char getUStatus(uWord *word){
-    return word->status;
-}
-
 char *getULabName(uWord *word){
     return getLabName(getULab(word));
 }

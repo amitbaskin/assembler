@@ -15,6 +15,6 @@ result getNewEmptySword(sWord **word){
 }
 
 void freeSWord(sWord *word){
-    freeUWord(getSUWord(word));
+    freeUWord(word);
     freeHelper(word);
 }

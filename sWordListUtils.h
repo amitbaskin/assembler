@@ -4,7 +4,7 @@
 void addWord(sWord *word, sWord **sWordLst);
 result createAndAddWord(sWord **word, void setStatus(), sWordLst *lst);
 result addOpWord(opWord *opWord, sWordLst *instLst);
-result addLabToInstLst(sWordLst *instLst, labelLst *labLst, char *name, labelType type, unsigned char isRel);
+result addLabToInstLst(sWordLst *instLst, char *name, labelType type, unsigned char isRel);
 result addRegWord(int reg, sWordLst *instLst);
 void addNumWord(long num, wordStatus status, sWordLst *instLst);
 void addChrWord(char chr, sWordLst *dataLst);

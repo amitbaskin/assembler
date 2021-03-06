@@ -14,8 +14,8 @@
 void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
     sWord *ptr;
     fprintf(fp, HEADER_FORMAT, instructionCounter - INITIAL_INSTRUCTION_NUM, dataCounter);
-    while ((ptr = getSWordIterNext(instLst)) != NULL && getSUWordStatus(ptr) != W_NONE){
-        switch (getSUWordStatus(ptr)){
+    while ((ptr = getSWordIterNext(instLst)) != NULL && getSWordStatus(ptr) != W_NONE){
+        switch (getSWordStatus(ptr)){
             case OP:
                 printInst(fp, &ptr, transOp(getSUOpWord(ptr)));
                 break;
@@ -45,8 +45,8 @@ void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
 
 void printDataLst(FILE *fp, sWordLst *dataLst){
     sWord *ptr;
-    while ((ptr = getSWordIterNext(dataLst)) != NULL && getSUWordStatus(ptr)) {
-        switch (getSUWordStatus(ptr)) {
+    while ((ptr = getSWordIterNext(dataLst)) != NULL && getSWordStatus(ptr)) {
+        switch (getSWordStatus(ptr)) {
             case NUM_DATA:
                 setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
                 printInst(fp, &ptr, getSUNumData(ptr));
@@ -103,8 +103,8 @@ result printEntLst(char *fName, labelLst *labLst){
 void getExtLst(sWord *ext, sWord *instHead){
     sWord *ptr = instHead;
     label *lab;
-    while (ptr != NULL && getSUWordStatus(ptr) != W_NONE) {
-        switch (getSUWordStatus(instHead)) {
+    while (ptr != NULL && getSWordStatus(ptr) != W_NONE) {
+        switch (getSWordStatus(instHead)) {
             case LAB:
                 lab = getSULab(ptr);
                 if (getLabType(lab) == EXT){
@@ -128,9 +128,9 @@ result printExtLst(char *fName, sWordLst *instLst) {
     VALIDATE_VAL(getExtOutputFIle(fName, &fp), "");
     sWord *ptr;
     label *lab;
-    while ((ptr = getSWordIterNext(instLst)) != NULL && getSUWordStatus(ptr) != W_NONE
+    while ((ptr = getSWordIterNext(instLst)) != NULL && getSWordStatus(ptr) != W_NONE
     ) {
-        switch (getSUWordStatus(ptr)) {
+        switch (getSWordStatus(ptr)) {
             case LAB:
                 lab = getSULab(ptr);
                 if (getLabType(lab) == EXT) printLabel(fp, lab);

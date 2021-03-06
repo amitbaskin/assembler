@@ -27,13 +27,14 @@
 }
 
 #define ADD_TO_LIST(type, cond, item){ \
-    if (cond) {                        \
+    if (cond){                                   \
         lst->tail = item;              \
-        lst->head = lst->tail->next;   \
+        *(lst->tail->next) = lst->head;\
+        lst->head = *(lst->tail->next);   \
                                        \
     } else{                            \
-        lst->head->next = item;        \
-        lst->head = item;              \
+        lst->head = item;        \
+        lst->head = *(lst->head->next);              \
     }                                  \
 }
 

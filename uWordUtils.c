@@ -1,8 +1,7 @@
-#include <stdlib.h>
 #include "uWordUtils.h"
 #include "generalUtils.h"
 #include "labUtils.h"
-#include "uWordGetters.h"
+#include "sWordGetters.h"
 
 result getNewEmptyUWord(uWord **word){
     void *uPtr;
@@ -11,17 +10,15 @@ result getNewEmptyUWord(uWord **word){
     return SUCCESS;
 }
 
-void freeUWord(uWord *word){
+void freeUWord(sWord *word){
     switch(word->status){
         case OP:
-            freeHelper(word->op);
-            freeHelper(word);
+            freeHelper(getSUOpWord(word));
             break;
         case LAB:
-            freeLab(getULab(word));
-            freeHelper(word);
+            freeLab(getSULab(word));
             break;
         default:
             break;
-    }
+    } freeHelper(getSUWord(word));
 }

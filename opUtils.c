@@ -139,11 +139,11 @@ ref addOperandWord(char *operand, labelLst *labLst, sWordLst *instLst){
             return IM;
 
         case DIR:
-            addLabToInstLst(instLst, labLst, operand, L_NONE, 0);
+            addLabToInstLst(instLst, operand, L_NONE, 0);
             return DIR;
 
         case REL:
-            addLabToInstLst(instLst, labLst, operand, L_NONE, 1);
+            addLabToInstLst(instLst, operand, L_NONE, 1);
             return REL;
 
         case R_REG:

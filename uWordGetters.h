@@ -6,7 +6,6 @@ label *getULab(uWord *word);
 reg getUReg(uWord *word);
 long getUNumData(uWord *word);
 char getUChrData(uWord *v);
-char getUStatus(uWord *word);
 char *getULabName(uWord *word);
 int getULabAddress(uWord *word);
 labelType getULabType(uWord *word);

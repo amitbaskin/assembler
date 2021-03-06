@@ -36,7 +36,7 @@
 }
 result entryScenario(char **line, char **word, label **lab, labelLst *labLst, sWordLst *instLst){
     if (lookForLabel(line, word, lab) == ERR) return ERR;
-    addLabToInstLst(instLst, labLst, *word, L_ENT, 0);
+    addLabToInstLst(instLst, *word, L_ENT, 0);
     setLabType(getSULab(getSWordHead(instLst)), L_ENT);
     return TRUE;
 }

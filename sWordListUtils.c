@@ -15,14 +15,15 @@ void addWord(sWord *word, sWord **sWordLst){
         setThisSWord(sWordLst, word);
         return;
     }
-    setSWordNext(*sWordLst, word);
+    setSWordNext(*sWordLst, &word);
     setThisSWord(sWordLst, getSWordNext(*sWordLst));
 }
 
 result addOpWord(opWord *opWord, sWordLst *instLst){
     sWord *sOpWord;
-    VALIDATE_VAL(createAndAddWord(&sOpWord, setSUOpWordStatus, instLst), "");
+    VALIDATE_VAL(createAndAddWord(&sOpWord, setSOpWordStatus, instLst), "");
     setSUOpWord(sOpWord, opWord);
+    setSOpWordStatus(sOpWord);
     setSWordAddress(sOpWord, instructionCounter++);
     return SUCCESS;
 }
@@ -34,27 +35,24 @@ result createAndAddWord(sWord **word, void setStatus(), sWordLst *lst){
     return SUCCESS;
 }
 
-result addLabToInstLst(sWordLst *instLst, labelLst *labLst, char *name, labelType type, unsigned char isRel){
+result addLabToInstLst(sWordLst *instLst, char *name, labelType type, unsigned char isRel){
     sWord *sWordLab;
-    VALIDATE_VAL(createAndAddWord(&sWordLab, setSULabStatus, instLst), "");
+    VALIDATE_VAL(getNewEmptySword(&sWordLab), "");
+    setSLabStatus(sWordLab);
     label *lab;
-    label *head = getLabHead(labLst);
-    char *headName = getLabName(head);
-    if (headName == NULL) {
-        getNewLabByName(&lab, headName);
-        setLabName(lab, name);
-    } if (isLabInLst(labLst, &lab, type, name) != TRUE) {
-        getNewLabByName(&lab, name);
-        setSWordAddress(sWordLab, instructionCounter++);
-    } setLabType(lab, type);
+    getNewEmptyLab(&lab);
+    setLabName(lab, name);
+    setLabType(lab, type);
     if (isRel) setLabRel(lab, 1);
     setSULab(sWordLab, lab);
+    setSLabStatus(sWordLab);
+    addSWord(instLst, sWordLab);
     return SUCCESS;
 }
 
 result addRegWord(int reg, sWordLst *instLst){
     sWord *sWordReg;
-    VALIDATE_VAL(createAndAddWord(&sWordReg, setSURegStatus, instLst), "");
+    VALIDATE_VAL(createAndAddWord(&sWordReg, setSRegStatus, instLst), "");
     setSUReg(sWordReg, reg);
     setSWordAddress(sWordReg, instructionCounter++);
     return SUCCESS;
@@ -62,25 +60,25 @@ result addRegWord(int reg, sWordLst *instLst){
 
 void addNumWord(long num, wordStatus status, sWordLst *instLst){
     sWord *sWordNum;
-    createAndAddWord(&sWordNum, setSUNumStatus, instLst);
+    createAndAddWord(&sWordNum, setSNumStatus, instLst);
     setSUNumData(sWordNum, num);
-    setSUWordStatus(sWordNum, status);
+    setSWordStatus(sWordNum, status);
     setSWordAddressType(sWordNum, R_TYPE);
     setSWordAddress(sWordNum, dataCounter++);
 }
 
 void addChrWord(char chr, sWordLst *dataLst){
     sWord *sWordChr;
-    createAndAddWord(&sWordChr, setSUChrStatus, dataLst);
+    createAndAddWord(&sWordChr, setSChrStatus, dataLst);
     setSUChrData(sWordChr, chr);
-    setSUWordStatus(sWordChr, CHR_DATA);
+    setSWordStatus(sWordChr, CHR_DATA);
     setSWordAddressType(sWordChr, R_TYPE);
     setSWordAddress(sWordChr, dataCounter++);
 }
 
 void freeSWordLstHelper(sWord *word){
     sWord *tmp;
-    while(word != NULL && getSUWordStatus(word) != W_NONE && getSWordNext(word) != NULL){
+    while(word != NULL && getSWordStatus(word) != W_NONE && getSWordNext(word) != NULL){
         tmp = word;
         setThisSWord(&word, getSWordNext(word));
         freeSWord(tmp);
@@ -100,11 +98,26 @@ sWord *getSWordCur(sWordLst *lst){
 }
 
 void addSWord(sWordLst *lst, sWord *word){
-    ADD_TO_LIST(sWord, getSUWordStatus(getSWordTail(lst)) == W_NONE, word)
+//    ADD_TO_LIST(sWord, getSWordStatus(getSWordTail(lst)) == W_NONE, word)
+    if (getSWordStatus(getSWordTail(lst)) == W_NONE) {                        \
+        lst->tail = word;              \
+        *(lst->tail->next) = lst->head;\
+        lst->head = *(lst->tail->next);   \
+                                       \
+    } else{                            \
+        lst->head = word;        \
+        lst->head = *(lst->head->next);              \
+    }                                  \
 }
 
 sWord *getSWordIterNext(sWordLst *lst){
-    GET_ITER_NEXT(sWord)
+    if (lst->head == lst->cur){ \
+        lst->cur = lst->tail;\
+        return NULL;         \
+    } sWord *cur = lst->cur;  \
+    sWord *tmp = cur;         \
+    lst->cur = *(cur->next);    \
+    return tmp;              \
 }
 
 void resetSWordIter(sWordLst *lst){
@@ -116,6 +129,8 @@ result getNewSWordLst(sWordLst **lst){
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(sWordLst), &ptr), "")
     *lst = ptr;
+    VALIDATE_VAL(getAlloc(sizeof(sWord), &ptr), "")
+    (*lst)->head = (*lst)->tail = (*lst)->cur;
     return SUCCESS;
 }
 

@@ -8,6 +8,7 @@ result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address
     result res = isLabInLst(labLst, lab, type, getLabName(*lab));
     if (res == ERR) return ERR;
     setLabAddress(*lab, address);
+    setLabType(*lab, type);
     addLab(labLst, *lab);
     return SUCCESS;
 }
@@ -66,7 +67,13 @@ label *getLabCur(labelLst *lst){
 }
 
 label *getLabIterNext(labelLst *lst){
-    GET_ITER_NEXT(label)
+    if (lst->head == lst->cur){ \
+        lst->cur = lst->tail;\
+        return NULL;         \
+    } label *cur = lst->cur;  \
+    label *tmp = cur;         \
+    lst->cur = cur->next;    \
+    return tmp;              \
 }
 
 void resetLabIter(labelLst *lst){
@@ -75,7 +82,16 @@ void resetLabIter(labelLst *lst){
 }
 
 void addLab(labelLst *lst, label *lab){
-    ADD_TO_LIST(label, getLabType(lst->tail) == L_NONE, lab)
+//    ADD_TO_LIST(label, getLabType(lst->tail) == L_NONE, lab)
+    if (getLabType(lst->tail) == L_NONE){                                   \
+        lst->tail = lab;              \
+        *(lst->tail->next) = lst->head;\
+        lst->head = *(lst->tail->next);   \
+                                       \
+    } else{                            \
+        lst->head = lab;        \
+        lst->head = *(lst->head->next);              \
+    }                                  \
 }
 
 result getNewLabLst(labelLst **lst){
