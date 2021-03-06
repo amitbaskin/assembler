@@ -16,7 +16,7 @@ ref getOpDest(opWord *op){
 
 result getOpWord(int opIndex, ref src, ref dest, opWord **op){
     void *initPtr;
-    VALIDATE_FUNC_CALL(getAlloc(sizeof(opWord), &initPtr), "");
+    VALIDATE_VAL(getAlloc(sizeof(opWord), &initPtr), "");
     *op = (opWord *) initPtr;
     (*op)->opIndex = opIndex;
     (*op)->src = src;

@@ -5,12 +5,12 @@
 #include "sWordSetters.h"
 
 result getNewEmptySword(sWord **word){
-    void *sPtr;
-    VALIDATE_FUNC_CALL(getAlloc(sizeof(sWord), &sPtr), "");
-    *word = (sWord*) sPtr;
-    uWord *uWord = getSUWord(*word);
-    getNewEmptyUWord(&uWord);
-    setSUWord(*word, uWord);
+    void *ptr;
+    VALIDATE_VAL(getAlloc(sizeof(sWord), &ptr), "");
+    *word = (sWord*) ptr;
+    uWord *unionWord;
+    getNewEmptyUWord(&unionWord);
+    setSUWord(*word, unionWord);
     return SUCCESS;
 }
 

@@ -6,7 +6,7 @@
 
 result getNewEmptyUWord(uWord **word){
     void *uPtr;
-    VALIDATE_FUNC_CALL(getAlloc(sizeof(uWord), &uPtr), "");
+    VALIDATE_VAL(getAlloc(sizeof(uWord), &uPtr), "");
     *word = (uWord*) uPtr;
     return SUCCESS;
 }

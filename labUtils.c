@@ -18,6 +18,7 @@ result isLegalLabel(char *word, unsigned long len){
     if (!isalpha(word[0])) return ERR;
     if (len == 1) return TRUE;
     for (i=1; i<len-2; i++) if (!isalnum(word[i])) return ERR;
+    labelFlag = 1;
     return TRUE;
 }
 
@@ -34,7 +35,7 @@ result isLabelDeclaration(char *word, label **lab, unsigned long len){
 
 result getNewEmptyLab(label **lab){
     void *ptr;
-    VALIDATE_FUNC_CALL(getAlloc(sizeof(label), &ptr), "")
+    VALIDATE_VAL(getAlloc(sizeof(label), &ptr), "")
     *lab = (label *) ptr;
     setLabType(*lab, L_NONE);
     return SUCCESS;
@@ -42,7 +43,7 @@ result getNewEmptyLab(label **lab){
 
 result getNewLabByName(label **lab, char *name){
     void *ptr;
-    VALIDATE_FUNC_CALL(getAlloc(sizeof(label), &ptr), "");
+    VALIDATE_VAL(getAlloc(sizeof(label), &ptr), "");
     *lab = (label*) ptr;
     setLabName(*lab, name);
     return SUCCESS;

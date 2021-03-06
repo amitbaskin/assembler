@@ -15,17 +15,17 @@ result assemble(char *fName) {
     sWordLst *instLst = NULL;
     sWordLst *dataLst = NULL;
     FILE *fp;
-    VALIDATE_FUNC_CALL(initializeSWordLst(&instLst), "")
-    VALIDATE_FUNC_CALL(initializeSWordLst(&dataLst), "")
-    VALIDATE_FUNC_CALL(initializeLabLst(&labLst), "")
-    VALIDATE_FUNC_CALL(getReadFile(fName, &fp), "")
-    VALIDATE_FUNC_CALL(parseFile(fp, instLst, dataLst, labLst), "")
-    VALIDATE_FUNC_CALL(parseInstLst(instLst, labLst), "")
-    VALIDATE_FUNC_CALL(getMainOutputFIle(fName, &fp), "")
+    VALIDATE_VAL(initializeSWordLst(&instLst), "")
+    VALIDATE_VAL(initializeSWordLst(&dataLst), "")
+    VALIDATE_VAL(initializeLabLst(&labLst), "")
+    VALIDATE_VAL(getReadFile(fName, &fp), "")
+    VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst), "")
+    VALIDATE_VAL(parseInstLst(instLst, labLst), "")
+    VALIDATE_VAL(getMainOutputFIle(fName, &fp), "")
     printIntsLst(fp, instLst, labLst);
     printDataLst(fp, instLst);
-    VALIDATE_FUNC_CALL(printEntLst(fName, labLst), "")
-    VALIDATE_FUNC_CALL(printExtLst(fName, instLst), "")
+    VALIDATE_VAL(printEntLst(fName, labLst), "")
+    VALIDATE_VAL(printExtLst(fName, instLst), "")
     freeLabLst(labLst);
     freeSWordLst(instLst);
     freeSWordLst(dataLst);

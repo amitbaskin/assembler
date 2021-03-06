@@ -25,7 +25,7 @@ void setLabAddress(label *lab, int address){
 result setLabName(label *lab, char *name){
     void *ptr;
     unsigned long len = strlen(name) + 1;
-    VALIDATE_FUNC_CALL(getAlloc(len, &ptr), "")
+    VALIDATE_VAL(getAlloc(len, &ptr), "")
     lab->name = (char *) ptr;
     strcpy(lab->name, name);
     setLabIsNameAlloc(lab, 1);

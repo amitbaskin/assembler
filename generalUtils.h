@@ -9,8 +9,8 @@
 #define INITIAL_INSTRUCTION_NUM 100
 #define SEPARATOR ','
 
-#define VALIDATE_FUNC_CALL(funcCall, failMsg) { \
-    if (funcCall == ERR) {                      \
+#define VALIDATE_VAL(val, failMsg) { \
+    if (val == ERR) {                      \
         printf(failMsg);                        \
         return ERR;                             \
     }                                           \
@@ -39,7 +39,7 @@
 
 enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG};
 typedef enum result result;
-static result labelFlag = FALSE;
+static unsigned char labelFlag = 0;
 static unsigned char instructionCounter = INITIAL_INSTRUCTION_NUM;
 static unsigned char dataCounter = 0;
 static unsigned char lineCounter = 1;

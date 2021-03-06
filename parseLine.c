@@ -41,19 +41,19 @@ result entryScenario(char **line, char **word, label **lab, labelLst *labLst, sW
     return TRUE;
 }
 result extScenario(char **line, char **word, label **lab, labelLst *labLst){
-    VALIDATE_FUNC_CALL(lookForLabel(line, word, lab), "");
+    VALIDATE_VAL(lookForLabel(line, word, lab), "");
     addLabToLabLst(labLst, lab, EXT, 0);
     return TRUE;
 }
 
 result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst, sWordLst *dataLst){
     getWord(line, word, 0);
-    VALIDATE_FUNC_CALL(isLabelDeclaration(*word, lab, strlen(*word)), "")
+    VALIDATE_VAL(isLabelDeclaration(*word, lab, strlen(*word)), "")
     SWITCH_DATA_RES(isDataScenario(*word, line, *lab, dataLst, labLst))
     SWITCH_DATA_RES(isStrScenario(*word, line, *lab, dataLst, labLst))
     SWITCH_REF_RES(isEntryOrder(*word), entryScenario(line, word, lab, labLst, instLst), "")
     SWITCH_REF_RES(isExternOrder(*word), extScenario(line, word, lab, labLst), "")
-    return ERR;
+    return FALSE;
 }
 
 result lookForOperation(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst){
@@ -65,7 +65,7 @@ result lookForOperation(char **word, char **line, label **lab, labelLst *labLst,
     int opIndex = getOpIndexByStr(*word);
     if (opIndex == NOT_OP) return ERR;
     int opsAmount = getOperandsAmount(opIndex);
-    VALIDATE_FUNC_CALL(validateOperation(*word, opsAmount, line, &firstOp, &secOp, &srcType, &destType), "")
+    VALIDATE_VAL(validateOperation(*word, opIndex, opsAmount, line, &firstOp, &secOp, &srcType, &destType), "")
     getOpWord(opIndex, srcType, destType, &op);
     addOpWord(op, instLst);
     checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter++);

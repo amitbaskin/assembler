@@ -30,7 +30,7 @@ result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
         if (strcmp(getLabName(ptr), name) != 0) setThisLab(&ptr, getLabNext(ptr));
         else {
             *lab = ptr;
-            VALIDATE_FUNC_CALL(isLabTypeLegal(*lab, type), "")
+            VALIDATE_VAL(isLabTypeLegal(*lab, type), "")
             return TRUE;
         }
     } resetLabIter(labLst);
@@ -80,14 +80,14 @@ void addLab(labelLst *lst, label *lab){
 
 result getNewLabLst(labelLst **lst){
     void *ptr;
-    VALIDATE_FUNC_CALL(getAlloc(sizeof(lst), &ptr), "")
+    VALIDATE_VAL(getAlloc(sizeof(lst), &ptr), "")
     *lst = ptr;
     return SUCCESS;
 }
 
 result initializeLabLst(labelLst **lst){
-    VALIDATE_FUNC_CALL(getNewLabLst(lst), "")
-    VALIDATE_FUNC_CALL(getNewEmptyLab(&((*lst)->tail)), "")
+    VALIDATE_VAL(getNewLabLst(lst), "")
+    VALIDATE_VAL(getNewEmptyLab(&((*lst)->tail)), "")
     (*lst)->cur = (*lst)->head = (*lst)->tail;
     return SUCCESS;
 }

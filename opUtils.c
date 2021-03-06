@@ -44,7 +44,7 @@ result validateTwoOps(char **line, char **firstOp, char **secOp, int opIndex, re
     VALIDATE_LINE_CONTINUATION(getWord(line, firstOp, 0), "")
     VALIDATE_SEP(getWord(line, &sep, 1), "")
     getWord(line, secOp, 0);
-    VALIDATE_FUNC_CALL(finishLine(line), "")
+    VALIDATE_VAL(finishLine(line), "")
     *srcType = getOperandType(*firstOp, &srcReg, &srcNum);
     *destType = getOperandType(*secOp, &destReg, &destNum);
     VALIDATE_OP(validateSrcOp(*srcType, opIndex),"")
@@ -56,8 +56,7 @@ result validateOneOp(char **line, char **op, int opIndex, ref *destType){
     int destReg;
     long destNum;
     VALIDATE_LINE_CONTINUATION(getWord(line, op, 0), "");
-    result res;
-    VALIDATE_FUNC_CALL(finishLine(line), "");
+    VALIDATE_VAL(finishLine(line), "");
     *destType = getOperandType(*op, &destReg, &destNum);
     VALIDATE_OP(validateDestOp(*destType, opIndex), "")
     return SUCCESS;

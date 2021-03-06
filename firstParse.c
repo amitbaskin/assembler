@@ -20,16 +20,18 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     char *word;
     label *lab;
     getNewEmptyLab(&lab);
-    VALIDATE_FUNC_CALL(getWordAlloc(&line, MAX_LINE_LEN), "")
+    VALIDATE_VAL(getWordAlloc(&line, MAX_LINE_LEN), "")
     lineOrgPtr = line;
-    VALIDATE_FUNC_CALL(getWordAlloc(&word, MAX_LINE_LEN), "")
-    VALIDATE_FUNC_CALL(getNewEmptyLab(&lab), "")
+    VALIDATE_VAL(getWordAlloc(&word, MAX_LINE_LEN), "")
+    VALIDATE_VAL(getNewEmptyLab(&lab), "")
     while (res != FILE_END){
+        labelFlag = 0;
+        line = lineOrgPtr;
         res = getLine(&line, fp);
-        VALIDATE_FUNC_CALL(res, "")
+        VALIDATE_VAL(res, "")
         if (*line == COMMENT_CHR || isEmptyLine(line) == TRUE) continue;
         res = lookForData(&word, &line, &lab, labLst, instLst, dataLst);
-        if (res == TRUE || res == ERR) break;
+        if (res == TRUE || res == ERR) continue;
         res = lookForOperation(&word, &line, &lab, labLst, instLst);
     } freeHelper(lineOrgPtr);
     freeHelper(word);

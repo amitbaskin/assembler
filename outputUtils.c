@@ -85,7 +85,7 @@ result printEntLst(char *fName, labelLst *labLst){
     getEntLst(ent, getLabTail(labLst));
     if (ent == NULL) return SUCCESS;
     FILE *fp;
-    VALIDATE_FUNC_CALL(getEntOutputFIle(fName, &fp), "")
+    VALIDATE_VAL(getEntOutputFIle(fName, &fp), "")
     label *ptr = NULL;
     while (ptr != NULL && getLabType(ptr) != L_NONE){
         switch (getLabType(ptr)){
@@ -125,7 +125,7 @@ result printExtLst(char *fName, sWordLst *instLst) {
     getExtLst(ext, getSWordHead(instLst));
     if (ext == NULL) return SUCCESS;
     FILE *fp;
-    VALIDATE_FUNC_CALL(getExtOutputFIle(fName, &fp), "");
+    VALIDATE_VAL(getExtOutputFIle(fName, &fp), "");
     sWord *ptr;
     label *lab;
     while ((ptr = getSWordIterNext(instLst)) != NULL && getSUWordStatus(ptr) != W_NONE

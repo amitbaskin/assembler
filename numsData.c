@@ -19,7 +19,7 @@ result isDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, la
         breakDownLine(line, &raw, 1);
         getAlloc(sizeof(data), &ptr);
         dat = (data *) ptr;
-        VALIDATE_FUNC_CALL(collectData(raw, dat), "")
+        VALIDATE_VAL(collectData(raw, dat), "")
         checkLabFlagOnScenario(&lab, labLst, setLabCode, dataCounter++);
         addData(dataLst, labLst, lab, dat);
         return TRUE;
@@ -31,9 +31,9 @@ result collectData(rawWord *raw, data *dat){
     data *next;
     void *ptr;
     while (dat->next != NULL){
-        VALIDATE_FUNC_CALL(isNumData(&num, raw->word) == ERR, "")
+        VALIDATE_VAL(isNumData(&num, raw->word) == ERR, "")
         dat->num = (int) num;
-        VALIDATE_FUNC_CALL(getAlloc(sizeof(data), &ptr), "");
+        VALIDATE_VAL(getAlloc(sizeof(data), &ptr), "");
         next = (data *) ptr;
         dat->next = next;
         dat = next;
