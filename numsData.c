@@ -21,7 +21,7 @@ result isDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, la
         dat = (data *) ptr;
         VALIDATE_FUNC_CALL(collectData(raw, dat), "")
         checkLabFlagOnScenario(&lab, labLst, setLabCode, dataCounter++);
-        addData(dataLst, labLst, dat, lab);
+        addData(dataLst, labLst, lab, dat);
         return TRUE;
     } return FALSE;
 }

@@ -26,7 +26,7 @@ result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int 
 
 result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
     label *ptr;
-    while (getLabIterNext(labLst) != NULL && getLabType(ptr) != L_NONE){
+    while ((ptr = getLabIterNext(labLst)) != NULL && getLabType(ptr) != L_NONE){
         if (strcmp(getLabName(ptr), name) != 0) setThisLab(&ptr, getLabNext(ptr));
         else {
             *lab = ptr;
@@ -75,14 +75,20 @@ void resetLabIter(labelLst *lst){
 }
 
 void addLab(labelLst *lst, label *lab){
-    ADD_TO_LIST(label, getLabType(lst->head) == L_NONE, lab)
+    ADD_TO_LIST(label, getLabType(lst->tail) == L_NONE, lab)
 }
 
-result initializeLabLst(labelLst *lst){
-    label *tail = getLabTail(lst);
-    label *head = getLabHead(lst);
-    VALIDATE_FUNC_CALL(getNewEmptyLab(&tail), "")
-    setThisLab(&head, tail);
+result getNewLabLst(labelLst **lst){
+    void *ptr;
+    VALIDATE_FUNC_CALL(getAlloc(sizeof(lst), &ptr), "")
+    *lst = ptr;
+    return SUCCESS;
+}
+
+result initializeLabLst(labelLst **lst){
+    VALIDATE_FUNC_CALL(getNewLabLst(lst), "")
+    VALIDATE_FUNC_CALL(getNewEmptyLab(&((*lst)->tail)), "")
+    (*lst)->cur = (*lst)->head = (*lst)->tail;
     return SUCCESS;
 }
 

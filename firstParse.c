@@ -33,7 +33,6 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         res = lookForOperation(&word, &line, &lab, labLst, instLst);
     } freeHelper(lineOrgPtr);
     freeHelper(word);
-    freeLab(lab);
     ICF = instructionCounter;
     DCF = dataCounter;
     return res;

@@ -36,6 +36,7 @@ result getNewEmptyLab(label **lab){
     void *ptr;
     VALIDATE_FUNC_CALL(getAlloc(sizeof(label), &ptr), "")
     *lab = (label *) ptr;
+    setLabType(*lab, L_NONE);
     return SUCCESS;
 }
 
@@ -60,18 +61,6 @@ result isLabTypeLegal(label *lab, labelType type){
         default:
             return SUCCESS;
     } return SUCCESS;
-}
-
-void copyLab(label *input, label *output){
-    char *outputName = getLabName(output);
-    getWordAlloc(&outputName, strlen(getLabName(input)));
-    strcpy(getLabName(output), getLabName(input));
-    setLabAddress(output, getLabAddress(input));
-    setLabType(output, getLabType(input));
-    setLabIsNameAlloc(output, isLabNameAlloc(input));
-    setLabCode(output, isLabCode(input));
-    setLabData(output, isLabData(input));
-    setLabRel(output, isLabRel(input));
 }
 
 void freeLab(label *lab){

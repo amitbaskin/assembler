@@ -15,9 +15,9 @@ result assemble(char *fName) {
     sWordLst *instLst = NULL;
     sWordLst *dataLst = NULL;
     FILE *fp;
-    VALIDATE_FUNC_CALL(initializeSWordLst(instLst), "")
-    VALIDATE_FUNC_CALL(initializeSWordLst(dataLst), "")
-    VALIDATE_FUNC_CALL(initializeLabLst(labLst), "")
+    VALIDATE_FUNC_CALL(initializeSWordLst(&instLst), "")
+    VALIDATE_FUNC_CALL(initializeSWordLst(&dataLst), "")
+    VALIDATE_FUNC_CALL(initializeLabLst(&labLst), "")
     VALIDATE_FUNC_CALL(getReadFile(fName, &fp), "")
     VALIDATE_FUNC_CALL(parseFile(fp, instLst, dataLst, labLst), "")
     VALIDATE_FUNC_CALL(parseInstLst(instLst, labLst), "")

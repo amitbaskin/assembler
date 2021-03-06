@@ -63,8 +63,8 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
     } resetSWordIter(dataLst);
 }
 
-void getEntLst(label *ent, label *labHead){
-    label *ptr = labHead;
+void getEntLst(label *ent, label *labTail){
+    label *ptr = labTail;
     while (ptr != NULL && getLabType(ptr) != L_NONE){
         switch (getLabType(ptr)){
             case L_ENT:
@@ -82,11 +82,11 @@ void getEntLst(label *ent, label *labHead){
 
 result printEntLst(char *fName, labelLst *labLst){
     label *ent = NULL;
-    getEntLst(ent, getLabHead(labLst));
+    getEntLst(ent, getLabTail(labLst));
     if (ent == NULL) return SUCCESS;
     FILE *fp;
-    VALIDATE_FUNC_CALL(getEntOutputFIle(fName, &fp), "");
-    label *ptr;
+    VALIDATE_FUNC_CALL(getEntOutputFIle(fName, &fp), "")
+    label *ptr = NULL;
     while (ptr != NULL && getLabType(ptr) != L_NONE){
         switch (getLabType(ptr)){
             case L_ENT:

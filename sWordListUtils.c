@@ -100,7 +100,7 @@ sWord *getSWordCur(sWordLst *lst){
 }
 
 void addSWord(sWordLst *lst, sWord *word){
-    ADD_TO_LIST(sWord, getSUWordStatus(word) == W_NONE, word)
+    ADD_TO_LIST(sWord, getSUWordStatus(getSWordTail(lst)) == W_NONE, word)
 }
 
 sWord *getSWordIterNext(sWordLst *lst){
@@ -112,11 +112,17 @@ void resetSWordIter(sWordLst *lst){
     setThisSWord(&head, getSWordTail(lst));
 }
 
-result initializeSWordLst(sWordLst *lst){
-    sWord *tail = getSWordTail(lst);
-    sWord *head = getSWordHead(lst);
-    VALIDATE_FUNC_CALL(getNewEmptySword(&tail), "")
-    setThisSWord(&head, tail);
+result getNewSWordLst(sWordLst **lst){
+    void *ptr;
+    VALIDATE_FUNC_CALL(getAlloc(sizeof(sWordLst), &ptr), "")
+    *lst = ptr;
+    return SUCCESS;
+}
+
+result initializeSWordLst(sWordLst **lst){
+    VALIDATE_FUNC_CALL(getNewSWordLst(lst), "");
+    VALIDATE_FUNC_CALL(getNewEmptySword(&((*lst)->tail)), "")
+    (*lst)->cur = (*lst)->head = (*lst)->tail;
     return SUCCESS;
 }
 

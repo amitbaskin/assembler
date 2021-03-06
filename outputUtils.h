@@ -10,6 +10,6 @@ void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst);
 void printDataLst(FILE *fp, sWordLst *dataLst);
 result printEntLst(char *fName, labelLst *labLst);
 result printExtLst(char *fName, sWordLst *instLst);
-void getEntLst(label *ent, label *labHead);
+void getEntLst(label *ent, label *labTail);
 void getExtLst(sWord *ext, sWord *instHead);
 #endif

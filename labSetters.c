@@ -28,6 +28,7 @@ result setLabName(label *lab, char *name){
     VALIDATE_FUNC_CALL(getAlloc(len, &ptr), "")
     lab->name = (char *) ptr;
     strcpy(lab->name, name);
+    setLabIsNameAlloc(lab, 1);
     return SUCCESS;
 }
 

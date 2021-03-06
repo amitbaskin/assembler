@@ -38,12 +38,12 @@ result entryScenario(char **line, char **word, label **lab, labelLst *labLst, sW
     if (lookForLabel(line, word, lab) == ERR) return ERR;
     addLabToInstLst(instLst, labLst, *word, L_ENT, 0);
     setLabType(getSULab(getSWordHead(instLst)), L_ENT);
-    return SUCCESS;
+    return TRUE;
 }
 result extScenario(char **line, char **word, label **lab, labelLst *labLst){
-    if (lookForLabel(line, word, lab) == ERR) return ERR;
+    VALIDATE_FUNC_CALL(lookForLabel(line, word, lab), "");
     addLabToLabLst(labLst, lab, EXT, 0);
-    return SUCCESS;
+    return TRUE;
 }
 
 result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst, sWordLst *dataLst){

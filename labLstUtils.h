@@ -16,7 +16,7 @@ label *getLabCur(labelLst *lst);
 label *getLabIterNext(labelLst *lst);
 void resetLabIter(labelLst *lst);
 void addLab(labelLst *lst, label *lab);
-result initializeLabLst(labelLst *lst);
+result initializeLabLst(labelLst **lst);
 void freeLabLstHelper(label *lab);
 void freeLabLst(labelLst *lst);
 #endif

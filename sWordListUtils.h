@@ -15,6 +15,6 @@ sWord *getSWordCur(sWordLst *lst);
 void addSWord(sWordLst *lst, sWord *word);
 sWord *getSWordIterNext(sWordLst *lst);
 void resetSWordIter(sWordLst *lst);
-result initializeSWordLst(sWordLst *lst);
+result initializeSWordLst(sWordLst **lst);
 void freeSWordLst(sWordLst *lst);
 #endif

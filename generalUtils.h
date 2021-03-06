@@ -17,7 +17,7 @@
 }
 
 #define GET_ITER_NEXT(type){ \
-    if (&(lst->head) == &(lst->cur)){ \
+    if (lst->head == lst->cur){ \
         lst->cur = lst->tail;\
         return NULL;         \
     } type *cur = lst->cur;  \
@@ -29,7 +29,8 @@
 #define ADD_TO_LIST(type, cond, item){ \
     if (cond) {                        \
         lst->tail = item;              \
-        lst->head = item;               \
+        lst->head = lst->tail->next;   \
+                                       \
     } else{                            \
         lst->head->next = item;        \
         lst->head = item;              \
