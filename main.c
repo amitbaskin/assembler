@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "assembler.h"
 
 int main(int argc, char **args) {

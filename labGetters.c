@@ -12,16 +12,20 @@ labelType getLabType(label *lab){
     return lab->type;
 }
 
-unsigned char isCodeLab(label *lab){
+unsigned char isLabCode(label *lab){
     return lab->isCode;
 }
 
-unsigned char isDataLab(label *lab){
+unsigned char isLabData(label *lab){
     return lab->isData;
 }
 
-unsigned char isRelLab(label *lab){
+unsigned char isLabRel(label *lab){
     return lab->isRel;
+}
+
+unsigned char isLabNameAlloc(label *lab){
+    return lab->isNameAlloc;
 }
 
 label *getLabNext(label *lab){

@@ -31,43 +31,32 @@
 
 #define SWITCH_REF_RES(checkIfOrder, orderScenario, msg) {\
     if (checkIfOrder == TRUE){                            \
-        VALIDATE_FUNC_CALL(orderScenario, msg)            \
-        return SUCCESS;                                   \
+        return orderScenario;                             \
     }                                                     \
 }
-
-result entryScenario(char **line, char **word, sWord **instLst, label *labHead){
-    if (lookForLabel(line, word) == ERR) return ERR;
-    addLabToInstLst(instLst, *word, L_ENT, labHead, 0);
-    setLabType(getSULab(*instLst), L_ENT);
+result entryScenario(char **line, char **word, label **lab, labelLst *labLst, sWordLst *instLst){
+    if (lookForLabel(line, word, lab) == ERR) return ERR;
+    addLabToInstLst(instLst, labLst, *word, L_ENT, 0);
+    setLabType(getSULab(getSWordHead(instLst)), L_ENT);
+    return SUCCESS;
+}
+result extScenario(char **line, char **word, label **lab, labelLst *labLst){
+    if (lookForLabel(line, word, lab) == ERR) return ERR;
+    addLabToLabLst(labLst, lab, EXT, 0);
     return SUCCESS;
 }
 
-result extScenario(char **line, char **word, label *labHead, label **lab, label **labLst){
-    if (lookForLabel(line, word) == ERR) return ERR;
-    addLabToLabLst(labHead, lab, labLst, EXT, 0);
-    return SUCCESS;
-}
-
-result lookForData(char **word, char **line, label **lab, label *labHead, label **labLst, sWord **instLst,
-                   sWord **dataLst){
+result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst, sWordLst *dataLst){
     getWord(line, word, 0);
-    VALIDATE_FUNC_CALL(isLabel(word, lab, strlen(*word)), "")
-    SWITCH_DATA_RES(isDataScenario(*word, line, dataLst, labHead, *lab, labLst))
-    SWITCH_DATA_RES(isStrScenario(line, *word, dataLst, labHead, *lab, labLst))
-    SWITCH_REF_RES(isEntryOrder(*word), entryScenario(line, word, instLst, labHead), "")
-    SWITCH_REF_RES(isExternOrder(*word), extScenario(line, word, labHead, lab, labLst), "")
+    VALIDATE_FUNC_CALL(isLabelDeclaration(*word, lab, strlen(*word)), "")
+    SWITCH_DATA_RES(isDataScenario(*word, line, *lab, dataLst, labLst))
+    SWITCH_DATA_RES(isStrScenario(*word, line, *lab, dataLst, labLst))
+    SWITCH_REF_RES(isEntryOrder(*word), entryScenario(line, word, lab, labLst, instLst), "")
+    SWITCH_REF_RES(isExternOrder(*word), extScenario(line, word, lab, labLst), "")
     return ERR;
 }
 
-void labelFlagOnScenario(label **lab, label *labHead, label **labLst){
-    if (labelFlag) {
-        setCodeLab(*lab);
-        addLabToLabLst(labHead, lab, labLst, NONE, instructionCounter++);
-    }
-}
-
-result lookForOperation(char **word, char **line, label **lab, label *labHead, label **labLst, sWord **sWordLst){
+result lookForOperation(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst){
     char *firstOp;
     char *secOp;
     opWord *op;
@@ -78,20 +67,16 @@ result lookForOperation(char **word, char **line, label **lab, label *labHead, l
     int opsAmount = getOperandsAmount(opIndex);
     VALIDATE_FUNC_CALL(validateOperation(*word, opsAmount, line, &firstOp, &secOp, &srcType, &destType), "")
     getOpWord(opIndex, srcType, destType, &op);
-    addOpWord(op, sWordLst);
-    labelFlagOnScenario(lab, labHead, labLst);
-    addAllOperandsWord(opsAmount, firstOp, secOp, labHead, sWordLst);
+    addOpWord(op, instLst);
+    checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter++);
+    addAllOperandsWord(opsAmount, firstOp, secOp, labLst, instLst);
     return SUCCESS;
 }
 
-result lookForLabel(char **line, char **word){
+result lookForLabel(char **line, char **word, label **lab){
     unsigned long len;
-    label *lab;
-    result res;
     getWord(line, word, 0);
     len = strlen(*word);
-    if (isLabel(word, &lab, len) != TRUE) return ERR;
-    res = finishLine(line);
-    if (res == ERR) return res;
-    return SUCCESS;
+    if (checkLabelLegality(word, lab, len) != SUCCESS) return ERR;
+    return finishLine(line);
 }

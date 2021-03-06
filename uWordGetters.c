@@ -39,15 +39,19 @@ labelType getULabType(uWord *word){
 }
 
 unsigned char isUCodeLab(uWord *word){
-    return isCodeLab(getULab(word));
+    return isLabCode(getULab(word));
 }
 
 unsigned char isUDataLab(uWord *word){
-    return isDataLab(getULab(word));
+    return isLabData(getULab(word));
 }
 
 unsigned char isURelLab(uWord *word){
-    return isRelLab(getULab(word));
+    return isLabRel(getULab(word));
+}
+
+unsigned char isULabNameAlloc(uWord *word) {
+    return isLabNameAlloc(getULab(word));
 }
 
 label *getUNextLab(uWord *word){

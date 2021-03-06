@@ -10,5 +10,5 @@ result validateOperandsAmount(char **line, int operandsAmount, char **firstOp, c
 ref getOperandType(char *operand, int *regType, long *num);
 result validateSrcOp(ref type, int opIndex);
 result validateDestOp(ref type, int opIndex);
-void addAllOperandsWord(int operandsAmount, char *firstOp, char *secOp, label *labHead, sWord **sWordLst);
+void addAllOperandsWord(int operandsAmount, char *firstOp, char *secOp, labelLst *labLst, sWordLst *instLst);
 #endif

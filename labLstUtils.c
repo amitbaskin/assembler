@@ -4,41 +4,88 @@
 #include "labSetters.h"
 #include "labGetters.h"
 
-result addLabToLabLst(label *head, label **lab, label **labLst, labelType type, int address){
-    result res = isLabInLst(head, lab, type, getLabName(*lab));
-    if (res == TRUE) return ERR;
-    setLabType(*lab, type);
+result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address){
+    result res = isLabInLst(labLst, lab, type, getLabName(*lab));
+    if (res == ERR) return ERR;
     setLabAddress(*lab, address);
-    setNextLab(*labLst, *lab);
+    addLab(labLst, *lab);
     return SUCCESS;
 }
 
-result getRelLabelAddressFromLst(char *name, label *headLab, int address, int *dist){
-    while (headLab != NULL){
-        if (strcmp(name, getLabName(headLab)) != 0) setThisLab(&headLab, getLabNext(headLab));
+result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int *dist){
+    label *ptr;
+    while ((ptr = getLabIterNext(labLst)) != NULL && getLabType(ptr) != L_NONE){
+        if (strcmp(name, getLabName(ptr)) != 0) setThisLab(&ptr, getLabNext(ptr));
         else {
-            *dist = (address - getLabAddress(headLab));
+            *dist = (address - getLabAddress(ptr));
             return SUCCESS;
         }
-    } return ERR;
+    } resetLabIter(labLst);
+    return ERR;
 }
 
-result isLabInLst(label *headLab, label **lab, labelType type, char *name){
-    while (headLab != NULL){
-        if (strcmp(getLabName(headLab), name) != 0) setThisLab(&headLab, getLabNext(headLab));
+result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
+    label *ptr;
+    while (getLabIterNext(labLst) != NULL && getLabType(ptr) != L_NONE){
+        if (strcmp(getLabName(ptr), name) != 0) setThisLab(&ptr, getLabNext(ptr));
         else {
-            *lab = headLab;
-            VALIDATE_FUNC_CALL(isLabelTypeLegal(*lab, type), "")
+            *lab = ptr;
+            VALIDATE_FUNC_CALL(isLabTypeLegal(*lab, type), "")
             return TRUE;
         }
-    } return FALSE;
+    } resetLabIter(labLst);
+    return FALSE;
 }
 
-void freeLabLst(label *lab){
+void checkLabFlagOnScenario(label **lab, labelLst *labLst, void labSetter(label *, unsigned char), int address){
+    if (labelFlag) {
+        labSetter(*lab, 1);
+        addLabToLabLst(labLst, lab, L_NONE, address);
+    }
+}
+
+void freeLabLstHelper(label *lab){
     label *tmp;
-    while(getLabNext(lab) != NULL){
+    while(lab !=NULL && getLabType(lab) != L_NONE && getLabNext(lab) != NULL){
         tmp = lab;
         setThisLab(&lab, getLabNext(lab));
         freeLab(tmp);
     } freeLab(lab);
+}
+
+label *getLabHead(labelLst *lst){
+    return lst->head;
+}
+
+label *getLabTail(labelLst *lst){
+    return lst->tail;
+}
+
+label *getLabCur(labelLst *lst){
+    return lst->cur;
+}
+
+label *getLabIterNext(labelLst *lst){
+    GET_ITER_NEXT(label)
+}
+
+void resetLabIter(labelLst *lst){
+    label *cur = getLabCur(lst);
+    setThisLab(&cur, getLabTail(lst));
+}
+
+void addLab(labelLst *lst, label *lab){
+    ADD_TO_LIST(label, getLabType(lst->head) == L_NONE, lab)
+}
+
+result initializeLabLst(labelLst *lst){
+    label *tail = getLabTail(lst);
+    label *head = getLabHead(lst);
+    VALIDATE_FUNC_CALL(getNewEmptyLab(&tail), "")
+    setThisLab(&head, tail);
+    return SUCCESS;
+}
+
+void freeLabLst(labelLst *lst){
+    freeLabLstHelper(getLabTail(lst));
 }

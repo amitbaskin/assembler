@@ -2,16 +2,20 @@
 #include "labSetters.h"
 #include "generalUtils.h"
 
-void setDataLab(label *lab){
-    lab->isData = 1;
+void setLabData(label *lab, unsigned char toSet){
+    lab->isData = toSet;
 }
 
-void setCodeLab(label *lab){
-    lab->isCode = 1;
+void setLabCode(label *lab, unsigned char toSet){
+    lab->isCode = toSet;
 }
 
-void setRelLab(label *lab){
-    lab->isRel = 1;
+void setLabRel(label *lab, unsigned char toSet){
+    lab->isRel = toSet;
+}
+
+void setLabIsNameAlloc(label *lab, unsigned char toSet){
+    lab->isNameAlloc = toSet;
 }
 
 void setLabAddress(label *lab, int address){
@@ -31,7 +35,7 @@ void setLabType(label *lab, labelType type){
     lab->type = type;
 }
 
-void setNextLab(label *lab, label *next){
+void setLabNext(label *lab, label *next){
     lab->next = next;
 }
 

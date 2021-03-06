@@ -57,16 +57,20 @@ void setThisUWord(uWord **this, uWord *other){
     *this = other;
 }
 
-void setUDataLab(uWord *word){
-    setDataLab(getULab(word));
+void setUDataLab(uWord *word, unsigned char toSet){
+    setLabData(getULab(word), toSet);
 }
 
-void setUCodeLab(uWord *word){
-    setCodeLab(getULab(word));
+void setUCodeLab(uWord *word, unsigned char toSet){
+    setLabCode(getULab(word), toSet);
 }
 
-void setURelLab(uWord *word){
-    setRelLab(getULab(word));
+void setURelLab(uWord *word, unsigned char toSet){
+    setLabRel(getULab(word), toSet);
+}
+
+void setULabIsNameAlloc(uWord *word, unsigned char toSet){
+    setLabIsNameAlloc(getULab(word), toSet);
 }
 
 void setULabAddress(uWord *word, int address){
@@ -82,5 +86,5 @@ void setULabType(uWord *word, labelType type){
 }
 
 void setUNextLab(uWord *word, label *next){
-    setNextLab(getULab(word), next);
+    setLabNext(getULab(word), next);
 }

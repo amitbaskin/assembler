@@ -54,18 +54,22 @@ labelType getSULabType(sWord *word){
     return getULabType(getSUWord(word));
 }
 
-unsigned char isSUCodeLab(sWord *word){
+unsigned char isSULabCode(sWord *word){
     return isUCodeLab(getSUWord(word));
 }
 
-unsigned char isSUDataLab(sWord *word){
+unsigned char isSULabData(sWord *word){
     return isUDataLab(getSUWord(word));
 }
 
-unsigned char isSURelLab(sWord *word){
+unsigned char isSULabIsNameAlloc(sWord *word){
+    return isULabNameAlloc(getSUWord(word));
+}
+
+unsigned char isSULabRel(sWord *word){
     return isURelLab(getSUWord(word));
 }
 
-label *getSUNextLab(sWord *word){
+label *getSULabNext(sWord *word){
     return getUNextLab(getSUWord(word));
 }

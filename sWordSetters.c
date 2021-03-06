@@ -45,7 +45,7 @@ void setSUOpWordStatus(sWord *word){
     setUOpStatus(getSUWord(word));
 }
 
-void setNextSWord(sWord *this, sWord *other){
+void setSWordNext(sWord *this, sWord *other){
     this->next = other;
 }
 
@@ -75,16 +75,20 @@ void setSUChrData(sWord *word, char chr){
     setUChrData(getSUWord(word), chr);
 }
 
-void setSUDataLab(sWord *word){
-    setUDataLab(getSUWord(word));
+void setSUDataLab(sWord *word, unsigned char toSet){
+    setUDataLab(getSUWord(word), toSet);
 }
 
-void setSUCodeLab(sWord *word){
-    setUCodeLab(getSUWord(word));
+void setSUCodeLab(sWord *word, unsigned char toSet){
+    setUCodeLab(getSUWord(word), toSet);
 }
 
-void setSURelLab(sWord *word){
-    setURelLab(getSUWord(word));
+void setSURelLab(sWord *word, unsigned char toSet){
+    setURelLab(getSUWord(word), toSet);
+}
+
+void setSULabIsNameAlloc(sWord *word, unsigned char toSet){
+    setULabIsNameAlloc(getSUWord(word), toSet);
 }
 
 void setSULabAddress(sWord *word, int address){

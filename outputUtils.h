@@ -6,8 +6,10 @@
 #define HEADER_FORMAT "%d %d\n"
 void printLabel(FILE *fp, label *lab);
 void printInst(FILE *fp, sWord **ptr, unsigned int toPrint);
-void printIntsLst(FILE *fp, sWord *instHead, label *labHead);
-void printDataLst(FILE *fp, sWord *dataHead);
-result printEntLst(char *fName, label *labHead);
-result printExtLst(char *fName, sWord *instHead);
+void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst);
+void printDataLst(FILE *fp, sWordLst *dataLst);
+result printEntLst(char *fName, labelLst *labLst);
+result printExtLst(char *fName, sWordLst *instLst);
+void getEntLst(label *ent, label *labHead);
+void getExtLst(sWord *ext, sWord *instHead);
 #endif

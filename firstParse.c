@@ -7,30 +7,34 @@
 #include "generalUtils.h"
 #include "sWordGetters.h"
 
-result getLineAlloc(char **output){
-    void *ptr;
-    VALIDATE_FUNC_CALL(getAlloc(MAX_LINE_LEN, &ptr), "")
-    *output = ptr;
-    return SUCCESS;
+result isEmptyLine(const char *line){
+    while(*line != '\0'){
+        if (*line != ' ' && *line != '\t' && *line != '\n') return FALSE;
+    } return TRUE;
 }
 
-result parseFile(FILE *fp, sWord *sWordLst, sWord *dataLst, label *labLst){
+result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLst){
     char *line;
-    result res;
+    char *lineOrgPtr;
+    result res = SUCCESS;
     char *word;
     label *lab;
-    label *labHead;
-    labHead = labLst;
-    VALIDATE_FUNC_CALL(getLineAlloc(&line), "")
-    VALIDATE_FUNC_CALL(getNewEmptyLabel(&lab), "")
-    while ((res = getLine(&line, fp)) != FILE_END){
-        if (*line == COMMENT_CHR) continue;
-        VALIDATE_FUNC_CALL(lookForData(&word, &line, &lab, labHead, &labLst, &sWordLst, &dataLst), "")
-        VALIDATE_FUNC_CALL(lookForOperation(&word, &line, &lab, labHead, &labLst, &sWordLst), "")
-    } freeHelper(line);
+    getNewEmptyLab(&lab);
+    VALIDATE_FUNC_CALL(getWordAlloc(&line, MAX_LINE_LEN), "")
+    lineOrgPtr = line;
+    VALIDATE_FUNC_CALL(getWordAlloc(&word, MAX_LINE_LEN), "")
+    VALIDATE_FUNC_CALL(getNewEmptyLab(&lab), "")
+    while (res != FILE_END){
+        res = getLine(&line, fp);
+        VALIDATE_FUNC_CALL(res, "")
+        if (*line == COMMENT_CHR || isEmptyLine(line) == TRUE) continue;
+        res = lookForData(&word, &line, &lab, labLst, instLst, dataLst);
+        if (res == TRUE || res == ERR) break;
+        res = lookForOperation(&word, &line, &lab, labLst, instLst);
+    } freeHelper(lineOrgPtr);
+    freeHelper(word);
     freeLab(lab);
-    if (res == ERR) return res;
     ICF = instructionCounter;
     DCF = dataCounter;
-    return SUCCESS;
+    return res;
 }

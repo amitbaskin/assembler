@@ -89,7 +89,7 @@ ref getOperandType(char *operand, int *regType, long *num){
     CHECK_REF_TYPE(isImmediateNum(num, operand), IM)
     CHECK_REF_TYPE(checkRel(operand), REL)
     CHECK_REF_TYPE(isLegalLabel(operand, strlen(operand)), DIR)
-    return NOT_REF;
+    return R_NONE;
 }
 
 result validateSrcOp(ref type, int opIndex){
@@ -130,33 +130,33 @@ result validateDestOp(ref type, int opIndex){
     }
 }
 
-ref addOperandWord(char *operand, label *labHead, sWord **sWordLst){
+ref addOperandWord(char *operand, labelLst *labLst, sWordLst *instLst){
     int regType;
     long num;
     ref r = getOperandType(operand, &regType, &num);
     switch(r){
         case IM:
-            addNumWord(num, DIR_NUM, sWordLst);
+            addNumWord(num, DIR_NUM, instLst);
             return IM;
 
         case DIR:
-            addLabToInstLst(sWordLst, operand, NONE, labHead, 0);
+            addLabToInstLst(instLst, labLst, operand, L_NONE, 0);
             return DIR;
 
         case REL:
-            addLabToInstLst(sWordLst, operand, NONE, labHead, 1);
+            addLabToInstLst(instLst, labLst, operand, L_NONE, 1);
             return REL;
 
         case R_REG:
-            addRegWord(regType, sWordLst);
+            addRegWord(regType, instLst);
             return R_REG;
 
         default:
-            return NOT_REF;
+            return R_NONE;
     }
 }
 
-void addAllOperandsWord(int operandsAmount, char *firstOp, char *secOp, label *labHead, sWord **sWordLst){
-    if (operandsAmount > 0) addOperandWord(firstOp, labHead, sWordLst);
-    if (operandsAmount == 2) addOperandWord(secOp, labHead, sWordLst);
+void addAllOperandsWord(int operandsAmount, char *firstOp, char *secOp, labelLst *labLst, sWordLst *instLst){
+    if (operandsAmount > 0) addOperandWord(firstOp, labLst, instLst);
+    if (operandsAmount == 2) addOperandWord(secOp, labLst, instLst);
 }

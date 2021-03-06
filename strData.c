@@ -10,23 +10,22 @@
 #include "labSetters.h"
 #include "sWordListUtils.h"
 
-result isStrScenario(char **line, char *word, sWord **sWordLst, label *head, label *lab, label **labLst){
+result isStrScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst){
     if (isStringOrder(word) == FALSE) return FALSE;
     if (getWord(line, &word, 0) != LINE_END) VALIDATE_FUNC_CALL(finishLine(line), "");
     if (isString(word) == FALSE) return ERR;
-    strScenario(word, sWordLst, head, lab, labLst);
+    strScenario(word, lab, labLst, dataLst);
     return SUCCESS;
 }
 
-void strScenario(char *str, sWord **sWordLst, label *head, label *lab, label **labLst){
+void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst){
     unsigned long len = strlen(str);
     int i;
     char chr;
     if (labelFlag) {
-        addLabToLabLst(head, &lab, labLst, NONE, dataCounter++);
-        setDataLab(lab);
+        checkLabFlagOnScenario(&lab, labLst, setLabCode, dataCounter++);
     } for (i=1; i<len-1; i++){
         chr = str[i];
-        addChrWord(chr, sWordLst);
+        addChrWord(chr, instLst);
     }
 }

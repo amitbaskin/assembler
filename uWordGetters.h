@@ -13,5 +13,6 @@ labelType getULabType(uWord *word);
 unsigned char isUCodeLab(uWord *word);
 unsigned char isUDataLab(uWord *word);
 unsigned char isURelLab(uWord *word);
+unsigned char isULabNameAlloc(uWord *word);
 label *getUNextLab(uWord *word);
 #endif

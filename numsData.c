@@ -7,8 +7,9 @@
 #include "labSetters.h"
 #include "sWordListUtils.h"
 #include "labLstUtils.h"
+#include "parseLine.h"
 
-result isDataScenario(char *word, char **line, sWord **dataLst, label *head, label *lab, label **labLst) {
+result isDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
     void *ptr;
     data *dat;
     rawWord *raw;
@@ -19,7 +20,8 @@ result isDataScenario(char *word, char **line, sWord **dataLst, label *head, lab
         getAlloc(sizeof(data), &ptr);
         dat = (data *) ptr;
         VALIDATE_FUNC_CALL(collectData(raw, dat), "")
-        addData(dataLst, dat, head, lab, labLst);
+        checkLabFlagOnScenario(&lab, labLst, setLabCode, dataCounter++);
+        addData(dataLst, labLst, dat, lab);
         return TRUE;
     } return FALSE;
 }
@@ -41,12 +43,12 @@ result collectData(rawWord *raw, data *dat){
     } return SUCCESS;
 }
 
-result addData(sWord **sWordLst, data *dat, label *head, label *lab, label **labLst){
+result addData(sWordLst *dataLst, labelLst *labLst, label *lab, data *dat){
     if (labelFlag) {
-        addLabToLabLst(head, &lab, labLst, NONE, dataCounter++);
-        setDataLab(lab);
+        addLabToLabLst(labLst, &lab, L_NONE, dataCounter++);
+        setLabData(lab, 1);
     } while (dat != NULL){
-        addNumWord(dat->num, NUM_DATA, sWordLst);
+        addNumWord(dat->num, NUM_DATA, dataLst);
     } freeDataLst(dat);
     return SUCCESS;
 }

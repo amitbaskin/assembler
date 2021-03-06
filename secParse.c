@@ -7,14 +7,14 @@
 #include "labLstUtils.h"
 #include "sWordListUtils.h"
 
-result parseInstLst(sWord *sWordLst, label *labHead){
+result parseInstLst(sWordLst *instLst, labelLst *labLst){
     label *lab;
-    result res;
-    sWord *ptr = sWordLst;
-    while (ptr != NULL){
+    result res = SUCCESS;
+    sWord *ptr;
+    while ((ptr = getSWordIterNext(instLst)) != NULL && getSUWordStatus(ptr) != W_NONE){
         switch (getSUWordStatus(ptr)) {
             case W_ENT:
-                if (isLabInLst(labHead, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
+                if (isLabInLst(labLst, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
                     res = ERR;
                     printf("");
                     continue;
@@ -22,7 +22,7 @@ result parseInstLst(sWord *sWordLst, label *labHead){
                 setThisSWord(&ptr, getSWordNext(ptr));
 
             case LAB:
-                if (isLabInLst(labHead, &lab, NONE, getSULabName(ptr)) == FALSE) {
+                if (isLabInLst(labLst, &lab, L_NONE, getSULabName(ptr)) == FALSE) {
                     res = ERR;
                     printf("");
                     continue;

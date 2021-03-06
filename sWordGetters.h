@@ -14,8 +14,8 @@ char getSUChrData(sWord *word);
 char *getSULabName(sWord *word);
 int getSULabAddress(sWord *word);
 labelType getSULabType(sWord *word);
-unsigned char isSUCodeLab(sWord *word);
-unsigned char isSUDataLab(sWord *word);
-unsigned char isSURelLab(sWord *word);
-label *getSUNextLab(sWord *word);
+unsigned char isSULabCode(sWord *word);
+unsigned char isSULabData(sWord *word);
+unsigned char isSULabRel(sWord *word);
+label *getSULabNext(sWord *word);
 #endif

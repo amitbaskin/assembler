@@ -5,9 +5,10 @@
 result setLabName(label *lab, char *name);
 void setLabAddress(label *lab, int address);
 void setLabType(label *lab, labelType type);
-void setCodeLab(label *lab);
-void setDataLab(label *lab);
-void setRelLab(label *lab);
-void setNextLab(label *lab, label *next);
+void setLabData(label *lab, unsigned char toSet);
+void setLabCode(label *lab, unsigned char toSet);
+void setLabRel(label *lab, unsigned char toSet);
+void setLabIsNameAlloc(label *lab, unsigned char toSet);
+void setLabNext(label *lab, label *next);
 void setThisLab(label **this, label *other);
 #endif

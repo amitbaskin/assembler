@@ -20,11 +20,11 @@
 static const char *regs[] = REGS;
 enum reg {R0, R1, R2, R3, R4, R5, R6, R7};
 typedef enum reg reg;
-enum ref {IM, DIR, REL, R_REG, NOT_REF};
+enum ref {R_NONE, IM, DIR, REL, R_REG};
 typedef enum ref ref;
-enum wordStatus {OP, LAB, W_ENT, W_REG, DIR_NUM, NUM_DATA, CHR_DATA};
+enum wordStatus {W_NONE, OP, LAB, W_ENT, W_REG, DIR_NUM, NUM_DATA, CHR_DATA};
 typedef enum wordStatus wordStatus;
-enum labelType {L_ENT, EXT, NONE};
+enum labelType {L_NONE, L_ENT, EXT};
 typedef enum labelType labelType;
 
 struct opWord{
@@ -48,6 +48,14 @@ struct label{
 
 typedef struct label label;
 
+struct labelLst{
+    label *tail;
+    label *head;
+    label *cur;
+};
+
+typedef struct labelLst labelLst;
+
 union uWord{
   opWord *op;
   label *lab;
@@ -67,6 +75,14 @@ struct sWord{
 };
 
 typedef struct sWord sWord;
+
+struct sWordLst{
+    sWord *head;
+    sWord *tail;
+    sWord *cur;
+};
+
+typedef struct sWordLst sWordLst;
 
 struct rawWord{
     char *word;

@@ -2,12 +2,19 @@
 #ifndef ASSEMBLER_S_WORD_LIST_UTILS_H
 #define ASSEMBLER_S_WORD_LIST_UTILS_H
 void addWord(sWord *word, sWord **sWordLst);
-result createAndAddWord(sWord **word, void setStatus(), wordStatus status, sWord **sWordLst);
-result addOpWord(opWord *opWord, sWord **sWordLst);
-result addLabToInstLst(sWord **sWordLst, char *name, labelType
-type, label *labHead, unsigned char isRel);
-result addRegWord(int reg, sWord **sWordLst);
-void addNumWord(long num, wordStatus status, sWord **sWordLst);
-void addChrWord(char chr, sWord **sWordLst);
-void freeSWordLst(sWord *word);
+result createAndAddWord(sWord **word, void setStatus(), wordStatus status, sWordLst *dataLst);
+result addOpWord(opWord *opWord, sWordLst *instLst);
+result addLabToInstLst(sWordLst *instLst, labelLst *labLst, char *name, labelType type, unsigned char isRel);
+result addRegWord(int reg, sWordLst *instLst);
+void addNumWord(long num, wordStatus status, sWordLst *instLst);
+void addChrWord(char chr, sWordLst *dataLst);
+void freeSWordLstHelper(sWord *word);
+sWord *getSWordHead(sWordLst *lst);
+sWord *getSWordTail(sWordLst *lst);
+sWord *getSWordCur(sWordLst *lst);
+void addSWord(sWordLst *lst, sWord *word);
+sWord *getSWordIterNext(sWordLst *lst);
+void resetSWordIter(sWordLst *lst);
+result initializeSWordLst(sWordLst *lst);
+void freeSWordLst(sWordLst *lst);
 #endif

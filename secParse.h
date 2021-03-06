@@ -2,5 +2,5 @@
 #include "sWordSetters.h"
 #ifndef ASSEMBLER_SEC_PARSE_H
 #define ASSEMBLER_SEC_PARSE_H
-result parseInstLst(sWord *sWordLst, label *labHead);
+result parseInstLst(sWordLst *instLst, labelLst *labLst);
 #endif

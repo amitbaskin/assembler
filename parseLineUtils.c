@@ -51,7 +51,7 @@ unsigned char isSepCond(unsigned char isSep, char chr){
 }
 
 int getWordLoopCond(char chr, unsigned char isSep){
-    return (chr != ' ') && (chr != '\t') && (chr != '\n') && isSepCond(isSep, chr);
+    return (chr != ' ') && (chr != '\t') && (chr != '\n' &&chr != '\0') && isSepCond(isSep, chr);
 }
 
 result getWord(char **line, char **word, unsigned char isSep){
