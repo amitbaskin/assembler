@@ -4,12 +4,12 @@
 #include "sWordGetters.h"
 #include "sWordSetters.h"
 
-result getNewEmptySword(sWord **word){
+result initSword(sWord **word){
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(sWord), &ptr), "");
     *word = (sWord*) ptr;
     uWord *unionWord;
-    getNewEmptyUWord(&unionWord);
+    initUWord(&unionWord);
     setSUWord(*word, unionWord);
     return SUCCESS;
 }

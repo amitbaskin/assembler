@@ -3,7 +3,7 @@
 #include "labUtils.h"
 #include "sWordGetters.h"
 
-result getNewEmptyUWord(uWord **word){
+result initUWord(uWord **word){
     void *uPtr;
     VALIDATE_VAL(getAlloc(sizeof(uWord), &uPtr), "");
     *word = (uWord*) uPtr;

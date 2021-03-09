@@ -1,6 +1,7 @@
 #include "uWordGetters.h"
 #include "labGetters.h"
 #include "generalUtils.h"
+#include "opWordGetters.h"
 
 opWord *getUOpWord(uWord *word){
     return word->op;
@@ -52,4 +53,15 @@ unsigned char isULabNameAlloc(uWord *word) {
 
 label *getUNextLab(uWord *word){
     return getLabNext(getULab(word));
+}
+
+int getUOpIndexByObject(uWord *word){
+    return getOpIndexByObject(getUOpWord(word));
+}
+
+ref getUOpSrc(uWord *word){
+    return getOpSrc(getUOpWord(word));
+}
+ref getUOpDest(uWord *word){
+    return getOpDest(getUOpWord(word));
 }

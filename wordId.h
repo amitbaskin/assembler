@@ -22,7 +22,7 @@ enum reg {R0, R1, R2, R3, R4, R5, R6, R7};
 typedef enum reg reg;
 enum ref {R_NONE, IM, DIR, REL, R_REG};
 typedef enum ref ref;
-enum wordStatus {W_NONE, OP, LAB, W_ENT, W_REG, DIR_NUM, NUM_DATA, CHR_DATA};
+enum wordStatus {W_NONE, OP, LAB, W_ENT, W_REG, IM_NUM, NUM_DATA, CHR_DATA};
 typedef enum wordStatus wordStatus;
 enum labelType {L_NONE, L_ENT, EXT};
 typedef enum labelType labelType;

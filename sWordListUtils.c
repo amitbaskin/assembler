@@ -20,7 +20,7 @@ result addOpWord(opWord *opWord, sWordLst *instLst){
 }
 
 result createAndAddWord(sWord **word, void setStatus(), sWordLst *lst){
-    VALIDATE_VAL(getNewEmptySword(word), "");
+    VALIDATE_VAL(initSword(word), "");
     setStatus(*word);
     addSWord(lst, *word);
     return SUCCESS;
@@ -28,10 +28,10 @@ result createAndAddWord(sWord **word, void setStatus(), sWordLst *lst){
 
 result addLabToInstLst(sWordLst *instLst, char *name, labelType type, unsigned char isRel){
     sWord *sWordLab;
-    VALIDATE_VAL(getNewEmptySword(&sWordLab), "");
+    VALIDATE_VAL(initSword(&sWordLab), "");
     setSLabStatus(sWordLab);
     label *lab;
-    getNewEmptyLab(&lab);
+    initLab(&lab);
     setLabName(lab, name);
     setLabType(lab, type);
     if (isRel) setLabRel(lab, 1);
@@ -49,9 +49,9 @@ result addRegWord(int reg, sWordLst *instLst){
     return SUCCESS;
 }
 
-void addNumWord(long num, wordStatus status, sWordLst *instLst){
+void addNumWord(long num, wordStatus status, sWordLst *lst){
     sWord *sWordNum;
-    createAndAddWord(&sWordNum, setSNumStatus, instLst);
+    createAndAddWord(&sWordNum, setSNumStatus, lst);
     setSUNumData(sWordNum, num);
     setSWordStatus(sWordNum, status);
     setSWordAddressType(sWordNum, R_TYPE);
@@ -73,7 +73,7 @@ void freeSWordLstHelper(sWord *word){
         tmp = word;
         promoteSWord(&word);
         freeSWord(tmp);
-    } freeSWord(word);
+    }
 }
 
 sWord *getSWordTail(sWordLst *lst){
@@ -84,9 +84,10 @@ void addSWord(sWordLst *lst, sWord *word){
     ADD_TO_LIST(sWord, getSWordTail(lst) == NULL, word)
 }
 
-result initializeSWordLst(sWordLst **lst){
+result initSWordLst(sWordLst **lst){
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(sWordLst), &ptr), "")
+    *lst = ptr;
     return SUCCESS;
 }
 

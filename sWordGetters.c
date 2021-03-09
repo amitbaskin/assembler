@@ -77,3 +77,13 @@ unsigned char isSULabRel(sWord *word){
 label *getSULabNext(sWord *word){
     return getUNextLab(getSUWord(word));
 }
+
+int getSUOpIndexByObject(sWord *word){
+    return getUOpIndexByObject(getSUWord(word));
+}
+ref getSUOpSrc(sWord *word){
+    return getUOpSrc(getSUWord(word));
+}
+ref getSUOpDest(sWord *word){
+    return getUOpDest(getSUWord(word));
+}

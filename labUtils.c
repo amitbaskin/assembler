@@ -33,18 +33,15 @@ result isLabelDeclaration(char *word, label **lab, unsigned long len){
     return checkLabelLegality(&word, lab, len-1);
 }
 
-result getNewEmptyLab(label **lab){
+result initLab(label **lab){
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(label), &ptr), "")
     *lab = (label *) ptr;
-    setLabType(*lab, L_NONE);
     return SUCCESS;
 }
 
 result getNewLabByName(label **lab, char *name){
-    void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(label), &ptr), "");
-    *lab = (label*) ptr;
+    initLab(lab);
     setLabName(*lab, name);
     return SUCCESS;
 }

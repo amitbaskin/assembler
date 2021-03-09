@@ -16,4 +16,7 @@ void setULabAddress(uWord *word, int address);
 result setULabName(uWord *word, char *name);
 void setULabType(uWord *word, labelType type);
 void setUNextLab(uWord *word, label *next);
+void setUOpIndex(uWord *word, int index);
+void setUOpSrcRef(uWord *word, ref src);
+void setUOpDestRef(uWord *word, ref dest);
 #endif

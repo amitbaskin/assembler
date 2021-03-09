@@ -6,7 +6,7 @@
 
 result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address){
     result res = isLabInLst(labLst, lab, type, getLabName(*lab));
-    if (res == ERR) return ERR;
+    VALIDATE_VAL(res, "")
     setLabAddress(*lab, address);
     setLabType(*lab, type);
     addLab(labLst, *lab);
@@ -49,7 +49,7 @@ void freeLabLstHelper(label *lab){
         tmp = lab;
         promoteLab(&lab);
         freeLab(tmp);
-    } freeLab(lab);
+    }
 }
 
 label *getLabTail(labelLst *lst){
@@ -60,7 +60,7 @@ void addLab(labelLst *lst, label *lab){
     ADD_TO_LIST(label, lst->tail == NULL, lab)
 }
 
-result initializeLabLst(labelLst **lst){
+result initLabLst(labelLst **lst){
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(lst), &ptr), "")
     *lst = ptr;

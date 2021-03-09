@@ -30,7 +30,7 @@
 }
 
 #define SWITCH_REF_RES(checkIfOrder, orderScenario, msg) {\
-    if (checkIfOrder == TRUE){                            \
+    if ((checkIfOrder) == TRUE){                            \
         return orderScenario;                             \
     }                                                     \
 }
@@ -56,20 +56,15 @@ result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWor
     return FALSE;
 }
 
-result lookForOperation(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst){
-    char *firstOp;
-    char *secOp;
-    opWord *op;
+result lookForOperation(char **firstOp, char **secOp, char **word, char **line, label **lab, labelLst *labLst, sWordLst
+*instLst){
     ref srcType = 0;
     ref destType = 0;
     int opIndex = getOpIndexByStr(*word);
     if (opIndex == NOT_OP) return ERR;
     int opsAmount = getOperandsAmount(opIndex);
-    VALIDATE_VAL(validateOperation(*word, opIndex, opsAmount, line, &firstOp, &secOp, &srcType, &destType), "")
-    getOpWord(opIndex, srcType, destType, &op);
-    addOpWord(op, instLst);
+    VALIDATE_VAL(validateOperation(opIndex, opsAmount, line, firstOp, secOp, &srcType, &destType), "")
     checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter++);
-    addAllOperandsWord(opsAmount, firstOp, secOp, labLst, instLst);
     return SUCCESS;
 }
 

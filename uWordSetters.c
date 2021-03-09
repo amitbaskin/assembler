@@ -1,6 +1,7 @@
 #include "uWordSetters.h"
 #include "labSetters.h"
 #include "uWordGetters.h"
+#include "opWordSetters.h"
 
 void setUOpWord(uWord *word, opWord *op){
     word->op = op;
@@ -58,4 +59,14 @@ void setULabType(uWord *word, labelType type){
 
 void setUNextLab(uWord *word, label *next){
     setLabNext(getULab(word), next);
+}
+
+void setUOpIndex(uWord *word, int index){
+    setOpIndex(getUOpWord(word), index);
+}
+void setUOpSrcRef(uWord *word, ref src){
+    setOpSrcRef(getUOpWord(word), src);
+}
+void setUOpDestRef(uWord *word, ref dest){
+    setOpDestRef(getUOpWord(word), dest);
 }

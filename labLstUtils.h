@@ -8,7 +8,7 @@ result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int 
 void checkLabFlagOnScenario(label **lab, labelLst *labLst, void labSetter(label *, unsigned char), int address);
 label *getLabTail(labelLst *lst);
 void addLab(labelLst *lst, label *lab);
-result initializeLabLst(labelLst **lst);
+result initLabLst(labelLst **lst);
 void freeLabLstHelper(label *lab);
 void freeLabLst(labelLst *lst);
 #endif

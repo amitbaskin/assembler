@@ -2,6 +2,6 @@
 #include "generalUtils.h"
 #ifndef ASSEMBLER_U_WORD_UTILS_H
 #define ASSEMBLER_U_WORD_UTILS_H
-result getNewEmptyUWord(uWord **word);
+result initUWord(uWord **word);
 void freeUWord(sWord *word);
 #endif

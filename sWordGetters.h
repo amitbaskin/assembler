@@ -18,4 +18,7 @@ unsigned char isSULabCode(sWord *word);
 unsigned char isSULabData(sWord *word);
 unsigned char isSULabRel(sWord *word);
 label *getSULabNext(sWord *word);
+int getSUOpIndexByObject(sWord *word);
+ref getSUOpSrc(sWord *word);
+ref getSUOpDest(sWord *word);
 #endif

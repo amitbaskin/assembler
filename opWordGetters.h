@@ -5,5 +5,4 @@
 int getOpIndexByObject(opWord *op);
 ref getOpSrc(opWord *op);
 ref getOpDest(opWord *op);
-result getOpWord(int opIndex, ref src, ref dest, opWord **op);
 #endif

@@ -10,30 +10,20 @@
 #define SEPARATOR ','
 
 #define VALIDATE_VAL(val, failMsg) { \
-    if (val == ERR) {                      \
-        printf(failMsg);                        \
-        return ERR;                             \
-    }                                           \
-}
-
-#define GET_ITER_NEXT(type){ \
-    if (lst->head == lst->cur){ \
-        lst->cur = lst->tail;\
-        return NULL;         \
-    } type *cur = lst->cur;  \
-    type *tmp = cur;         \
-    lst->cur = cur->next;    \
-    return tmp;              \
+    if ((val) == ERR) {                \
+        if (*(failMsg) != '\0')        \
+            printf(failMsg);         \
+        return ERR;                  \
+    }                                \
 }
 
 #define ADD_TO_LIST(type, cond, item){ \
-    if (cond){                                   \
+    if (cond){                         \
         lst->tail = item;              \
-        lst->head = &(lst->tail->next);                              \
                                        \
     } else{                            \
-        *(lst->head) = item;        \
-        lst->head = &(item->next);              \
+        lst->head = &((*(lst->head))->next); \
+        *(lst->head) = item;           \
     }                                  \
 }
 

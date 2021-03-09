@@ -34,7 +34,7 @@ void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
                 printInst(fp, &ptr, transReg(getSUReg(ptr)));
                 break;
 
-            case DIR_NUM:
+            case IM_NUM:
                 printInst(fp, &ptr, getSUNumData(ptr));
                 break;
 
@@ -67,38 +67,28 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
 void getEntLst(label *ent, labelLst *labLst){
     label *ptr;
     for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)){
-        switch (getLabType(ptr)){
-            case L_ENT:
-                setThisLab(&ent, ptr);
-                setThisLab(&ent, getLabNext(ent));
-                setThisLab(&ptr, getLabNext(ptr));
-                break;
-
-            default:
-                setThisLab(&ptr, getLabNext(ptr));
+        if (getLabType(ptr) == L_ENT){
+            setThisLab(&ent, ptr);
+            setThisLab(&ent, getLabNext(ent));
+            setThisLab(&ptr, getLabNext(ptr));
         }
     }
 
 }
 
-result printEntLst(char *fName, labelLst *labLst){
+result printEntLst(char *fName, labelLst *labLst) {
     label *ent = NULL;
     getEntLst(ent, labLst);
     if (ent == NULL) return SUCCESS;
     FILE *fp;
     VALIDATE_VAL(getEntOutputFile(fName, &fp), "")
     label *ptr;
-    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)){
-        switch (getLabType(ptr)){
-            case L_ENT:
-                printLabel(fp, ptr);
-                setLabNext(ptr, getLabNext(ptr));
-                break;
-
-            default:
-                setThisLab(&ptr, getLabNext(ptr));
+    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
+        if (getLabType(ptr) == L_ENT) {
+            printLabel(fp, ptr);
         }
-    } return SUCCESS;
+        return SUCCESS;
+    }
 }
 
 void getExtLst(sWord *ext, sWordLst *instLst){
@@ -130,15 +120,9 @@ result printExtLst(char *fName, sWordLst *instLst) {
     sWord *ptr;
     label *lab;
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
-        switch (getSWordStatus(ptr)) {
-            case LAB:
-                lab = getSULab(ptr);
-                if (getLabType(lab) == EXT) printLabel(fp, lab);
-                setSWordNext(ptr, getSWordNext(ptr));
-                break;
-
-            default:
-                setThisSWord(&ptr, ptr);
+        if (getSWordStatus(ptr) == LAB) {
+            lab = getSULab(ptr);
+            if (getLabType(lab) == EXT) printLabel(fp, lab);
         }
     } return SUCCESS;
 }

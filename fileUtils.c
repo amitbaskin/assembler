@@ -10,11 +10,11 @@ result getNameAlloc(size_t size, char **fName){
 }
 
 result getFile(char *name, FILE **fp, char *mode, char *suffix){
+    char *fullName;
     unsigned long nameLen = strlen(name);
     unsigned long sufLen = strlen(suffix);
-    char *fullName;
     VALIDATE_VAL(getNameAlloc(nameLen + sufLen + 1, &fullName), "")
-    strcpy(fullName, name);
+    strcat(fullName, name);
     strcat(fullName, suffix);
     *fp = fopen(fullName, mode);
     freeHelper(fullName);

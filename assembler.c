@@ -15,9 +15,9 @@ result assemble(char *fName) {
     sWordLst *instLst = NULL;
     sWordLst *dataLst = NULL;
     FILE *fp;
-    VALIDATE_VAL(initializeSWordLst(&instLst), "")
-    VALIDATE_VAL(initializeSWordLst(&dataLst), "")
-    VALIDATE_VAL(initializeLabLst(&labLst), "")
+    VALIDATE_VAL(initSWordLst(&instLst), "")
+    VALIDATE_VAL(initSWordLst(&dataLst), "")
+    VALIDATE_VAL(initLabLst(&labLst), "")
     VALIDATE_VAL(getReadFile(fName, &fp), "")
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst), "")
     VALIDATE_VAL(parseInstLst(instLst, labLst), "")
