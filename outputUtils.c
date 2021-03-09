@@ -46,20 +46,16 @@ void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
 
 void printDataLst(FILE *fp, sWordLst *dataLst){
     sWord *ptr;
+    wordStatus status;
     for (ptr = getSWordTail(dataLst); ptr != NULL; setThisSWord(&ptr, getSWordNext(ptr))) {
-        switch (getSWordStatus(ptr)) {
-            case NUM_DATA:
-                setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
-                printInst(fp, &ptr, getSUNumData(ptr));
-                break;
-
-            case CHR_DATA:
-                setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
-                printInst(fp, &ptr, getSUChrData(ptr));
-                break;
-
-            default:
-                setThisSWord(&ptr, getSWordNext(ptr));
+        status = getSWordStatus(ptr);
+        if (status == NUM_DATA) {
+            setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
+            printInst(fp, &ptr, getSUNumData(ptr));
+        }
+        if(status == CHR_DATA){
+            setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
+            printInst(fp, &ptr, getSUChrData(ptr));
         }
     }
 }

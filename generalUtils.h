@@ -20,7 +20,7 @@
 #define ADD_TO_LIST(type, cond, item){ \
     if (cond){                         \
         lst->tail = item;              \
-                                       \
+        lst->head = (&lst->tail);      \
     } else{                            \
         lst->head = &((*(lst->head))->next); \
         *(lst->head) = item;           \

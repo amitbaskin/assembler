@@ -12,27 +12,25 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
     label *lab;
     result res = SUCCESS;
     sWord *ptr;
+    wordStatus status;
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
-        switch (getSWordStatus(ptr)) {
-            case W_ENT:
-                if (isLabInLst(labLst, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
-                    res = ERR;
-                    printf("");
-                    continue;
-                } setLabType(lab, L_ENT);
-                setThisSWord(&ptr, getSWordNext(ptr));
+        status = getSWordStatus(ptr);
+        if (status == W_ENT) {
+            if (isLabInLst(labLst, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
+                res = ERR;
+                printf("");
+                continue;
+            }
+            setLabType(lab, L_ENT);
+        }
 
-            case LAB:
-                if (isLabInLst(labLst, &lab, L_NONE, getSULabName(ptr)) == FALSE) {
-                    res = ERR;
-                    printf("");
-                    continue;
-                } setSULab(ptr, lab);
-                setThisSWord(&ptr, getSWordNext(ptr));
-                break;
-
-            default:
-                setThisSWord(&ptr, getSWordNext(ptr));
+        if (status == LAB) {
+            if (isLabInLst(labLst, &lab, L_NONE, getSULabName(ptr)) == FALSE) {
+                res = ERR;
+                printf("");
+                continue;
+            }
+            setSULab(ptr, lab);
         }
     } return res;
 }

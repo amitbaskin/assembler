@@ -26,7 +26,7 @@ result breakDownLine(char **line, rawWord **raw, unsigned char isSep){
         breakDownLineHelper(raw, str);
     } if (isSep && res == SEP) {
         breakDownLineHelper(raw, SEP_STR);
-        return breakDownLine(line, raw, isSep);
+//        return breakDownLine(line, raw, isSep);
     } return res;
 }
 
@@ -55,11 +55,13 @@ int getWordLoopCond(char chr, unsigned char isSep){
 }
 
 result getWord(char **line, char **word, unsigned char isSep){
+    char *originalPtr = *word;
     char chr;
     int i;
     for (; (chr = **line) == ' ' || chr == '\t'; (*line)++);
     for (i=0; getWordLoopCond((chr = **line), i); (*word)[i] = (char) chr, (*line)++, i++);
     (*word)[i] = '\0';
+    if (*originalPtr == '\0') return FALSE;
     if (chr == '\0') return LINE_END;
     if (isSep && chr == SEPARATOR) return SEP;
     return SUCCESS;

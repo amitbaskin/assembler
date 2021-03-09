@@ -11,6 +11,7 @@
 #include "sWordListUtils.h"
 #include "opWordSetters.h"
 #include "sWordGetters.h"
+#include "labLstUtils.h"
 
 #define VALIDATE_OP(opValidation, msg) { \
     if ((opValidation) == FALSE) {         \
@@ -37,15 +38,17 @@
     if ((checkFunc) == TRUE) return type;\
 }                                        \
 
-void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **firstOp,
-               char **secOp, sWordLst *instLst, labelLst *labLst, int srcReg, long srcNum, int destReg, long destNum){
+void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **firstOp, char **secOp, labelLst *labLst,
+ label **lab, sWordLst *instLst, int srcReg, long srcNum, int destReg, long destNum){
     opWord *op;
     initOpWord(opIndex, srcType, destType, &op);
+    checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter++);
     addOpWord(op, instLst);
-    addAllOperandsWord(opsAmount, *firstOp, *secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);
+    addAllOperandsWord(opsAmount, firstOp, secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);
 }
 
-result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, sWordLst *instLst, labelLst *labLst){
+result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, labelLst *labLst, label **lab, sWordLst
+*instLst){
     int srcReg;
     long srcNum;
     int destReg;
@@ -61,18 +64,19 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, sW
     destType = getOperandType(*secOp, &destReg, &destNum);
     VALIDATE_OP(validateSrcOp(srcType, opIndex),"")
     VALIDATE_OP(validateDestOp(destType, opIndex),"")
-    processOp(opIndex, 2, srcType, destType, firstOp, secOp, instLst, labLst, srcReg, srcNum, destReg, destNum);
+    processOp(opIndex, 2, srcType, destType, firstOp, secOp, labLst, lab, instLst, srcReg, srcNum, destReg, destNum);
     return SUCCESS;
 }
 
-result validateOneOp(char **line, int opIndex, char **op, sWordLst *instLst, labelLst *labLst){
+result validateOneOp(char **line, int opIndex, char **DestOp, labelLst *labLst, label **lab, sWordLst *instLst){
     int destReg;
     long destNum;
     ref destType;
-    VALIDATE_LINE_CONTINUATION(getWord(line, op, 0), "");
+    VALIDATE_LINE_CONTINUATION(getWord(line, DestOp, 0), "");
     VALIDATE_VAL(finishLine(line), "");
-    destType = getOperandType(*op, &destReg, &destNum);
+    destType = getOperandType(*DestOp, &destReg, &destNum);
     VALIDATE_OP(validateDestOp(destType, opIndex), "")
+    processOp(opIndex, 1, R_NONE, destType, DestOp, NULL, labLst, lab, instLst, NOT_REG, 0, destReg, destNum);
     return SUCCESS;
 }
 
@@ -80,14 +84,14 @@ result validateZeroOps(char **line){
     return finishLine(line);
 }
 
-result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp, sWordLst
- *instLst, labelLst *labLst){
+result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp, labelLst
+*labLst, label **lab, sWordLst *instLst){
     switch (operandsAmount) {
         case 2:
-            return validateTwoOps(line, opIndex, firstOp, secOp, instLst, labLst);
+            return validateTwoOps(line, opIndex, firstOp, secOp, labLst, lab, instLst);
 
         case 1:
-            return validateOneOp(line, opIndex, firstOp, instLst, labLst);
+            return validateOneOp(line, opIndex, firstOp, labLst, lab, instLst);
 
         case 0:
             return validateZeroOps(line);
@@ -143,18 +147,18 @@ result validateDestOp(ref type, int opIndex){
     }
 }
 
-ref addOperandWord(ref r, char *operand, sWordLst *instLst, int reg, long num){
+ref addOperandWord(ref r, char **operand, sWordLst *instLst, int reg, long num){
     switch(r){
         case IM:
             addNumWord(num, IM_NUM, instLst);
             return IM;
 
         case DIR:
-            addLabToInstLst(instLst, operand, L_NONE, 0);
+            addLabToInstLst(instLst, *operand, L_NONE, 0);
             return DIR;
 
         case REL:
-            addLabToInstLst(instLst, operand, L_NONE, 1);
+            addLabToInstLst(instLst, *operand, L_NONE, 1);
             return REL;
 
         case R_REG:
@@ -166,7 +170,7 @@ ref addOperandWord(ref r, char *operand, sWordLst *instLst, int reg, long num){
     }
 }
 
-void addAllOperandsWord(int operandsAmount, char *firstOp, char *secOp, sWordLst *instLst, ref srcType, ref destType,
+void addAllOperandsWord(int operandsAmount, char **firstOp, char **secOp, sWordLst *instLst, ref srcType, ref destType,
                         int srcReg, long srcNum, int destReg, long destNum){
     if (operandsAmount > 0) addOperandWord(srcType, firstOp, instLst, srcReg, srcNum);
     if (operandsAmount == 2) addOperandWord(destType, secOp, instLst, destReg, destNum);

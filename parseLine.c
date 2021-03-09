@@ -58,13 +58,10 @@ result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWor
 
 result lookForOperation(char **firstOp, char **secOp, char **word, char **line, label **lab, labelLst *labLst, sWordLst
 *instLst){
-    ref srcType = 0;
-    ref destType = 0;
     int opIndex = getOpIndexByStr(*word);
     if (opIndex == NOT_OP) return ERR;
     int opsAmount = getOperandsAmount(opIndex);
-    VALIDATE_VAL(validateOperation(opIndex, opsAmount, line, firstOp, secOp, &srcType, &destType), "")
-    checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter++);
+    VALIDATE_VAL(validateOperation(opIndex, opsAmount, line, firstOp, secOp, labLst, lab, instLst), "")
     return SUCCESS;
 }
 
