@@ -17,13 +17,17 @@ result breakDownData(char **line, rawWordLst *lst, unsigned char isSep){
     result res;
     char *str;
     rawWord *word;
-    VALIDATE_VAL(getWordAlloc(&str), "")
-    while ((res = getWord(line, &str, isSep)) == SUCCESS){
-        initRawWord(&word);
+    int isContinue = 1;
+    while (isContinue){
+        VALIDATE_VAL(getWordAlloc(&str), "")
+        res = getWord(line, &str, isSep);
+        if (res == LINE_END) {
+            isContinue = 0;
+            if (*str == '\0') break;
+        } initRawWord(&word);
         setRawWordStr(word, str);
         addRawWord(lst, word);
-    } freeHelper(str);
-    return res;
+    } return res;
 }
 
 int getLineLoopCond(char chr, int i){
@@ -59,6 +63,9 @@ result getWord(char **line, char **word, unsigned char isSep){
     (*word)[i] = '\0';
     if (*originalPtr == '\0') return FALSE;
     if (chr == '\0') return LINE_END;
-    if (isSep && chr == SEPARATOR) return SEP;
+    if (isSep && chr == SEPARATOR) {
+        (*line)++;
+        return SEP;
+    }
     return SUCCESS;
 }

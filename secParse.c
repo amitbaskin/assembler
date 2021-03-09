@@ -9,6 +9,7 @@
 #include "sWordUtils.h"
 #include "labGetters.h"
 
+extern lineCounter;
 extern int ICF;
 
 result parseInstLst(sWordLst *instLst, labelLst *labLst){
@@ -17,6 +18,7 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
     wordStatus status;
     sWord *ptr;
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
+        lineCounter++;
         status = getSWordStatus(ptr);
         if (status == W_ENT) {
             if (isLabInLst(labLst, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
@@ -38,11 +40,4 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
             else setSWordAddressType(ptr, R_TYPE);
         }
     } return res;
-}
-
-void updateDataLst(sWordLst *lst){
-    sWord *ptr;
-    for (ptr = getSWordTail(lst); ptr != NULL; promoteSWord(&ptr)){
-        setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
-    }
 }

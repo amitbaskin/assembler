@@ -18,12 +18,10 @@ void setUReg(uWord *word, reg r){
 }
 
 void setUNumData(uWord *word, long num){
-    dataCounter++;
     word->numData = num;
 }
 
 void setUChrData(uWord *word, char chr){
-    dataCounter++;
     word->chrData = chr;
 }
 

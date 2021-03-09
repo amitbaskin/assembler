@@ -11,6 +11,7 @@ extern int labelFlag;
 extern int ICF;
 extern int instructionCounter;
 extern int DCF;
+extern int lineCounter;
 extern int dataCounter;
 
 result isEmptyLine(const char *line){
@@ -33,6 +34,7 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     VALIDATE_VAL(getWordAlloc(&word), "")
     VALIDATE_VAL(initLab(&lab), "")
     while (res != FILE_END){
+        lineCounter++;
         labelFlag = 0;
         line = lineOrgPtr;
         res = getLine(&line, fp);
@@ -49,5 +51,6 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     freeHelper(word);
     ICF = instructionCounter;
     DCF = dataCounter;
+    lineCounter = 0;
     return res;
 }

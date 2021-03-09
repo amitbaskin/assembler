@@ -68,12 +68,10 @@ void setSUReg(sWord *word, reg r){
 }
 
 void setSUNumData(sWord *word, long num){
-    dataCounter++;
     setUNumData(getSUWord(word), num);
 }
 
 void setSUChrData(sWord *word, char chr){
-    dataCounter++;
     setUChrData(getSUWord(word), chr);
 }
 

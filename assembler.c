@@ -21,10 +21,9 @@ result assemble(char *fName) {
     VALIDATE_VAL(getReadFile(fName, &fp), "")
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst), "")
     VALIDATE_VAL(parseInstLst(instLst, labLst), "")
-    updateDataLst(dataLst);
     VALIDATE_VAL(getMainOutputFile(fName, &fp), "")
     printInstLst(fp, instLst, labLst);
-    printDataLst(fp, instLst);
+    printDataLst(fp, dataLst);
     VALIDATE_VAL(printEntFile(labLst, fName), "")
     VALIDATE_VAL(printExtLst(fName, instLst), "")
     freeSWordLst(instLst);

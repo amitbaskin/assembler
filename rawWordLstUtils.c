@@ -15,7 +15,14 @@ rawWord *getRawWordTail(rawWordLst *lst){
 }
 
 void addRawWord(rawWordLst *lst, rawWord *word){
-    ADD_TO_LIST(sWord, getRawWordTail(lst) == NULL, word)
+//    ADD_TO_LIST(sWord, getRawWordTail(lst) == NULL, word)
+    if (getRawWordTail(lst) == NULL){                         \
+        lst->tail = word;              \
+        lst->head = (&lst->tail);      \
+    } else{                            \
+        lst->head = &((*(lst->head))->next); \
+        *(lst->head) = word;           \
+    }                                  \
 }
 
 result initRawWordLst(rawWordLst **lst){
