@@ -4,12 +4,14 @@
 #include "opWordGetters.h"
 #include "sWordGetters.h"
 
-unsigned int transDest(enum ref ref){
-    return ref << DEST_BITS_PREFIX;
+unsigned int transDest(ref ref){
+    if (ref == R_NONE) return 0;
+    return (ref - 1) << DEST_BITS_PREFIX;
 }
 
-unsigned int transSrc(enum ref ref){
-    return ref << SRC_BITS_PREFIX;
+unsigned int transSrc(ref ref){
+    if (ref == R_NONE) return 0;
+    return (ref - 1) << SRC_BITS_PREFIX;
 }
 
 unsigned int transFunct(int i){
@@ -21,13 +23,17 @@ unsigned int transOpcode(int i){
 }
 
 unsigned int transReg(reg reg){
-    if (reg == 0) return 0;
-    else return 1 << reg;
+    unsigned int result;
+    result = 1 << reg;
+    return result;
 }
 
 unsigned int transOp(opWord *op){
-    return transDest(getOpDest(op)) + transSrc(getOpSrc(op)) + transFunct(getFunct(getOpIndexByObject(op)))
-    + transOpcode(getOpCode(getOpIndexByObject(op)));
+    unsigned int dest = transDest(getOpDest(op));
+    unsigned int src = transSrc(getOpSrc(op));
+    unsigned int funct = transFunct(getOpIndexByObject(op));
+    unsigned int opCode = transOpcode(getOpIndexByObject(op));
+    return dest + src + funct + opCode;
 }
 
 void printWordToFile(FILE *fp, unsigned int word){
@@ -39,5 +45,5 @@ void printAddressToFile(FILE *fp, sWord *word){
 }
 
 void printAddressTypeToFile(FILE *fp, sWord *word){
-    fprintf(fp, "%c\n", getSWordAddress(word));
+    fprintf(fp, "%c\n", getSWordAddressType(word));
 }

@@ -8,7 +8,7 @@ result validateOneOp(char **line, int opIndex, char **DestOp, labelLst *labLst, 
 result validateZeroOps(char **line);
 result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp, labelLst
 *labLst, label **lab, sWordLst *instLst);
-ref getOperandType(char *operand, int *regType, long *num);
+ref getOperandType(char *operand, int *regNum, long *num);
 result validateSrcOp(ref type, int opIndex);
 result validateDestOp(ref type, int opIndex);
 ref addOperandWord(ref r, char **operand, sWordLst *instLst, int reg, long num);

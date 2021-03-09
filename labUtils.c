@@ -7,6 +7,8 @@
 #include "labSetters.h"
 #include "labGetters.h"
 
+extern unsigned char labelFlag;
+
 result checkRel(char *word){
     if (word[0] != REL_PREFIX) return FALSE;
     word++;

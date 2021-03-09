@@ -29,12 +29,6 @@
 
 enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG};
 typedef enum result result;
-static unsigned char labelFlag = 0;
-static unsigned char instructionCounter = INITIAL_INSTRUCTION_NUM;
-static unsigned char dataCounter = 0;
-static unsigned char lineCounter = 1;
-static unsigned char ICF = 0;
-static unsigned char DCF = 0;
 result getAlloc(size_t size, void **ptr);
 void freeHelper(void *ptr);
 result getWordAlloc(char **output, size_t size);

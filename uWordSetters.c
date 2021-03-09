@@ -3,6 +3,8 @@
 #include "uWordGetters.h"
 #include "opWordSetters.h"
 
+extern int dataCounter;
+
 void setUOpWord(uWord *word, opWord *op){
     word->op = op;
 }

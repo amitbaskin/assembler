@@ -11,14 +11,6 @@ result initUWord(uWord **word){
 }
 
 void freeUWord(sWord *word){
-    switch(word->status){
-        case OP:
-            freeHelper(getSUOpWord(word));
-            break;
-        case LAB:
-            freeLab(getSULab(word));
-            break;
-        default:
-            break;
-    } freeHelper(getSUWord(word));
+    if(getSWordStatus(word) == OP) freeHelper(getSUOpWord(word));
+    freeHelper(getSUWord(word));
 }

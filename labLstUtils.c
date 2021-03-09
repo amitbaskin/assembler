@@ -4,6 +4,9 @@
 #include "labSetters.h"
 #include "labGetters.h"
 
+extern int labelFlag;
+extern int instructionCounter;
+
 result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address){
     result res = isLabInLst(labLst, lab, type, getLabName(*lab));
     VALIDATE_VAL(res, "")
@@ -40,6 +43,7 @@ void checkLabFlagOnScenario(label **lab, labelLst *labLst, void labSetter(label 
     if (labelFlag) {
         labSetter(*lab, 1);
         addLabToLabLst(labLst, lab, L_NONE, address);
+
     }
 }
 

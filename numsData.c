@@ -9,6 +9,9 @@
 #include "labLstUtils.h"
 #include "parseLine.h"
 
+extern int dataCounter;
+extern int labelFlag;
+
 result isDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
     void *ptr;
     data *dat;

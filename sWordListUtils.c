@@ -10,11 +10,16 @@
 #include "sWordUtils.h"
 #include "labLstUtils.h"
 
+extern int dataCounter;
+
+extern int instructionCounter;
+
 result addOpWord(opWord *opWord, sWordLst *instLst){
     sWord *sOpWord;
     VALIDATE_VAL(createAndAddWord(&sOpWord, setSOpWordStatus, instLst), "");
     setSUOpWord(sOpWord, opWord);
     setSOpWordStatus(sOpWord);
+    setSWordAddressType(sOpWord, A_TYPE);
     setSWordAddress(sOpWord, instructionCounter++);
     return SUCCESS;
 }
@@ -29,6 +34,7 @@ result createAndAddWord(sWord **word, void setStatus(), sWordLst *lst){
 result addLabToInstLst(sWordLst *instLst, char *name, labelType type, unsigned char isRel){
     sWord *sWordLab;
     VALIDATE_VAL(initSword(&sWordLab), "");
+    setSWordAddress(sWordLab, instructionCounter++);
     setSLabStatus(sWordLab);
     label *lab;
     initLab(&lab);
@@ -45,6 +51,7 @@ result addRegWord(int reg, sWordLst *instLst){
     sWord *sWordReg;
     VALIDATE_VAL(createAndAddWord(&sWordReg, setSRegStatus, instLst), "");
     setSUReg(sWordReg, reg);
+    setSWordAddressType(sWordReg, A_TYPE);
     setSWordAddress(sWordReg, instructionCounter++);
     return SUCCESS;
 }
@@ -54,7 +61,7 @@ void addNumWord(long num, wordStatus status, sWordLst *lst){
     createAndAddWord(&sWordNum, setSNumStatus, lst);
     setSUNumData(sWordNum, num);
     setSWordStatus(sWordNum, status);
-    setSWordAddressType(sWordNum, R_TYPE);
+    setSWordAddressType(sWordNum, A_TYPE);
     setSWordAddress(sWordNum, dataCounter++);
 }
 
@@ -63,7 +70,7 @@ void addChrWord(char chr, sWordLst *dataLst){
     createAndAddWord(&sWordChr, setSChrStatus, dataLst);
     setSUChrData(sWordChr, chr);
     setSWordStatus(sWordChr, CHR_DATA);
-    setSWordAddressType(sWordChr, R_TYPE);
+    setSWordAddressType(sWordChr, A_TYPE);
     setSWordAddress(sWordChr, dataCounter++);
 }
 

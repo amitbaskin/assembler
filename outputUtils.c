@@ -12,10 +12,15 @@
 #include "sWordListUtils.h"
 #include "sWordUtils.h"
 
-void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
+extern int ICF;
+
+extern int instructionCounter;
+extern int dataCounter;
+
+void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
     sWord *ptr;
     fprintf(fp, HEADER_FORMAT, instructionCounter - INITIAL_INSTRUCTION_NUM, dataCounter);
-    for (ptr = instLst->tail; ptr != NULL; ptr = ptr->next){
+    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
         switch (getSWordStatus(ptr)){
             case OP:
                 printInst(fp, &ptr, transOp(getSUOpWord(ptr)));
@@ -127,7 +132,6 @@ void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
     printAddressToFile(fp, *ptr);
     printWordToFile(fp, toPrint);
     printAddressTypeToFile(fp, *ptr);
-    setSWordNext(*ptr, getSWordNext(*ptr));
 }
 
 void printLabel(FILE *fp, label *lab){

@@ -13,6 +13,8 @@
 #include "sWordGetters.h"
 #include "labLstUtils.h"
 
+extern int instructionCounter;
+
 #define VALIDATE_OP(opValidation, msg) { \
     if ((opValidation) == FALSE) {         \
         printf(msg);                     \
@@ -42,7 +44,7 @@ void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **fir
  label **lab, sWordLst *instLst, int srcReg, long srcNum, int destReg, long destNum){
     opWord *op;
     initOpWord(opIndex, srcType, destType, &op);
-    checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter++);
+    checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter);
     addOpWord(op, instLst);
     addAllOperandsWord(opsAmount, firstOp, secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);
 }
@@ -101,8 +103,8 @@ result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char
     }
 }
 
-ref getOperandType(char *operand, int *regType, long *num){
-    if ((*regType = isReg(operand)) != NOT_REG) return R_REG;
+ref getOperandType(char *operand, int *regNum, long *num){
+    if ((*regNum = isReg(operand)) != NOT_REG) return R_REG;
     CHECK_REF_TYPE(isImmediateNum(num, operand), IM)
     CHECK_REF_TYPE(checkRel(operand), REL)
     CHECK_REF_TYPE(isLegalLabel(operand, strlen(operand)), DIR)
@@ -172,12 +174,17 @@ ref addOperandWord(ref r, char **operand, sWordLst *instLst, int reg, long num){
 
 void addAllOperandsWord(int operandsAmount, char **firstOp, char **secOp, sWordLst *instLst, ref srcType, ref destType,
                         int srcReg, long srcNum, int destReg, long destNum){
-    if (operandsAmount > 0) addOperandWord(srcType, firstOp, instLst, srcReg, srcNum);
-    if (operandsAmount == 2) addOperandWord(destType, secOp, instLst, destReg, destNum);
+    if (operandsAmount == 1) addOperandWord(destType, firstOp, instLst, destReg, destNum);
+    if (operandsAmount == 2) {
+        addOperandWord(srcType, firstOp, instLst, destReg, destNum);
+        addOperandWord(destType, secOp, instLst, destReg, destNum);
+    }
 }
 
 result initOpWord(int opIndex, ref src, ref dest, opWord **op){
-    VALIDATE_VAL(getAlloc(sizeof(opWord), (void **) op), "");
+    void *ptr;
+    VALIDATE_VAL(getAlloc(sizeof(opWord), &ptr), "");
+    *op = (opWord *) ptr;
     setOpIndex(*op, opIndex);
     setOpSrcRef(*op, src);
     setOpDestRef(*op, dest);

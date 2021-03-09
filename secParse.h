@@ -3,4 +3,5 @@
 #ifndef ASSEMBLER_SEC_PARSE_H
 #define ASSEMBLER_SEC_PARSE_H
 result parseInstLst(sWordLst *instLst, labelLst *labLst);
+void updateDataLst(sWordLst *lst);
 #endif

@@ -7,6 +7,12 @@
 #include "generalUtils.h"
 #include "sWordGetters.h"
 
+extern int labelFlag;
+extern int ICF;
+extern int instructionCounter;
+extern int DCF;
+extern int dataCounter;
+
 result isEmptyLine(const char *line){
     while(*line != '\0'){
         if (*line != ' ' && *line != '\t' && *line != '\n') return FALSE;
