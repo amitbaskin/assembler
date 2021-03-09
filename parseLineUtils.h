@@ -6,8 +6,9 @@
 #define SEP_STR ","
 #define COMMENT_CHR ';'
 result finishLine(char **line);
-void breakDownLineHelper(rawWord **raw, char *str);
-result breakDownLine(char **line, rawWord **raw, unsigned char isSep);
+void breakDownLineHelper(rawWordLst *lst, char *str);
+result breakDownLine(char **line, rawWordLst *lst, unsigned char isSep);
+result breakDownLineRecur(result res, char *str, char **line, rawWordLst *lst, unsigned char isSep);
 int getLineLoopCond(char chr, int i);
 result getLine(char **line, FILE *fp);
 int getWordLoopCond(char chr, unsigned char isSep);

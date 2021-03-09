@@ -82,11 +82,26 @@ struct sWordLst{
 
 typedef struct sWordLst sWordLst;
 
-struct rawWord{
+union rawData{
     char *word;
+    int num;
+};
+
+typedef union rawData rawData;
+
+struct rawWord{
+    rawData *data;
     struct rawWord *next;
 };
+
 typedef struct rawWord rawWord;
+
+struct rawWordLst{
+    rawWord **head;
+    rawWord *tail;
+};
+
+typedef struct rawWordLst rawWordLst;
 
 
 int isReg(char *r);

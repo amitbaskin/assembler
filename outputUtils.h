@@ -4,12 +4,10 @@
 #ifndef ASSEMBLER_OUTPUT_UTILS_H
 #define ASSEMBLER_OUTPUT_UTILS_H
 #define HEADER_FORMAT "%d %d\n"
-void printLabel(FILE *fp, label *lab);
+void printLabel(FILE *fp, sWord *sWordLab);
 void printInst(FILE *fp, sWord **ptr, unsigned int toPrint);
 void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst);
 void printDataLst(FILE *fp, sWordLst *dataLst);
-result printEntLst(char *fName, labelLst *labLst);
 result printExtLst(char *fName, sWordLst *instLst);
-void getEntLst(label *ent, labelLst *labLst);
-void getExtLst(sWord *ext, sWordLst *instLst);
+result printEntFile(labelLst *labLst, char *fName);
 #endif

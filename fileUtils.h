@@ -4,7 +4,7 @@
 result getNameAlloc(size_t size, char **fName);
 result getFile(char *name, FILE **fp, char *mode, char *suffix);
 result getReadFile(char *name, FILE **fp);
-result getMainOutputFIle(char *name, FILE **fp);
+result getMainOutputFile(char *name, FILE **fp);
 result getEntOutputFile(char *name, FILE **fp);
-result getExtOutputFIle(char *name, FILE **fp);
+result getExtOutputFile(char *name, FILE **fp);
 #endif

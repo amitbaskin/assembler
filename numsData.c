@@ -8,59 +8,43 @@
 #include "sWordListUtils.h"
 #include "labLstUtils.h"
 #include "parseLine.h"
+#include "rawWordUtils.h"
+#include "rawWordLstUtils.h"
 
 extern int dataCounter;
 extern int labelFlag;
 
 result isDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
     void *ptr;
-    data *dat;
-    rawWord *raw;
+    rawWordLst *lst;
+    VALIDATE_VAL(initRawWordLst(&lst), "")
+    VALIDATE_VAL(initRawWordLst(&lst), "");
     if (isData(word) == TRUE) {
-        getAlloc(sizeof(rawWord), &ptr);
-        raw = (rawWord *) ptr;
-        breakDownLine(line, &raw, 1);
-        getAlloc(sizeof(data), &ptr);
-        dat = (data *) ptr;
-        VALIDATE_VAL(collectData(raw, dat), "")
+        initRawWordLst(&lst);
+        breakDownLine(line, lst, 1);
+        VALIDATE_VAL(collectData(lst), "")
         checkLabFlagOnScenario(&lab, labLst, setLabCode, dataCounter++);
-        addData(dataLst, labLst, lab, dat);
+        addSWordData(dataLst, labLst, lab, lst);
         return TRUE;
     } return FALSE;
 }
 
-result collectData(rawWord *raw, data *dat){
+result collectData(rawWordLst *lst){
     long num;
-    data *next;
-    void *ptr;
-    while (dat->next != NULL){
-        VALIDATE_VAL(isNumData(&num, raw->word) == ERR, "")
-        dat->num = (int) num;
-        VALIDATE_VAL(getAlloc(sizeof(data), &ptr), "");
-        next = (data *) ptr;
-        dat->next = next;
-        dat = next;
-        raw = raw->next;
-        if (raw != NULL && !(strcmp(raw->word, SEP_STR))) return ERR;
-        raw = raw->next;
+    rawWord *ptr;
+    for (ptr = getRawWordTail(lst); ptr != NULL; promoteRawWord(&ptr)){
+        VALIDATE_VAL(isNumData(&num, getRawWordStr(ptr)), "")
+        setRawWordNum(ptr, (int) num);
     } return SUCCESS;
 }
 
-result addData(sWordLst *dataLst, labelLst *labLst, label *lab, data *dat){
+result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst *rawLst){
+    rawWord *ptr;
     if (labelFlag) {
         addLabToLabLst(labLst, &lab, L_NONE, dataCounter++);
         setLabData(lab, 1);
-    } while (dat != NULL){
-        addNumWord(dat->num, NUM_DATA, dataLst);
-    } freeDataLst(dat);
+    } for (ptr = getRawWordTail(rawLst); ptr != NULL; promoteRawWord(&ptr)){
+        addNumWord(getRawWordNum(ptr), NUM_DATA, dataLst);
+    } freeRawWordLst(rawLst);
     return SUCCESS;
-}
-
-void freeDataLst(data *dat){
-    data *tmp;
-    while (dat->next != NULL){
-        tmp = dat;
-        dat = dat->next;
-        freeHelper(tmp);
-    } freeHelper(dat);
 }

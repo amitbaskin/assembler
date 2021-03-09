@@ -65,65 +65,61 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
     }
 }
 
-void getEntLst(label *ent, labelLst *labLst){
-    label *ptr;
-    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)){
-        if (getLabType(ptr) == L_ENT){
-            setThisLab(&ent, ptr);
-            setThisLab(&ent, getLabNext(ent));
-            setThisLab(&ptr, getLabNext(ptr));
-        }
-    }
-
-}
-
-result printEntLst(char *fName, labelLst *labLst) {
-    label *ent = NULL;
-    getEntLst(ent, labLst);
-    if (ent == NULL) return SUCCESS;
-    FILE *fp;
-    VALIDATE_VAL(getEntOutputFile(fName, &fp), "")
+result printEntFile(labelLst *labLst, char *fName) {
+    int flag = 0;
+    FILE *fp = NULL;
     label *ptr;
     for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
         if (getLabType(ptr) == L_ENT) {
+            if (!flag) {
+                flag = 1;
+                VALIDATE_VAL(getEntOutputFile(fName, &fp), "");
+            }
             printLabel(fp, ptr);
         }
-        return SUCCESS;
-    }
+    } return SUCCESS;
 }
 
-void getExtLst(sWord *ext, sWordLst *instLst){
-    sWord *ptr;
-    label *lab;
-    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)) {
-        switch (getSWordStatus(ptr)) {
-            case LAB:
-                lab = getSULab(ptr);
-                if (getLabType(lab) == EXT){
-                    setThisSWord(&ext, ptr);
-                    setSWordNext(ext, getSWordNext(ext));
-                }
-                setSWordNext(ptr, getSWordNext(ptr));
-                break;
+//result printLabelTypeLst(char *fName, labelLst *labLst, labelType type) {
+//    label *ent = NULL;
+//    getLabTypeLst(ent, labLst, type);
+//    if (ent == NULL) return SUCCESS;
+//    FILE *fp;
+//    VALIDATE_VAL(getEntOutputFile(fName, &fp), "")
+//    label *ptr;
+//    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
+//        if (getLabType(ptr) == L_ENT) {
+//            printLabel(fp, ptr);
+//        }
+//        return SUCCESS;
+//    } return SUCCESS;
+//}
 
-            default:
-                setThisSWord(&ptr, ptr);
-        }
-    }
-}
+//void getExtLst(sWord *ext, sWordLst *instLst){
+//    sWord *ptr;
+//    label *lab;
+//    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)) {
+//        if (getSWordStatus(ptr) == LAB) {
+//                lab = getSULab(ptr);
+//                if (getLabType(lab) == EXT){
+//                    setThisSWord(&ext, ptr);
+//                    setSWordNext(ext, getSWordNext(ext));
+//                }
+//        }
+//    }
+//}
 
 result printExtLst(char *fName, sWordLst *instLst) {
-    sWord *ext = NULL;
-    getExtLst(ext, instLst);
-    if (ext == NULL) return SUCCESS;
     FILE *fp;
-    VALIDATE_VAL(getExtOutputFIle(fName, &fp), "");
     sWord *ptr;
-    label *lab;
-    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
+    int extFlag = 0;
+    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)) {
+        if (!extFlag) {
+            extFlag = 1;
+            VALIDATE_VAL(getExtOutputFile(fName, &fp), "");
+        }
         if (getSWordStatus(ptr) == LAB) {
-            lab = getSULab(ptr);
-            if (getLabType(lab) == EXT) printLabel(fp, lab);
+            if (getSULabType(ptr) == EXT) printLabel(fp, ptr);
         }
     } return SUCCESS;
 }
@@ -134,7 +130,7 @@ void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
     printAddressTypeToFile(fp, *ptr);
 }
 
-void printLabel(FILE *fp, label *lab){
-    fprintf(fp, "%s ", getLabName(lab));
-    fprintf(fp, "%du\n", getLabAddress(lab));
+void printLabel(FILE *fp, sWord *sWordLab){
+    fprintf(fp, "%s ", getSULabName(sWordLab));
+    fprintf(fp, "%d\n", getSWordAddress(sWordLab));
 }

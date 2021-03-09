@@ -26,7 +26,7 @@ result getReadFile(char *name, FILE **fp){
     return getFile(name, fp, "r", READ_FILE_SUFFIX);
 }
 
-result getMainOutputFIle(char *name, FILE **fp){
+result getMainOutputFile(char *name, FILE **fp){
     return getFile(name, fp, "w", MAIN_OUTPUT_SUFFIX);
 }
 
@@ -34,6 +34,6 @@ result getEntOutputFile(char *name, FILE **fp){
     return getFile(name, fp, "w", ENT_SUFFIX);
 }
 
-result getExtOutputFIle(char *name, FILE **fp){
+result getExtOutputFile(char *name, FILE **fp){
     return getFile(name, fp, "w", EXT_SUFFIX);
 }

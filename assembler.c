@@ -22,10 +22,10 @@ result assemble(char *fName) {
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst), "")
     VALIDATE_VAL(parseInstLst(instLst, labLst), "")
     updateDataLst(dataLst);
-    VALIDATE_VAL(getMainOutputFIle(fName, &fp), "")
+    VALIDATE_VAL(getMainOutputFile(fName, &fp), "")
     printInstLst(fp, instLst, labLst);
     printDataLst(fp, instLst);
-    VALIDATE_VAL(printEntLst(fName, labLst), "")
+    VALIDATE_VAL(printEntFile(labLst, fName), "")
     VALIDATE_VAL(printExtLst(fName, instLst), "")
     freeSWordLst(instLst);
     freeSWordLst(dataLst);

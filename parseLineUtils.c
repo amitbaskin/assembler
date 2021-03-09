@@ -3,6 +3,8 @@
 #include "wordId.h"
 #include "sWordSetters.h"
 #include "parseLine.h"
+#include "rawWordLstUtils.h"
+#include "rawWordUtils.h"
 
 result finishLine(char **line){
     char chr;
@@ -11,23 +13,18 @@ result finishLine(char **line){
     return SUCCESS;
 }
 
-void breakDownLineHelper(rawWord **raw, char *str){
-    void *ptr;
-    (*raw)->word = str;
-    getAlloc(sizeof(rawWord), &ptr);
-    (*raw)->next = (rawWord *) ptr;
-    *raw = (rawWord *) ptr;
-}
-
-result breakDownLine(char **line, rawWord **raw, unsigned char isSep){
+result breakDownLine(char **line, rawWordLst *lst, unsigned char isSep){
     result res;
     char *str;
+    rawWord *word;
+    VALIDATE_VAL(getWordAlloc(&str, MAX_LINE_LEN), "")
     while ((res = getWord(line, &str, isSep)) == SUCCESS){
-        breakDownLineHelper(raw, str);
+        initRawWord(&word);
+        addRawWord(lst, word);
     } if (isSep && res == SEP) {
-        breakDownLineHelper(raw, SEP_STR);
-//        return breakDownLine(line, raw, isSep);
-    } return res;
+        return breakDownLine(line, lst, isSep);
+    } freeHelper(str);
+    return res;
 }
 
 int getLineLoopCond(char chr, int i){
