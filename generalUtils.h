@@ -31,5 +31,5 @@ enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG};
 typedef enum result result;
 result getAlloc(size_t size, void **ptr);
 void freeHelper(void *ptr);
-result getWordAlloc(char **output, size_t size);
+result getWordAlloc(char **output);
 #endif

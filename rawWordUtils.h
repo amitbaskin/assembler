@@ -7,7 +7,9 @@ void promoteRawWord(rawWord **word);
 rawWord *getRawWordNext(rawWord *word);
 char *getRawWordStr(rawWord *raw);
 int getRawWordNum(rawWord *raw);
+rawData *getRawData(rawWord *word);
 void setRawWordNext(rawWord *this, rawWord *other);
 void setRawWordStr(rawWord *raw, char *str);
 void setRawWordNum(rawWord *raw, int num);
+void setRawData(rawWord *raw, rawData *data);
 #endif

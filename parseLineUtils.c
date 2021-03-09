@@ -13,16 +13,15 @@ result finishLine(char **line){
     return SUCCESS;
 }
 
-result breakDownLine(char **line, rawWordLst *lst, unsigned char isSep){
+result breakDownData(char **line, rawWordLst *lst, unsigned char isSep){
     result res;
     char *str;
     rawWord *word;
-    VALIDATE_VAL(getWordAlloc(&str, MAX_LINE_LEN), "")
+    VALIDATE_VAL(getWordAlloc(&str), "")
     while ((res = getWord(line, &str, isSep)) == SUCCESS){
         initRawWord(&word);
+        setRawWordStr(word, str);
         addRawWord(lst, word);
-    } if (isSep && res == SEP) {
-        return breakDownLine(line, lst, isSep);
     } freeHelper(str);
     return res;
 }

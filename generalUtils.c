@@ -12,7 +12,7 @@ void freeHelper(void *ptr){
     free(ptr);
 }
 
-result getWordAlloc(char **output, size_t size){
+result getWordAlloc(char **output){
     void *ptr;
     VALIDATE_VAL(getAlloc(MAX_LINE_LEN, &ptr), "")
     *output = ptr;

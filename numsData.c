@@ -15,13 +15,11 @@ extern int dataCounter;
 extern int labelFlag;
 
 result isDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
-    void *ptr;
     rawWordLst *lst;
-    VALIDATE_VAL(initRawWordLst(&lst), "")
     VALIDATE_VAL(initRawWordLst(&lst), "");
     if (isData(word) == TRUE) {
         initRawWordLst(&lst);
-        breakDownLine(line, lst, 1);
+        breakDownData(line, lst, 1);
         VALIDATE_VAL(collectData(lst), "")
         checkLabFlagOnScenario(&lab, labLst, setLabCode, dataCounter++);
         addSWordData(dataLst, labLst, lab, lst);
@@ -34,6 +32,7 @@ result collectData(rawWordLst *lst){
     rawWord *ptr;
     for (ptr = getRawWordTail(lst); ptr != NULL; promoteRawWord(&ptr)){
         VALIDATE_VAL(isNumData(&num, getRawWordStr(ptr)), "")
+        freeHelper(getRawWordStr(ptr));
         setRawWordNum(ptr, (int) num);
     } return SUCCESS;
 }
