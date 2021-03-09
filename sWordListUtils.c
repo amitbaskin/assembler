@@ -10,15 +10,6 @@
 #include "sWordUtils.h"
 #include "labLstUtils.h"
 
-void addWord(sWord *word, sWord **sWordLst){
-    if (getSUWord(word) == NULL) {
-        setThisSWord(sWordLst, word);
-        return;
-    }
-    setSWordNext(*sWordLst, &word);
-    setThisSWord(sWordLst, getSWordNext(*sWordLst));
-}
-
 result addOpWord(opWord *opWord, sWordLst *instLst){
     sWord *sOpWord;
     VALIDATE_VAL(createAndAddWord(&sOpWord, setSOpWordStatus, instLst), "");
@@ -78,66 +69,24 @@ void addChrWord(char chr, sWordLst *dataLst){
 
 void freeSWordLstHelper(sWord *word){
     sWord *tmp;
-    while(word != NULL && getSWordStatus(word) != W_NONE && getSWordNext(word) != NULL){
+    while(word != NULL){
         tmp = word;
-        setThisSWord(&word, getSWordNext(word));
+        promoteSWord(&word);
         freeSWord(tmp);
     } freeSWord(word);
-}
-
-sWord *getSWordHead(sWordLst *lst){
-    return lst->head;
 }
 
 sWord *getSWordTail(sWordLst *lst){
     return lst->tail;
 }
 
-sWord *getSWordCur(sWordLst *lst){
-    return lst->cur;
-}
-
 void addSWord(sWordLst *lst, sWord *word){
-//    ADD_TO_LIST(sWord, getSWordStatus(getSWordTail(lst)) == W_NONE, word)
-    if (getSWordStatus(getSWordTail(lst)) == W_NONE) {                        \
-        lst->tail = word;              \
-        *(lst->tail->next) = lst->head;\
-        lst->head = *(lst->tail->next);   \
-                                       \
-    } else{                            \
-        lst->head = word;        \
-        lst->head = *(lst->head->next);              \
-    }                                  \
-}
-
-sWord *getSWordIterNext(sWordLst *lst){
-    if (lst->head == lst->cur){ \
-        lst->cur = lst->tail;\
-        return NULL;         \
-    } sWord *cur = lst->cur;  \
-    sWord *tmp = cur;         \
-    lst->cur = *(cur->next);    \
-    return tmp;              \
-}
-
-void resetSWordIter(sWordLst *lst){
-    sWord *head = getSWordHead(lst);
-    setThisSWord(&head, getSWordTail(lst));
-}
-
-result getNewSWordLst(sWordLst **lst){
-    void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(sWordLst), &ptr), "")
-    *lst = ptr;
-    VALIDATE_VAL(getAlloc(sizeof(sWord), &ptr), "")
-    (*lst)->head = (*lst)->tail = (*lst)->cur;
-    return SUCCESS;
+    ADD_TO_LIST(sWord, getSWordTail(lst) == NULL, word)
 }
 
 result initializeSWordLst(sWordLst **lst){
-    VALIDATE_VAL(getNewSWordLst(lst), "");
-    VALIDATE_VAL(getNewEmptySword(&((*lst)->tail)), "")
-    (*lst)->cur = (*lst)->head = (*lst)->tail;
+    void *ptr;
+    VALIDATE_VAL(getAlloc(sizeof(sWordLst), &ptr), "")
     return SUCCESS;
 }
 

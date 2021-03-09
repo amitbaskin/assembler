@@ -23,7 +23,7 @@ wordStatus getSwordStatus(sWord *word){
 }
 
 sWord *getSWordNext(sWord *word){
-    return *(word->next);
+    return word->next;
 }
 
 opWord *getSUOpWord(sWord *word){

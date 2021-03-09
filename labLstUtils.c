@@ -15,27 +15,25 @@ result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address
 
 result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int *dist){
     label *ptr;
-    while ((ptr = getLabIterNext(labLst)) != NULL && getLabType(ptr) != L_NONE){
+    for (ptr = labLst->tail; ptr != NULL; ptr = ptr->next){
         if (strcmp(name, getLabName(ptr)) != 0) setThisLab(&ptr, getLabNext(ptr));
         else {
             *dist = (address - getLabAddress(ptr));
             return SUCCESS;
         }
-    } resetLabIter(labLst);
-    return ERR;
+    } return ERR;
 }
 
 result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
-    label *ptr;
-    while ((ptr = getLabIterNext(labLst)) != NULL && getLabType(ptr) != L_NONE){
+    label *ptr = labLst->tail;
+    for (ptr = labLst->tail; ptr != NULL; ptr = ptr->next){
         if (strcmp(getLabName(ptr), name) != 0) setThisLab(&ptr, getLabNext(ptr));
         else {
             *lab = ptr;
             VALIDATE_VAL(isLabTypeLegal(*lab, type), "")
             return TRUE;
         }
-    } resetLabIter(labLst);
-    return FALSE;
+    } return FALSE;
 }
 
 void checkLabFlagOnScenario(label **lab, labelLst *labLst, void labSetter(label *, unsigned char), int address){
@@ -47,64 +45,25 @@ void checkLabFlagOnScenario(label **lab, labelLst *labLst, void labSetter(label 
 
 void freeLabLstHelper(label *lab){
     label *tmp;
-    while(lab !=NULL && getLabType(lab) != L_NONE && getLabNext(lab) != NULL){
+    while(lab != NULL){
         tmp = lab;
-        setThisLab(&lab, getLabNext(lab));
+        promoteLab(&lab);
         freeLab(tmp);
     } freeLab(lab);
-}
-
-label *getLabHead(labelLst *lst){
-    return lst->head;
 }
 
 label *getLabTail(labelLst *lst){
     return lst->tail;
 }
 
-label *getLabCur(labelLst *lst){
-    return lst->cur;
-}
-
-label *getLabIterNext(labelLst *lst){
-    if (lst->head == lst->cur){ \
-        lst->cur = lst->tail;\
-        return NULL;         \
-    } label *cur = lst->cur;  \
-    label *tmp = cur;         \
-    lst->cur = cur->next;    \
-    return tmp;              \
-}
-
-void resetLabIter(labelLst *lst){
-    label *cur = getLabCur(lst);
-    setThisLab(&cur, getLabTail(lst));
-}
-
 void addLab(labelLst *lst, label *lab){
-//    ADD_TO_LIST(label, getLabType(lst->tail) == L_NONE, lab)
-    if (getLabType(lst->tail) == L_NONE){                                   \
-        lst->tail = lab;              \
-        *(lst->tail->next) = lst->head;\
-        lst->head = *(lst->tail->next);   \
-                                       \
-    } else{                            \
-        lst->head = lab;        \
-        lst->head = *(lst->head->next);              \
-    }                                  \
-}
-
-result getNewLabLst(labelLst **lst){
-    void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(lst), &ptr), "")
-    *lst = ptr;
-    return SUCCESS;
+    ADD_TO_LIST(label, lst->tail == NULL, lab)
 }
 
 result initializeLabLst(labelLst **lst){
-    VALIDATE_VAL(getNewLabLst(lst), "")
-    VALIDATE_VAL(getNewEmptyLab(&((*lst)->tail)), "")
-    (*lst)->cur = (*lst)->head = (*lst)->tail;
+    void *ptr;
+    VALIDATE_VAL(getAlloc(sizeof(lst), &ptr), "")
+    *lst = ptr;
     return SUCCESS;
 }
 

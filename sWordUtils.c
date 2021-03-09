@@ -18,3 +18,7 @@ void freeSWord(sWord *word){
     freeUWord(word);
     freeHelper(word);
 }
+
+void promoteSWord(sWord **word){
+    *word = (*word)->next;
+}

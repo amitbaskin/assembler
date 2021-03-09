@@ -12,6 +12,6 @@ result isLabInLst(labelLst
 result getNewLabByName(label **lab, char
 *name);
 result isLabTypeLegal(label *lab, labelType type);
-void copyLab(label *input, label *output);
+void promoteLab(label **lab);
 void freeLab(label *lab);
 #endif

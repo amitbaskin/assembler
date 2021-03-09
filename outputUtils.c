@@ -10,11 +10,12 @@
 #include "fileUtils.h"
 #include "labLstUtils.h"
 #include "sWordListUtils.h"
+#include "sWordUtils.h"
 
 void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
     sWord *ptr;
     fprintf(fp, HEADER_FORMAT, instructionCounter - INITIAL_INSTRUCTION_NUM, dataCounter);
-    while ((ptr = getSWordIterNext(instLst)) != NULL && getSWordStatus(ptr) != W_NONE){
+    for (ptr = instLst->tail; ptr != NULL; ptr = ptr->next){
         switch (getSWordStatus(ptr)){
             case OP:
                 printInst(fp, &ptr, transOp(getSUOpWord(ptr)));
@@ -40,12 +41,12 @@ void printIntsLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
             default:
                 break;
         }
-    } resetSWordIter(instLst);
+    }
 }
 
 void printDataLst(FILE *fp, sWordLst *dataLst){
     sWord *ptr;
-    while ((ptr = getSWordIterNext(dataLst)) != NULL && getSWordStatus(ptr)) {
+    for (ptr = getSWordTail(dataLst); ptr != NULL; setThisSWord(&ptr, getSWordNext(ptr))) {
         switch (getSWordStatus(ptr)) {
             case NUM_DATA:
                 setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
@@ -60,12 +61,12 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
             default:
                 setThisSWord(&ptr, getSWordNext(ptr));
         }
-    } resetSWordIter(dataLst);
+    }
 }
 
-void getEntLst(label *ent, label *labTail){
-    label *ptr = labTail;
-    while (ptr != NULL && getLabType(ptr) != L_NONE){
+void getEntLst(label *ent, labelLst *labLst){
+    label *ptr;
+    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)){
         switch (getLabType(ptr)){
             case L_ENT:
                 setThisLab(&ent, ptr);
@@ -82,12 +83,12 @@ void getEntLst(label *ent, label *labTail){
 
 result printEntLst(char *fName, labelLst *labLst){
     label *ent = NULL;
-    getEntLst(ent, getLabTail(labLst));
+    getEntLst(ent, labLst);
     if (ent == NULL) return SUCCESS;
     FILE *fp;
-    VALIDATE_VAL(getEntOutputFIle(fName, &fp), "")
-    label *ptr = NULL;
-    while (ptr != NULL && getLabType(ptr) != L_NONE){
+    VALIDATE_VAL(getEntOutputFile(fName, &fp), "")
+    label *ptr;
+    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)){
         switch (getLabType(ptr)){
             case L_ENT:
                 printLabel(fp, ptr);
@@ -100,11 +101,11 @@ result printEntLst(char *fName, labelLst *labLst){
     } return SUCCESS;
 }
 
-void getExtLst(sWord *ext, sWord *instHead){
-    sWord *ptr = instHead;
+void getExtLst(sWord *ext, sWordLst *instLst){
+    sWord *ptr;
     label *lab;
-    while (ptr != NULL && getSWordStatus(ptr) != W_NONE) {
-        switch (getSWordStatus(instHead)) {
+    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)) {
+        switch (getSWordStatus(ptr)) {
             case LAB:
                 lab = getSULab(ptr);
                 if (getLabType(lab) == EXT){
@@ -122,14 +123,13 @@ void getExtLst(sWord *ext, sWord *instHead){
 
 result printExtLst(char *fName, sWordLst *instLst) {
     sWord *ext = NULL;
-    getExtLst(ext, getSWordHead(instLst));
+    getExtLst(ext, instLst);
     if (ext == NULL) return SUCCESS;
     FILE *fp;
     VALIDATE_VAL(getExtOutputFIle(fName, &fp), "");
     sWord *ptr;
     label *lab;
-    while ((ptr = getSWordIterNext(instLst)) != NULL && getSWordStatus(ptr) != W_NONE
-    ) {
+    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
         switch (getSWordStatus(ptr)) {
             case LAB:
                 lab = getSULab(ptr);

@@ -6,12 +6,13 @@
 #include "sWordGetters.h"
 #include "labLstUtils.h"
 #include "sWordListUtils.h"
+#include "sWordUtils.h"
 
 result parseInstLst(sWordLst *instLst, labelLst *labLst){
     label *lab;
     result res = SUCCESS;
     sWord *ptr;
-    while ((ptr = getSWordIterNext(instLst)) != NULL && getSWordStatus(ptr) != W_NONE){
+    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
         switch (getSWordStatus(ptr)) {
             case W_ENT:
                 if (isLabInLst(labLst, &lab, L_ENT, getSULabName(ptr)) == FALSE) {

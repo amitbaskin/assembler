@@ -12,7 +12,7 @@ void setSNumStatus(sWord *word);
 void setSChrStatus(sWord *word);
 void setSRegStatus(sWord *word);
 void setSOpWordStatus(sWord *word);
-void setSWordNext(sWord *this, sWord **other);
+void setSWordNext(sWord *this, sWord *other);
 void setThisSWord(sWord **this, sWord *other);
 void setSUOpWord(sWord *word, opWord *op);
 void setSULab(sWord *word, label *lab);

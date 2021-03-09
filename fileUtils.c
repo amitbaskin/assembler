@@ -30,7 +30,7 @@ result getMainOutputFIle(char *name, FILE **fp){
     return getFile(name, fp, "w", MAIN_OUTPUT_SUFFIX);
 }
 
-result getEntOutputFIle(char *name, FILE **fp){
+result getEntOutputFile(char *name, FILE **fp){
     return getFile(name, fp, "w", ENT_SUFFIX);
 }
 

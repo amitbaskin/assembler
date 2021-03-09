@@ -68,3 +68,7 @@ void freeLab(label *lab){
     if (lab->isNameAlloc) freeHelper(lab->name);
     freeHelper(lab);
 }
+
+void promoteLab(label **lab){
+    *lab = (*lab)->next;
+}

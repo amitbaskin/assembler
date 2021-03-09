@@ -45,7 +45,7 @@ void setSOpWordStatus(sWord *word){
     word->status = OP;
 }
 
-void setSWordNext(sWord *this, sWord **other){
+void setSWordNext(sWord *this, sWord *other){
     this->next = other;
 }
 

@@ -38,7 +38,7 @@ typedef struct opWord opWord;
 struct label{
     char *name;
     int address;
-    struct label **next;
+    struct label *next;
     labelType type;
     unsigned char isNameAlloc : 1;
     unsigned char isCode : 1;
@@ -50,8 +50,7 @@ typedef struct label label;
 
 struct labelLst{
     label *tail;
-    label *head;
-    label *cur;
+    label **head;
 };
 
 typedef struct labelLst labelLst;
@@ -71,15 +70,14 @@ struct sWord{
     int address;
     char addressType;
     wordStatus status;
-    struct sWord **next;
+    struct sWord *next;
 };
 
 typedef struct sWord sWord;
 
 struct sWordLst{
-    sWord *head;
+    sWord **head;
     sWord *tail;
-    sWord *cur;
 };
 
 typedef struct sWordLst sWordLst;
