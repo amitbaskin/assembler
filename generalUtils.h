@@ -27,7 +27,7 @@
     }                                  \
 }
 
-enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG};
+enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG, LAB_DEC};
 typedef enum result result;
 result getAlloc(size_t size, void **ptr);
 void freeHelper(void *ptr);

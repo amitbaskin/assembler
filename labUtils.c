@@ -19,9 +19,7 @@ result checkRel(char **word){
 
 result isLegalLabel(char *word, unsigned long len){
     int i;
-    if (!isalpha(word[0])) return ERR;
-    if (len == 1) return TRUE;
-    for (i=1; i<len-2; i++) if (!isalnum(word[i])) return ERR;
+    for (i=0; i<len; i++) if (!isalnum(word[i])) return ERR;
     for (i=0; i < OPERATIONS_AMOUNT; i++){
         if (strcmp(word, operations[i]) == 0) return ERR;
     } for (i=0; i < REGS_AMOUNT; i++){
@@ -37,9 +35,7 @@ result checkLabelLegality(char **word, label **lab, unsigned long len){
 
 result isLabelDeclaration(char **line, char **word, label **lab, unsigned long len){
     result res;
-    if ((*word)[len-1] != LABEL_SUFFIX) return FALSE;
-    (*word)[len-1] = '\0';
-    res = checkLabelLegality(word, lab, len-1);
+    res = checkLabelLegality(word, lab, len);
     if (res == TRUE) {
         labelFlag = 1;
         getWord(line, word, 0);

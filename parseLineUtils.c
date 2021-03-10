@@ -51,7 +51,8 @@ unsigned char isSepCond(unsigned char isSep, char chr){
 }
 
 int getWordLoopCond(char chr, unsigned char isSep){
-    return (chr != ' ') && (chr != '\t') && (chr != '\n' &&chr != '\0') && isSepCond(isSep, chr);
+    return (chr != ' ') && (chr != '\t') && (chr != '\n' &&chr != '\0')  && (chr != LABEL_SUFFIX) &&
+    isSepCond(isSep, chr);
 }
 
 result getWord(char **line, char **word, unsigned char isSep){
@@ -62,7 +63,10 @@ result getWord(char **line, char **word, unsigned char isSep){
     for (i=0; getWordLoopCond((chr = **line), i); (*word)[i] = (char) chr, (*line)++, i++);
     (*word)[i] = '\0';
     if (*originalPtr == '\0') return FALSE;
-    if (chr == '\0') return LINE_END;
+    if (chr == LABEL_SUFFIX) {
+        (*line)++;
+        return LAB_DEC;
+    } if (chr == '\0') return LINE_END;
     if (isSep && chr == SEPARATOR) {
         (*line)++;
         return SEP;

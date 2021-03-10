@@ -48,7 +48,7 @@ result assemble(char *fName) {
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst), "")
     updateDataLabsAddresses(labLst);
     VALIDATE_VAL(parseInstLst(instLst, labLst), "")
-    if (!errFlag) return ERR;
+    if (errFlag) return ERR;
     VALIDATE_VAL(getMainOutputFile(fName, &fp), "")
     printInstLst(fp, instLst, labLst);
     printDataLst(fp, dataLst);

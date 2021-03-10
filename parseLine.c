@@ -51,8 +51,6 @@ result extScenario(char **line, char **word, label **lab, labelLst *labLst){
 }
 
 result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst, sWordLst *dataLst){
-    getWord(line, word, 0);
-    VALIDATE_VAL(isLabelDeclaration(line, word, lab, strlen(*word)), "")
     SWITCH_DATA_RES(isNumDataScenario(*word, line, *lab, dataLst, labLst))
     SWITCH_DATA_RES(isStrScenario(*word, line, *lab, dataLst, labLst))
     SWITCH_REF_RES(isEntryOrder(*word), entryScenario(line, word, lab, instLst), "")
