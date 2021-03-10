@@ -1,3 +1,4 @@
+#include "string.h"
 #include "rawWordLstUtils.h"
 #include "rawWordUtils.h"
 
@@ -34,4 +35,11 @@ result initRawWordLst(rawWordLst **lst){
 
 void freeRawWordLst(rawWordLst *lst){
     freeRawWordLstHelper(getRawWordTail(lst));
+}
+
+result isRawStrWordInRLst(rawWord *word, rawWordLst *lst){
+    rawWord *ptr;
+    for (ptr = getRawWordTail(lst); ptr != NULL; promoteRawWord(&ptr)){
+        if (strcmp(getRawWordStr(word), getRawWordStr(ptr)) == 0) return TRUE;
+    } return FALSE;
 }

@@ -36,7 +36,6 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     VALIDATE_VAL(initLab(&lab), "")
     while (res != FILE_END){
         lineCounter++;
-        int x = lineCounter;
         labelFlag = 0;
         line = lineOrgPtr;
         res = getLine(&line, fp);

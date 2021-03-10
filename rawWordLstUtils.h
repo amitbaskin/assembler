@@ -6,4 +6,5 @@ rawWord *getRawWordTail(rawWordLst *lst);
 void addRawWord(rawWordLst *lst, rawWord *word);
 result initRawWordLst(rawWordLst **lst);
 void freeRawWordLst(rawWordLst *lst);
+result isRawStrWordInRLst(rawWord *word, rawWordLst *lst);
 #endif

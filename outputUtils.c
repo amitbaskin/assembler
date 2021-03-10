@@ -11,6 +11,8 @@
 #include "labLstUtils.h"
 #include "sWordListUtils.h"
 #include "sWordUtils.h"
+#include "rawWordLstUtils.h"
+#include "rawWordUtils.h"
 
 extern int ICF;
 
@@ -65,15 +67,24 @@ result printEntFile(labelLst *lst, char *fName) {
     int flag = 0;
     FILE *fp = NULL;
     label *ptr;
+    rawWordLst *rawLst;
+    rawWord *rWord;
+    initRawWordLst(&rawLst);
     for (ptr = getLabTail(lst); ptr != NULL; promoteLab(&ptr)) {
         if (getLabType(ptr) == L_ENT) {
             if (!flag) {
                 flag = 1;
                 VALIDATE_VAL(getEntOutputFile(fName, &fp), "");
             }
-            printLabel(fp, ptr);
+            initRawWord(&rWord);
+            setRawWordStr(rWord, getLabName(ptr));
+            if (isRawStrWordInRLst(rWord, rawLst) == FALSE){
+                addRawWord(rawLst, rWord);
+                printLabel(fp, ptr);
+            } else freeRawWord(rWord);
         }
-    } return SUCCESS;
+    } freeRawWordLst(rawLst);
+    return SUCCESS;
 }
 
 result printExtLst(char *fName, sWordLst *instLst) {
