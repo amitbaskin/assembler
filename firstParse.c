@@ -44,6 +44,7 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         if (res == TRUE || res == ERR) continue;
         VALIDATE_VAL(getWordAlloc(&firstOp), "")
         VALIDATE_VAL(getWordAlloc(&secOp), "")
+        int x = labelFlag;
         res = lookForOperation(&firstOp, &secOp, &word, &line, &lab, labLst, instLst);
         freeHelper(firstOp);
         freeHelper(secOp);

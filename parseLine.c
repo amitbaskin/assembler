@@ -50,13 +50,9 @@ result extScenario(char **line, char **word, label **lab, labelLst *labLst){
 }
 
 result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst, sWordLst *dataLst){
-    result res;
     getWord(line, word, 0);
-    VALIDATE_VAL(res = isLabelDeclaration(*word, lab, strlen(*word)), "")
-    if (res == TRUE) {
-        labelFlag = 1;
-        getWord(line, word, 0);
-    } SWITCH_DATA_RES(isNumDataScenario(*word, line, *lab, dataLst, labLst))
+    VALIDATE_VAL(isLabelDeclaration(line, word, lab, strlen(*word)), "")
+    SWITCH_DATA_RES(isNumDataScenario(*word, line, *lab, dataLst, labLst))
     SWITCH_DATA_RES(isStrScenario(*word, line, *lab, dataLst, labLst))
     SWITCH_REF_RES(isEntryOrder(*word), entryScenario(line, word, lab, instLst), "")
     SWITCH_REF_RES(isExternOrder(*word), extScenario(line, word, lab, labLst), "")
@@ -65,6 +61,7 @@ result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWor
 
 result lookForOperation(char **firstOp, char **secOp, char **word, char **line, label **lab, labelLst *labLst, sWordLst
 *instLst){
+    int x = labelFlag;
     int opIndex = getOpIndexByStr(*word);
     if (opIndex == NOT_OP) return ERR;
     int opsAmount = getOperandsAmount(opIndex);

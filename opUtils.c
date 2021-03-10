@@ -14,6 +14,7 @@
 #include "labLstUtils.h"
 
 extern int instructionCounter;
+extern int labelFlag;
 
 #define VALIDATE_OP(opValidation, msg) { \
     if ((opValidation) == FALSE) {         \
@@ -44,6 +45,7 @@ void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **fir
  label **lab, sWordLst *instLst, int srcReg, long srcNum, int destReg, long destNum){
     opWord *op;
     initOpWord(opIndex, srcType, destType, &op);
+    int x = labelFlag;
     checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter);
     addOpWord(op, instLst);
     addAllOperandsWord(opsAmount, firstOp, secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);

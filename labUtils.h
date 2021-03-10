@@ -4,7 +4,7 @@
 result checkRel(char *word);
 result isLegalLabel(char *word, unsigned long len);
 result checkLabelLegality(char **word, label **lab, unsigned long len);
-result isLabelDeclaration(char *word, label **lab, unsigned long len);
+result isLabelDeclaration(char **line, char **word, label **lab, unsigned long len);
 result initLab(label **lab);
 result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int *dist);
 result isLabInLst(labelLst

@@ -6,6 +6,7 @@
 #include "sWordSetters.h"
 #include "labSetters.h"
 #include "labGetters.h"
+#include "parseLineUtils.h"
 
 extern unsigned char labelFlag;
 
@@ -20,7 +21,6 @@ result isLegalLabel(char *word, unsigned long len){
     if (!isalpha(word[0])) return ERR;
     if (len == 1) return TRUE;
     for (i=1; i<len-2; i++) if (!isalnum(word[i])) return ERR;
-    labelFlag = 1;
     return TRUE;
 }
 
@@ -30,10 +30,15 @@ result checkLabelLegality(char **word, label **lab, unsigned long len){
     return TRUE;
 }
 
-result isLabelDeclaration(char *word, label **lab, unsigned long len){
-    if (word[len-1] != LABEL_SUFFIX) return FALSE;
-    word[len-1] = '\0';
-    return checkLabelLegality(&word, lab, len-1);
+result isLabelDeclaration(char **line, char **word, label **lab, unsigned long len){
+    result res;
+    if ((*word)[len-1] != LABEL_SUFFIX) return FALSE;
+    (*word)[len-1] = '\0';
+    res = checkLabelLegality(word, lab, len-1);
+    if (res == TRUE) {
+        labelFlag = 1;
+        getWord(line, word, 0);
+    } return res;
 }
 
 result initLab(label **lab){
