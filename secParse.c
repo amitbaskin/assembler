@@ -33,12 +33,10 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
                 continue;
             } else if (isSULabRel(ptr)) {
                 setSWordAddressType(ptr, A_TYPE);
-            }
-            else if (getLabType(lab) == EXT) {
+            } else if (getLabType(lab) == EXT) {
                 setSWordAddressType(ptr, E_TYPE);
                 setSULabType(ptr, EXT);
-            }
-            else {
+            } else {
                 setSWordAddressType(ptr, R_TYPE);
                 setSULabAddress(ptr, getLabAddress(lab));
             }

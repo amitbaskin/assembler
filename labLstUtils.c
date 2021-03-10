@@ -11,7 +11,7 @@ result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address
     VALIDATE_VAL(isLabInLst(labLst, lab, type, getLabName(*lab)), "")
     setLabAddress(*lab, address);
     setLabType(*lab, type);
-    addLab(labLst, *lab);
+    VALIDATE_VAL(addLab(labLst, *lab), "");
     return SUCCESS;
 }
 
@@ -57,8 +57,19 @@ label *getLabTail(labelLst *lst){
     return lst->tail;
 }
 
-void addLab(labelLst *lst, label *lab){
-    ADD_TO_LIST(label, lst->tail == NULL, lab)
+result addLab(labelLst *lst, label *lab){
+    label *ptr;
+    labelType type1;
+    labelType type2;
+    for (ptr = getLabTail(lst); ptr != NULL; promoteLab(&ptr)){
+        if (strcmp(getLabName(lab), getLabName(ptr)) != 0) continue;
+        type1 = getLabType(ptr);
+         type2 = getLabType(lab);
+         if ((type1 == EXT && type2 != EXT) || (type2 == EXT && type1 != EXT)){
+             return ERR;
+         }
+    } ADD_TO_LIST(label, lst->tail == NULL, lab)
+    return SUCCESS;
 }
 
 result initLabLst(labelLst **lst){
