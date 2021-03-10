@@ -16,6 +16,8 @@
 #include "sWordGetters.h"
 #include "opUtils.h"
 
+extern labelFlag;
+
 #define SWITCH_DATA_RES(res) {\
     switch (res){             \
         case ERR:             \
@@ -34,10 +36,11 @@
         return orderScenario;                             \
     }                                                     \
 }
-result entryScenario(char **line, char **word, label **lab, labelLst *labLst, sWordLst *instLst){
-    if (lookForLabel(line, word, lab) == ERR) return ERR;
+
+result entryScenario(char **line, char **word, label **lab, sWordLst *instLst){
+    VALIDATE_VAL(lookForLabel(line, word, lab), "");
     setLabType(*lab, L_ENT);
-    addLabToInstLst(instLst, *word, L_ENT, 0);
+    addLabToInstLst(instLst, *word, 0, L_ENT, 0);
     return TRUE;
 }
 result extScenario(char **line, char **word, label **lab, labelLst *labLst){
@@ -47,11 +50,15 @@ result extScenario(char **line, char **word, label **lab, labelLst *labLst){
 }
 
 result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWordLst *instLst, sWordLst *dataLst){
+    result res;
     getWord(line, word, 0);
-    VALIDATE_VAL(isLabelDeclaration(*word, lab, strlen(*word)), "")
-    SWITCH_DATA_RES(isDataScenario(*word, line, *lab, dataLst, labLst))
+    VALIDATE_VAL(res = isLabelDeclaration(*word, lab, strlen(*word)), "")
+    if (res == TRUE) {
+        labelFlag = 1;
+        getWord(line, word, 0);
+    } SWITCH_DATA_RES(isNumDataScenario(*word, line, *lab, dataLst, labLst))
     SWITCH_DATA_RES(isStrScenario(*word, line, *lab, dataLst, labLst))
-    SWITCH_REF_RES(isEntryOrder(*word), entryScenario(line, word, lab, labLst, instLst), "")
+    SWITCH_REF_RES(isEntryOrder(*word), entryScenario(line, word, lab, instLst), "")
     SWITCH_REF_RES(isExternOrder(*word), extScenario(line, word, lab, labLst), "")
     return FALSE;
 }
@@ -69,6 +76,6 @@ result lookForLabel(char **line, char **word, label **lab){
     unsigned long len;
     getWord(line, word, 0);
     len = strlen(*word);
-    if (checkLabelLegality(word, lab, len) != SUCCESS) return ERR;
+    if (checkLabelLegality(word, lab, len) != TRUE) return ERR;
     return finishLine(line);
 }

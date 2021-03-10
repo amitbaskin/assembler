@@ -25,11 +25,8 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
                 res = ERR;
                 printf("");
                 continue;
-            }
-            setLabType(lab, L_ENT);
-        }
-
-        if (status == LAB) {
+            } setLabType(lab, L_ENT);
+        } if (status == LAB) {
             if (isLabInLst(labLst, &lab, L_NONE, getSULabName(ptr)) == FALSE) {
                 res = ERR;
                 printf("");

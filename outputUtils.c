@@ -119,7 +119,9 @@ result printExtLst(char *fName, sWordLst *instLst) {
             VALIDATE_VAL(getExtOutputFile(fName, &fp), "");
         }
         if (getSWordStatus(ptr) == LAB) {
-            if (getSULabType(ptr) == EXT) printLabel(fp, ptr);
+            if (getSULabType(ptr) == EXT){
+                setSULabAddress(ptr, getSWordAddress(ptr));
+            } printLabel(fp, getSULab(ptr));
         }
     } return SUCCESS;
 }
@@ -130,7 +132,7 @@ void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
     printAddressTypeToFile(fp, *ptr);
 }
 
-void printLabel(FILE *fp, sWord *sWordLab){
-    fprintf(fp, "%s ", getSULabName(sWordLab));
-    fprintf(fp, "%d\n", getSWordAddress(sWordLab));
+void printLabel(FILE *fp, label *lab){
+    fprintf(fp, "%s ", getLabName(lab));
+    fprintf(fp, "%d\n", getLabAddress(lab));
 }

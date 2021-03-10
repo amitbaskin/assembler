@@ -14,14 +14,14 @@
 extern int dataCounter;
 extern int labelFlag;
 
-result isDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
+result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
     rawWordLst *rawLst;
     VALIDATE_VAL(initRawWordLst(&rawLst), "");
     if (isData(word) == TRUE) {
         initRawWordLst(&rawLst);
         breakDownData(line, rawLst, 1);
         VALIDATE_VAL(collectData(rawLst), "")
-        checkLabFlagOnScenario(&lab, labLst, setLabCode, dataCounter);
+        checkLabFlagOnScenario(&lab, labLst, setLabData, dataCounter);
         addSWordData(dataLst, labLst, lab, rawLst);
         return TRUE;
     } return FALSE;

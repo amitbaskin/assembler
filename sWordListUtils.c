@@ -31,18 +31,18 @@ result createAndAddWord(sWord **word, void setStatus(), sWordLst *lst){
     return SUCCESS;
 }
 
-result addLabToInstLst(sWordLst *instLst, char *name, labelType type, unsigned char isRel){
+result addLabToInstLst(sWordLst *instLst, char *name, int address, labelType labType, unsigned char isRel){
     sWord *sWordLab;
     VALIDATE_VAL(initSword(&sWordLab), "");
-    setSWordAddress(sWordLab, instructionCounter++);
+    setSWordAddress(sWordLab, address);
     setSLabStatus(sWordLab);
     label *lab;
     initLab(&lab);
     setLabName(lab, name);
-    setLabType(lab, type);
+    setLabType(lab, labType);
     if (isRel) setLabRel(lab, 1);
     setSULab(sWordLab, lab);
-    setSLabStatus(sWordLab);
+    setSWordStatus(sWordLab, W_ENT);
     addSWord(instLst, sWordLab);
     return SUCCESS;
 }

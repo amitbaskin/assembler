@@ -18,14 +18,14 @@ result isStrScenario(char *word, char **line, label *lab, sWordLst *dataLst, lab
     if (getWord(line, &word, 0) != LINE_END) VALIDATE_VAL(finishLine(line), "");
     if (isString(word) == FALSE) return ERR;
     strScenario(word, lab, labLst, dataLst);
-    return SUCCESS;
+    return TRUE;
 }
 
 void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst){
     unsigned long len = strlen(str);
     int i;
     char chr;
-    checkLabFlagOnScenario(&lab, labLst, setLabCode, dataCounter);
+    checkLabFlagOnScenario(&lab, labLst, setLabData, dataCounter);
     for (i=1; i<len-1; i++){
         chr = str[i];
         addChrWord(chr, instLst);

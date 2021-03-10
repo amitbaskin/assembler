@@ -26,7 +26,8 @@ result isLegalLabel(char *word, unsigned long len){
 
 result checkLabelLegality(char **word, label **lab, unsigned long len){
     if (isLegalLabel(*word, len) != TRUE) return ERR;
-    return getNewLabByName(lab, *word);
+    VALIDATE_VAL(getNewLabByName(lab, *word), "");
+    return TRUE;
 }
 
 result isLabelDeclaration(char *word, label **lab, unsigned long len){
@@ -43,7 +44,7 @@ result initLab(label **lab){
 }
 
 result getNewLabByName(label **lab, char *name){
-    initLab(lab);
+    VALIDATE_VAL(initLab(lab), "");
     setLabName(*lab, name);
     return SUCCESS;
 }

@@ -9,6 +9,17 @@
 #include "generalUtils.h"
 #include "sWordListUtils.h"
 #include "labLstUtils.h"
+#include "labGetters.h"
+#include "labSetters.h"
+
+extern int ICF;
+
+void updateDataLabsAddresses(labelLst *labLst){
+    label *ptr;
+    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
+        if (isLabData(ptr)) setLabAddress(ptr, getLabAddress(ptr) + ICF);
+    }
+}
 
 result assemble(char *fName) {
     labelLst *labLst = NULL;
@@ -24,6 +35,7 @@ result assemble(char *fName) {
     VALIDATE_VAL(getMainOutputFile(fName, &fp), "")
     printInstLst(fp, instLst, labLst);
     printDataLst(fp, dataLst);
+    updateDataLabsAddresses(labLst);
     VALIDATE_VAL(printEntFile(labLst, fName), "")
     VALIDATE_VAL(printExtLst(fName, instLst), "")
     freeSWordLst(instLst);

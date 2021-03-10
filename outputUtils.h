@@ -4,7 +4,7 @@
 #ifndef ASSEMBLER_OUTPUT_UTILS_H
 #define ASSEMBLER_OUTPUT_UTILS_H
 #define HEADER_FORMAT "%d %d\n"
-void printLabel(FILE *fp, sWord *sWordLab);
+void printLabel(FILE *fp, label *lab);
 void printInst(FILE *fp, sWord **ptr, unsigned int toPrint);
 void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst);
 void printDataLst(FILE *fp, sWordLst *dataLst);
