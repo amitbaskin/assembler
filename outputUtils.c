@@ -52,16 +52,11 @@ void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
 void printDataLst(FILE *fp, sWordLst *dataLst){
     sWord *ptr;
     wordStatus status;
-    for (ptr = getSWordTail(dataLst); ptr != NULL; setThisSWord(&ptr, getSWordNext(ptr))) {
+    for (ptr = getSWordTail(dataLst); ptr != NULL; promoteSWord(&ptr)) {
         status = getSWordStatus(ptr);
-        if (status == NUM_DATA) {
-            setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
-            printInst(fp, &ptr, getSUNumData(ptr));
-        }
-        if(status == CHR_DATA){
-            setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
-            printInst(fp, &ptr, getSUChrData(ptr));
-        }
+        setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
+        if (status == NUM_DATA) printInst(fp, &ptr, getSUNumData(ptr));
+        if(status == CHR_DATA) printInst(fp, &ptr, getSUChrData(ptr));
     }
 }
 

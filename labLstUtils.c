@@ -8,8 +8,7 @@ extern int labelFlag;
 extern int instructionCounter;
 
 result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address){
-    result res = isLabInLst(labLst, lab, type, getLabName(*lab));
-    VALIDATE_VAL(res, "")
+    VALIDATE_VAL(isLabInLst(labLst, lab, type, getLabName(*lab)), "")
     setLabAddress(*lab, address);
     setLabType(*lab, type);
     addLab(labLst, *lab);
@@ -28,10 +27,9 @@ result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int 
 }
 
 result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
-    label *ptr = labLst->tail;
-    for (ptr = labLst->tail; ptr != NULL; ptr = ptr->next){
-        if (strcmp(getLabName(ptr), name) != 0) setThisLab(&ptr, getLabNext(ptr));
-        else {
+    label *ptr;
+    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)){
+        if (strcmp(getLabName(ptr), name) == 0) {
             *lab = ptr;
             VALIDATE_VAL(isLabTypeLegal(*lab, type), "")
             return TRUE;

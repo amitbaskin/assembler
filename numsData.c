@@ -21,7 +21,6 @@ result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst,
         initRawWordLst(&rawLst);
         breakDownData(line, rawLst, 1);
         VALIDATE_VAL(collectData(rawLst), "")
-        checkLabFlagOnScenario(&lab, labLst, setLabData, dataCounter);
         addSWordData(dataLst, labLst, lab, rawLst);
         return TRUE;
     } return FALSE;
@@ -40,10 +39,13 @@ result collectData(rawWordLst *lst){
 result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst *rawLst){
     rawWord *ptr;
     if (labelFlag) {
-        addLabToLabLst(labLst, &lab, L_NONE, dataCounter);
         setLabData(lab, 1);
+        addLabToLabLst(labLst, &lab, L_NONE, dataCounter);
     } for (ptr = getRawWordTail(rawLst); ptr != NULL; promoteRawWord(&ptr)){
         addNumWord(getRawWordNum(ptr), NUM_DATA, dataLst);
     } freeRawWordLst(rawLst);
     return SUCCESS;
 }
+//
+//labSetter(*lab, 1);
+//        addLabToLabLst(labLst, lab, L_NONE, address);

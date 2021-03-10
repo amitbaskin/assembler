@@ -55,11 +55,11 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
     long srcNum;
     int destReg;
     long destNum;
-    char *sep;
     ref srcType;
     ref destType;
-    VALIDATE_LINE_CONTINUATION(getWord(line, firstOp, 0), "")
-    VALIDATE_SEP(getWord(line, &sep, 1), "")
+    result res;
+    VALIDATE_LINE_CONTINUATION(res = getWord(line, firstOp, 1), "")
+    VALIDATE_SEP(res, "")
     getWord(line, secOp, 0);
     VALIDATE_VAL(finishLine(line), "")
     srcType = getOperandType(*firstOp, &srcReg, &srcNum);
@@ -176,7 +176,7 @@ void addAllOperandsWord(int operandsAmount, char **firstOp, char **secOp, sWordL
                         int srcReg, long srcNum, int destReg, long destNum){
     if (operandsAmount == 1) addOperandWord(destType, firstOp, instLst, destReg, destNum);
     if (operandsAmount == 2) {
-        addOperandWord(srcType, firstOp, instLst, destReg, destNum);
+        addOperandWord(srcType, firstOp, instLst, srcReg, srcNum);
         addOperandWord(destType, secOp, instLst, destReg, destNum);
     }
 }
