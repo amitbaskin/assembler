@@ -10,7 +10,6 @@
 extern int labelFlag;
 extern int ICF;
 extern int instructionCounter;
-extern int DCF;
 extern int lineCounter;
 extern int dataCounter;
 
@@ -55,7 +54,6 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     } freeHelper(lineOrgPtr);
     freeHelper(word);
     ICF = instructionCounter;
-    DCF = dataCounter;
     lineCounter = 0;
     return res;
 }

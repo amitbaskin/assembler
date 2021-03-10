@@ -4,4 +4,5 @@
 #define ASSEMBLER_ASSEMBLER_H
 result assemble(char *fName);
 void updateDataLabsAddresses(labelLst *labLst);
+void initGlobalVars();
 #endif

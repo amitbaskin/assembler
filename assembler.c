@@ -12,7 +12,19 @@
 #include "labGetters.h"
 #include "labSetters.h"
 
+extern int labelFlag;
+extern int instructionCounter;
+extern int dataCounter;
+extern int lineCounter;
 extern int ICF;
+
+void initGlobalVars(){
+    labelFlag = 0;
+    instructionCounter = INITIAL_INSTRUCTION_NUM;
+    dataCounter = 0;
+    lineCounter = 0;
+    ICF = 0;
+}
 
 void updateDataLabsAddresses(labelLst *labLst){
     label *ptr;
@@ -26,6 +38,7 @@ result assemble(char *fName) {
     sWordLst *instLst = NULL;
     sWordLst *dataLst = NULL;
     FILE *fp;
+    initGlobalVars();
     VALIDATE_VAL(initSWordLst(&instLst), "")
     VALIDATE_VAL(initSWordLst(&dataLst), "")
     VALIDATE_VAL(initLabLst(&labLst), "")
