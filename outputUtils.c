@@ -21,6 +21,7 @@ void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
     sWord *ptr;
     fprintf(fp, HEADER_FORMAT, instructionCounter - INITIAL_INSTRUCTION_NUM, dataCounter);
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
+
         switch (getSWordStatus(ptr)){
             case OP:
                 printInst(fp, &ptr, transOp(getSUOpWord(ptr)));
@@ -40,7 +41,7 @@ void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
                 break;
 
             case IM_NUM:
-                printInst(fp, &ptr, getSUNumData(ptr));
+                printInst(fp, &ptr, (int) getSUNumData(ptr));
                 break;
 
             default:
@@ -55,7 +56,7 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
     for (ptr = getSWordTail(dataLst); ptr != NULL; promoteSWord(&ptr)) {
         status = getSWordStatus(ptr);
         setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
-        if (status == NUM_DATA) printInst(fp, &ptr, getSUNumData(ptr));
+        if (status == NUM_DATA) printInst(fp, &ptr, (int) getSUNumData(ptr));
         if(status == CHR_DATA) printInst(fp, &ptr, getSUChrData(ptr));
     }
 }
@@ -75,35 +76,6 @@ result printEntFile(labelLst *labLst, char *fName) {
     } return SUCCESS;
 }
 
-//result printLabelTypeLst(char *fName, labelLst *labLst, labelType type) {
-//    label *ent = NULL;
-//    getLabTypeLst(ent, labLst, type);
-//    if (ent == NULL) return SUCCESS;
-//    FILE *fp;
-//    VALIDATE_VAL(getEntOutputFile(fName, &fp), "")
-//    label *ptr;
-//    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
-//        if (getLabType(ptr) == L_ENT) {
-//            printLabel(fp, ptr);
-//        }
-//        return SUCCESS;
-//    } return SUCCESS;
-//}
-
-//void getExtLst(sWord *ext, sWordLst *instLst){
-//    sWord *ptr;
-//    label *lab;
-//    for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)) {
-//        if (getSWordStatus(ptr) == LAB) {
-//                lab = getSULab(ptr);
-//                if (getLabType(lab) == EXT){
-//                    setThisSWord(&ext, ptr);
-//                    setSWordNext(ext, getSWordNext(ext));
-//                }
-//        }
-//    }
-//}
-
 result printExtLst(char *fName, sWordLst *instLst) {
     FILE *fp;
     sWord *ptr;
@@ -121,7 +93,7 @@ result printExtLst(char *fName, sWordLst *instLst) {
     } return SUCCESS;
 }
 
-void printInst(FILE *fp, sWord **ptr, unsigned int toPrint){
+void printInst(FILE *fp, sWord **ptr, int toPrint){
     printAddressToFile(fp, *ptr);
     printWordToFile(fp, toPrint);
     printAddressTypeToFile(fp, *ptr);

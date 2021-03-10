@@ -11,6 +11,8 @@ result initUWord(uWord **word){
 }
 
 void freeUWord(sWord *word){
-    if(getSWordStatus(word) == OP) freeHelper(getSUOpWord(word));
+    wordStatus status = getSWordStatus(word);
+    if (status == OP) freeHelper(getSUOpWord(word));
+    else if (status == LAB || status == W_ENT) freeLab(getSULab(word));
     freeHelper(getSUWord(word));
 }

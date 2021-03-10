@@ -19,7 +19,6 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
     sWord *ptr;
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
         lineCounter++;
-        int x = lineCounter;
         status = getSWordStatus(ptr);
         if (status == W_ENT) {
             if (isLabInLst(labLst, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
@@ -32,10 +31,16 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
                 res = ERR;
                 printf("");
                 continue;
-            } freeHelper(getSULab(ptr));
-            setSULab(ptr, lab);
-            if (getLabType(lab) == EXT) setSWordAddressType(ptr, E_TYPE);
-            else setSWordAddressType(ptr, R_TYPE);
+            } else if (isSULabRel(ptr)) {
+                setSWordAddressType(ptr, A_TYPE);
+            }
+            else if (getLabType(lab) == EXT) {
+                setSWordAddressType(ptr, E_TYPE);
+            }
+            else {
+                setSWordAddressType(ptr, R_TYPE);
+                setSULabAddress(ptr, getLabAddress(lab));
+            }
         }
     } return res;
 }

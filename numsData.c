@@ -42,7 +42,7 @@ result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst 
         setLabData(lab, 1);
         addLabToLabLst(labLst, &lab, L_NONE, dataCounter);
     } for (ptr = getRawWordTail(rawLst); ptr != NULL; promoteRawWord(&ptr)){
-        addNumWord(getRawWordNum(ptr), NUM_DATA, dataLst);
+        addNumWord(getRawWordNum(ptr), dataCounter++, NUM_DATA, dataLst);
     } freeRawWordLst(rawLst);
     return SUCCESS;
 }

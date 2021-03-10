@@ -26,7 +26,7 @@ void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst){
     int i;
     char chr;
     checkLabFlagOnScenario(&lab, labLst, setLabData, dataCounter);
-    for (i=1; i<len-1; i++){
+    for (i=1; i<len; i++){
         chr = str[i];
         addChrWord(chr, instLst);
     }

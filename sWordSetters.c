@@ -31,8 +31,12 @@ void setSEntStatus(sWord *word){
     word->status = W_ENT;
 }
 
-void setSNumStatus(sWord *word){
+void setSDataNumStatus(sWord *word){
     word->status = NUM_DATA;
+}
+
+void setSImNumStatus(sWord *word){
+    word->status = IM_NUM;
 }
 
 void setSChrStatus(sWord *word){

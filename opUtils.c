@@ -157,7 +157,7 @@ result validateDestOp(ref type, int opIndex){
 ref addOperandWord(ref r, char **operand, sWordLst *instLst, int reg, long num){
     switch(r){
         case IM:
-            addNumWord(num, IM_NUM, instLst);
+            addNumWord(num, instructionCounter++, IM_NUM, instLst);
             return IM;
 
         case DIR:

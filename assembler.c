@@ -31,11 +31,11 @@ result assemble(char *fName) {
     VALIDATE_VAL(initLabLst(&labLst), "")
     VALIDATE_VAL(getReadFile(fName, &fp), "")
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst), "")
+    updateDataLabsAddresses(labLst);
     VALIDATE_VAL(parseInstLst(instLst, labLst), "")
     VALIDATE_VAL(getMainOutputFile(fName, &fp), "")
     printInstLst(fp, instLst, labLst);
     printDataLst(fp, dataLst);
-    updateDataLabsAddresses(labLst);
     VALIDATE_VAL(printEntFile(labLst, fName), "")
     VALIDATE_VAL(printExtLst(fName, instLst), "")
     freeSWordLst(instLst);

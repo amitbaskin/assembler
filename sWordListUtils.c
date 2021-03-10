@@ -16,7 +16,7 @@ extern int instructionCounter;
 
 result addOpWord(opWord *opWord, sWordLst *instLst){
     sWord *sOpWord;
-    VALIDATE_VAL(createAndAddWord(&sOpWord, setSOpWordStatus, instLst), "");
+    VALIDATE_VAL(createAndAddWord(&sOpWord, OP, instLst), "");
     setSUOpWord(sOpWord, opWord);
     setSOpWordStatus(sOpWord);
     setSWordAddressType(sOpWord, A_TYPE);
@@ -24,9 +24,9 @@ result addOpWord(opWord *opWord, sWordLst *instLst){
     return SUCCESS;
 }
 
-result createAndAddWord(sWord **word, void setStatus(), sWordLst *lst){
+result createAndAddWord(sWord **word, wordStatus status, sWordLst *lst){
     VALIDATE_VAL(initSword(word), "");
-    setStatus(*word);
+    setSWordStatus(*word, status);
     addSWord(lst, *word);
     return SUCCESS;
 }
@@ -50,25 +50,24 @@ isRel){
 
 result addRegWord(int reg, sWordLst *instLst){
     sWord *sWordReg;
-    VALIDATE_VAL(createAndAddWord(&sWordReg, setSRegStatus, instLst), "");
+    VALIDATE_VAL(createAndAddWord(&sWordReg, W_REG, instLst), "");
     setSUReg(sWordReg, reg);
     setSWordAddressType(sWordReg, A_TYPE);
     setSWordAddress(sWordReg, instructionCounter++);
     return SUCCESS;
 }
 
-void addNumWord(long num, wordStatus status, sWordLst *lst){
+void addNumWord(long num, int address, wordStatus status, sWordLst *lst){
     sWord *sWordNum;
-    createAndAddWord(&sWordNum, setSNumStatus, lst);
+    createAndAddWord(&sWordNum, status, lst);
     setSUNum(sWordNum, num);
-    setSWordStatus(sWordNum, status);
     setSWordAddressType(sWordNum, A_TYPE);
-    setSWordAddress(sWordNum, dataCounter++);
+    setSWordAddress(sWordNum, address);
 }
 
 void addChrWord(char chr, sWordLst *dataLst){
     sWord *sWordChr;
-    createAndAddWord(&sWordChr, setSChrStatus, dataLst);
+    createAndAddWord(&sWordChr, CHR_DATA, dataLst);
     setSUChrData(sWordChr, chr);
     setSWordStatus(sWordChr, CHR_DATA);
     setSWordAddressType(sWordChr, A_TYPE);
