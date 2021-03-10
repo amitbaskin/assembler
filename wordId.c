@@ -6,7 +6,7 @@
 
 int isReg(char *r){
     int i;
-    for (i=0; i<REGS_LEN; i++){
+    for (i=0; i < REGS_AMOUNT; i++){
         if (!strcmp(r, regs[i])) return i;
     } return NOT_REG;
 }

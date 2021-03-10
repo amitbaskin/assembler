@@ -1,6 +1,6 @@
 #ifndef ASSEMBLER_OP_INFO_GETTERS_H
 #define ASSEMBLER_OP_INFO_GETTERS_H
-#define NOT_OP -1
+#define NOT_OP (-1)
 int getOpIndexByStr(char *word);
 char *getOpName(int opIndex);
 unsigned char getOperandsAmount(int opIndex);

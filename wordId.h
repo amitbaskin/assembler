@@ -13,7 +13,7 @@
 #define FUNCT_BITS_PREFIX 4
 #define OPCODE_BITS_PREFIX 8
 #define REGS {"r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7"}
-#define REGS_LEN 8
+#define REGS_AMOUNT 8
 #define A_TYPE 'A'
 #define R_TYPE 'R'
 #define E_TYPE 'E'

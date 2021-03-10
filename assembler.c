@@ -13,6 +13,7 @@
 #include "labSetters.h"
 
 extern int labelFlag;
+extern errFlag;
 extern int instructionCounter;
 extern int dataCounter;
 extern int lineCounter;
@@ -20,6 +21,7 @@ extern int ICF;
 
 void initGlobalVars(){
     labelFlag = 0;
+    errFlag = 0;
     instructionCounter = INITIAL_INSTRUCTION_NUM;
     dataCounter = 0;
     lineCounter = 0;
@@ -46,6 +48,7 @@ result assemble(char *fName) {
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst), "")
     updateDataLabsAddresses(labLst);
     VALIDATE_VAL(parseInstLst(instLst, labLst), "")
+    if (!errFlag) return ERR;
     VALIDATE_VAL(getMainOutputFile(fName, &fp), "")
     printInstLst(fp, instLst, labLst);
     printDataLst(fp, dataLst);

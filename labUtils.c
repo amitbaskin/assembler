@@ -7,6 +7,7 @@
 #include "labSetters.h"
 #include "labGetters.h"
 #include "parseLineUtils.h"
+#include "opDef.h"
 
 extern unsigned char labelFlag;
 
@@ -21,7 +22,11 @@ result isLegalLabel(char *word, unsigned long len){
     if (!isalpha(word[0])) return ERR;
     if (len == 1) return TRUE;
     for (i=1; i<len-2; i++) if (!isalnum(word[i])) return ERR;
-    return TRUE;
+    for (i=0; i < OPERATIONS_AMOUNT; i++){
+        if (strcmp(word, operations[i]) == 0) return ERR;
+    } for (i=0; i < REGS_AMOUNT; i++){
+        if (strcmp(word, regs[i]) == 0) return ERR;
+    } return TRUE;
 }
 
 result checkLabelLegality(char **word, label **lab, unsigned long len){
