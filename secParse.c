@@ -25,8 +25,8 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
                 res = ERR;
                 printf("");
                 continue;
-            }
-        } if (status == LAB) {
+            } setLabType(lab, L_ENT);
+        } else if (status == LAB) {
             if (isLabInLst(labLst, &lab, L_NONE, getSULabName(ptr)) == FALSE) {
                 res = ERR;
                 printf("");
@@ -36,6 +36,7 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
             }
             else if (getLabType(lab) == EXT) {
                 setSWordAddressType(ptr, E_TYPE);
+                setSULabType(ptr, EXT);
             }
             else {
                 setSWordAddressType(ptr, R_TYPE);

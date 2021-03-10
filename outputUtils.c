@@ -61,11 +61,11 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
     }
 }
 
-result printEntFile(labelLst *labLst, char *fName) {
+result printEntFile(labelLst *lst, char *fName) {
     int flag = 0;
     FILE *fp = NULL;
     label *ptr;
-    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
+    for (ptr = getLabTail(lst); ptr != NULL; promoteLab(&ptr)) {
         if (getLabType(ptr) == L_ENT) {
             if (!flag) {
                 flag = 1;
@@ -81,14 +81,14 @@ result printExtLst(char *fName, sWordLst *instLst) {
     sWord *ptr;
     int extFlag = 0;
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)) {
-        if (!extFlag) {
-            extFlag = 1;
-            VALIDATE_VAL(getExtOutputFile(fName, &fp), "");
-        }
         if (getSWordStatus(ptr) == LAB) {
             if (getSULabType(ptr) == EXT){
-                setSULabAddress(ptr, getSWordAddress(ptr));
-            } printLabel(fp, getSULab(ptr));
+                if (!extFlag) {
+                    extFlag = 1;
+                    VALIDATE_VAL(getExtOutputFile(fName, &fp), "");
+                } setSULabAddress(ptr, getSWordAddress(ptr));
+                printLabel(fp, getSULab(ptr));
+            }
         }
     } return SUCCESS;
 }

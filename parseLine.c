@@ -17,6 +17,7 @@
 #include "opUtils.h"
 
 extern labelFlag;
+extern instructionCounter;
 
 #define SWITCH_DATA_RES(res) {\
     switch (res){             \
@@ -40,7 +41,7 @@ extern labelFlag;
 result entryScenario(char **line, char **word, label **lab, sWordLst *instLst){
     VALIDATE_VAL(lookForLabel(line, word, lab), "");
     setLabType(*lab, L_ENT);
-    addLabToInstLst(instLst, *word, 0, W_ENT, L_ENT, 0);
+    addLabToInstLst(instLst, *word, instructionCounter, W_ENT, L_ENT, 0);
     return TRUE;
 }
 result extScenario(char **line, char **word, label **lab, labelLst *labLst){
