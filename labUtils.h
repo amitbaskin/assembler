@@ -1,7 +1,7 @@
 #include "wordId.h"
 #ifndef ASSEMBLER_LABEL_UTILS_H
 #define ASSEMBLER_LABEL_UTILS_H
-result checkRel(char *word);
+result checkRel(char **word);
 result isLegalLabel(char *word, unsigned long len);
 result checkLabelLegality(char **word, label **lab, unsigned long len);
 result isLabelDeclaration(char **line, char **word, label **lab, unsigned long len);

@@ -67,7 +67,7 @@ void setSUReg(sWord *word, reg r){
     setUReg(getSUWord(word), r);
 }
 
-void setSUNumData(sWord *word, long num){
+void setSUNum(sWord *word, long num){
     setUNumData(getSUWord(word), num);
 }
 

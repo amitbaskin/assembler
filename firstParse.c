@@ -28,6 +28,8 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     label *lab;
     char *firstOp;
     char *secOp;
+    char *orgFirstOp;
+    char *orgSecOp;
     initLab(&lab);
     VALIDATE_VAL(getWordAlloc(&line), "")
     lineOrgPtr = line;
@@ -35,6 +37,7 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     VALIDATE_VAL(initLab(&lab), "")
     while (res != FILE_END){
         lineCounter++;
+        int x = lineCounter;
         labelFlag = 0;
         line = lineOrgPtr;
         res = getLine(&line, fp);
@@ -44,10 +47,11 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         if (res == TRUE || res == ERR) continue;
         VALIDATE_VAL(getWordAlloc(&firstOp), "")
         VALIDATE_VAL(getWordAlloc(&secOp), "")
-        int x = labelFlag;
+        orgFirstOp = firstOp;
+        orgSecOp = secOp;
         res = lookForOperation(&firstOp, &secOp, &word, &line, &lab, labLst, instLst);
-        freeHelper(firstOp);
-        freeHelper(secOp);
+        freeHelper(orgFirstOp);
+        freeHelper(orgSecOp);
     } freeHelper(lineOrgPtr);
     freeHelper(word);
     ICF = instructionCounter;

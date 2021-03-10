@@ -40,7 +40,7 @@ extern labelFlag;
 result entryScenario(char **line, char **word, label **lab, sWordLst *instLst){
     VALIDATE_VAL(lookForLabel(line, word, lab), "");
     setLabType(*lab, L_ENT);
-    addLabToInstLst(instLst, *word, 0, L_ENT, 0);
+    addLabToInstLst(instLst, *word, 0, W_ENT, L_ENT, 0);
     return TRUE;
 }
 result extScenario(char **line, char **word, label **lab, labelLst *labLst){
@@ -61,7 +61,6 @@ result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWor
 
 result lookForOperation(char **firstOp, char **secOp, char **word, char **line, label **lab, labelLst *labLst, sWordLst
 *instLst){
-    int x = labelFlag;
     int opIndex = getOpIndexByStr(*word);
     if (opIndex == NOT_OP) return ERR;
     int opsAmount = getOperandsAmount(opIndex);

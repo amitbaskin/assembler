@@ -5,10 +5,10 @@
 result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, labelLst *labLst, label **lab, sWordLst
 *instLst);
 result validateOneOp(char **line, int opIndex, char **DestOp, labelLst *labLst, label **lab, sWordLst *instLst);
-result validateZeroOps(char **line);
+result validateZeroOps(char **line, int opIndex, label **lab, labelLst *labLst, sWordLst *instLst);
 result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp, labelLst
 *labLst, label **lab, sWordLst *instLst);
-ref getOperandType(char *operand, int *regNum, long *num);
+ref getOperandType(char **operand, int *regNum, long *num);
 result validateSrcOp(ref type, int opIndex);
 result validateDestOp(ref type, int opIndex);
 ref addOperandWord(ref r, char **operand, sWordLst *instLst, int reg, long num);

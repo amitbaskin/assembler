@@ -17,7 +17,7 @@ void setThisSWord(sWord **this, sWord *other);
 void setSUOpWord(sWord *word, opWord *op);
 void setSULab(sWord *word, label *lab);
 void setSUReg(sWord *word, reg r);
-void setSUNumData(sWord *word, long num);
+void setSUNum(sWord *word, long num);
 void setSUChrData(sWord *word, char chr);
 void setSWordStatusDataLab(sWord *word, unsigned char toSet);
 void setSUCodeLab(sWord *word, unsigned char toSet);

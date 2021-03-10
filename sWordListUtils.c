@@ -31,7 +31,8 @@ result createAndAddWord(sWord **word, void setStatus(), sWordLst *lst){
     return SUCCESS;
 }
 
-result addLabToInstLst(sWordLst *instLst, char *name, int address, labelType labType, unsigned char isRel){
+result addLabToInstLst(sWordLst *instLst, char *name, int address, wordStatus status, labelType labType, unsigned char
+isRel){
     sWord *sWordLab;
     VALIDATE_VAL(initSword(&sWordLab), "");
     setSWordAddress(sWordLab, address);
@@ -42,7 +43,7 @@ result addLabToInstLst(sWordLst *instLst, char *name, int address, labelType lab
     setLabType(lab, labType);
     if (isRel) setLabRel(lab, 1);
     setSULab(sWordLab, lab);
-    setSWordStatus(sWordLab, W_ENT);
+    setSWordStatus(sWordLab, status);
     addSWord(instLst, sWordLab);
     return SUCCESS;
 }
@@ -59,7 +60,7 @@ result addRegWord(int reg, sWordLst *instLst){
 void addNumWord(long num, wordStatus status, sWordLst *lst){
     sWord *sWordNum;
     createAndAddWord(&sWordNum, setSNumStatus, lst);
-    setSUNumData(sWordNum, num);
+    setSUNum(sWordNum, num);
     setSWordStatus(sWordNum, status);
     setSWordAddressType(sWordNum, A_TYPE);
     setSWordAddress(sWordNum, dataCounter++);

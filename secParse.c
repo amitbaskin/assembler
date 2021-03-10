@@ -19,13 +19,14 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
     sWord *ptr;
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
         lineCounter++;
+        int x = lineCounter;
         status = getSWordStatus(ptr);
         if (status == W_ENT) {
             if (isLabInLst(labLst, &lab, L_ENT, getSULabName(ptr)) == FALSE) {
                 res = ERR;
                 printf("");
                 continue;
-            } setLabType(lab, L_ENT);
+            }
         } if (status == LAB) {
             if (isLabInLst(labLst, &lab, L_NONE, getSULabName(ptr)) == FALSE) {
                 res = ERR;

@@ -10,10 +10,10 @@
 
 extern unsigned char labelFlag;
 
-result checkRel(char *word){
-    if (word[0] != REL_PREFIX) return FALSE;
-    word++;
-    return isLegalLabel(word, strlen(word));
+result checkRel(char **word){
+    if ((*word)[0] != REL_PREFIX) return FALSE;
+    (*word)++;
+    return isLegalLabel(*word, strlen(*word));
 }
 
 result isLegalLabel(char *word, unsigned long len){
