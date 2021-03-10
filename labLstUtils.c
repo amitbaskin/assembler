@@ -64,10 +64,9 @@ result addLab(labelLst *lst, label *lab){
     for (ptr = getLabTail(lst); ptr != NULL; promoteLab(&ptr)){
         if (strcmp(getLabName(lab), getLabName(ptr)) != 0) continue;
         type1 = getLabType(ptr);
-         type2 = getLabType(lab);
-         if ((type1 == EXT && type2 != EXT) || (type2 == EXT && type1 != EXT)){
-             return ERR;
-         }
+        type2 = getLabType(lab);
+        if ((type1 == EXT) && type2 == EXT) return SUCCESS;
+        return ERR;
     } ADD_TO_LIST(label, lst->tail == NULL, lab)
     return SUCCESS;
 }
