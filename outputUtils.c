@@ -30,7 +30,7 @@ void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
             case LAB:
                 if (isSULabRel(ptr)) {
                     int dist;
-                    getRelLabelAddressFromLst(getSULabName(ptr), labLst, getSULabAddress(ptr), &dist);
+                    getRelLabelAddressFromLst(getSULabName(ptr), labLst, getSWordAddress(ptr), &dist);
                     printInst(fp, &ptr, dist);
                 }
                 else printInst(fp, &ptr, getSULabAddress(ptr));

@@ -15,12 +15,11 @@ result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address
     return SUCCESS;
 }
 
-result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int *dist){
+result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int *dist) {
     label *ptr;
-    for (ptr = labLst->tail; ptr != NULL; ptr = ptr->next){
-        if (strcmp(name, getLabName(ptr)) != 0) setThisLab(&ptr, getLabNext(ptr));
-        else {
-            *dist = (address - getLabAddress(ptr));
+    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
+        if (strcmp(name, getLabName(ptr)) == 0) {
+            *dist = (getLabAddress(ptr) - address);
             return SUCCESS;
         }
     } return ERR;
