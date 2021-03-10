@@ -1,10 +1,11 @@
 #include <string.h>
 #include "fileUtils.h"
 #include "generalUtils.h"
+#include "errFuncs.h"
 
 result getNameAlloc(size_t size, char **fName){
     void *ptr;
-    VALIDATE_VAL(getAlloc(size, &ptr), "")
+    VALIDATE_VAL(getAlloc(size, &ptr))
     *fName = ptr;
     return SUCCESS;
 }
@@ -13,13 +14,15 @@ result getFile(char *name, FILE **fp, char *mode, char *suffix){
     char *fullName;
     unsigned long nameLen = strlen(name);
     unsigned long sufLen = strlen(suffix);
-    VALIDATE_VAL(getNameAlloc(nameLen + sufLen + 1, &fullName), "")
+    VALIDATE_VAL(getNameAlloc(nameLen + sufLen + 1, &fullName))
     strcat(fullName, name);
     strcat(fullName, suffix);
     *fp = fopen(fullName, mode);
     freeHelper(fullName);
-    if (*fp == NULL) return ERR;
-    return SUCCESS;
+    if (*fp == NULL) {
+        openFileErr();
+        return ERR;
+    } return SUCCESS;
 }
 
 result getReadFile(char *name, FILE **fp){

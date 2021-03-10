@@ -12,29 +12,31 @@
 #include "opWordSetters.h"
 #include "sWordGetters.h"
 #include "labLstUtils.h"
+#include "opDef.h"
+#include "errFuncs.h"
 
 extern int instructionCounter;
 extern int labelFlag;
 
-#define VALIDATE_OP(opValidation, msg) { \
-    if ((opValidation) == FALSE) {         \
-        printf(msg);                     \
-        return ERR;                      \
-    }                                    \
+#define VALIDATE_OP(opValidation) { \
+    if ((opValidation) == FALSE) {  \
+        operandErr();               \
+        return ERR;                 \
+    }                               \
 }
 
-#define VALIDATE_LINE_CONTINUATION(wordResult, msg){ \
-    if ((wordResult) == FALSE) {                       \
-        printf(msg);                                 \
-        return ERR;                                  \
-    }                                                \
+#define VALIDATE_LINE_CONTINUATION(wordResult){ \
+    if ((wordResult) == FALSE) {                \
+        lineNotEndErr();                        \
+        return ERR;                             \
+    }                                           \
 }
 
-#define VALIDATE_SEP(wordResult, msg){ \
-    if ((wordResult) != SEP) {           \
-        printf(msg);                   \
-        return ERR;                    \
-    }                                  \
+#define VALIDATE_SEP(wordResult){ \
+    if ((wordResult) != SEP) {    \
+        sepErr();                 \
+        return ERR;               \
+    }                             \
 }
 
 #define CHECK_REF_TYPE(checkFunc, type){ \
@@ -45,7 +47,6 @@ void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **fir
  label **lab, sWordLst *instLst, int srcReg, long srcNum, int destReg, long destNum){
     opWord *op;
     initOpWord(opIndex, srcType, destType, &op);
-    int x = labelFlag;
     checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter);
     addOpWord(op, instLst);
     addAllOperandsWord(opsAmount, firstOp, secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);
@@ -60,14 +61,14 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
     ref srcType;
     ref destType;
     result res;
-    VALIDATE_LINE_CONTINUATION(res = getWord(line, firstOp, 1), "")
-    VALIDATE_SEP(res, "")
+    VALIDATE_LINE_CONTINUATION(res = getWord(line, firstOp, 1))
+    VALIDATE_SEP(res)
     getWord(line, secOp, 0);
-    VALIDATE_VAL(finishLine(line), "")
+    VALIDATE_VAL(finishLine(line))
     srcType = getOperandType(firstOp, &srcReg, &srcNum);
     destType = getOperandType(secOp, &destReg, &destNum);
-    VALIDATE_OP(validateSrcOp(srcType, opIndex),"")
-    VALIDATE_OP(validateDestOp(destType, opIndex),"")
+    VALIDATE_OP(validateSrcOp(srcType, opIndex))
+    VALIDATE_OP(validateDestOp(destType, opIndex))
     processOp(opIndex, 2, srcType, destType, firstOp, secOp, labLst, lab, instLst, srcReg, srcNum, destReg, destNum);
     return SUCCESS;
 }
@@ -76,10 +77,10 @@ result validateOneOp(char **line, int opIndex, char **DestOp, labelLst *labLst, 
     int destReg;
     long destNum;
     ref destType;
-    VALIDATE_LINE_CONTINUATION(getWord(line, DestOp, 0), "");
-    VALIDATE_VAL(finishLine(line), "");
+    VALIDATE_LINE_CONTINUATION(getWord(line, DestOp, 0))
+    VALIDATE_VAL(finishLine(line))
     destType = getOperandType(DestOp, &destReg, &destNum);
-    VALIDATE_OP(validateDestOp(destType, opIndex), "")
+    VALIDATE_OP(validateDestOp(destType, opIndex))
     processOp(opIndex, 1, R_NONE, destType, DestOp, NULL, labLst, lab, instLst, NOT_REG, 0, destReg, destNum);
     return SUCCESS;
 }
@@ -104,7 +105,7 @@ result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char
         case 0:
             return validateZeroOps(line, opIndex, lab, labLst, instLst);
         default:
-            return ERR;
+            return ERR; /* not supposed to be possible to get here */
     }
 }
 
@@ -131,7 +132,7 @@ result validateSrcOp(ref type, int opIndex){
             return getIsRegSrc(opIndex);
 
         default:
-            return ERR;
+            return ERR; /* not supposed to be possible to get here */
     }
 }
 
@@ -150,7 +151,7 @@ result validateDestOp(ref type, int opIndex){
             return getIsRegDest(opIndex);
 
         default:
-            return ERR;
+            return ERR; /* not supposed to be possible to get here */
     }
 }
 
@@ -188,11 +189,10 @@ void addAllOperandsWord(int operandsAmount, char **firstOp, char **secOp, sWordL
 
 result initOpWord(int opIndex, ref src, ref dest, opWord **op){
     void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(opWord), &ptr), "");
+    VALIDATE_VAL(getAlloc(sizeof(opWord), &ptr))
     *op = (opWord *) ptr;
     setOpIndex(*op, opIndex);
     setOpSrcRef(*op, src);
     setOpDestRef(*op, dest);
     return SUCCESS;
 }
-

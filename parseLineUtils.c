@@ -5,12 +5,17 @@
 #include "parseLine.h"
 #include "rawWordLstUtils.h"
 #include "rawWordUtils.h"
+#include "errFuncs.h"
+
+extern lineCounter;
 
 result finishLine(char **line){
     char chr;
     for (; (chr = **line) == ' ' || chr == '\t'; (*line)++);
-    if (chr != '\0') return ERR;
-    return SUCCESS;
+    if (chr != '\0') {
+        lineEndErr();
+        return ERR;
+    } return SUCCESS;
 }
 
 result breakDownData(char **line, rawWordLst *lst, unsigned char isSep){
@@ -19,12 +24,12 @@ result breakDownData(char **line, rawWordLst *lst, unsigned char isSep){
     rawWord *word;
     int isContinue = 1;
     while (isContinue){
-        VALIDATE_VAL(getWordAlloc(&str), "")
+        VALIDATE_VAL(getWordAlloc(&str))
         res = getWord(line, &str, isSep);
         if (res == LINE_END) {
             isContinue = 0;
             if (*str == '\0') break;
-        } initRawWord(&word);
+        } VALIDATE_VAL(initRawWord(&word))
         setRawWordStr(word, str);
         addRawWord(lst, word);
     } return res;
@@ -42,8 +47,10 @@ result getLine(char **line, FILE *fp){
     for (i=0; getLineLoopCond((char) (chr = fgetc(fp)), i); (*line)[i] = (char) chr, i++);
     (*line)[i] = '\0';
     if (chr == EOF) return FILE_END;
-    if (chr != '\n') return ERR;
-    return SUCCESS;
+    if (chr != '\n') {
+        lineTooLongErr();
+        return ERR;
+    } return SUCCESS;
 }
 
 unsigned char isSepCond(unsigned char isSep, char chr){

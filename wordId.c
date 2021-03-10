@@ -3,6 +3,7 @@
 #include "generalUtils.h"
 #include "wordId.h"
 #include "parseLineUtils.h"
+#include "errFuncs.h"
 
 int isReg(char *r){
     int i;
@@ -42,13 +43,14 @@ result isImmediateNum(long *got, char *word){
     unsigned long len;
     len = strlen(word);
     if (len < 2 || word[0] != NUM_PREFIX) return FALSE;
-    *got = strtol(word+1, &word, 10);
-    if (strcmp(word, "\0") != 0) return ERR;
-    else return TRUE;
+    word++;
+    return isNum(got, word);
 }
 
-result isNumData(long *got, char *word){
-    *got = strtol(word, &(word), 10);
-    if (strcmp(word, "\0") != 0) return ERR;
-    else return TRUE;
+result isNum(long *got, char *word){
+    *got = strtol(word, &word, 10);
+    if (strcmp(word, "\0") != 0) {
+        notNumErr();
+        return ERR;
+    } else return TRUE;
 }

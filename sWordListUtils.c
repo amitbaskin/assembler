@@ -16,7 +16,7 @@ extern int instructionCounter;
 
 result addOpWord(opWord *opWord, sWordLst *instLst){
     sWord *sOpWord;
-    VALIDATE_VAL(createAndAddWord(&sOpWord, OP, instLst), "");
+    VALIDATE_VAL(createAndAddWord(&sOpWord, OP, instLst))
     setSUOpWord(sOpWord, opWord);
     setSOpWordStatus(sOpWord);
     setSWordAddressType(sOpWord, A_TYPE);
@@ -25,7 +25,7 @@ result addOpWord(opWord *opWord, sWordLst *instLst){
 }
 
 result createAndAddWord(sWord **word, wordStatus status, sWordLst *lst){
-    VALIDATE_VAL(initSword(word), "");
+    VALIDATE_VAL(initSword(word))
     setSWordStatus(*word, status);
     addSWord(lst, *word);
     return SUCCESS;
@@ -34,12 +34,12 @@ result createAndAddWord(sWord **word, wordStatus status, sWordLst *lst){
 result addLabToInstLst(sWordLst *instLst, char *name, int address, wordStatus status, labelType labType, unsigned char
 isRel){
     sWord *sWordLab;
-    VALIDATE_VAL(initSword(&sWordLab), "");
+    VALIDATE_VAL(initSword(&sWordLab))
     setSWordAddress(sWordLab, address);
     setSLabStatus(sWordLab);
     label *lab;
     initLab(&lab);
-    setLabName(lab, name);
+    VALIDATE_VAL(setLabName(lab, name))
     setLabType(lab, labType);
     if (isRel) setLabRel(lab, 1);
     setSULab(sWordLab, lab);
@@ -50,7 +50,7 @@ isRel){
 
 result addRegWord(int reg, sWordLst *instLst){
     sWord *sWordReg;
-    VALIDATE_VAL(createAndAddWord(&sWordReg, W_REG, instLst), "");
+    VALIDATE_VAL(createAndAddWord(&sWordReg, W_REG, instLst))
     setSUReg(sWordReg, reg);
     setSWordAddressType(sWordReg, A_TYPE);
     setSWordAddress(sWordReg, instructionCounter++);
@@ -93,7 +93,7 @@ void addSWord(sWordLst *lst, sWord *word){
 
 result initSWordLst(sWordLst **lst){
     void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(sWordLst), &ptr), "")
+    VALIDATE_VAL(getAlloc(sizeof(sWordLst), &ptr))
     *lst = ptr;
     return SUCCESS;
 }

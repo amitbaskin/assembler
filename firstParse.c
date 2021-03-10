@@ -7,6 +7,7 @@
 #include "sWordSetters.h"
 #include "generalUtils.h"
 #include "sWordGetters.h"
+#include "errFuncs.h"
 
 extern int labelFlag;
 extern int errFlag;
@@ -32,28 +33,27 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     char *orgFirstOp;
     char *orgSecOp;
     result isFileEnd = FALSE;
-    initLab(&lab);
-    VALIDATE_VAL(getWordAlloc(&line), "")
+    VALIDATE_VAL(initLab(&lab))
+    VALIDATE_VAL(getWordAlloc(&line))
     lineOrgPtr = line;
-    VALIDATE_VAL(getWordAlloc(&word), "")
-    VALIDATE_VAL(initLab(&lab), "")
+    VALIDATE_VAL(getWordAlloc(&word))
+    VALIDATE_VAL(initLab(&lab))
     while (isFileEnd != FILE_END){
         lineCounter++;
         labelFlag = 0;
         line = lineOrgPtr;
-        VALIDATE_VAL(isFileEnd = getLine(&line, fp), "")
-        int x = lineCounter;
+        VALIDATE_VAL(isFileEnd = getLine(&line, fp))
         if (*line == COMMENT_CHR || isEmptyLine(line) == TRUE) continue;
         if (getWord(&line, &word, 0) == LAB_DEC){
-            VALIDATE_VAL(res = isLabelDeclaration(&line, &word, &lab, strlen(word)), "")
+            VALIDATE_VAL(res = isLabelDeclaration(&line, &word, &lab, strlen(word)))
             if (res != TRUE){
                 errFlag = 1;
                 continue;
             }
         } res = lookForData(&word, &line, &lab, labLst, instLst, dataLst);
         if (res == ERR || res != FALSE) continue;
-        VALIDATE_VAL(getWordAlloc(&firstOp), "")
-        VALIDATE_VAL(getWordAlloc(&secOp), "")
+        VALIDATE_VAL(getWordAlloc(&firstOp))
+        VALIDATE_VAL(getWordAlloc(&secOp))
         orgFirstOp = firstOp;
         orgSecOp = secOp;
         res = lookForOperation(&firstOp, &secOp, &word, &line, &lab, labLst, instLst);

@@ -9,12 +9,10 @@
 #define INITIAL_INSTRUCTION_NUM 100
 #define SEPARATOR ','
 
-#define VALIDATE_VAL(val, failMsg) { \
-    if ((val) == ERR) {                \
-        if (*(failMsg) != '\0')        \
-            printf(failMsg);         \
-        return ERR;                  \
-    }                                \
+#define VALIDATE_VAL(val) { \
+    if ((val) == ERR) {     \
+        return ERR; /* handled before hand */ \
+    }                       \
 }
 
 #define ADD_TO_LIST(type, cond, item){ \

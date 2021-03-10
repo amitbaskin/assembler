@@ -10,17 +10,18 @@
 #include "parseLine.h"
 #include "rawWordUtils.h"
 #include "rawWordLstUtils.h"
+#include "errFuncs.h"
 
 extern int dataCounter;
 extern int labelFlag;
 
 result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
     rawWordLst *rawLst;
-    VALIDATE_VAL(initRawWordLst(&rawLst), "");
+    VALIDATE_VAL(initRawWordLst(&rawLst))
     if (isData(word) == TRUE) {
         initRawWordLst(&rawLst);
-        breakDownData(line, rawLst, 1);
-        VALIDATE_VAL(collectData(rawLst), "")
+        VALIDATE_VAL(breakDownData(line, rawLst, 1))
+        VALIDATE_VAL(collectData(rawLst))
         addSWordData(dataLst, labLst, lab, rawLst);
         return TRUE;
     } return FALSE;
@@ -30,7 +31,7 @@ result collectData(rawWordLst *lst){
     long num;
     rawWord *ptr;
     for (ptr = getRawWordTail(lst); ptr != NULL; promoteRawWord(&ptr)){
-        VALIDATE_VAL(isNumData(&num, getRawWordStr(ptr)), "")
+        VALIDATE_VAL(isNum(&num, getRawWordStr(ptr)))
         freeHelper(getRawWordStr(ptr));
         setRawWordNum(ptr, (int) num);
     } return SUCCESS;

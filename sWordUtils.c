@@ -6,7 +6,7 @@
 
 result initSword(sWord **word){
     void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(sWord), &ptr), "");
+    VALIDATE_VAL(getAlloc(sizeof(sWord), &ptr))
     *word = (sWord*) ptr;
     uWord *unionWord;
     initUWord(&unionWord);

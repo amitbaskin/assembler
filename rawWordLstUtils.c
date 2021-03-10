@@ -28,7 +28,7 @@ void addRawWord(rawWordLst *lst, rawWord *word){
 
 result initRawWordLst(rawWordLst **lst){
     void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(rawWordLst), &ptr), "")
+    VALIDATE_VAL(getAlloc(sizeof(rawWordLst), &ptr))
     *lst = ptr;
     return SUCCESS;
 }

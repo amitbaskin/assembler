@@ -1,6 +1,7 @@
 #include <string.h>
 #include "labSetters.h"
 #include "generalUtils.h"
+#include "errFuncs.h"
 
 void setLabData(label *lab, unsigned char toSet){
     lab->isData = toSet;
@@ -25,7 +26,7 @@ void setLabAddress(label *lab, int address){
 result setLabName(label *lab, char *name){
     void *ptr;
     unsigned long len = strlen(name) + 1;
-    VALIDATE_VAL(getAlloc(len, &ptr), "")
+    VALIDATE_VAL(getAlloc(len, &ptr))
     lab->name = (char *) ptr;
     strcpy(lab->name, name);
     setLabIsNameAlloc(lab, 1);

@@ -11,6 +11,7 @@
 #include "labLstUtils.h"
 #include "labGetters.h"
 #include "labSetters.h"
+#include "errFuncs.h"
 
 extern int labelFlag;
 extern errFlag;
@@ -18,6 +19,7 @@ extern int instructionCounter;
 extern int dataCounter;
 extern int lineCounter;
 extern int ICF;
+extern char *inputFileName;
 
 void initGlobalVars(){
     labelFlag = 0;
@@ -41,19 +43,20 @@ result assemble(char *fName) {
     sWordLst *dataLst = NULL;
     FILE *fp;
     initGlobalVars();
-    VALIDATE_VAL(initSWordLst(&instLst), "")
-    VALIDATE_VAL(initSWordLst(&dataLst), "")
-    VALIDATE_VAL(initLabLst(&labLst), "")
-    VALIDATE_VAL(getReadFile(fName, &fp), "")
-    VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst), "")
+    inputFileName = fName;
+    VALIDATE_VAL(initSWordLst(&instLst))
+    VALIDATE_VAL(initSWordLst(&dataLst))
+    VALIDATE_VAL(initLabLst(&labLst))
+    VALIDATE_VAL(getReadFile(fName, &fp))
+    VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst))
     updateDataLabsAddresses(labLst);
-    VALIDATE_VAL(parseInstLst(instLst, labLst), "")
-    if (errFlag) return ERR;
-    VALIDATE_VAL(getMainOutputFile(fName, &fp), "")
+    VALIDATE_VAL(parseInstLst(instLst, labLst))
+    if (errFlag) return ERR; /* handled already */
+    VALIDATE_VAL(getMainOutputFile(fName, &fp))
     printInstLst(fp, instLst, labLst);
     printDataLst(fp, dataLst);
-    VALIDATE_VAL(printEntFile(labLst, fName), "")
-    VALIDATE_VAL(printExtLst(fName, instLst), "")
+    VALIDATE_VAL(printEntFile(labLst, fName))
+    VALIDATE_VAL(printExtLst(fName, instLst))
     freeSWordLst(instLst);
     freeSWordLst(dataLst);
     freeLabLst(labLst);

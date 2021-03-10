@@ -111,6 +111,6 @@ result isEntryOrder(char *word);
 result isExternOrder(char *word);
 result isString(char *word);
 result isImmediateNum(long *got, char *word);
-result isNumData(long *got, char *word);
+result isNum(long *got, char *word);
 
 #endif

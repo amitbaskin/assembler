@@ -8,6 +8,7 @@
 #include "labGetters.h"
 #include "parseLineUtils.h"
 #include "opDef.h"
+#include "errFuncs.h"
 
 extern unsigned char labelFlag;
 
@@ -19,17 +20,30 @@ result checkRel(char **word){
 
 result isLegalLabel(char *word, unsigned long len){
     int i;
-    for (i=0; i<len; i++) if (!isalnum(word[i])) return ERR;
-    for (i=0; i < OPERATIONS_AMOUNT; i++){
-        if (strcmp(word, operations[i]) == 0) return ERR;
+    if (!isalpha(word[0])) {
+        illegalChrErr();
+        return ERR;
+    } if (len == 1) return TRUE;
+    for (i=1; i<len; i++) if (!isalnum(word[i])) {
+        illegalChrErr();
+        return ERR;
+    } for (i=0; i < OPERATIONS_AMOUNT; i++){
+        if (strcmp(word, operations[i]) == 0) {
+            keyWordErr(operations[i]);
+            return ERR;
+        }
     } for (i=0; i < REGS_AMOUNT; i++){
-        if (strcmp(word, regs[i]) == 0) return ERR;
+        if (strcmp(word, regs[i]) == 0) {
+            keyWordErr(regs[i]);
+            return ERR;
+        }
     } return TRUE;
 }
 
 result checkLabelLegality(char **word, label **lab, unsigned long len){
-    if (isLegalLabel(*word, len) != TRUE) return ERR;
-    VALIDATE_VAL(getNewLabByName(lab, *word), "");
+    if (isLegalLabel(*word, len) != TRUE) {
+        return ERR; /* handled inside */
+    } VALIDATE_VAL(getNewLabByName(lab, *word))
     return TRUE;
 }
 
@@ -44,25 +58,31 @@ result isLabelDeclaration(char **line, char **word, label **lab, unsigned long l
 
 result initLab(label **lab){
     void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(label), &ptr), "")
+    VALIDATE_VAL(getAlloc(sizeof(label), &ptr))
     *lab = (label *) ptr;
     return SUCCESS;
 }
 
 result getNewLabByName(label **lab, char *name){
-    VALIDATE_VAL(initLab(lab), "");
-    setLabName(*lab, name);
+    VALIDATE_VAL(initLab(lab))
+    VALIDATE_VAL(setLabName(*lab, name))
     return SUCCESS;
 }
 
 result isLabTypeLegal(label *lab, labelType type){
     switch (type) {
         case L_ENT:
-            if (getLabType(lab) == EXT) return ERR;
+            if (getLabType(lab) == EXT) {
+                illegalLabTypeErr();
+                return ERR;
+            }
             break;
 
         case EXT:
-            if (getLabType(lab) == L_ENT) return ERR;
+            if (getLabType(lab) == L_ENT) {
+                illegalLabTypeErr();
+                return ERR;
+            }
             break;
 
         default:

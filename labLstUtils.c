@@ -3,15 +3,16 @@
 #include "labUtils.h"
 #include "labSetters.h"
 #include "labGetters.h"
+#include "errFuncs.h"
 
 extern int labelFlag;
 extern int instructionCounter;
 
 result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address){
-    VALIDATE_VAL(isLabInLst(labLst, lab, type, getLabName(*lab)), "")
+    VALIDATE_VAL(isLabInLst(labLst, lab, type, getLabName(*lab)))
     setLabAddress(*lab, address);
     setLabType(*lab, type);
-    VALIDATE_VAL(addLab(labLst, *lab), "");
+    VALIDATE_VAL(addLab(labLst, *lab))
     return SUCCESS;
 }
 
@@ -22,7 +23,8 @@ result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int 
             *dist = (getLabAddress(ptr) - address);
             return SUCCESS;
         }
-    } return ERR;
+    } relLabErr();
+    return ERR;
 }
 
 result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
@@ -30,7 +32,7 @@ result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
     for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)){
         if (strcmp(getLabName(ptr), name) == 0) {
             *lab = ptr;
-            VALIDATE_VAL(isLabTypeLegal(*lab, type), "")
+            VALIDATE_VAL(isLabTypeLegal(*lab, type))
             return TRUE;
         }
     } return FALSE;
@@ -66,6 +68,7 @@ result addLab(labelLst *lst, label *lab){
         type1 = getLabType(ptr);
         type2 = getLabType(lab);
         if ((type1 == EXT) && type2 == EXT) return SUCCESS;
+        labClashErr();
         return ERR;
     } ADD_TO_LIST(label, lst->tail == NULL, lab)
     return SUCCESS;
@@ -73,7 +76,7 @@ result addLab(labelLst *lst, label *lab){
 
 result initLabLst(labelLst **lst){
     void *ptr;
-    VALIDATE_VAL(getAlloc(sizeof(lst), &ptr), "")
+    VALIDATE_VAL(getAlloc(sizeof(lst), &ptr))
     *lst = ptr;
     return SUCCESS;
 }

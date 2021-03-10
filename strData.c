@@ -9,15 +9,18 @@
 #include "labLstUtils.h"
 #include "labSetters.h"
 #include "sWordListUtils.h"
+#include "errFuncs.h"
 
 extern int labelFlag;
 extern int dataCounter;
 
 result isStrScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst){
     if (isStringOrder(word) == FALSE) return FALSE;
-    if (getWord(line, &word, 0) != LINE_END) VALIDATE_VAL(finishLine(line), "");
-    if (isString(word) == FALSE) return ERR;
-    strScenario(word, lab, labLst, dataLst);
+    if (getWord(line, &word, 0) != LINE_END) VALIDATE_VAL(finishLine(line))
+    if (isString(word) == FALSE) {
+        notStrErr();
+        return ERR;
+    } strScenario(word, lab, labLst, dataLst);
     return TRUE;
 }
 

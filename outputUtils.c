@@ -74,7 +74,7 @@ result printEntFile(labelLst *lst, char *fName) {
         if (getLabType(ptr) == L_ENT) {
             if (!flag) {
                 flag = 1;
-                VALIDATE_VAL(getEntOutputFile(fName, &fp), "");
+                VALIDATE_VAL(getEntOutputFile(fName, &fp))
             }
             initRawWord(&rWord);
             setRawWordStr(rWord, getLabName(ptr));
@@ -96,7 +96,7 @@ result printExtLst(char *fName, sWordLst *instLst) {
             if (getSULabType(ptr) == EXT){
                 if (!extFlag) {
                     extFlag = 1;
-                    VALIDATE_VAL(getExtOutputFile(fName, &fp), "");
+                    VALIDATE_VAL(getExtOutputFile(fName, &fp))
                 } setSULabAddress(ptr, getSWordAddress(ptr));
                 printLabel(fp, getSULab(ptr));
             }
