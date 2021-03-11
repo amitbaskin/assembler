@@ -16,4 +16,5 @@ void sepErr();
 void operandErr();
 void undefinedStatementErr();
 void keyWordErr(const char *keyWord);
+void emptyLabelErr();
 #endif

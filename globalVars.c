@@ -5,4 +5,5 @@ int instructionCounter = INITIAL_INSTRUCTION_NUM;
 int dataCounter = 0;
 int lineCounter = 0;
 int ICF = 0;
-char *inputFileName;
+char *inputFileName = "\0";
+char *curLine = "\0";

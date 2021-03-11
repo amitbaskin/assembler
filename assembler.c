@@ -14,7 +14,7 @@
 #include "errFuncs.h"
 
 extern int labelFlag;
-extern errFlag;
+extern int errFlag;
 extern int instructionCounter;
 extern int dataCounter;
 extern int lineCounter;
@@ -49,6 +49,7 @@ result assemble(char *fName) {
     VALIDATE_VAL(initLabLst(&labLst))
     VALIDATE_VAL(getReadFile(fName, &fp))
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst))
+    if (errFlag) return ERR; /* handled already */
     updateDataLabsAddresses(labLst);
     VALIDATE_VAL(parseInstLst(instLst, labLst))
     if (errFlag) return ERR; /* handled already */

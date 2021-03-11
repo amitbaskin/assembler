@@ -20,7 +20,10 @@ result checkRel(char **word){
 
 result isLegalLabel(char *word, unsigned long len){
     int i;
-    if (!isalpha(word[0])) {
+    if (len == 0) {
+        emptyLabelErr();
+            return ERR;
+    } if (!isalpha(word[0])) {
         illegalChrErr();
         return ERR;
     } if (len == 1) return TRUE;

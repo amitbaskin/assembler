@@ -2,69 +2,79 @@
 #include "errFuncs.h"
 #include "generalUtils.h"
 
-#define ERR_PREFIX "ERROR with file %s: "
+#define ERR_PREFIX "\nERROR: %s\nfile: \"%s\", line number: %d, line content: \"%s\"\n"
+#define errMsg(msg){ \
+    printf(ERR_PREFIX, msg, inputFileName, lineCounter, curLine); \
+}
 
 extern int lineCounter;
 extern char *inputFileName;
+extern char *curLine;
 
 void allocErr(){
-    printf(ERR_PREFIX "memory allocation failure in line: %d\n", inputFileName, lineCounter);
+    errMsg("memory allocation failure")
 }
 
 void openFileErr(){
-    printf(ERR_PREFIX "failed to open the file\n", inputFileName);
+    errMsg("failed to open file")
 }
 
 void lineTooLongErr(){
-    printf(ERR_PREFIX "line %d exceeded limit: %d\n", inputFileName, lineCounter, MAX_LINE_LEN);
+    char msg[MAX_LINE_LEN];
+    sprintf(msg, "line exceeded limit of characters: %d", MAX_LINE_LEN);
+    errMsg(msg)
 }
 
 void illegalChrErr(){
-    printf(ERR_PREFIX "label in line: %d contains illegal character. Must begin with a letter and all the rest must "
-                      "be alphanumeric.\n", inputFileName, lineCounter);
+    errMsg("label contains illegal character\nmust begin with a letter and the rest must be alphanumeric")
 }
 
 void illegalLabTypeErr(){
-    printf(ERR_PREFIX "illegal label type in line: %d\n", inputFileName, lineCounter);
+    errMsg("illegal label type")
 }
 
 void labClashErr(){
-    printf(ERR_PREFIX "label specified in line: %d clashes with a pre defined label\n", inputFileName, lineCounter);
+    errMsg("label declaration clashes with a pre defined one")
 }
 
 void keyWordErr(const char *keyWord){
-    printf(ERR_PREFIX "label specified in line: %d clashes with keyword: %s\n", inputFileName, lineCounter, keyWord);
+    char msg[MAX_LINE_LEN];
+    sprintf(msg, "label declaration clashes with keyword: %s", keyWord);
+    errMsg(msg)
 }
 
 void relLabErr(){
-    printf(ERR_PREFIX "relative label in line: %d doesn't exist\n", inputFileName, lineCounter);
+    errMsg("relative label specified doesn't exist")
 }
 
 void undefinedStatementErr(){
-    printf(ERR_PREFIX "undefined statement in line: %d\n", inputFileName, lineCounter);
+    errMsg("undefined statement")
 }
 
 void lineNotEndErr(){
-    printf(ERR_PREFIX "expected line: %d to end but it continued\n ", inputFileName, lineCounter);
+    errMsg("line continued beyond expected")
 }
 
 void lineEndErr(){
-    printf(ERR_PREFIX "expected line: %d to continue but it ended\n ", inputFileName, lineCounter);
+    errMsg("line ended before expected")
 }
 
 void sepErr(){
-    printf(ERR_PREFIX "expected comme in line: %d but didn't find it where it should have been\n ", inputFileName,
-           lineCounter);
+    errMsg("expected comma between values")
 }
 
 void operandErr(){
-    printf(ERR_PREFIX "in line: %d an operator got an unexpected operand\n ", inputFileName, lineCounter);
+    errMsg("operator got an unexpected operand")
 }
 
 void notStrErr(){
-    printf(ERR_PREFIX "in line: %d expected to get a string but didn't\n ", inputFileName, lineCounter);
+    errMsg("expected to get a string")
 }
 
 void notNumErr(){
-    printf(ERR_PREFIX "in line: %d expected to get an int but didn't\n ", inputFileName, lineCounter);
+    errMsg("expected to get an int")
+}
+
+void emptyLabelErr(){
+    errMsg("got an empty label")
 }

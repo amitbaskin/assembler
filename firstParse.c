@@ -15,6 +15,7 @@ extern int ICF;
 extern int instructionCounter;
 extern int lineCounter;
 extern int dataCounter;
+extern char *curLine;
 
 result isEmptyLine(const char *line){
     while(*line != '\0'){
@@ -24,7 +25,6 @@ result isEmptyLine(const char *line){
 
 result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLst){
     char *line;
-    char *lineOrgPtr;
     result res = SUCCESS;
     char *word;
     label *lab;
@@ -35,13 +35,14 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     result isFileEnd = FALSE;
     VALIDATE_VAL(initLab(&lab))
     VALIDATE_VAL(getWordAlloc(&line))
-    lineOrgPtr = line;
+    curLine = line;
+
     VALIDATE_VAL(getWordAlloc(&word))
     VALIDATE_VAL(initLab(&lab))
     while (isFileEnd != FILE_END){
         lineCounter++;
         labelFlag = 0;
-        line = lineOrgPtr;
+        line = curLine;
         VALIDATE_VAL(isFileEnd = getLine(&line, fp))
         if (*line == COMMENT_CHR || isEmptyLine(line) == TRUE) continue;
         if (getWord(&line, &word, 0) == LAB_DEC){
@@ -59,7 +60,7 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         res = lookForOperation(&firstOp, &secOp, &word, &line, &lab, labLst, instLst);
         freeHelper(orgFirstOp);
         freeHelper(orgSecOp);
-    } freeHelper(lineOrgPtr);
+    } freeHelper(curLine);
     freeHelper(word);
     ICF = instructionCounter;
     lineCounter = 0;
