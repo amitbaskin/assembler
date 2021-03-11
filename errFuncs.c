@@ -25,6 +25,12 @@ void lineTooLongErr(){
     errMsg(msg)
 }
 
+void labTooLongErr(){
+    char msg[MAX_LINE_LEN];
+    sprintf(msg, "label name exceeded limit of characters: %d", MAX_LAB_LEN);
+    errMsg(msg)
+}
+
 void illegalChrErr(){
     errMsg("label contains illegal character\nmust begin with a letter and the rest must be alphanumeric")
 }
@@ -67,12 +73,12 @@ void operandErr(){
     errMsg("operator got an unexpected operand")
 }
 
-void notStrErr(){
-    errMsg("expected to get a string")
+void nonStrDataErr(){
+    errMsg("expected to get a string enclosed with quotation marks")
 }
 
-void notNumErr(){
-    errMsg("expected to get an int")
+void nonNumericDataErr(){
+    errMsg("expected numeric data")
 }
 
 void emptyLabelErr(){

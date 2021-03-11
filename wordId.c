@@ -50,7 +50,7 @@ result isImmediateNum(long *got, char *word){
 result isNum(long *got, char *word){
     *got = strtol(word, &word, 10);
     if (strcmp(word, "\0") != 0) {
-        notNumErr();
+        nonNumericDataErr();
         return ERR;
     } else return TRUE;
 }

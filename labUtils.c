@@ -44,7 +44,10 @@ result isLegalLabel(char *word, unsigned long len){
 }
 
 result checkLabelLegality(char **word, label **lab, unsigned long len){
-    if (isLegalLabel(*word, len) != TRUE) {
+    if (len > MAX_LAB_LEN){
+        labTooLongErr();
+        return ERR;
+    } if (isLegalLabel(*word, len) != TRUE) {
         return ERR; /* handled inside */
     } VALIDATE_VAL(getNewLabByName(lab, *word))
     return TRUE;

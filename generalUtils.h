@@ -1,12 +1,9 @@
 #include <stdio.h>
 #ifndef ASSEMBLER_GENERAL_UTILS_H
 #define ASSEMBLER_GENERAL_UTILS_H
-#define READ_FILE_SUFFIX ".as"
-#define MAIN_OUTPUT_SUFFIX ".ob"
-#define ENT_SUFFIX ".ent"
-#define EXT_SUFFIX ".ext"
 #define MAX_LINE_LEN 81
 #define INITIAL_INSTRUCTION_NUM 100
+#define MAX_LAB_LEN 31
 #define SEPARATOR ','
 
 #define VALIDATE_VAL(val) { \

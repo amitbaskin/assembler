@@ -21,7 +21,10 @@ result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst,
     if (isData(word) == TRUE) {
         initRawWordLst(&rawLst);
         VALIDATE_VAL(breakDownData(line, rawLst, 1))
-        VALIDATE_VAL(collectData(rawLst))
+        if (getRawWordTail(rawLst) == NULL) {
+            nonNumericDataErr();
+            return ERR;
+        } VALIDATE_VAL(collectData(rawLst))
         addSWordData(dataLst, labLst, lab, rawLst);
         return TRUE;
     } return FALSE;

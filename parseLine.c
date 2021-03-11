@@ -76,6 +76,5 @@ result lookForLabel(char **line, char **word, label **lab){
     len = strlen(*word);
     if (checkLabelLegality(word, lab, len) != TRUE) {
         return ERR; /* handled inside */
-    }
-    return finishLine(line);
+    } return finishLine(line);
 }

@@ -1,6 +1,10 @@
 #include "generalUtils.h"
 #ifndef ASSEMBLER_FILE_UTILS_H
 #define ASSEMBLER_FILE_UTILS_H
+#define READ_FILE_SUFFIX ".as"
+#define MAIN_OUTPUT_SUFFIX ".ob"
+#define ENT_SUFFIX ".ent"
+#define EXT_SUFFIX ".ext"
 result getNameAlloc(size_t size, char **fName);
 result getFile(char *name, FILE **fp, char *mode, char *suffix);
 result getReadFile(char *name, FILE **fp);

@@ -18,7 +18,7 @@ result isStrScenario(char *word, char **line, label *lab, sWordLst *dataLst, lab
     if (isStringOrder(word) == FALSE) return FALSE;
     if (getWord(line, &word, 0) != LINE_END) VALIDATE_VAL(finishLine(line))
     if (isString(word) == FALSE) {
-        notStrErr();
+        nonStrDataErr();
         return ERR;
     } strScenario(word, lab, labLst, dataLst);
     return TRUE;
