@@ -22,21 +22,19 @@ result breakDownData(char **line, rawWordLst *lst, unsigned char isSep){
     result res;
     char *str;
     rawWord *word;
-    int isContinue = 1;
-    while (isContinue){
+    int isContinue;
+    for (isContinue=1; isContinue; setRawWordStr(word, str), addRawWord(lst, word)){
         VALIDATE_VAL(getWordAlloc(&str))
         res = getWord(line, &str, isSep);
         if (res == LINE_END) {
             isContinue = 0;
             if (*str == '\0') break;
         } VALIDATE_VAL(initRawWord(&word))
-        setRawWordStr(word, str);
-        addRawWord(lst, word);
     } return res;
 }
 
 int getLineLoopCond(char chr, int i){
-    return (chr != '\n') && (chr != EOF) && (i <= MAX_LINE_LEN);
+    return (chr != '\n') && (chr != EOF) && (i < MAX_LINE_LEN);
 }
 
 result getLine(char **line, FILE *fp){
@@ -63,13 +61,11 @@ int getWordLoopCond(char chr, unsigned char isSep){
 }
 
 result getWord(char **line, char **word, unsigned char isSep){
-    char *originalPtr = *word;
     char chr;
     int i;
     for (; (chr = **line) == ' ' || chr == '\t'; (*line)++);
     for (i=0; getWordLoopCond((chr = **line), i); (*word)[i] = (char) chr, (*line)++, i++);
     (*word)[i] = '\0';
-    if (*originalPtr == '\0') return FALSE;
     if (chr == LABEL_SUFFIX) {
         (*line)++;
         return LAB_DEC;
@@ -77,6 +73,5 @@ result getWord(char **line, char **word, unsigned char isSep){
     if (isSep && chr == SEPARATOR) {
         (*line)++;
         return SEP;
-    }
-    return SUCCESS;
+    } return SUCCESS;
 }

@@ -17,14 +17,10 @@ extern int labelFlag;
 
 result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
     rawWordLst *rawLst;
-    VALIDATE_VAL(initRawWordLst(&rawLst))
     if (isData(word) == TRUE) {
-        initRawWordLst(&rawLst);
+        VALIDATE_VAL(initRawWordLst(&rawLst))
         VALIDATE_VAL(breakDownData(line, rawLst, 1))
-        if (getRawWordTail(rawLst) == NULL) {
-            nonNumericDataErr();
-            return ERR;
-        } VALIDATE_VAL(collectData(rawLst))
+        VALIDATE_VAL(collectData(rawLst))
         addSWordData(dataLst, labLst, lab, rawLst);
         return TRUE;
     } return FALSE;

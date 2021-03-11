@@ -36,7 +36,6 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     VALIDATE_VAL(initLab(&lab))
     VALIDATE_VAL(getWordAlloc(&line))
     curLine = line;
-
     VALIDATE_VAL(getWordAlloc(&word))
     VALIDATE_VAL(initLab(&lab))
     while (isFileEnd != FILE_END){
