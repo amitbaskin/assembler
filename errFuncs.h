@@ -12,6 +12,7 @@ void nonStrDataErr();
 void nonNumericDataErr();
 void imNumNoDataErr();
 void noNumPrefixErr();
+void noSepAfterFirstOperand();
 void sepErr();
 void operandErr();
 void undefinedStatementErr();

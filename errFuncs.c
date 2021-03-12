@@ -70,12 +70,12 @@ void lineEndErr(){
 
 void sepErr(){
     char msg[80];
-    sprintf(msg, "there should be no %c after operator but there should be one between operands", SEPARATOR);
+    sprintf(msg, "there should be no '%c' after operator but there should be one between operands", SEPARATOR);
     firstParseErrMsg(msg)
 }
 
 void operandErr(){
-    firstParseErrMsg("operator did not get expected operands")
+    firstParseErrMsg("operator got a wrong operator type")
 }
 
 void nonStrDataErr(){
@@ -84,19 +84,19 @@ void nonStrDataErr(){
 
 void nonNumericDataErr(){
     char msg[80];
-    sprintf(msg, "expected numeric data separated by %c", SEPARATOR);
+    sprintf(msg, "expected numeric data separated by '%c'", SEPARATOR);
     firstParseErrMsg(msg)
 }
 
 void imNumNoDataErr(){
-    char msg[80];
-    sprintf(msg, "expected numeric value after %c", NUM_PREFIX);
+    char msg[50];
+    sprintf(msg, "expected numeric value after '%c'", NUM_PREFIX);
     firstParseErrMsg(msg)
 }
 
 void noNumPrefixErr(){
     char msg[100];
-    sprintf(msg, "an operand must not start with a digit\nin case of a numeric operand, it must have the %c "
+    sprintf(msg, "an operand must not start with a digit\nin case of a numeric operand, it must have the '%c' "
                  "prefix", NUM_PREFIX);
     firstParseErrMsg(msg)
 }
@@ -107,6 +107,12 @@ void emptyLabelErr(){
 
 void illegalChrErr(){
     firstParseErrMsg("label contains illegal character\nmust begin with a letter and the rest must be alphanumeric")
+}
+
+void noSepAfterFirstOperand(){
+    char msg[50];
+    sprintf(msg, "expected a '%c' after the first operand", SEPARATOR);
+    firstParseErrMsg(msg)
 }
 
 void illegalLabTypeErr(char *labName){
