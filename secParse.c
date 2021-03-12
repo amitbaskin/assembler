@@ -20,7 +20,6 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
     sWord *ptr;
     char *labName;
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
-        lineCounter++;
         status = getSWordStatus(ptr);
         if (status == W_ENT) {
             labName = getSULabName(ptr);

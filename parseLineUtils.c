@@ -42,17 +42,20 @@ int getLineLoopCond(char chr, int i){
 }
 
 result getLine(char **line, FILE *fp){
+    result res;
     int chr;
     int i;
     for (; (chr = fgetc(fp)) == ' ' || chr == '\t'; (*line)++);
     ungetc(chr, fp);
     for (i=0; getLineLoopCond((char) (chr = fgetc(fp)), i); (*line)[i] = (char) chr, i++);
-    (*line)[i] = '\0';
-    if (chr == EOF) return FILE_END;
-    if (chr != '\n') {
+    if (i == MAX_LINE_LEN) {
+        for (; (chr = fgetc(fp)) != '\n'; );
         lineTooLongErr();
-        return ERR;
-    } return SUCCESS;
+        res = ERR;
+    } else if (chr == EOF) res = FILE_END;
+    else res = SUCCESS;
+    (*line)[i] = '\0';
+    return res;
 }
 
 unsigned char isSepCond(unsigned char isSep, char chr){
