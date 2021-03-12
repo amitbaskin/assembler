@@ -2,9 +2,14 @@
 #include "errFuncs.h"
 #include "generalUtils.h"
 
-#define ERR_PREFIX "\nERROR: %s\nfile: \"%s\", line number: %d, line content: \"%s\"\n"
-#define errMsg(msg){ \
-    printf(ERR_PREFIX, msg, inputFileName, lineCounter, curLine); \
+#define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: \"%s\", line number: %d, line content: \"%s\"\n"
+#define firstParseErrMsg(msg){ \
+    printf(FIRST_PARSE_ERR_FORMAT, msg, inputFileName, lineCounter, curLine); \
+}
+
+#define SEC_PARSE_ERR_FORMAT "\nERROR (second parse): %s\nfile: \"%s\", label name: \"%s\"\n"
+#define secParseErrMsg(msg, labName){ \
+    printf(SEC_PARSE_ERR_FORMAT, msg, inputFileName, labName); \
 }
 
 extern int lineCounter;
@@ -12,75 +17,79 @@ extern char *inputFileName;
 extern char *curLine;
 
 void allocErr(){
-    errMsg("memory allocation failure")
+    firstParseErrMsg("memory allocation failure")
 }
 
 void openFileErr(){
-    errMsg("failed to open file")
+    firstParseErrMsg("failed to open file")
 }
 
 void lineTooLongErr(){
     char msg[MAX_LINE_LEN];
     sprintf(msg, "line exceeded limit of characters: %d", MAX_LINE_LEN);
-    errMsg(msg)
+    firstParseErrMsg(msg)
 }
 
 void labTooLongErr(){
     char msg[MAX_LINE_LEN];
     sprintf(msg, "label name exceeded limit of characters: %d", MAX_LAB_LEN);
-    errMsg(msg)
+    firstParseErrMsg(msg)
 }
 
 void illegalChrErr(){
-    errMsg("label contains illegal character\nmust begin with a letter and the rest must be alphanumeric")
-}
-
-void illegalLabTypeErr(){
-    errMsg("illegal label type")
+    firstParseErrMsg("label contains illegal character\nmust begin with a letter and the rest must be alphanumeric")
 }
 
 void labClashErr(){
-    errMsg("label declaration clashes with a pre defined one")
+    firstParseErrMsg("label declaration clashes with a pre defined one")
 }
 
 void keyWordErr(const char *keyWord){
     char msg[MAX_LINE_LEN];
     sprintf(msg, "label declaration clashes with keyword: %s", keyWord);
-    errMsg(msg)
+    firstParseErrMsg(msg)
 }
 
 void relLabErr(){
-    errMsg("relative label specified doesn't exist")
+    firstParseErrMsg("relative label specified doesn't exist")
 }
 
 void undefinedStatementErr(){
-    errMsg("undefined statement")
+    firstParseErrMsg("undefined statement")
 }
 
 void lineNotEndErr(){
-    errMsg("line continued beyond expected")
+    firstParseErrMsg("line continued beyond expected")
 }
 
 void lineEndErr(){
-    errMsg("line ended before expected")
+    firstParseErrMsg("line ended before expected")
 }
 
 void sepErr(){
-    errMsg("expected comma between values")
+    firstParseErrMsg("expected comma between values")
 }
 
 void operandErr(){
-    errMsg("operator got an unexpected operand")
+    firstParseErrMsg("operator got an unexpected operand")
 }
 
 void nonStrDataErr(){
-    errMsg("expected to get a string enclosed with quotation marks")
+    firstParseErrMsg("expected to get a string enclosed with quotation marks")
 }
 
 void nonNumericDataErr(){
-    errMsg("expected numeric data")
+    firstParseErrMsg("expected numeric data")
 }
 
 void emptyLabelErr(){
-    errMsg("got an empty label")
+    firstParseErrMsg("got an empty label")
+}
+
+void illegalLabTypeErr(char *labName){
+    secParseErrMsg("illegal label type", labName)
+}
+
+void useOfUndefinedLabErr(char *labName){
+    secParseErrMsg("use of undefined label", labName)
 }

@@ -79,17 +79,15 @@ result isLabTypeLegal(label *lab, labelType type){
     switch (type) {
         case L_ENT:
             if (getLabType(lab) == EXT) {
-                illegalLabTypeErr();
+                illegalLabTypeErr(getLabName(lab));
                 return ERR;
-            }
-            break;
+            } break;
 
         case EXT:
             if (getLabType(lab) == L_ENT) {
-                illegalLabTypeErr();
+                illegalLabTypeErr(getLabName(lab));
                 return ERR;
-            }
-            break;
+            } break;
 
         default:
             return SUCCESS;

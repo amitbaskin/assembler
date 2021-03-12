@@ -23,13 +23,17 @@ result breakDownData(char **line, rawWordLst *lst, unsigned char isSep){
     char *str;
     rawWord *word;
     int isContinue;
-    for (isContinue=1; isContinue; setRawWordStr(word, str), addRawWord(lst, word)){
+    int counter;
+    for (counter=0, isContinue=1; isContinue; counter++, setRawWordStr(word, str), addRawWord(lst, word)){
         VALIDATE_VAL(getWordAlloc(&str))
         res = getWord(line, &str, isSep);
         if (res == LINE_END) {
             isContinue = 0;
             if (*str == '\0') break;
         } VALIDATE_VAL(initRawWord(&word))
+    } if (counter == 0){
+        nonNumericDataErr();
+        return ERR;
     } return res;
 }
 
