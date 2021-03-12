@@ -25,13 +25,13 @@ void openFileErr(){
 }
 
 void lineTooLongErr(){
-    char msg[MAX_LINE_LEN];
+    char msg[50];
     sprintf(msg, "line exceeded limit of characters: %d", MAX_LINE_LEN);
     firstParseErrMsg(msg)
 }
 
 void labTooLongErr(){
-    char msg[MAX_LINE_LEN];
+    char msg[50];
     sprintf(msg, "label name exceeded limit of characters: %d", MAX_LAB_LEN);
     firstParseErrMsg(msg)
 }
@@ -45,7 +45,7 @@ void labClashErr(){
 }
 
 void keyWordErr(const char *keyWord){
-    char msg[MAX_LINE_LEN];
+    char msg[50];
     sprintf(msg, "label declaration clashes with keyword: %s", keyWord);
     firstParseErrMsg(msg)
 }
