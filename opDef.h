@@ -6,7 +6,7 @@
 #define OPCODES {0, 1, 2, 2, 4, 5, 5, 5, 5, 9, 9, 9, 12, 13, 14, 15}
 #define OPERANDS_AMOUNT {2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0}
 #define IS_IMMEDIATE_SOURCE_LST {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define IS_DIRECT_SOURCE_LST {1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define IS_DIRECT_SOURCE_LST {1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define IS_RELATIVE_SOURCE_LST {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define IS_REGISTRY_SOURCE_LST {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define IS_IMMEDIATE_DEST_LST {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0}
@@ -26,5 +26,4 @@ static const unsigned char isImDestLst[] = IS_IMMEDIATE_DEST_LST;
 static const unsigned char isDirDestLst[] = IS_DIRECT_DEST_LST;
 static const unsigned char isRelDestLst[] = IS_RELATIVE_DEST_LST;
 static const unsigned char isRegDestLst[] = IS_REGISTRY_DEST_LST;
-void printOps();
 #endif

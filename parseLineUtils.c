@@ -31,8 +31,10 @@ result breakDownData(char **line, rawWordLst *lst){
         if (res == LINE_END) {
             isContinue = 0;
             if (*str == '\0') break;
-        } if (!isSep) sepErr();
-        if (res != SEP) isSep = 0;
+        } if (!isSep) {
+            sepErr();
+            return ERR;
+        } if (res != SEP) isSep = 0;
         VALIDATE_VAL(initRawWord(&word))
     } if (counter == 0){
         nonNumericDataErr();
@@ -48,7 +50,7 @@ result getLine(char **line, FILE *fp){
     result res;
     int chr;
     int i;
-    for (; (chr = fgetc(fp)) == ' ' || chr == '\t'; (*line)++);
+    for (; (chr = fgetc(fp)) == ' ' || chr == '\t'; );
     ungetc(chr, fp);
     for (i=0; getLineLoopCond((char) (chr = fgetc(fp)), i); (*line)[i] = (char) chr, i++);
     if (i == MAX_LINE_LEN) {

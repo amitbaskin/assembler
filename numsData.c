@@ -30,8 +30,10 @@ result collectData(rawWordLst *lst){
     long num;
     rawWord *ptr;
     for (ptr = getRawWordTail(lst); ptr != NULL; promoteRawWord(&ptr)){
-        VALIDATE_VAL(isNum(&num, getRawWordStr(ptr)))
-        freeHelper(getRawWordStr(ptr));
+        if (isNum(&num, getRawWordStr(ptr)) == ERR) {
+            nonNumericDataErr();
+            return ERR;
+        } freeHelper(getRawWordStr(ptr));
         setRawWordNum(ptr, (int) num);
     } return SUCCESS;
 }

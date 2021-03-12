@@ -9,8 +9,8 @@ result validateZeroOps(char **line, int opIndex, label **lab, labelLst *labLst, 
 result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp, labelLst
 *labLst, label **lab, sWordLst *instLst);
 ref getOperandType(char **operand, int *regNum, long *num);
-result validateSrcOp(ref type, int opIndex);
-result validateDestOp(ref type, int opIndex);
+unsigned char validateSrcOp(ref type, int opIndex);
+unsigned char validateDestOp(ref type, int opIndex);
 ref addOperandWord(ref r, char **operand, sWordLst *instLst, int reg, long num);
 void addAllOperandsWord(int operandsAmount, char **firstOp, char **secOp, sWordLst *instLst, ref srcType, ref destType,
                         int srcReg, long srcNum, int destReg, long destNum);

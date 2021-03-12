@@ -1,4 +1,5 @@
 #include <string.h>
+#include "ctype.h"
 #include "opUtils.h"
 #include "generalUtils.h"
 #include "wordId.h"
@@ -12,7 +13,6 @@
 #include "opWordSetters.h"
 #include "sWordGetters.h"
 #include "labLstUtils.h"
-#include "opDef.h"
 #include "errFuncs.h"
 
 extern int instructionCounter;
@@ -59,10 +59,16 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
     getWord(line, secOp, 0);
     VALIDATE_VAL(finishLine(line))
     srcType = getOperandType(firstOp, &srcReg, &srcNum);
+    if (srcType == R_NONE) return ERR; /* already handled */
     destType = getOperandType(secOp, &destReg, &destNum);
-    VALIDATE_OP(validateSrcOp(srcType, opIndex))
-    VALIDATE_OP(validateDestOp(destType, opIndex))
-    processOp(opIndex, 2, srcType, destType, firstOp, secOp, labLst, lab, instLst, srcReg, srcNum, destReg, destNum);
+    if (destType == R_NONE) return ERR; /* already handled */
+    if (validateSrcOp(srcType, opIndex) == 0){
+        operandErr();
+        return ERR;
+    } if (validateDestOp(destType, opIndex) == 0){
+        operandErr();
+        return ERR;
+    } processOp(opIndex, 2, srcType, destType, firstOp, secOp, labLst, lab, instLst, srcReg, srcNum, destReg, destNum);
     return SUCCESS;
 }
 
@@ -103,14 +109,20 @@ result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char
 }
 
 ref getOperandType(char **operand, int *regNum, long *num){
-    if ((*regNum = isReg(*operand)) != NOT_REG) return R_REG;
-    CHECK_REF_TYPE(isImmediateNum(num,  *operand), IM)
+    result res;
+    if (isdigit(**operand)) {
+        noNumPrefixErr();
+        return R_NONE;
+    } if ((*regNum = isReg(*operand)) != NOT_REG) return R_REG;
+    res = isImmediateNum(num,  *operand);
+    if (res == ERR) return R_NONE;
+    CHECK_REF_TYPE(res, IM)
     CHECK_REF_TYPE(checkRel(operand), REL)
     CHECK_REF_TYPE(isLegalLabFormat(*operand, strlen(*operand)), DIR)
     return R_NONE;
 }
 
-result validateSrcOp(ref type, int opIndex){
+unsigned char validateSrcOp(ref type, int opIndex){
     switch(type){
         case IM:
             return getIsImSrc(opIndex);
@@ -125,11 +137,11 @@ result validateSrcOp(ref type, int opIndex){
             return getIsRegSrc(opIndex);
 
         default:
-            return ERR; /* not supposed to be possible to get here */
+            return 0; /* not supposed to be possible to get here */
     }
 }
 
-result validateDestOp(ref type, int opIndex){
+unsigned char validateDestOp(ref type, int opIndex){
     switch(type){
         case IM:
             return getIsImDest(opIndex);
@@ -144,7 +156,7 @@ result validateDestOp(ref type, int opIndex){
             return getIsRegDest(opIndex);
 
         default:
-            return ERR; /* not supposed to be possible to get here */
+            return 0; /* not supposed to be possible to get here */
     }
 }
 

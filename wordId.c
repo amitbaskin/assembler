@@ -40,17 +40,19 @@ result isString(char *word){
 }
 
 result isImmediateNum(long *got, char *word){
+    result res;
     unsigned long len;
     len = strlen(word);
     if (len < 2 || word[0] != NUM_PREFIX) return FALSE;
     word++;
-    return isNum(got, word);
+    res = isNum(got, word);
+    if (res == ERR) imNumNoDataErr();
+    return res;
 }
 
 result isNum(long *got, char *word){
     *got = strtol(word, &word, 10);
     if (strcmp(word, "\0") != 0) {
-        nonNumericDataErr();
         return ERR;
     } else return TRUE;
 }

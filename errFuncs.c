@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "errFuncs.h"
 #include "generalUtils.h"
+#include "wordId.h"
 
 extern int lineCounter;
 extern char *inputFileName;
@@ -35,18 +36,14 @@ void openFileErr(){
 
 void lineTooLongErr(){
     char msg[50];
-    sprintf(msg, "line exceeded limit of characters: %d", MAX_LINE_LEN);
+    sprintf(msg, "line exceeds limit of characters: %d", MAX_LINE_LEN);
     firstParseErrMsg(msg)
 }
 
 void labTooLongErr(){
     char msg[50];
-    sprintf(msg, "label name exceeded limit of characters: %d", MAX_LAB_LEN);
+    sprintf(msg, "label name exceeds limit of characters: %d", MAX_LAB_LEN);
     firstParseErrMsg(msg)
-}
-
-void illegalChrErr(){
-    firstParseErrMsg("label contains illegal character\nmust begin with a letter and the rest must be alphanumeric")
 }
 
 void labClashErr(){
@@ -67,16 +64,14 @@ void undefinedStatementErr(){
     firstParseErrMsg("undefined statement")
 }
 
-void lineNotEndErr(){
-    firstParseErrMsg("line continued beyond expected")
-}
-
 void lineEndErr(){
     firstParseErrMsg("line ended before expected")
 }
 
 void sepErr(){
-    firstParseErrMsg("there should be no comma after operator but there should be one between operands")
+    char msg[80];
+    sprintf(msg, "there should be no %c after operator but there should be one between operands", SEPARATOR);
+    firstParseErrMsg(msg)
 }
 
 void operandErr(){
@@ -88,11 +83,30 @@ void nonStrDataErr(){
 }
 
 void nonNumericDataErr(){
-    firstParseErrMsg("expected numeric data separated by commas")
+    char msg[80];
+    sprintf(msg, "expected numeric data separated by %c", SEPARATOR);
+    firstParseErrMsg(msg)
+}
+
+void imNumNoDataErr(){
+    char msg[80];
+    sprintf(msg, "expected numeric value after %c", NUM_PREFIX);
+    firstParseErrMsg(msg)
+}
+
+void noNumPrefixErr(){
+    char msg[100];
+    sprintf(msg, "an operand must not start with a digit\nin case of a numeric operand, it must have the %c "
+                 "prefix", NUM_PREFIX);
+    firstParseErrMsg(msg)
 }
 
 void emptyLabelErr(){
     firstParseErrMsg("got an empty label")
+}
+
+void illegalChrErr(){
+    firstParseErrMsg("label contains illegal character\nmust begin with a letter and the rest must be alphanumeric")
 }
 
 void illegalLabTypeErr(char *labName){
