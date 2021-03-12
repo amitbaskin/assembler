@@ -24,6 +24,7 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
         if (status == W_ENT) {
             labName = getSULabName(ptr);
             if (isLabInLst(labLst, &lab, L_ENT, labName) == FALSE) {
+                useOfUndefinedLabErr(labName);
                 res = ERR; /* handled inside */
                 continue;
             } setLabType(lab, L_ENT);

@@ -25,9 +25,9 @@ extern int labelFlag;
     }                               \
 }
 
-#define VALIDATE_LINE_CONTINUATION(wordResult){ \
-    if ((wordResult) == FALSE) {                \
-        lineNotEndErr();                        \
+#define VALIDATE_LINE_CONTINUATION(wordResult, chr){ \
+    if (((wordResult) == LINE_END) && ((chr) == '\0')) { \
+        lineEndErr();                           \
         return ERR;                             \
     }                                           \
 }
@@ -54,7 +54,7 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
     ref srcType;
     ref destType;
     result res;
-    VALIDATE_LINE_CONTINUATION(res = getWord(line, firstOp, 1))
+    VALIDATE_LINE_CONTINUATION(res = getWord(line, firstOp, 1), **firstOp)
     VALIDATE_SEP(res)
     getWord(line, secOp, 0);
     VALIDATE_VAL(finishLine(line))
@@ -66,15 +66,15 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
     return SUCCESS;
 }
 
-result validateOneOp(char **line, int opIndex, char **DestOp, labelLst *labLst, label **lab, sWordLst *instLst){
+result validateOneOp(char **line, int opIndex, char **destOp, labelLst *labLst, label **lab, sWordLst *instLst){
     int destReg;
     long destNum;
     ref destType;
-    VALIDATE_LINE_CONTINUATION(getWord(line, DestOp, 0))
+    VALIDATE_LINE_CONTINUATION(getWord(line, destOp, 0), **destOp)
     VALIDATE_VAL(finishLine(line))
-    destType = getOperandType(DestOp, &destReg, &destNum);
+    destType = getOperandType(destOp, &destReg, &destNum);
     VALIDATE_OP(validateDestOp(destType, opIndex))
-    processOp(opIndex, 1, R_NONE, destType, DestOp, NULL, labLst, lab, instLst, NOT_REG, 0, destReg, destNum);
+    processOp(opIndex, 1, R_NONE, destType, destOp, NULL, labLst, lab, instLst, NOT_REG, 0, destReg, destNum);
     return SUCCESS;
 }
 

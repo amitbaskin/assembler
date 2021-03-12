@@ -8,19 +8,19 @@ extern char *curLine;
 extern int errFlag;
 
 
-#define PRE_PARSE_ERR_FORMAT "\nERROR (pre parse): %s\nfile: \"%s\"\n"
+#define PRE_PARSE_ERR_FORMAT "\nERROR (pre parse): %s\nfile: %s\n"
 #define preParseErrMsg(msg){ \
     printf(PRE_PARSE_ERR_FORMAT, msg, inputFileName); \
 }
 
 
-#define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: \"%s\", line number: %d, line content: \"%s\"\n"
+#define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: %s, line number: %d, line content: %s\n"
 #define firstParseErrMsg(msg){ \
     errFlag = 1;               \
     printf(FIRST_PARSE_ERR_FORMAT, msg, inputFileName, lineCounter, curLine); \
 }
 
-#define SEC_PARSE_ERR_FORMAT "\nERROR (second parse): %s\nfile: \"%s\", label name: \"%s\"\n"
+#define SEC_PARSE_ERR_FORMAT "\nERROR (second parse): %s\nfile: %s, label name: %s\n"
 #define secParseErrMsg(msg, labName){ \
     printf(SEC_PARSE_ERR_FORMAT, msg, inputFileName, labName); \
 }
@@ -76,11 +76,11 @@ void lineEndErr(){
 }
 
 void sepErr(){
-    firstParseErrMsg("expected comma between operans")
+    firstParseErrMsg("there should be no comma after operator but there should be one between operands")
 }
 
 void operandErr(){
-    firstParseErrMsg("operator got an unexpected operand")
+    firstParseErrMsg("operator did not get expected operands")
 }
 
 void nonStrDataErr(){
@@ -88,7 +88,7 @@ void nonStrDataErr(){
 }
 
 void nonNumericDataErr(){
-    firstParseErrMsg("expected numeric data")
+    firstParseErrMsg("expected numeric data separated by commas")
 }
 
 void emptyLabelErr(){
@@ -96,7 +96,7 @@ void emptyLabelErr(){
 }
 
 void illegalLabTypeErr(char *labName){
-    secParseErrMsg("illegal label type", labName)
+    secParseErrMsg("label appears to be both exten and entry", labName)
 }
 
 void useOfUndefinedLabErr(char *labName){

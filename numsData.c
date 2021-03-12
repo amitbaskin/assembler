@@ -21,7 +21,7 @@ result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst,
         VALIDATE_VAL(initRawWordLst(&rawLst))
         VALIDATE_VAL(breakDownData(line, rawLst))
         VALIDATE_VAL(collectData(rawLst))
-        addNumsData(dataLst, labLst, lab, rawLst);
+        addSWordData(dataLst, labLst, lab, rawLst);
         return TRUE;
     } return FALSE;
 }
@@ -36,7 +36,7 @@ result collectData(rawWordLst *lst){
     } return SUCCESS;
 }
 
-result addNumsData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst *rawLst){
+result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst *rawLst){
     rawWord *ptr;
     if (labelFlag) {
         setLabData(lab, 1);

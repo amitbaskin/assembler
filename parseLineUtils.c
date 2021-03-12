@@ -24,16 +24,16 @@ result breakDownData(char **line, rawWordLst *lst){
     rawWord *word;
     int isContinue;
     int counter;
+    unsigned char isSep = 1;
     for (counter=0, isContinue=1; isContinue; counter++, setRawWordStr(word, str), addRawWord(lst, word)){
         VALIDATE_VAL(getWordAlloc(&str))
         res = getWord(line, &str, 1);
-        if (counter % 2 == 1) {
-            VALIDATE_SEP(res);
-            continue;
-        } if (res == LINE_END) {
+        if (res == LINE_END) {
             isContinue = 0;
             if (*str == '\0') break;
-        } VALIDATE_VAL(initRawWord(&word))
+        } if (!isSep) sepErr();
+        if (res != SEP) isSep = 0;
+        VALIDATE_VAL(initRawWord(&word))
     } if (counter == 0){
         nonNumericDataErr();
         return ERR;

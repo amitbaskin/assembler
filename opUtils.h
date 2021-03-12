@@ -4,7 +4,7 @@
 #define ASSEMBLER_OP_UTILS_H
 result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, labelLst *labLst, label **lab, sWordLst
 *instLst);
-result validateOneOp(char **line, int opIndex, char **DestOp, labelLst *labLst, label **lab, sWordLst *instLst);
+result validateOneOp(char **line, int opIndex, char **destOp, labelLst *labLst, label **lab, sWordLst *instLst);
 result validateZeroOps(char **line, int opIndex, label **lab, labelLst *labLst, sWordLst *instLst);
 result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp, labelLst
 *labLst, label **lab, sWordLst *instLst);
