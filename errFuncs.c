@@ -68,6 +68,10 @@ void lineEndErr(){
     firstParseErrMsg("line ended before expected")
 }
 
+void lineNotEndErr(){
+    firstParseErrMsg("line did not end when expected")
+}
+
 void sepErr(){
     char msg[80];
     sprintf(msg, "there should be no '%c' after operator but there should be one between operands", SEPARATOR);
@@ -75,7 +79,7 @@ void sepErr(){
 }
 
 void operandErr(){
-    firstParseErrMsg("operator got a wrong operator type")
+    firstParseErrMsg("operator got wrong operand type")
 }
 
 void nonStrDataErr(){

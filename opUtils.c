@@ -15,21 +15,15 @@
 #include "labLstUtils.h"
 #include "errFuncs.h"
 
+
 extern int instructionCounter;
 extern int labelFlag;
 
 #define VALIDATE_OP(opValidation) { \
-    if ((opValidation) == FALSE) {  \
+    if ((opValidation) == 0) {  \
         operandErr();               \
         return ERR;                 \
     }                               \
-}
-
-#define VALIDATE_LINE_CONTINUATION(wordResult, chr){ \
-    if (((wordResult) == LINE_END) && ((chr) == '\0')) { \
-        lineEndErr();                           \
-        return ERR;                             \
-    }                                           \
 }
 
 #define CHECK_REF_TYPE(checkFunc, type){ \

@@ -2,57 +2,57 @@
 #include "opDefGetters.h"
 #include "opDef.h"
 
+char *getOpName(int index){
+    return opLst[index].name;
+}
+
+unsigned char getOperandsAmount(int index){
+    return opLst[index].opAmount;
+}
+
+int getOpCode(int index){
+    return opLst[index].opcode;
+}
+
+int getFunct(int index){
+    return opLst[index].funct;
+}
+
+unsigned char getIsImSrc(int index){
+    return opLst[index].isImSrc;
+}
+
+unsigned char getIsDirSrc(int index){
+    return opLst[index].isDirSrc;
+}
+
+unsigned char getIsRelSrc(int index){
+    return opLst[index].isRelSrc;
+}
+
+unsigned char getIsRegSrc(int index){
+    return opLst[index].isRegSrc;
+}
+
+unsigned char getIsImDest(int index){
+    return opLst[index].isImDest;
+}
+
+unsigned char getIsDirDest(int index){
+    return opLst[index].isDirDest;
+}
+
+unsigned char getIsRelDest(int index){
+    return opLst[index].isRelDest;
+}
+
+unsigned char getIsRegDest(int index){
+    return opLst[index].isRegDest;
+}
+
 int getOpIndexByStr(char *word){
     int i;
     for (i=0; i < OPERATIONS_AMOUNT; i++){
-        if (!strcmp(operations[i], word)) return i;
+        if (!strcmp(opLst[i].name, word)) return i;
     } return NOT_OP;
-}
-
-char *getOpName(int opIndex){
-    return operations[opIndex];
-}
-
-unsigned char getFunct(int opIndex){
-    return functs[opIndex];
-}
-
-unsigned char getOperandsAmount(int opIndex){
-    return opAmounts[opIndex];
-}
-
-unsigned char getOpCode(int opIndex){
-    return opcodes[opIndex];
-}
-
-unsigned char getIsImSrc(int opIndex){
-    return isImSrcLst[opIndex];
-}
-
-unsigned char getIsDirSrc(int opIndex){
-    return isDirSrcLst[opIndex];
-}
-
-unsigned char getIsRelSrc(int opIndex){
-    return isRelSrcLst[opIndex];
-}
-
-unsigned char getIsRegSrc(int opIndex){
-    return isRegSrcLst[opIndex];
-}
-
-unsigned char getIsImDest(int opIndex){
-    return isImDestLst[opIndex];
-}
-
-unsigned char getIsDirDest(int opIndex){
-    return isDirDestLst[opIndex];
-}
-
-unsigned char getIsRelDest(int opIndex){
-    return isRelDestLst[opIndex];
-}
-
-unsigned char getIsRegDest(int opIndex){
-    return isRegDestLst[opIndex];
 }

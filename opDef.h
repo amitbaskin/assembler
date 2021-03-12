@@ -1,29 +1,42 @@
 #ifndef ASSEMBLER_OP_DEF_H
 #define ASSEMBLER_OP_DEF_H
-#define OPERATIONS {"mov", "cmp", "add", "sub", "lea", "clr", "not", "inc", "dec", "jmp", "bne", "jsr", "red", "prn", \
-"rts", "stop"}
-#define FUNCTS {0, 0, 10, 11, 0, 10, 11, 12, 13, 10, 11, 12, 0, 0, 0, 0}
-#define OPCODES {0, 1, 2, 2, 4, 5, 5, 5, 5, 9, 9, 9, 12, 13, 14, 15}
-#define OPERANDS_AMOUNT {2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0}
-#define IS_IMMEDIATE_SOURCE_LST {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define IS_DIRECT_SOURCE_LST {1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define IS_RELATIVE_SOURCE_LST {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define IS_REGISTRY_SOURCE_LST {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define IS_IMMEDIATE_DEST_LST {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0}
-#define IS_DIRECT_DEST_LST {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0}
-#define IS_RELATIVE_DEST_LST {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0}
-#define IS_REGISTRY_DEST_LST {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0}
 #define OPERATIONS_AMOUNT 16
-static char *operations[] = OPERATIONS;
-static const unsigned char functs[] = FUNCTS;
-static const unsigned char opcodes[] = OPCODES;
-static const unsigned char opAmounts[] = OPERANDS_AMOUNT;
-static const unsigned char isImSrcLst[] = IS_IMMEDIATE_SOURCE_LST;
-static const unsigned char isDirSrcLst[] = IS_DIRECT_SOURCE_LST;
-static const unsigned char isRelSrcLst[] = IS_RELATIVE_SOURCE_LST;
-static const unsigned char isRegSrcLst[] = IS_REGISTRY_SOURCE_LST;
-static const unsigned char isImDestLst[] = IS_IMMEDIATE_DEST_LST;
-static const unsigned char isDirDestLst[] = IS_DIRECT_DEST_LST;
-static const unsigned char isRelDestLst[] = IS_RELATIVE_DEST_LST;
-static const unsigned char isRegDestLst[] = IS_REGISTRY_DEST_LST;
+
+struct operation{
+    unsigned char index;
+    char *name;
+    unsigned char opAmount;
+    int opcode;
+    int funct;
+    unsigned char isImSrc : 1;
+    unsigned char isDirSrc : 1;
+    unsigned char isRelSrc : 1;
+    unsigned char isRegSrc : 1;
+    unsigned char isImDest : 1;
+    unsigned char isDirDest : 1;
+    unsigned char isRelDest : 1;
+    unsigned char isRegDest : 1;
+};
+
+typedef struct operation operation;
+
+static const operation opLst[] = {\
+{0, "mov", 2, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1},
+{1, "cmp", 2, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1},
+{2, "add", 2, 2, 10, 1, 1, 0, 1, 0, 1, 0, 1},
+{3, "sub", 2, 2, 11, 1, 1, 0, 1, 0, 1, 0, 1},
+{4, "lea", 2, 4, 0, 1, 1, 0, 0, 0, 1, 0, 1},
+{5, "clr", 1, 5, 10, 0, 0, 0, 0, 0, 1, 0, 1},
+{6, "not", 1, 5, 11, 0, 0, 0, 0, 0, 1, 0, 1},
+{7, "inc", 1, 5, 12, 0, 0, 0, 0, 0, 1, 0, 1},
+{8, "dec", 1, 5, 13, 0, 0, 0, 0, 0, 1, 0, 1},
+{9, "jmp", 1, 9, 10, 0,0, 0, 0, 0, 1, 1, 1},
+{10, "bne", 1, 9, 11, 0,0, 0, 0, 0, 1, 1, 1},
+{11, "jsr", 1, 9, 12, 0,0, 0, 0, 0, 1, 1, 1},
+{12, "red", 1, 12, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+{13, "prn", 1, 13, 0, 0, 0, 0, 0, 1, 1, 0, 1},
+{14, "rts", 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+{15, "stop",0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+};
+
 #endif

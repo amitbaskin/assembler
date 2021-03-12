@@ -13,7 +13,7 @@ result finishLine(char **line){
     char chr;
     for (; (chr = **line) == ' ' || chr == '\t'; (*line)++);
     if (chr != '\0') {
-        lineEndErr();
+        lineNotEndErr();
         return ERR;
     } return SUCCESS;
 }

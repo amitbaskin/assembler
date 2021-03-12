@@ -9,6 +9,7 @@
 #include "parseLineUtils.h"
 #include "opDef.h"
 #include "errFuncs.h"
+#include "opDefGetters.h"
 
 extern unsigned char labelFlag;
 
@@ -20,6 +21,7 @@ result checkRel(char **word){
 
 result isLegalLabFormat(char *word, unsigned long len){
     int i;
+    char *opName;
     if (len == 0) {
         emptyLabelErr();
             return ERR;
@@ -31,8 +33,9 @@ result isLegalLabFormat(char *word, unsigned long len){
         illegalChrErr();
         return ERR;
     } for (i=0; i < OPERATIONS_AMOUNT; i++){
-        if (strcmp(word, operations[i]) == 0) {
-            keyWordErr(operations[i]);
+        opName = getOpName(i);
+        if (strcmp(word, opName) == 0) {
+            keyWordErr(opName);
             return ERR;
         }
     } for (i=0; i < REGS_AMOUNT; i++){

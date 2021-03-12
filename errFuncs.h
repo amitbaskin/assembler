@@ -8,6 +8,7 @@ void illegalChrErr();
 void labClashErr();
 void relLabErr();
 void lineEndErr();
+void lineNotEndErr();
 void nonStrDataErr();
 void nonNumericDataErr();
 void imNumNoDataErr();
