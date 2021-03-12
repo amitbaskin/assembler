@@ -6,7 +6,7 @@
 #define SEPARATOR ','
 #define COMMENT_CHR ';'
 result finishLine(char **line);
-result breakDownData(char **line, rawWordLst *lst, unsigned char isSep);
+result breakDownData(char **line, rawWordLst *lst);
 int getLineLoopCond(char chr, int i);
 result getLine(char **line, FILE *fp);
 int getWordLoopCond(char chr, unsigned char isSep);

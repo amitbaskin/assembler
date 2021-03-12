@@ -12,6 +12,13 @@
     }                       \
 }
 
+#define VALIDATE_SEP(wordResult){ \
+    if ((wordResult) != SEP) {    \
+        sepErr();                 \
+        return ERR;               \
+    }                             \
+}
+
 #define ADD_TO_LIST(type, cond, item){ \
     if (cond){                         \
         lst->tail = item;              \

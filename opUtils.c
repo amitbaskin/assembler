@@ -32,13 +32,6 @@ extern int labelFlag;
     }                                           \
 }
 
-#define VALIDATE_SEP(wordResult){ \
-    if ((wordResult) != SEP) {    \
-        sepErr();                 \
-        return ERR;               \
-    }                             \
-}
-
 #define CHECK_REF_TYPE(checkFunc, type){ \
     if ((checkFunc) == TRUE) return type;\
 }                                        \

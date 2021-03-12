@@ -76,7 +76,7 @@ void lineEndErr(){
 }
 
 void sepErr(){
-    firstParseErrMsg("expected comma between values")
+    firstParseErrMsg("expected comma between operans")
 }
 
 void operandErr(){

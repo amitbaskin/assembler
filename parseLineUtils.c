@@ -18,7 +18,7 @@ result finishLine(char **line){
     } return SUCCESS;
 }
 
-result breakDownData(char **line, rawWordLst *lst, unsigned char isSep){
+result breakDownData(char **line, rawWordLst *lst){
     result res;
     char *str;
     rawWord *word;
@@ -26,8 +26,11 @@ result breakDownData(char **line, rawWordLst *lst, unsigned char isSep){
     int counter;
     for (counter=0, isContinue=1; isContinue; counter++, setRawWordStr(word, str), addRawWord(lst, word)){
         VALIDATE_VAL(getWordAlloc(&str))
-        res = getWord(line, &str, isSep);
-        if (res == LINE_END) {
+        res = getWord(line, &str, 1);
+        if (counter % 2 == 1) {
+            VALIDATE_SEP(res);
+            continue;
+        } if (res == LINE_END) {
             isContinue = 0;
             if (*str == '\0') break;
         } VALIDATE_VAL(initRawWord(&word))
@@ -49,7 +52,7 @@ result getLine(char **line, FILE *fp){
     ungetc(chr, fp);
     for (i=0; getLineLoopCond((char) (chr = fgetc(fp)), i); (*line)[i] = (char) chr, i++);
     if (i == MAX_LINE_LEN) {
-        for (; (chr = fgetc(fp)) != '\n'; );
+        for (; (fgetc(fp)) != '\n'; ); /* prepare next line */
         lineTooLongErr();
         res = ERR;
     } else if (chr == EOF) res = FILE_END;
