@@ -45,11 +45,7 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         VALIDATE_VAL(isFileEnd = getLine(&line, fp))
         if (*line == COMMENT_CHR || isEmptyLine(line) == TRUE) continue;
         if (getWord(&line, &word, 0) == LAB_DEC){
-            VALIDATE_VAL(res = isLabelDeclaration(&line, &word, &lab, strlen(word)))
-            if (res != TRUE){
-                errFlag = 1;
-                continue;
-            }
+            VALIDATE_VAL(res = processLabel(&line, &word, &lab, strlen(word)))
         } res = lookForData(&word, &line, &lab, labLst, instLst, dataLst);
         if (res == ERR || res != FALSE) continue;
         VALIDATE_VAL(getWordAlloc(&firstOp))

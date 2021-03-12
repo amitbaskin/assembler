@@ -113,7 +113,7 @@ ref getOperandType(char **operand, int *regNum, long *num){
     if ((*regNum = isReg(*operand)) != NOT_REG) return R_REG;
     CHECK_REF_TYPE(isImmediateNum(num,  *operand), IM)
     CHECK_REF_TYPE(checkRel(operand), REL)
-    CHECK_REF_TYPE(isLegalLabel(*operand, strlen(*operand)), DIR)
+    CHECK_REF_TYPE(isLegalLabFormat(*operand, strlen(*operand)), DIR)
     return R_NONE;
 }
 

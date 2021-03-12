@@ -2,8 +2,15 @@
 #include "errFuncs.h"
 #include "generalUtils.h"
 
+extern int lineCounter;
+extern char *inputFileName;
+extern char *curLine;
+extern int errFlag;
+
+
 #define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: \"%s\", line number: %d, line content: \"%s\"\n"
 #define firstParseErrMsg(msg){ \
+    errFlag = 1;               \
     printf(FIRST_PARSE_ERR_FORMAT, msg, inputFileName, lineCounter, curLine); \
 }
 
@@ -11,10 +18,6 @@
 #define secParseErrMsg(msg, labName){ \
     printf(SEC_PARSE_ERR_FORMAT, msg, inputFileName, labName); \
 }
-
-extern int lineCounter;
-extern char *inputFileName;
-extern char *curLine;
 
 void allocErr(){
     firstParseErrMsg("memory allocation failure")

@@ -15,10 +15,10 @@ extern unsigned char labelFlag;
 result checkRel(char **word){
     if ((*word)[0] != REL_PREFIX) return FALSE;
     (*word)++;
-    return isLegalLabel(*word, strlen(*word));
+    return isLegalLabFormat(*word, strlen(*word));
 }
 
-result isLegalLabel(char *word, unsigned long len){
+result isLegalLabFormat(char *word, unsigned long len){
     int i;
     if (len == 0) {
         emptyLabelErr();
@@ -47,13 +47,13 @@ result checkLabelLegality(char **word, label **lab, unsigned long len){
     if (len > MAX_LAB_LEN){
         labTooLongErr();
         return ERR;
-    } if (isLegalLabel(*word, len) != TRUE) {
+    } if (isLegalLabFormat(*word, len) != TRUE) {
         return ERR; /* handled inside */
     } VALIDATE_VAL(getNewLabByName(lab, *word))
     return TRUE;
 }
 
-result isLabelDeclaration(char **line, char **word, label **lab, unsigned long len){
+result processLabel(char **line, char **word, label **lab, unsigned long len){
     result res;
     res = checkLabelLegality(word, lab, len);
     if (res == TRUE) {

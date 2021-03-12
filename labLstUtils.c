@@ -9,7 +9,6 @@ extern int labelFlag;
 extern int instructionCounter;
 
 result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address){
-    VALIDATE_VAL(isLabInLst(labLst, lab, type, getLabName(*lab)))
     setLabAddress(*lab, address);
     setLabType(*lab, type);
     VALIDATE_VAL(addLab(labLst, *lab))
