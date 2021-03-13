@@ -14,6 +14,7 @@
 #define OPCODE_BITS_PREFIX 8
 #define REGS {"r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7"}
 #define REGS_AMOUNT 8
+#define OPERATIONS_AMOUNT 16
 #define A_TYPE 'A'
 #define R_TYPE 'R'
 #define E_TYPE 'E'
@@ -102,6 +103,25 @@ struct rawWordLst{
 
 typedef struct rawWordLst rawWordLst;
 
+/* operation data structure */
+struct operation{
+    unsigned char index;
+    char *name;
+    unsigned char opAmount;
+    int opcode;
+    int funct;
+    unsigned char isImSrc;
+    unsigned char isDirSrc;
+    unsigned char isRelSrc;
+    unsigned char isRegSrc;
+    unsigned char isImDest;
+    unsigned char isDirDest;
+    unsigned char isRelDest;
+    unsigned char isRegDest;
+}; /* index specified just for convenience so it is easy to see what is the index of each operation, as this is used
+ * throughout the code in order to identify operators */
+
+typedef struct operation operation;
 
 int isReg(char *r);
 char *getReg(int i);

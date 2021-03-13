@@ -9,20 +9,28 @@ extern char *inputFileName;
 extern char *curLine;
 extern int errFlag;
 
-#define PRE_PARSE_ERR_FORMAT "\nERROR (pre parse): %s\nfile: %s\n"
+#define PRE_PARSE_ERR_FORMAT "\nERROR (pre parse): %s\nfile: %s%s\n"
 #define preParseErrMsg(msg){ \
-    printf(PRE_PARSE_ERR_FORMAT, msg, inputFileName); \
+    errFlag = 1;             \
+    printf(PRE_PARSE_ERR_FORMAT, msg, inputFileName, INPUT_FILE_SUFFIX); \
 }
 
-#define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: %s, line number: %d, line content: %s\n"
+#define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: %s%s, line number: %d, line content: %s\n"
 #define firstParseErrMsg(msg){ \
     errFlag = 1;               \
-    printf(FIRST_PARSE_ERR_FORMAT, msg, inputFileName, lineCounter, curLine); \
+    printf(FIRST_PARSE_ERR_FORMAT, msg, inputFileName, INPUT_FILE_SUFFIX, lineCounter, curLine); \
 }
 
-#define SEC_PARSE_ERR_FORMAT "\nERROR (second parse): %s\nfile: %s, label name: %s\n"
+#define SEC_PARSE_ERR_FORMAT "\nERROR (second parse): %s\nfile: %s%s, label name: %s\n"
 #define secParseErrMsg(msg, labName){ \
-    printf(SEC_PARSE_ERR_FORMAT, msg, inputFileName, labName); \
+    errFlag = 1;                      \
+    printf(SEC_PARSE_ERR_FORMAT, msg, inputFileName, INPUT_FILE_SUFFIX, labName); \
+}
+
+void usageErr(){
+    printf("\nUsage: give assembly files as arguments separated by a white space\neach argument should be given as the "
+           "relative path of the assembly file excluding the suffix of the file itself\nthe suffix of each file should"
+           " be %s\n\n", INPUT_FILE_SUFFIX);
 }
 
 void allocErr(){
@@ -41,6 +49,14 @@ void lineTooLongErr(){
     char msg[50];
     sprintf(msg, "line exceeds limit of characters: %d", MAX_LINE_LEN);
     firstParseErrMsg(msg)
+}
+
+void lineEndErr(){
+    firstParseErrMsg("line ended before expected")
+}
+
+void lineNotEndErr(){
+    firstParseErrMsg("line did not end when expected")
 }
 
 void labTooLongErr(){
@@ -67,14 +83,6 @@ void undefinedStatementErr(){
     firstParseErrMsg("undefined statement")
 }
 
-void lineEndErr(){
-    firstParseErrMsg("line ended before expected")
-}
-
-void lineNotEndErr(){
-    firstParseErrMsg("line did not end when expected")
-}
-
 void sepErr(){
     char msg[80];
     sprintf(msg, "there should be no '%c' after operator but there should be one between operands", SEPARATOR);
@@ -95,9 +103,9 @@ void nonNumericDataErr(){
     firstParseErrMsg(msg)
 }
 
-void imNumNoDataErr(){
+void imNumErr(){
     char msg[50];
-    sprintf(msg, "expected integer value after '%c'", NUM_PREFIX);
+    sprintf(msg, "expected integer value immediately after '%c'", NUM_PREFIX);
     firstParseErrMsg(msg)
 }
 

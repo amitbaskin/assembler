@@ -6,7 +6,6 @@
 #include "labSetters.h"
 #include "labGetters.h"
 #include "parseLineUtils.h"
-#include "opDef.h"
 #include "errFuncs.h"
 #include "opDefGetters.h"
 

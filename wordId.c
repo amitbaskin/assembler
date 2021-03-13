@@ -52,7 +52,7 @@ result isImmediateNum(long *got, char *word){
     if (len < 2 || word[0] != NUM_PREFIX) return FALSE;
     word++;
     res = isNum(got, word);
-    if (res == ERR) imNumNoDataErr();
+    if (res == ERR) imNumErr();
     return res;
 }
 

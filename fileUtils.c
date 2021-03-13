@@ -16,16 +16,29 @@ result getNameAlloc(size_t size, char **fName){
     return SUCCESS;
 }
 
+char *getFullFileName(char *name, char *suffix){
+    char *fullName;
+    unsigned long nameLen = strlen(name);
+    unsigned long sufLen = strlen(suffix);
+    if (getNameAlloc(nameLen + sufLen + 1, &fullName) == ERR) return NULL;
+    strcat(fullName, name);
+    strcat(fullName, suffix);
+    return fullName;
+}
+
+int removeFile(char *fName){
+    int res = 0;
+    if (fName != NULL){
+        res = remove(fName);
+        freeHelper(fName);
+    } return res;
+}
+
 result getFile(char *name, FILE **fp, char *mode, char *suffix){
     /* saves a file named 'name' with the given suffix, in the fp variable
      * this is being done after opening the requested file successfully in the requested mode
      * if not successful or if a memory allocation error has occurred returns ERR, else returns SUCCESS */
-    char *fullName;
-    unsigned long nameLen = strlen(name);
-    unsigned long sufLen = strlen(suffix);
-    VALIDATE_VAL(getNameAlloc(nameLen + sufLen + 1, &fullName))
-    strcat(fullName, name);
-    strcat(fullName, suffix);
+    char *fullName = getFullFileName(name, suffix);
     *fp = fopen(fullName, mode);
     freeHelper(fullName);
     if (*fp == NULL) {
@@ -36,7 +49,7 @@ result getFile(char *name, FILE **fp, char *mode, char *suffix){
 
 result getReadFile(char *name, FILE **fp){
     /* opens a file in read mode and saves it in fp */
-    return getFile(name, fp, "r", READ_FILE_SUFFIX);
+    return getFile(name, fp, "r", INPUT_FILE_SUFFIX);
 }
 
 result getMainOutputFile(char *name, FILE **fp){
@@ -57,6 +70,8 @@ result getExtOutputFile(char *name, FILE **fp){
 result closeFile(FILE *fp){
     /* attempts to close the given file returns ERR if failed and SUCCESS otherwise */
     int res = fclose(fp);
-    if (res) closeFileErr();
-    return ERR;
+    if (res) {
+        closeFileErr();
+        return ERR;
+    } else return SUCCESS;
 }

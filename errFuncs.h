@@ -1,5 +1,6 @@
 #ifndef ASSEMBLER_ERR_FUNCS_H
 #define ASSEMBLER_ERR_FUNCS_H
+void usageErr();
 void allocErr();
 void openFileErr();
 void lineTooLongErr();
@@ -11,7 +12,7 @@ void lineEndErr();
 void lineNotEndErr();
 void nonStrDataErr();
 void nonNumericDataErr();
-void imNumNoDataErr();
+void imNumErr();
 void noNumPrefixErr();
 void noSepAfterFirstOperand();
 void sepErr();

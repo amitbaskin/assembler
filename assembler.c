@@ -36,7 +36,7 @@ void updateDataLabsAddresses(labelLst *labLst){
     }
 }
 
-result assemble(char *fName) {
+result assembleHelper(char *fName){
     /* run entire flow of processing an assembly input and output the requested files
      * returns SUCCESS unless an error has occurred in the process */
     labelLst *labLst = NULL;
@@ -64,4 +64,14 @@ result assemble(char *fName) {
     freeLabLst(labLst);
     VALIDATE_VAL(closeFile(fp)) /* err handled inside if one occurs */
     return SUCCESS;
+}
+
+result assemble(char *fName) {
+    /* run the assembler and remove files at the end if an error has occurred */
+    result res = assembleHelper(fName);
+    if (res == ERR){
+        removeFile(getFullFileName(fName, MAIN_OUTPUT_SUFFIX));
+        removeFile(getFullFileName(fName, ENT_SUFFIX));
+        removeFile(getFullFileName(fName, EXT_SUFFIX));
+    } return res;
 }

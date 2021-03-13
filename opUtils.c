@@ -199,9 +199,14 @@ result validateOneOp(char **line, int opIndex, char **destOp, labelLst *labLst, 
     int destReg;
     long destNum;
     ref destType;
+    unsigned long len;
     getWord(line, destOp, 0);
     if (**destOp == '\0'){
         lineEndErr();
+        return ERR;
+    } len = strlen(*destOp);
+    if (len == 1 && **destOp == NUM_PREFIX) {
+        imNumErr();
         return ERR;
     } VALIDATE_VAL(finishLine(line))
     destType = getOperandType(destOp, &destReg, &destNum);

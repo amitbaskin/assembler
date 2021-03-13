@@ -16,7 +16,7 @@ void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst){
     unsigned long len = strlen(str);
     int i;
     char chr;
-    flagOnScenario(&lab, labLst, setLabData, dataCounter);
+    flagOnScenario(&lab, labLst, dataCounter, 1);
     for (i=1; i<len-1; i++){
         chr = str[i];
         addChrWord(chr, instLst);
