@@ -17,7 +17,6 @@
 #define A_TYPE 'A'
 #define R_TYPE 'R'
 #define E_TYPE 'E'
-static const char *regs[] = REGS;
 typedef unsigned char reg;
 enum ref {R_NONE, IM, DIR, REL, R_REG};
 typedef enum ref ref;
@@ -39,9 +38,9 @@ struct label{
     int address;
     struct label *next;
     labelType type;
-    unsigned char isCode : 1;
-    unsigned char isData : 1;
-    unsigned char isRel : 1;
+    unsigned char isCode;
+    unsigned char isData;
+    unsigned char isRel;
 };
 
 typedef struct label label;
@@ -103,6 +102,7 @@ typedef struct rawWordLst rawWordLst;
 
 
 int isReg(char *r);
+char *getReg(int i);
 result isData(char *word);
 result isStringOrder(char *word);
 result isEntryOrder(char *word);

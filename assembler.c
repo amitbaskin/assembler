@@ -14,7 +14,6 @@ extern int instructionCounter;
 extern int dataCounter;
 extern int lineCounter;
 extern int ICF;
-extern char *inputFileName;
 
 void initGlobalVars(){
     labelFlag = 0;
@@ -32,17 +31,14 @@ void updateDataLabsAddresses(labelLst *labLst){
     }
 }
 
-result assemble(char *fName) {
+result assemble(char *fName, FILE *fp) {
     labelLst *labLst = NULL;
     sWordLst *instLst = NULL;
     sWordLst *dataLst = NULL;
-    FILE *fp;
     initGlobalVars();
-    inputFileName = fName;
     VALIDATE_VAL(initSWordLst(&instLst))
     VALIDATE_VAL(initSWordLst(&dataLst))
     VALIDATE_VAL(initLabLst(&labLst))
-    VALIDATE_VAL(getReadFile(fName, &fp))
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst))
     if (errFlag) return ERR; /* handled already */
     updateDataLabsAddresses(labLst);

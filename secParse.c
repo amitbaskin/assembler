@@ -8,7 +8,6 @@
 #include "errFuncs.h"
 #include "sWordSetters.h"
 
-extern lineCounter;
 extern int ICF;
 
 result parseInstLst(sWordLst *instLst, labelLst *labLst){

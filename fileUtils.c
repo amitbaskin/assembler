@@ -39,3 +39,9 @@ result getEntOutputFile(char *name, FILE **fp){
 result getExtOutputFile(char *name, FILE **fp){
     return getFile(name, fp, "w", EXT_SUFFIX);
 }
+
+result closeFile(FILE *fp){
+    int res = fclose(fp);
+    if (res) closeFileErr();
+    return ERR;
+}

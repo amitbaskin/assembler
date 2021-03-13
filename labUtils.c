@@ -19,6 +19,7 @@ result checkRel(char **word){
 result isLegalLabHelper(char *word, unsigned long len){
     int i;
     char *opName;
+    char *regName;
     if (len == 0) {
         emptyLabelErr();
         return ERR;
@@ -41,8 +42,9 @@ result isLegalLabHelper(char *word, unsigned long len){
             return ERR;
         }
     } for (i=0; i < REGS_AMOUNT; i++){
-        if (strcmp(word, regs[i]) == 0) {
-            keyWordErr(regs[i]);
+        regName = getReg(i);
+        if (strcmp(word, regName) == 0) {
+            keyWordErr(regName);
             return ERR;
         }
     } return TRUE;

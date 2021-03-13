@@ -1,8 +1,6 @@
 #include "parseLineUtils.h"
 #include "errFuncs.h"
 
-extern lineCounter;
-
 unsigned char isSepCond(unsigned char isSep, char chr){
     return isSep ? chr != SEPARATOR : 1;
 }

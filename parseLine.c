@@ -10,8 +10,8 @@
 #include "errFuncs.h"
 #include "numsData.h"
 
-extern labelFlag;
-extern instructionCounter;
+extern int labelFlag;
+extern int instructionCounter;
 
 #define SWITCH_DATA_RES(res) {\
     switch (res){             \

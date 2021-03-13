@@ -3,6 +3,12 @@
 #include "wordId.h"
 #include "errFuncs.h"
 
+static char *regs[] = REGS;
+
+char *getReg(int i){
+    return regs[i];
+}
+
 int isReg(char *r){
     int i;
     for (i=0; i < REGS_AMOUNT; i++){

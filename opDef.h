@@ -7,14 +7,14 @@ struct operation{
     unsigned char opAmount;
     int opcode;
     int funct;
-    unsigned char isImSrc : 1;
-    unsigned char isDirSrc : 1;
-    unsigned char isRelSrc : 1;
-    unsigned char isRegSrc : 1;
-    unsigned char isImDest : 1;
-    unsigned char isDirDest : 1;
-    unsigned char isRelDest : 1;
-    unsigned char isRegDest : 1;
+    unsigned char isImSrc;
+    unsigned char isDirSrc;
+    unsigned char isRelSrc;
+    unsigned char isRegSrc;
+    unsigned char isImDest;
+    unsigned char isDirDest;
+    unsigned char isRelDest;
+    unsigned char isRegDest;
 };
 
 typedef struct operation operation;

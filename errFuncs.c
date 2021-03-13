@@ -30,6 +30,10 @@ void openFileErr(){
     preParseErrMsg("failed to open file")
 }
 
+void closeFileErr(){
+    preParseErrMsg("failed to close file")
+}
+
 void lineTooLongErr(){
     char msg[50];
     sprintf(msg, "line exceeds limit of characters: %d", MAX_LINE_LEN);
