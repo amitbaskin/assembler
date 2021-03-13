@@ -1,3 +1,5 @@
+/* this file is used to run the general flow of the assembler */
+
 #include "labUtils.h"
 #include "firstParse.h"
 #include "fileUtils.h"
@@ -14,6 +16,7 @@ extern int instructionCounter;
 extern int dataCounter;
 extern int lineCounter;
 extern int ICF;
+extern char *inputFileName;
 
 void initGlobalVars(){
     labelFlag = 0;
@@ -25,20 +28,27 @@ void initGlobalVars(){
 }
 
 void updateDataLabsAddresses(labelLst *labLst){
+    /* add ICF (instruction counter final) to each address in the data image so that the data image will be at the
+     * end of the output */
     label *ptr;
     for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
         if (isLabData(ptr)) setLabAddress(ptr, getLabAddress(ptr) + ICF);
     }
 }
 
-result assemble(char *fName, FILE *fp) {
+result assemble(char *fName) {
+    /* run entire flow of processing an assembly input and output the requested files
+     * returns SUCCESS unless an error has occurred in the process */
     labelLst *labLst = NULL;
     sWordLst *instLst = NULL;
     sWordLst *dataLst = NULL;
+    FILE *fp;
     initGlobalVars();
+    inputFileName = fName;
     VALIDATE_VAL(initSWordLst(&instLst))
     VALIDATE_VAL(initSWordLst(&dataLst))
     VALIDATE_VAL(initLabLst(&labLst))
+    VALIDATE_VAL(getReadFile(fName, &fp))
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst))
     if (errFlag) return ERR; /* handled already */
     updateDataLabsAddresses(labLst);
@@ -52,5 +62,6 @@ result assemble(char *fName, FILE *fp) {
     freeSWordLst(instLst);
     freeSWordLst(dataLst);
     freeLabLst(labLst);
+    VALIDATE_VAL(closeFile(fp)) /* err handled inside if one occurs */
     return SUCCESS;
 }

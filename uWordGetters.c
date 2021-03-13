@@ -1,3 +1,5 @@
+/* getters for the uWord data structure */
+
 #include "labGetters.h"
 
 opWord *getUOpWord(uWord *word){

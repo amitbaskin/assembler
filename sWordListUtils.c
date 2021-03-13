@@ -1,3 +1,6 @@
+/* this file is used to provide utilities for handling the sWordLst data structure used both for the instruction
+ * list and the data image list */
+
 #include "sWordListUtils.h"
 #include "labUtils.h"
 #include "labSetters.h"
@@ -8,10 +11,12 @@ extern int dataCounter;
 extern int instructionCounter;
 
 void addSWord(sWordLst *lst, sWord *word){
+    /* adds a given sWord to the given sWordLst list */
     ADD_TO_LIST(sWord, getSWordTail(lst) == NULL, word)
 }
 
 result createAndAddSWord(sWord **word, wordStatus status, sWordLst *lst){
+    /* creates an sWord object with the given wordStatus and adds it to the given sWordLst */
     VALIDATE_VAL(initSword(word))
     setSWordStatus(*word, status);
     addSWord(lst, *word);
@@ -19,6 +24,7 @@ result createAndAddSWord(sWord **word, wordStatus status, sWordLst *lst){
 }
 
 void freeSWordLstHelper(sWord *word){
+    /* given the tail of an sWordLst, deallocates the entire memory of this list */
     sWord *tmp;
     while(word != NULL){
         tmp = word;
@@ -28,6 +34,7 @@ void freeSWordLstHelper(sWord *word){
 }
 
 result addOpWord(opWord *opWord, sWordLst *instLst){
+    /* adds an operator word to the instruction list */
     sWord *sOpWord;
     VALIDATE_VAL(createAndAddSWord(&sOpWord, OP, instLst))
     setSUOpWord(sOpWord, opWord);
@@ -37,8 +44,10 @@ result addOpWord(opWord *opWord, sWordLst *instLst){
     return SUCCESS;
 }
 
-result addLabToInstLst(sWordLst *instLst, char *name, int address, wordStatus status, labelType labType, unsigned char
-isRel){
+result addLabToInstLst(sWordLst *instLst, char *name, int address, wordStatus status, labelType labType,
+                       unsigned char isRel){
+    /* creates a label sWord with the given name and adds it to the instruction list
+     * returns ERR if a memory allocation ERR occurred and SUCCESS otherwise */
     label *lab;
     sWord *sWordLab;
     VALIDATE_VAL(initSword(&sWordLab))
@@ -55,6 +64,8 @@ isRel){
 }
 
 result addRegWord(int reg, sWordLst *instLst){
+    /* creates a reg sWord and adds it to the instruction list
+     * returns ERR if a memory allocation ERR occurred and SUCCESS otherwise */
     sWord *sWordReg;
     VALIDATE_VAL(createAndAddSWord(&sWordReg, W_REG, instLst))
     setSUReg(sWordReg, reg);
@@ -64,6 +75,8 @@ result addRegWord(int reg, sWordLst *instLst){
 }
 
 void addNumWord(long num, int address, wordStatus status, sWordLst *lst){
+    /* creates an integer sWord and adds it to the instruction list
+     * returns ERR if a memory allocation ERR occurred and SUCCESS otherwise */
     sWord *sWordNum;
     createAndAddSWord(&sWordNum, status, lst);
     setSUNum(sWordNum, num);
@@ -72,6 +85,8 @@ void addNumWord(long num, int address, wordStatus status, sWordLst *lst){
 }
 
 void addChrWord(char chr, sWordLst *dataLst){
+    /* creates a char sWord and adds it to the instruction list
+     * returns ERR if a memory allocation ERR occurred and SUCCESS otherwise */
     sWord *sWordChr;
     createAndAddSWord(&sWordChr, CHR_DATA, dataLst);
     setSUChrData(sWordChr, chr);
@@ -85,6 +100,7 @@ sWord *getSWordTail(sWordLst *lst){
 }
 
 result initSWordLst(sWordLst **lst){
+    /* allocates memory for a new sWordLst */
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(sWordLst), &ptr))
     *lst = ptr;
@@ -92,5 +108,6 @@ result initSWordLst(sWordLst **lst){
 }
 
 void freeSWordLst(sWordLst *lst){
+    /* deallocates the entire memory of the given sWordLst */
     freeSWordLstHelper(getSWordTail(lst));
 }

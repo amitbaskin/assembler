@@ -24,63 +24,50 @@
 ;reg keyword label
 ;op keyword label
 ;jibrish statements
-;wrong operator types
-;registers with wrong numbers
 
 .extern externAndRegular
+g
 externAndRegular: stop
 
 
 externAndRegular0: stop
+rt
 .extern externAndRegular0
 
 
 MAIN: .data 5
+rg
 MAIN: .data 6
 
 
-.data 0,1
 .string "012345678901234567890123456789012345678901234567890123456789012345678901"
+gth
 .extern 01234567890123456789012345678901
 
 
 7rsrgsr: stop
 FARSG$@%!$#%!SAGGGASG: stop
 .entry
+rwg
 .extern
 MAIN:
+rh
 .data
 .string
 .data5
-add r8, r9
+thrt
 .data 5 6
 .data  , 7
+rg
 .data c
 .string"hi"
+gr
 .string hi
 add x x
+d
 .string "hi
 .string hi"
 r0: .data 5
+thryj
 dec: .data 7
 add
-
-GSRTg
-SRg
-S
-GR
-SRg
-RS
-debugger
-
-debuggerGSR
-G
-RSg
-SRg
-SR
-debuggerSR
-gS
-rg
-SRg
-r
-Sgr

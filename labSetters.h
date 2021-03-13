@@ -6,6 +6,5 @@ result setLabName(label *lab, char *name);
 void setLabAddress(label *lab, int address);
 void setLabType(label *lab, labelType type);
 void setLabData(label *lab, unsigned char toSet);
-void setLabCode(label *lab, unsigned char toSet);
 void setLabRel(label *lab, unsigned char toSet);
 #endif

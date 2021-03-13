@@ -4,11 +4,12 @@
 ;declaring .entry without regular label declaration
 ;.extern and .entry clash
 ;using undeclared label
+;registers with wrong numbers
 
-
+add r8, r9
 .entry entryAlone
 
 .entry externAndEntryClash
 .extern externAndEntryClash
 
-dec undeclaredLabel
+dec undefinedLabel

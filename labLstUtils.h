@@ -5,8 +5,9 @@
 result addLabToLabLst(labelLst *labLst, label **lab, labelType type, int address);
 result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name);
 result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int *dist);
-result flagOnScenario(label **lab, labelLst *labLst, void labSetter(label *, unsigned char), int address);
-label *getLabTail(labelLst *lst);
+result flagOnScenario(label **lab, labelLst *labLst, int address, unsigned char isData);
+label *getLabTail(labelLst
+*lst);
 result addLab(labelLst *lst, label *lab);
 result initLabLst(labelLst **lst);
 void freeLabLstHelper(label *lab);

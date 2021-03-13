@@ -1,4 +1,4 @@
-;file example7.as
+;file example6.as
 ;fail example
 ;example3 mixed with first parse errors
 

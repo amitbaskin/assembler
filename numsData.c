@@ -1,3 +1,5 @@
+/* this file is used to handle the integer data statements */
+
 #include "parseLineUtils.h"
 #include "labSetters.h"
 #include "sWordListUtils.h"
@@ -10,6 +12,7 @@ extern int dataCounter;
 extern int labelFlag;
 
 result breakDownData(char **line, rawWordLst *lst){
+    /* breaks down a line to consecutive words and makes sure the are separators between them */
     result res;
     char *str;
     rawWord *word;
@@ -34,6 +37,8 @@ result breakDownData(char **line, rawWordLst *lst){
 }
 
 result collectData(rawWordLst *lst){
+    /* collects the numeric data from the broken line
+     * returns ERR if encountered a word which is not an integer else returns SUCCESS */
     long num;
     rawWord *ptr;
     for (ptr = getRawWordTail(lst); ptr != NULL; promoteRawWord(&ptr)){
@@ -46,6 +51,8 @@ result collectData(rawWordLst *lst){
 }
 
 result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst *rawLst){
+    /* adds the collected data to the data list and if a label was declared so adds it to the label list with the
+     * address of this data line */
     rawWord *ptr;
     if (labelFlag) {
         setLabData(lab, 1);
@@ -57,6 +64,8 @@ result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst 
 }
 
 result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst) {
+    /* checks if the given word is a data statement and if so operates accordingly in order to collect the data
+     * returns ERR if and error has occurred in the process and TRUE otherwise */
     rawWordLst *rawLst;
     if (isData(word) == TRUE) {
         VALIDATE_VAL(initRawWordLst(&rawLst))

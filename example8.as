@@ -1,4 +1,4 @@
-;file example9.as
+;file example8.as
 ;fail example
 ;example 3 mixed with all errors
 

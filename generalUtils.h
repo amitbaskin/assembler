@@ -11,12 +11,14 @@ result getWordAlloc(char **output);
 #define MAX_LAB_LEN 31
 #define SEPARATOR ','
 
+/* bubble up err if occurred */
 #define VALIDATE_VAL(val) { \
     if ((val) == ERR) {     \
         return ERR; /* handled before hand */ \
     }                       \
 }
 
+/* general logic for adding an element to a linked list */
 #define ADD_TO_LIST(type, cond, item){ \
     if (cond){                         \
         lst->tail = item;              \

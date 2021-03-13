@@ -1,3 +1,5 @@
+/* this file is used to handle the output of the program */
+
 #include "wordTrans.h"
 #include "labUtils.h"
 #include "sWordGetters.h"
@@ -27,10 +29,10 @@ void printLabel(FILE *fp, label *lab){
 }
 
 void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
+    /* outputs the the main output file containing the translation of the instructions and data to machine code */
     sWord *ptr;
     fprintf(fp, HEADER_FORMAT, instructionCounter - INITIAL_INSTRUCTION_NUM, dataCounter);
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
-
         switch (getSWordStatus(ptr)){
             case OP:
                 printInst(fp, &ptr, transOp(getSUOpWord(ptr)));
@@ -41,8 +43,7 @@ void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
                     int dist;
                     getRelLabelAddressFromLst(getSULabName(ptr), labLst, getSWordAddress(ptr), &dist);
                     printInst(fp, &ptr, dist);
-                }
-                else printInst(fp, &ptr, getSULabAddress(ptr));
+                } else printInst(fp, &ptr, getSULabAddress(ptr));
                 break;
 
             case W_REG:
@@ -71,7 +72,8 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
 }
 
 result printEntFile(labelLst *lst, char *fName) {
-    int flag = 0;
+    /* outputs the entry file if any extern statement exists, making sure the entry statements refer to actual labels */
+    int isEntExists = 0;
     FILE *fp = NULL;
     label *ptr;
     rawWordLst *rawLst;
@@ -79,11 +81,10 @@ result printEntFile(labelLst *lst, char *fName) {
     initRawWordLst(&rawLst);
     for (ptr = getLabTail(lst); ptr != NULL; promoteLab(&ptr)) {
         if (getLabType(ptr) == L_ENT) {
-            if (!flag) {
-                flag = 1;
+            if (!isEntExists) {
+                isEntExists = 1;
                 VALIDATE_VAL(getEntOutputFile(fName, &fp))
-            }
-            initRawWord(&rWord);
+            } initRawWord(&rWord);
             setRawWordStr(rWord, getLabName(ptr));
             if (isRawStrWordInRLst(rWord, rawLst) == FALSE){
                 addRawWord(rawLst, rWord);
@@ -95,14 +96,15 @@ result printEntFile(labelLst *lst, char *fName) {
 }
 
 result printExtLst(char *fName, sWordLst *instLst) {
+    /* outputs the extern file if any extern statement exists */
     FILE *fp;
     sWord *ptr;
-    int extFlag = 0;
+    int isExtExists = 0;
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)) {
         if (getSWordStatus(ptr) == LAB) {
             if (getSULabType(ptr) == EXT){
-                if (!extFlag) {
-                    extFlag = 1;
+                if (!isExtExists) {
+                    isExtExists = 1;
                     VALIDATE_VAL(getExtOutputFile(fName, &fp))
                 } setSULabAddress(ptr, getSWordAddress(ptr));
                 printLabel(fp, getSULab(ptr));

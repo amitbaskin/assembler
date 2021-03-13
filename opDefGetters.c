@@ -1,3 +1,5 @@
+/* getters for information of the assembly operators */
+
 #include <string.h>
 #include "opDefGetters.h"
 #include "opDef.h"
@@ -51,6 +53,8 @@ unsigned char getIsRegDest(int index){
 }
 
 int getOpIndexByStr(char *word){
+    /* checks if the given word is an operator statement, if so returns its index in the operators list and otherwise
+     * returns the NOT_OP constant */
     int i;
     for (i=0; i < OPERATIONS_AMOUNT; i++){
         if (!strcmp(opLst[i].name, word)) return i;

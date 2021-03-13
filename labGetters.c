@@ -1,3 +1,5 @@
+/* getters for the label data structure */
+
 #include "labGetters.h"
 
 char *getLabName(label *lab){
@@ -10,10 +12,6 @@ int getLabAddress(label *lab){
 
 labelType getLabType(label *lab){
     return lab->type;
-}
-
-unsigned char isLabCode(label *lab){
-    return lab->isCode;
 }
 
 unsigned char isLabData(label *lab){

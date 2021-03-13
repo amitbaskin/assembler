@@ -1,3 +1,5 @@
+/* this file is used for the second parse of an assembly file */
+
 #include "secParse.h"
 #include "labSetters.h"
 #include "sWordGetters.h"
@@ -11,6 +13,8 @@
 extern int ICF;
 
 result parseInstLst(sWordLst *instLst, labelLst *labLst){
+    /* make sure that the entry statements made in the input assembly file indeed refer to actual declared labels and
+     * that no labels were declared both entry and extern */
     label *lab;
     result res = SUCCESS;
     wordStatus status;

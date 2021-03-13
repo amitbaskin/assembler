@@ -1,3 +1,5 @@
+/* setters for the sWord data structure */
+
 #include "uWordSetters.h"
 #include "sWordGetters.h"
 

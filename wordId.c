@@ -1,3 +1,5 @@
+/* this file is used to identify in general the strings read from the assembly file */
+
 #include <stdlib.h>
 #include <string.h>
 #include "wordId.h"

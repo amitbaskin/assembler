@@ -1,3 +1,5 @@
+/* this file is used to provide utilities for handling a data structure containing integer data */
+
 #include "rawWordUtils.h"
 
 rawData *getRawData(rawWord *word){
@@ -9,6 +11,8 @@ void setRawData(rawWord *raw, rawData *data){
 }
 
 result initRawWord(rawWord **word){
+    /* allocates memory for a rawWord
+     * returns ERR if a memory allocation ERR has occurred and SUCCESS otherwise */
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(rawWord), &ptr))
     *word = (rawWord *) ptr;
@@ -18,11 +22,13 @@ result initRawWord(rawWord **word){
     setRawWordStr(*word, (char *) ptr);
     return SUCCESS;
 }
+
 void freeRawWord(rawWord *word){
     freeHelper(getRawData(word));
     freeHelper(word);
 }
 void promoteRawWord(rawWord **word){
+    /* sets a rawWord to point to its successor */
     *word = (*word)->next;
 }
 

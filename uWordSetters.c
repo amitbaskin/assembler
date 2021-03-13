@@ -1,3 +1,5 @@
+/* setters for the uWord data structure */
+
 #include "labSetters.h"
 #include "uWordGetters.h"
 

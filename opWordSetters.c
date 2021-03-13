@@ -1,3 +1,5 @@
+/* setters for the opWord data structure */
+
 #include "opWordSetters.h"
 
 void setOpIndex(opWord *op, int index){

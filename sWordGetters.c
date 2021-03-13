@@ -1,3 +1,5 @@
+/* getters for the sWord data structure */
+
 #include "uWordGetters.h"
 
 uWord *getSUWord(sWord *word){

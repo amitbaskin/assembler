@@ -17,14 +17,16 @@
 #define A_TYPE 'A'
 #define R_TYPE 'R'
 #define E_TYPE 'E'
-typedef unsigned char reg;
-enum ref {R_NONE, IM, DIR, REL, R_REG};
+typedef unsigned char reg; /* type for registers */
+enum ref {R_NONE, IM, DIR, REL, R_REG}; /* operands' references */
 typedef enum ref ref;
-enum wordStatus {OP, LAB, W_ENT, W_REG, IM_NUM, NUM_DATA, CHR_DATA};
+enum wordStatus {OP, LAB, W_ENT, W_REG, IM_NUM, NUM_DATA, CHR_DATA}; /* status of parsed words to later translate to
+ * machine code for the output */
 typedef enum wordStatus wordStatus;
-enum labelType {L_NONE, L_ENT, EXT};
+enum labelType {L_NONE, L_ENT, EXT}; /* type for the declared labels in the assembly file */
 typedef enum labelType labelType;
 
+/* an instruction word which represents an operator */
 struct opWord{
     int opIndex;
     ref src;
@@ -33,12 +35,12 @@ struct opWord{
 
 typedef struct opWord opWord;
 
+/* label data structure */
 struct label{
     char *name;
     int address;
     struct label *next;
     labelType type;
-    unsigned char isCode;
     unsigned char isData;
     unsigned char isRel;
 };

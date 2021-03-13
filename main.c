@@ -1,14 +1,8 @@
 #include "assembler.h"
-#include "fileUtils.h"
-
-extern char *inputFileName;
 
 int main(int argc, char **args) {
-    FILE *fp;
+    /* assemble the given file names given as arguments */
     while (--argc){
-        inputFileName = *++args;
-        if (getReadFile(inputFileName, &fp) == ERR) continue;
-        assemble(inputFileName, fp);
-        closeFile(fp); /* err handled inside if one occurs */
+        assemble(*++args);
     } return 0;
 }

@@ -1,5 +1,5 @@
 #include "generalUtils.h"
 #ifndef ASSEMBLER_ASSEMBLER_H
 #define ASSEMBLER_ASSEMBLER_H
-result assemble(char *fName, FILE *fp);
+result assemble(char *fName);
 #endif

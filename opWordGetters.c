@@ -1,3 +1,5 @@
+/* getters for the opWord data structure */
+
 #include "sWordSetters.h"
 
 int getOpIndexByObject(opWord *op){

@@ -1,3 +1,5 @@
+/* this file is used to translate the instructions and data collected into machine code to output */
+
 #include <string.h>
 #include "wordTrans.h"
 #include "opDefGetters.h"

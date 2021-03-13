@@ -1,6 +1,9 @@
+/* this file is used to handle the errors in the program */
+
 #include <stdio.h>
 #include "generalUtils.h"
 #include "wordId.h"
+#include "fileUtils.h"
 extern int lineCounter;
 extern char *inputFileName;
 extern char *curLine;
@@ -94,7 +97,7 @@ void nonNumericDataErr(){
 
 void imNumNoDataErr(){
     char msg[50];
-    sprintf(msg, "expected numeric value after '%c'", NUM_PREFIX);
+    sprintf(msg, "expected integer value after '%c'", NUM_PREFIX);
     firstParseErrMsg(msg)
 }
 

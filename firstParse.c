@@ -1,3 +1,5 @@
+/* this file is used to run the general flow of the first parse of an assembly file */
+
 #include <string.h>
 #include "parseLine.h"
 #include "parseLineUtils.h"
@@ -12,6 +14,7 @@ extern int dataCounter;
 extern char *curLine;
 
 result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLst){
+    /* first parse of an input assembly file returns ERR if error occurred in the process and SUCCESS otherwise */
     char *line;
     result res = SUCCESS;
     char *word;
@@ -29,7 +32,8 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     while (isFileEnd != FILE_END){
         lineCounter++;
         labelFlag = 0;
-        line = curLine;
+        line = curLine; /* save the pointer for the beginning of the line in order to override it with the next line
+        * later on */
         isFileEnd = getLine(&line, fp); /* err handled inside, keep finding errs */
         if (isFileEnd == ERR) continue;
         if (*line == COMMENT_CHR || isEmptyLine(line) == TRUE) continue;
@@ -41,6 +45,8 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         if (res == ERR || res != FALSE) continue;
         if (getWordAlloc(&firstOp) == ERR) continue; /* err handled inside, keep finding errs */
         if (getWordAlloc(&secOp) == ERR) continue; /* err handled inside, keep finding errs */
+        /* saves the pointers to the allocated operands in order to free them later as they might be modified while
+         * processing the operator statement */
         orgFirstOp = firstOp;
         orgSecOp = secOp;
         res = lookForOperation(&firstOp, &secOp, &word, &line, &lab, labLst, instLst);
@@ -48,7 +54,6 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         freeHelper(orgSecOp);
     } freeHelper(curLine);
     freeHelper(word);
-    ICF = instructionCounter;
-    lineCounter = 0;
+    ICF = instructionCounter; /* final instruction counter */
     return res;
 }
