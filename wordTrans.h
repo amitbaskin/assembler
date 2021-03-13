@@ -1,5 +1,4 @@
 #include "wordId.h"
-#include "opDefGetters.h"
 #ifndef ASSEMBLER_WORD_TRANS_H
 #define ASSEMBLER_WORD_TRANS_H
 #define STR_WORD_FORMAT "%c%c%c "

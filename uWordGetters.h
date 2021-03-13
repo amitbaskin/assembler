@@ -9,12 +9,5 @@ char getUChrData(uWord *v);
 char *getULabName(uWord *word);
 int getULabAddress(uWord *word);
 labelType getULabType(uWord *word);
-unsigned char isUCodeLab(uWord *word);
-unsigned char isUDataLab(uWord *word);
 unsigned char isURelLab(uWord *word);
-unsigned char isULabNameAlloc(uWord *word);
-label *getUNextLab(uWord *word);
-int getUOpIndexByObject(uWord *word);
-ref getUOpSrc(uWord *word);
-ref getUOpDest(uWord *word);
 #endif

@@ -3,5 +3,4 @@
 #ifndef ASSEMBLER_STR_DATA_H
 #define ASSEMBLER_STR_DATA_H
 result isStrScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst);
-void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst);
 #endif

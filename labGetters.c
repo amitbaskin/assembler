@@ -23,11 +23,3 @@ unsigned char isLabData(label *lab){
 unsigned char isLabRel(label *lab){
     return lab->isRel;
 }
-
-unsigned char isLabNameAlloc(label *lab){
-    return lab->isNameAlloc;
-}
-
-label *getLabNext(label *lab){
-    return lab->next;
-}

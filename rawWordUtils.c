@@ -1,5 +1,13 @@
 #include "rawWordUtils.h"
 
+rawData *getRawData(rawWord *word){
+    return word->data;
+}
+
+void setRawData(rawWord *raw, rawData *data){
+    raw->data = data;
+}
+
 result initRawWord(rawWord **word){
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(rawWord), &ptr))
@@ -18,24 +26,12 @@ void promoteRawWord(rawWord **word){
     *word = (*word)->next;
 }
 
-rawWord *getRawWordNext(rawWord *word){
-    return word->next;
-}
-
 char *getRawWordStr(rawWord *raw){
     return raw->data->word;
 }
 
 int getRawWordNum(rawWord *raw){
     return raw->data->num;
-}
-
-rawData *getRawData(rawWord *word){
-    return word->data;
-}
-
-void setRawWordNext(rawWord *this, rawWord *other){
-    this->next = other;
 }
 
 void setRawWordStr(rawWord *raw, char *str){
@@ -45,10 +41,3 @@ void setRawWordStr(rawWord *raw, char *str){
 void setRawWordNum(rawWord *raw, int num){
     raw->data->num = num;
 }
-
-void setRawData(rawWord *raw, rawData *data){
-    raw->data = data;
-}
-
-
-

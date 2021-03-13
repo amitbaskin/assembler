@@ -1,12 +1,8 @@
-#include "outputUtils.h"
-#include "generalUtils.h"
-#include "sWordSetters.h"
 #include "wordTrans.h"
 #include "labUtils.h"
 #include "sWordGetters.h"
 #include "sWordSetters.h"
 #include "labGetters.h"
-#include "labSetters.h"
 #include "fileUtils.h"
 #include "labLstUtils.h"
 #include "sWordListUtils.h"
@@ -14,10 +10,21 @@
 #include "rawWordLstUtils.h"
 #include "rawWordUtils.h"
 
+#define HEADER_FORMAT "%d %d\n"
 extern int ICF;
-
 extern int instructionCounter;
 extern int dataCounter;
+
+void printInst(FILE *fp, sWord **ptr, int toPrint){
+    printAddressToFile(fp, *ptr);
+    printWordToFile(fp, toPrint);
+    printAddressTypeToFile(fp, *ptr);
+}
+
+void printLabel(FILE *fp, label *lab){
+    fprintf(fp, "%s ", getLabName(lab));
+    fprintf(fp, "%d\n", getLabAddress(lab));
+}
 
 void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
     sWord *ptr;
@@ -102,15 +109,4 @@ result printExtLst(char *fName, sWordLst *instLst) {
             }
         }
     } return SUCCESS;
-}
-
-void printInst(FILE *fp, sWord **ptr, int toPrint){
-    printAddressToFile(fp, *ptr);
-    printWordToFile(fp, toPrint);
-    printAddressTypeToFile(fp, *ptr);
-}
-
-void printLabel(FILE *fp, label *lab){
-    fprintf(fp, "%s ", getLabName(lab));
-    fprintf(fp, "%d\n", getLabAddress(lab));
 }

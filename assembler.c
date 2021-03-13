@@ -1,17 +1,12 @@
-#include "assembler.h"
-#include "wordId.h"
-#include "sWordUtils.h"
 #include "labUtils.h"
 #include "firstParse.h"
 #include "fileUtils.h"
 #include "secParse.h"
 #include "outputUtils.h"
-#include "generalUtils.h"
 #include "sWordListUtils.h"
 #include "labLstUtils.h"
 #include "labGetters.h"
 #include "labSetters.h"
-#include "errFuncs.h"
 
 extern int labelFlag;
 extern int errFlag;

@@ -1,6 +1,5 @@
 #ifndef ASSEMBLER_OP_INFO_GETTERS_H
 #define ASSEMBLER_OP_INFO_GETTERS_H
-#define NOT_OP (-1)
 char *getOpName(int index);
 unsigned char getOperandsAmount(int opIndex);
 int getFunct(int opIndex);
@@ -14,4 +13,5 @@ unsigned char getIsDirDest(int opIndex);
 unsigned char getIsRelDest(int opIndex);
 unsigned char getIsRegDest(int opIndex);
 int getOpIndexByStr(char *word);
+#define NOT_OP (-1)
 #endif

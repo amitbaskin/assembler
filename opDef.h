@@ -1,6 +1,5 @@
 #ifndef ASSEMBLER_OP_DEF_H
 #define ASSEMBLER_OP_DEF_H
-#define OPERATIONS_AMOUNT 16
 
 struct operation{
     unsigned char index;
@@ -19,6 +18,7 @@ struct operation{
 };
 
 typedef struct operation operation;
+#define OPERATIONS_AMOUNT 16
 
 static const operation opLst[] = {\
 {0, "mov", 2, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1},

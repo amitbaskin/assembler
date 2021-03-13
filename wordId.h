@@ -18,11 +18,10 @@
 #define R_TYPE 'R'
 #define E_TYPE 'E'
 static const char *regs[] = REGS;
-enum reg {R0, R1, R2, R3, R4, R5, R6, R7};
-typedef enum reg reg;
+typedef unsigned char reg;
 enum ref {R_NONE, IM, DIR, REL, R_REG};
 typedef enum ref ref;
-enum wordStatus {W_NONE, OP, LAB, W_ENT, W_REG, IM_NUM, NUM_DATA, CHR_DATA};
+enum wordStatus {OP, LAB, W_ENT, W_REG, IM_NUM, NUM_DATA, CHR_DATA};
 typedef enum wordStatus wordStatus;
 enum labelType {L_NONE, L_ENT, EXT};
 typedef enum labelType labelType;
@@ -40,7 +39,6 @@ struct label{
     int address;
     struct label *next;
     labelType type;
-    unsigned char isNameAlloc : 1;
     unsigned char isCode : 1;
     unsigned char isData : 1;
     unsigned char isRel : 1;

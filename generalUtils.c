@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 #include "generalUtils.h"
 #include "errFuncs.h"
 
@@ -8,8 +7,7 @@ result getAlloc(size_t size, void **ptr){
     if (ptr == NULL) {
         allocErr();
         return ERR;
-    }
-    return SUCCESS;
+    } return SUCCESS;
 }
 
 void freeHelper(void *ptr){

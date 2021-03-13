@@ -8,7 +8,4 @@ void setLabType(label *lab, labelType type);
 void setLabData(label *lab, unsigned char toSet);
 void setLabCode(label *lab, unsigned char toSet);
 void setLabRel(label *lab, unsigned char toSet);
-void setLabIsNameAlloc(label *lab, unsigned char toSet);
-void setLabNext(label *lab, label *next);
-void setThisLab(label **this, label *other);
 #endif

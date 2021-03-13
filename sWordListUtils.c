@@ -1,22 +1,35 @@
 #include "sWordListUtils.h"
-#include "sWordSetters.h"
-#include "uWordSetters.h"
 #include "labUtils.h"
 #include "labSetters.h"
-#include "uWordSetters.h"
 #include "sWordSetters.h"
-#include "sWordGetters.h"
-#include "labGetters.h"
 #include "sWordUtils.h"
-#include "labLstUtils.h"
 
 extern int dataCounter;
-
 extern int instructionCounter;
+
+void addSWord(sWordLst *lst, sWord *word){
+    ADD_TO_LIST(sWord, getSWordTail(lst) == NULL, word)
+}
+
+result createAndAddSWord(sWord **word, wordStatus status, sWordLst *lst){
+    VALIDATE_VAL(initSword(word))
+    setSWordStatus(*word, status);
+    addSWord(lst, *word);
+    return SUCCESS;
+}
+
+void freeSWordLstHelper(sWord *word){
+    sWord *tmp;
+    while(word != NULL){
+        tmp = word;
+        promoteSWord(&word);
+        freeSWord(tmp);
+    }
+}
 
 result addOpWord(opWord *opWord, sWordLst *instLst){
     sWord *sOpWord;
-    VALIDATE_VAL(createAndAddWord(&sOpWord, OP, instLst))
+    VALIDATE_VAL(createAndAddSWord(&sOpWord, OP, instLst))
     setSUOpWord(sOpWord, opWord);
     setSOpWordStatus(sOpWord);
     setSWordAddressType(sOpWord, A_TYPE);
@@ -24,20 +37,13 @@ result addOpWord(opWord *opWord, sWordLst *instLst){
     return SUCCESS;
 }
 
-result createAndAddWord(sWord **word, wordStatus status, sWordLst *lst){
-    VALIDATE_VAL(initSword(word))
-    setSWordStatus(*word, status);
-    addSWord(lst, *word);
-    return SUCCESS;
-}
-
 result addLabToInstLst(sWordLst *instLst, char *name, int address, wordStatus status, labelType labType, unsigned char
 isRel){
+    label *lab;
     sWord *sWordLab;
     VALIDATE_VAL(initSword(&sWordLab))
     setSWordAddress(sWordLab, address);
     setSLabStatus(sWordLab);
-    label *lab;
     initLab(&lab);
     VALIDATE_VAL(setLabName(lab, name))
     setLabType(lab, labType);
@@ -50,7 +56,7 @@ isRel){
 
 result addRegWord(int reg, sWordLst *instLst){
     sWord *sWordReg;
-    VALIDATE_VAL(createAndAddWord(&sWordReg, W_REG, instLst))
+    VALIDATE_VAL(createAndAddSWord(&sWordReg, W_REG, instLst))
     setSUReg(sWordReg, reg);
     setSWordAddressType(sWordReg, A_TYPE);
     setSWordAddress(sWordReg, instructionCounter++);
@@ -59,7 +65,7 @@ result addRegWord(int reg, sWordLst *instLst){
 
 void addNumWord(long num, int address, wordStatus status, sWordLst *lst){
     sWord *sWordNum;
-    createAndAddWord(&sWordNum, status, lst);
+    createAndAddSWord(&sWordNum, status, lst);
     setSUNum(sWordNum, num);
     setSWordAddressType(sWordNum, A_TYPE);
     setSWordAddress(sWordNum, address);
@@ -67,28 +73,15 @@ void addNumWord(long num, int address, wordStatus status, sWordLst *lst){
 
 void addChrWord(char chr, sWordLst *dataLst){
     sWord *sWordChr;
-    createAndAddWord(&sWordChr, CHR_DATA, dataLst);
+    createAndAddSWord(&sWordChr, CHR_DATA, dataLst);
     setSUChrData(sWordChr, chr);
     setSWordStatus(sWordChr, CHR_DATA);
     setSWordAddressType(sWordChr, A_TYPE);
     setSWordAddress(sWordChr, dataCounter++);
 }
 
-void freeSWordLstHelper(sWord *word){
-    sWord *tmp;
-    while(word != NULL){
-        tmp = word;
-        promoteSWord(&word);
-        freeSWord(tmp);
-    }
-}
-
 sWord *getSWordTail(sWordLst *lst){
     return lst->tail;
-}
-
-void addSWord(sWordLst *lst, sWord *word){
-    ADD_TO_LIST(sWord, getSWordTail(lst) == NULL, word)
 }
 
 result initSWordLst(sWordLst **lst){

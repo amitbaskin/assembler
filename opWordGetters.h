@@ -1,5 +1,4 @@
 #include "wordId.h"
-#include "generalUtils.h"
 #ifndef ASSEMBLER_OP_WORD_GETTERS_H
 #define ASSEMBLER_OP_WORD_GETTERS_H
 int getOpIndexByObject(opWord *op);

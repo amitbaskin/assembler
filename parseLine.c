@@ -1,21 +1,14 @@
 #include <string.h>
-#include "parseLine.h"
-#include "generalUtils.h"
 #include "parseLineUtils.h"
 #include "labUtils.h"
-#include "sWordSetters.h"
-#include "numsData.h"
 #include "strData.h"
 #include "opDefGetters.h"
-#include "parseOp.h"
-#include "sWordSetters.h"
 #include "sWordListUtils.h"
-#include "opWordGetters.h"
 #include "labSetters.h"
 #include "labLstUtils.h"
-#include "sWordGetters.h"
 #include "opUtils.h"
 #include "errFuncs.h"
+#include "numsData.h"
 
 extern labelFlag;
 extern instructionCounter;
@@ -39,6 +32,15 @@ extern instructionCounter;
     }                                                     \
 }
 
+result lookForLabel(char **line, char **word, label **lab){
+    unsigned long len;
+    getWord(line, word, 0);
+    len = strlen(*word);
+    if (getLegalLab(word, lab, len) != TRUE) {
+        return ERR; /* handled inside */
+    } return finishLine(line);
+}
+
 result entryScenario(char **line, char **word, label **lab, sWordLst *instLst){
     VALIDATE_VAL(lookForLabel(line, word, lab))
     setLabType(*lab, L_ENT);
@@ -59,22 +61,14 @@ result lookForData(char **word, char **line, label **lab, labelLst *labLst, sWor
     return FALSE;
 }
 
-result lookForOperation(char **firstOp, char **secOp, char **word, char **line, label **lab, labelLst *labLst, sWordLst
-*instLst){
+result lookForOperation(char **firstOp, char **secOp, char **word, char **line, label **lab, labelLst *labLst,
+                        sWordLst *instLst){
+    int opsAmount;
     int opIndex = getOpIndexByStr(*word);
     if (opIndex == NOT_OP) {
         undefinedStatementErr();
         return ERR;
-    } int opsAmount = getOperandsAmount(opIndex);
+    } opsAmount = getOperandsAmount(opIndex);
     VALIDATE_VAL(validateOperation(opIndex, opsAmount, line, firstOp, secOp, labLst, lab, instLst))
     return SUCCESS;
-}
-
-result lookForLabel(char **line, char **word, label **lab){
-    unsigned long len;
-    getWord(line, word, 0);
-    len = strlen(*word);
-    if (checkLabelLegality(word, lab, len) != TRUE) {
-        return ERR; /* handled inside */
-    } return finishLine(line);
 }

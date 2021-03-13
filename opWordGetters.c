@@ -1,5 +1,3 @@
-#include "opWordGetters.h"
-#include "uWordSetters.h"
 #include "sWordSetters.h"
 
 int getOpIndexByObject(opWord *op){

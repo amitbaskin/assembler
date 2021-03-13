@@ -1,13 +1,20 @@
 #include "parseLineUtils.h"
-#include "generalUtils.h"
-#include "wordId.h"
-#include "sWordSetters.h"
-#include "parseLine.h"
-#include "rawWordLstUtils.h"
-#include "rawWordUtils.h"
 #include "errFuncs.h"
 
 extern lineCounter;
+
+unsigned char isSepCond(unsigned char isSep, char chr){
+    return isSep ? chr != SEPARATOR : 1;
+}
+
+int getWordLoopCond(char chr, unsigned char isSep){
+    return (chr != ' ') && (chr != '\t') && (chr != '\n' &&chr != '\0')  && (chr != LABEL_SUFFIX) &&
+           isSepCond(isSep, chr);
+}
+
+int getLineLoopCond(char chr, int i){
+    return (chr != '\n') && (chr != EOF) && (i < MAX_LINE_LEN);
+}
 
 result finishLine(char **line){
     char chr;
@@ -18,32 +25,10 @@ result finishLine(char **line){
     } return SUCCESS;
 }
 
-result breakDownData(char **line, rawWordLst *lst){
-    result res;
-    char *str;
-    rawWord *word;
-    int isContinue;
-    int counter;
-    unsigned char isSep = 1;
-    for (counter=0, isContinue=1; isContinue; counter++, setRawWordStr(word, str), addRawWord(lst, word)){
-        VALIDATE_VAL(getWordAlloc(&str))
-        res = getWord(line, &str, 1);
-        if (res == LINE_END) {
-            isContinue = 0;
-            if (*str == '\0') break;
-        } if (!isSep) {
-            sepErr();
-            return ERR;
-        } if (res != SEP) isSep = 0;
-        VALIDATE_VAL(initRawWord(&word))
-    } if (counter == 0){
-        nonNumericDataErr();
-        return ERR;
-    } return res;
-}
-
-int getLineLoopCond(char chr, int i){
-    return (chr != '\n') && (chr != EOF) && (i < MAX_LINE_LEN);
+result isEmptyLine(const char *line){
+    while(*line != '\0'){
+        if (*line != ' ' && *line != '\t' && *line != '\n') return FALSE;
+    } return TRUE;
 }
 
 result getLine(char **line, FILE *fp){
@@ -61,15 +46,6 @@ result getLine(char **line, FILE *fp){
     else res = SUCCESS;
     (*line)[i] = '\0';
     return res;
-}
-
-unsigned char isSepCond(unsigned char isSep, char chr){
-    return isSep ? chr != SEPARATOR : 1;
-}
-
-int getWordLoopCond(char chr, unsigned char isSep){
-    return (chr != ' ') && (chr != '\t') && (chr != '\n' &&chr != '\0')  && (chr != LABEL_SUFFIX) &&
-    isSepCond(isSep, chr);
 }
 
 result getWord(char **line, char **word, unsigned char isSep){

@@ -1,20 +1,13 @@
 #include <string.h>
-#include "ctype.h"
-#include "opUtils.h"
-#include "generalUtils.h"
-#include "wordId.h"
+#include <ctype.h>
 #include "opDefGetters.h"
 #include "parseLineUtils.h"
 #include "labUtils.h"
-#include "sWordSetters.h"
-#include "parseLine.h"
 #include "labSetters.h"
 #include "sWordListUtils.h"
 #include "opWordSetters.h"
-#include "sWordGetters.h"
 #include "labLstUtils.h"
 #include "errFuncs.h"
-
 
 extern int instructionCounter;
 extern int labelFlag;
@@ -30,89 +23,6 @@ extern int labelFlag;
     if ((checkFunc) == TRUE) return type;\
 }                                        \
 
-void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **firstOp, char **secOp, labelLst *labLst,
- label **lab, sWordLst *instLst, int srcReg, long srcNum, int destReg, long destNum){
-    opWord *op;
-    initOpWord(opIndex, srcType, destType, &op);
-    checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter);
-    addOpWord(op, instLst);
-    addAllOperandsWord(opsAmount, firstOp, secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);
-}
-
-result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, labelLst *labLst, label **lab, sWordLst
-*instLst){
-    int srcReg;
-    long srcNum;
-    int destReg;
-    long destNum;
-    ref srcType;
-    ref destType;
-    result res;
-    res = getWord(line, firstOp, 1);
-    if (**firstOp == '\0'){
-        lineEndErr();
-        return ERR;
-    } if (res != SEP) {
-        noSepAfterFirstOperand();
-        return ERR;
-    } getWord(line, secOp, 0);
-    if (**secOp == '\0'){
-        lineEndErr();
-        return ERR;
-    } VALIDATE_VAL(finishLine(line))
-    srcType = getOperandType(firstOp, &srcReg, &srcNum);
-    if (srcType == R_NONE) return ERR; /* already handled */
-    destType = getOperandType(secOp, &destReg, &destNum);
-    if (destType == R_NONE) return ERR; /* already handled */
-    if (validateSrcOp(srcType, opIndex) == 0){
-        operandErr();
-        return ERR;
-    } if (validateDestOp(destType, opIndex) == 0){
-        operandErr();
-        return ERR;
-    } processOp(opIndex, 2, srcType, destType, firstOp, secOp, labLst, lab, instLst, srcReg, srcNum, destReg, destNum);
-    return SUCCESS;
-}
-
-result validateOneOp(char **line, int opIndex, char **destOp, labelLst *labLst, label **lab, sWordLst *instLst){
-    int destReg;
-    long destNum;
-    ref destType;
-    getWord(line, destOp, 0);
-    if (**destOp == '\0'){
-        lineEndErr();
-        return ERR;
-    } VALIDATE_VAL(finishLine(line))
-    destType = getOperandType(destOp, &destReg, &destNum);
-    VALIDATE_OP(validateDestOp(destType, opIndex))
-    processOp(opIndex, 1, R_NONE, destType, destOp, NULL, labLst, lab, instLst, NOT_REG, 0, destReg, destNum);
-    return SUCCESS;
-}
-
-result validateZeroOps(char **line, int opIndex, label **lab, labelLst *labLst, sWordLst *instLst){
-    opWord *op;
-    initOpWord(opIndex, R_NONE, R_NONE, &op);
-    checkLabFlagOnScenario(lab, labLst, setLabCode, instructionCounter);
-    addOpWord(op, instLst);
-    return finishLine(line);
-}
-
-result validateOperandsAmount(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp, labelLst
-*labLst, label **lab, sWordLst *instLst){
-    switch (operandsAmount) {
-        case 2:
-            return validateTwoOps(line, opIndex, firstOp, secOp, labLst, lab, instLst);
-
-        case 1:
-            return validateOneOp(line, opIndex, firstOp, labLst, lab, instLst);
-
-        case 0:
-            return validateZeroOps(line, opIndex, lab, labLst, instLst);
-        default:
-            return ERR; /* not supposed to be possible to get here */
-    }
-}
-
 ref getOperandType(char **operand, int *regNum, long *num){
     result res;
     if (isdigit(**operand)) {
@@ -123,7 +33,7 @@ ref getOperandType(char **operand, int *regNum, long *num){
     if (res == ERR) return R_NONE;
     CHECK_REF_TYPE(res, IM)
     CHECK_REF_TYPE(checkRel(operand), REL)
-    CHECK_REF_TYPE(isLegalLabFormat(*operand, strlen(*operand)), DIR)
+    CHECK_REF_TYPE(isLegalLabHelper(*operand, strlen(*operand)), DIR)
     return R_NONE;
 }
 
@@ -204,5 +114,95 @@ result initOpWord(int opIndex, ref src, ref dest, opWord **op){
     setOpIndex(*op, opIndex);
     setOpSrcRef(*op, src);
     setOpDestRef(*op, dest);
+    return SUCCESS;
+}
+
+void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **firstOp, char **secOp, labelLst *labLst,
+ label **lab, sWordLst *instLst, int srcReg, long srcNum, int destReg, long destNum){
+    opWord *op;
+    initOpWord(opIndex, srcType, destType, &op);
+    flagOnScenario(lab, labLst, setLabCode, instructionCounter);
+    addOpWord(op, instLst);
+    addAllOperandsWord(opsAmount, firstOp, secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);
+}
+
+result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, labelLst *labLst, label **lab, sWordLst
+*instLst){
+    int srcReg;
+    long srcNum;
+    int destReg;
+    long destNum;
+    ref srcType;
+    ref destType;
+    result res;
+    res = getWord(line, firstOp, 1);
+    if (**firstOp == '\0'){
+        lineEndErr();
+        return ERR;
+    } if (res != SEP) {
+        noSepAfterFirstOperand();
+        return ERR;
+    } getWord(line, secOp, 0);
+    if (**secOp == '\0'){
+        lineEndErr();
+        return ERR;
+    } VALIDATE_VAL(finishLine(line))
+    srcType = getOperandType(firstOp, &srcReg, &srcNum);
+    if (srcType == R_NONE) return ERR; /* already handled */
+    destType = getOperandType(secOp, &destReg, &destNum);
+    if (destType == R_NONE) return ERR; /* already handled */
+    if (validateSrcOp(srcType, opIndex) == 0){
+        operandErr();
+        return ERR;
+    } if (validateDestOp(destType, opIndex) == 0){
+        operandErr();
+        return ERR;
+    } processOp(opIndex, 2, srcType, destType, firstOp, secOp, labLst, lab, instLst, srcReg, srcNum, destReg, destNum);
+    return SUCCESS;
+}
+
+result validateOneOp(char **line, int opIndex, char **destOp, labelLst *labLst, label **lab, sWordLst *instLst){
+    int destReg;
+    long destNum;
+    ref destType;
+    getWord(line, destOp, 0);
+    if (**destOp == '\0'){
+        lineEndErr();
+        return ERR;
+    } VALIDATE_VAL(finishLine(line))
+    destType = getOperandType(destOp, &destReg, &destNum);
+    VALIDATE_OP(validateDestOp(destType, opIndex))
+    processOp(opIndex, 1, R_NONE, destType, destOp, NULL, labLst, lab, instLst, NOT_REG, 0, destReg, destNum);
+    return SUCCESS;
+}
+
+result validateZeroOps(char **line, int opIndex, label **lab, labelLst *labLst, sWordLst *instLst){
+    opWord *op;
+    initOpWord(opIndex, R_NONE, R_NONE, &op);
+    flagOnScenario(lab, labLst, setLabCode, instructionCounter);
+    addOpWord(op, instLst);
+    return finishLine(line);
+}
+
+result validateOperands(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp, labelLst
+*labLst, label **lab, sWordLst *instLst){
+    switch (operandsAmount) {
+        case 2:
+            return validateTwoOps(line, opIndex, firstOp, secOp, labLst, lab, instLst);
+
+        case 1:
+            return validateOneOp(line, opIndex, firstOp, labLst, lab, instLst);
+
+        case 0:
+            return validateZeroOps(line, opIndex, lab, labLst, instLst);
+        default:
+            return ERR; /* not supposed to be possible to get here */
+    }
+}
+
+ result validateOperation(int opIndex, int opsAmount, char **line, char **firstOp, char **secOp, labelLst *labLst,
+                         label **lab, sWordLst *instLst){
+    VALIDATE_VAL(validateOperands(line, opIndex, opsAmount, firstOp, secOp, labLst, lab, instLst))
+    VALIDATE_VAL(finishLine(line))
     return SUCCESS;
 }

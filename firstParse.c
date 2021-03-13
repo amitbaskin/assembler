@@ -1,12 +1,7 @@
-#include <stdio.h>
-#include "string.h"
-#include "firstParse.h"
+#include <string.h>
 #include "parseLine.h"
 #include "parseLineUtils.h"
 #include "labUtils.h"
-#include "sWordSetters.h"
-#include "generalUtils.h"
-#include "sWordGetters.h"
 
 extern int labelFlag;
 extern int errFlag;
@@ -15,12 +10,6 @@ extern int instructionCounter;
 extern int lineCounter;
 extern int dataCounter;
 extern char *curLine;
-
-result isEmptyLine(const char *line){
-    while(*line != '\0'){
-        if (*line != ' ' && *line != '\t' && *line != '\n') return FALSE;
-    } return TRUE;
-}
 
 result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLst){
     char *line;

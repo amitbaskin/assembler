@@ -1,7 +1,4 @@
 #include "secParse.h"
-#include "generalUtils.h"
-#include "sWordSetters.h"
-#include "labUtils.h"
 #include "labSetters.h"
 #include "sWordGetters.h"
 #include "labLstUtils.h"
@@ -9,6 +6,7 @@
 #include "sWordUtils.h"
 #include "labGetters.h"
 #include "errFuncs.h"
+#include "sWordSetters.h"
 
 extern lineCounter;
 extern int ICF;

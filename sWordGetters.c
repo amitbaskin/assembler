@@ -1,6 +1,4 @@
-#include "sWordGetters.h"
 #include "uWordGetters.h"
-#include "generalUtils.h"
 
 uWord *getSUWord(sWord *word){
     return word->uWord;
@@ -16,14 +14,6 @@ int getSWordAddress(sWord *word){
 
 char getSWordAddressType(sWord *word){
     return word->addressType;
-}
-
-wordStatus getSwordStatus(sWord *word){
-    return word->status;
-}
-
-sWord *getSWordNext(sWord *word){
-    return word->next;
 }
 
 opWord *getSUOpWord(sWord *word){
@@ -58,32 +48,6 @@ labelType getSULabType(sWord *word){
     return getULabType(getSUWord(word));
 }
 
-unsigned char isSULabCode(sWord *word){
-    return isUCodeLab(getSUWord(word));
-}
-
-unsigned char isSULabData(sWord *word){
-    return isUDataLab(getSUWord(word));
-}
-
-unsigned char isSULabIsNameAlloc(sWord *word){
-    return isULabNameAlloc(getSUWord(word));
-}
-
 unsigned char isSULabRel(sWord *word){
     return isURelLab(getSUWord(word));
-}
-
-label *getSULabNext(sWord *word){
-    return getUNextLab(getSUWord(word));
-}
-
-int getSUOpIndexByObject(sWord *word){
-    return getUOpIndexByObject(getSUWord(word));
-}
-ref getSUOpSrc(sWord *word){
-    return getUOpSrc(getSUWord(word));
-}
-ref getSUOpDest(sWord *word){
-    return getUOpDest(getSUWord(word));
 }

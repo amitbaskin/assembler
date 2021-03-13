@@ -1,6 +1,5 @@
 #include <string.h>
 #include "fileUtils.h"
-#include "generalUtils.h"
 #include "errFuncs.h"
 
 result getNameAlloc(size_t size, char **fName){

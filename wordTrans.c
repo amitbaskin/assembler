@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include "string.h"
+#include <string.h>
 #include "wordTrans.h"
-#include "wordId.h"
+#include "opDefGetters.h"
 #include "opWordGetters.h"
 #include "sWordGetters.h"
 

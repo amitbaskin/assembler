@@ -1,19 +1,15 @@
-#include "stdio.h"
-#include "errFuncs.h"
+#include <stdio.h>
 #include "generalUtils.h"
 #include "wordId.h"
-
 extern int lineCounter;
 extern char *inputFileName;
 extern char *curLine;
 extern int errFlag;
 
-
 #define PRE_PARSE_ERR_FORMAT "\nERROR (pre parse): %s\nfile: %s\n"
 #define preParseErrMsg(msg){ \
     printf(PRE_PARSE_ERR_FORMAT, msg, inputFileName); \
 }
-
 
 #define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: %s, line number: %d, line content: %s\n"
 #define firstParseErrMsg(msg){ \

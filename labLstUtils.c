@@ -37,7 +37,7 @@ result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
     } return FALSE;
 }
 
-result checkLabFlagOnScenario(label **lab, labelLst *labLst, void labSetter(label *, unsigned char), int address){
+result flagOnScenario(label **lab, labelLst *labLst, void labSetter(label *, unsigned char), int address){
     if (labelFlag) {
         labSetter(*lab, 1);
         addLabToLabLst(labLst, lab, L_NONE, address);
