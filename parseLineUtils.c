@@ -3,6 +3,7 @@
 #include "parseLineUtils.h"
 #include "errFuncs.h"
 
+
 unsigned char isSepCond(unsigned char isSep, char chr){
     /* meant for separating between parsings that look for a separator and ones that don't
      * this is adjusting the condition used while parsing in order to determine if the parsing was successful */

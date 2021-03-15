@@ -9,30 +9,15 @@
 #include "labLstUtils.h"
 #include "labGetters.h"
 #include "labSetters.h"
+#include "globalVars.h"
 
-extern int labelFlag;
-extern int errFlag;
-extern int instructionCounter;
-extern int dataCounter;
-extern int lineCounter;
-extern int ICF;
-extern char *inputFileName;
-
-void initGlobalVars(){
-    labelFlag = 0;
-    errFlag = 0;
-    instructionCounter = INITIAL_INSTRUCTION_NUM;
-    dataCounter = 0;
-    lineCounter = 0;
-    ICF = 0;
-}
 
 void updateDataLabsAddresses(labelLst *labLst){
     /* add ICF (instruction counter final) to each address in the data image so that the data image will be at the
      * end of the output */
     label *ptr;
     for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
-        if (isLabData(ptr)) setLabAddress(ptr, getLabAddress(ptr) + ICF);
+        if (isLabData(ptr)) setLabAddress(ptr, getLabAddress(ptr) + getIcf());
     }
 }
 
@@ -44,16 +29,16 @@ result assembleHelper(char *fName){
     sWordLst *dataLst = NULL;
     FILE *fp;
     initGlobalVars();
-    inputFileName = fName;
+    setInputFileName(fName);
     VALIDATE_VAL(initSWordLst(&instLst))
     VALIDATE_VAL(initSWordLst(&dataLst))
     VALIDATE_VAL(initLabLst(&labLst))
     VALIDATE_VAL(getReadFile(fName, &fp))
     VALIDATE_VAL(parseFile(fp, instLst, dataLst, labLst))
-    if (errFlag) return ERR; /* handled already */
+    if (getErrFlag()) return ERR; /* handled already */
     updateDataLabsAddresses(labLst);
     VALIDATE_VAL(parseInstLst(instLst, labLst))
-    if (errFlag) return ERR; /* handled already */
+    if (getErrFlag()) return ERR; /* handled already */
     VALIDATE_VAL(getMainOutputFile(fName, &fp))
     printInstLst(fp, instLst, labLst);
     printDataLst(fp, dataLst);

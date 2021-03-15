@@ -7,9 +7,8 @@
 #include "rawWordUtils.h"
 #include "rawWordLstUtils.h"
 #include "errFuncs.h"
+#include "globalVars.h"
 
-extern int dataCounter;
-extern int labelFlag;
 
 result breakDownData(char **line, rawWordLst *lst){
     /* breaks down a line to consecutive words and makes sure the are separators between them */
@@ -54,11 +53,12 @@ result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst 
     /* adds the collected data to the data list and if a label was declared so adds it to the label list with the
      * address of this data line */
     rawWord *ptr;
-    if (labelFlag) {
+    if (getLabelFlag()) {
         setLabData(lab, 1);
-        addLabToLabLst(labLst, &lab, L_NONE, dataCounter);
+        addLabToLabLst(labLst, &lab, L_NONE, getDataCounter());
     } for (ptr = getRawWordTail(rawLst); ptr != NULL; promoteRawWord(&ptr)){
-        addNumWord(getRawWordNum(ptr), dataCounter++, NUM_DATA, dataLst);
+        addNumWord(getRawWordNum(ptr), getDataCounter(), NUM_DATA, dataLst);
+        updateDataCounter();
     } freeRawWordLst(rawLst);
     return SUCCESS;
 }

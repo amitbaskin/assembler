@@ -3,6 +3,7 @@
 #include "uWordUtils.h"
 #include "sWordSetters.h"
 
+
 result initSword(sWord **word){
     /* allocates memory for a new sWord object */
     void *ptr;

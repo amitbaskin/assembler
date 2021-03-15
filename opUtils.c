@@ -10,9 +10,8 @@
 #include "opWordSetters.h"
 #include "labLstUtils.h"
 #include "errFuncs.h"
+#include "globalVars.h"
 
-extern int instructionCounter;
-extern int labelFlag;
 
 /* general logic for validating an operand
  * returns ERR if the validation statement returned 0 */
@@ -95,15 +94,18 @@ ref addOperandWord(ref r, char **operand, sWordLst *instLst, int reg, long num){
     /* adds an operand word to the instruction list according to the given type */
     switch(r){
         case IM:
-            addNumWord(num, instructionCounter++, IM_NUM, instLst);
+            addNumWord(num, getInstructionCounter(), IM_NUM, instLst);
+            updateInstructionCounter();
             return IM;
 
         case DIR:
-            addLabToInstLst(instLst, *operand, instructionCounter++, LAB, L_NONE, 0);
+            addLabToInstLst(instLst, *operand, getInstructionCounter(), LAB, L_NONE, 0);
+            updateInstructionCounter();
             return DIR;
 
         case REL:
-            addLabToInstLst(instLst, *operand, instructionCounter++, LAB, L_NONE, 1);
+            addLabToInstLst(instLst, *operand, getInstructionCounter(), LAB, L_NONE, 1);
+            updateInstructionCounter();
             return REL;
 
         case R_REG:
@@ -145,7 +147,7 @@ void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **fir
     /* processes the operator statement according to the data collected in the arguments of this function */
     opWord *op;
     initOpWord(opIndex, srcType, destType, &op);
-    flagOnScenario(lab, labLst, instructionCounter, 0);
+    flagOnScenario(lab, labLst, getInstructionCounter(), 0);
     addOpWord(op, instLst);
     addAllOperandsWord(opsAmount, firstOp, secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);
 }
@@ -221,7 +223,7 @@ result validateZeroOps(char **line, int opIndex, label **lab, labelLst *labLst, 
      * furthermore it adds the operator to the instructions list if all went well and returns ERR otherwise */
     opWord *op;
     initOpWord(opIndex, R_NONE, R_NONE, &op);
-    flagOnScenario(lab, labLst, instructionCounter, 0);
+    flagOnScenario(lab, labLst, getInstructionCounter(), 0);
     addOpWord(op, instLst);
     return finishLine(line);
 }

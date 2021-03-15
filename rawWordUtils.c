@@ -2,6 +2,7 @@
 
 #include "rawWordUtils.h"
 
+
 rawData *getRawData(rawWord *word){
     return word->data;
 }

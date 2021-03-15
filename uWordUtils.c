@@ -3,6 +3,7 @@
 #include "labUtils.h"
 #include "sWordGetters.h"
 
+
 result initUWord(uWord **word){
     /* allocates memory for a new uWord object */
     void *uPtr;

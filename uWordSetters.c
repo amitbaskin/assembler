@@ -3,7 +3,6 @@
 #include "labSetters.h"
 #include "uWordGetters.h"
 
-extern int dataCounter;
 
 void setUOpWord(uWord *word, opWord *op){
     word->op = op;

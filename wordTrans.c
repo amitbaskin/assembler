@@ -6,6 +6,7 @@
 #include "opWordGetters.h"
 #include "sWordGetters.h"
 
+
 int transDest(int ref){
     if (ref == R_NONE) return 0;
     return (ref - 1) << DEST_BITS_PREFIX;

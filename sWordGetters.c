@@ -2,6 +2,7 @@
 
 #include "uWordGetters.h"
 
+
 uWord *getSUWord(sWord *word){
     return word->uWord;
 }

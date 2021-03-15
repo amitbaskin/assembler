@@ -3,7 +3,6 @@
 #include "uWordSetters.h"
 #include "sWordGetters.h"
 
-extern int dataCounter;
 
 void setSUWord(sWord *sWord, uWord *uWord){
     sWord->uWord = uWord;

@@ -2,6 +2,7 @@
 
 #include "labGetters.h"
 
+
 char *getLabName(label *lab){
     return lab->name;
 }

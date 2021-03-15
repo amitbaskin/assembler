@@ -4,6 +4,7 @@
 #include "opDefGetters.h"
 #include "wordId.h"
 
+
 static const operation opLst[] = {\
 {0, "mov", 2, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1},
 {1, "cmp", 2, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1},

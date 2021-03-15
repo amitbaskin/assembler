@@ -10,7 +10,6 @@
 #include "errFuncs.h"
 #include "sWordSetters.h"
 
-extern int ICF;
 
 result parseInstLst(sWordLst *instLst, labelLst *labLst){
     /* make sure that the entry statements made in the input assembly file indeed refer to actual declared labels and

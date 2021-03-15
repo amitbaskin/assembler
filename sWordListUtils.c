@@ -6,9 +6,8 @@
 #include "labSetters.h"
 #include "sWordSetters.h"
 #include "sWordUtils.h"
+#include "globalVars.h"
 
-extern int dataCounter;
-extern int instructionCounter;
 
 void addSWord(sWordLst *lst, sWord *word){
     /* adds a given sWord to the given sWordLst list */
@@ -40,7 +39,8 @@ result addOpWord(opWord *opWord, sWordLst *instLst){
     setSUOpWord(sOpWord, opWord);
     setSOpWordStatus(sOpWord);
     setSWordAddressType(sOpWord, A_TYPE);
-    setSWordAddress(sOpWord, instructionCounter++);
+    setSWordAddress(sOpWord, getInstructionCounter());
+    updateInstructionCounter();
     return SUCCESS;
 }
 
@@ -70,7 +70,8 @@ result addRegWord(int reg, sWordLst *instLst){
     VALIDATE_VAL(createAndAddSWord(&sWordReg, W_REG, instLst))
     setSUReg(sWordReg, reg);
     setSWordAddressType(sWordReg, A_TYPE);
-    setSWordAddress(sWordReg, instructionCounter++);
+    setSWordAddress(sWordReg, getInstructionCounter());
+    updateInstructionCounter();
     return SUCCESS;
 }
 
@@ -92,7 +93,8 @@ void addChrWord(char chr, sWordLst *dataLst){
     setSUChrData(sWordChr, chr);
     setSWordStatus(sWordChr, CHR_DATA);
     setSWordAddressType(sWordChr, A_TYPE);
-    setSWordAddress(sWordChr, dataCounter++);
+    setSWordAddress(sWordChr, getDataCounter());
+    updateDataCounter();
 }
 
 sWord *getSWordTail(sWordLst *lst){

@@ -4,27 +4,25 @@
 #include "generalUtils.h"
 #include "wordId.h"
 #include "fileUtils.h"
-extern int lineCounter;
-extern char *inputFileName;
-extern char *curLine;
-extern int errFlag;
+#include "globalVars.h"
+
 
 #define PRE_PARSE_ERR_FORMAT "\nERROR (pre parse): %s\nfile: %s%s\n"
 #define preParseErrMsg(msg){ \
-    errFlag = 1;             \
-    printf(PRE_PARSE_ERR_FORMAT, msg, inputFileName, INPUT_FILE_SUFFIX); \
+    raiseErrFlag();          \
+    printf(PRE_PARSE_ERR_FORMAT, msg, getInputFileName(), INPUT_FILE_SUFFIX); \
 }
 
 #define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: %s%s, line number: %d, line content: %s\n"
 #define firstParseErrMsg(msg){ \
-    errFlag = 1;               \
-    printf(FIRST_PARSE_ERR_FORMAT, msg, inputFileName, INPUT_FILE_SUFFIX, lineCounter, curLine); \
+    raiseErrFlag();            \
+    printf(FIRST_PARSE_ERR_FORMAT, msg, getInputFileName(), INPUT_FILE_SUFFIX, getLineCounter(), getCurLine()); \
 }
 
 #define SEC_PARSE_ERR_FORMAT "\nERROR (second parse): %s\nfile: %s%s, label name: %s\n"
 #define secParseErrMsg(msg, labName){ \
-    errFlag = 1;                      \
-    printf(SEC_PARSE_ERR_FORMAT, msg, inputFileName, INPUT_FILE_SUFFIX, labName); \
+    raiseErrFlag();                   \
+    printf(SEC_PARSE_ERR_FORMAT, msg, getInputFileName(), INPUT_FILE_SUFFIX, labName); \
 }
 
 void usageErr(){

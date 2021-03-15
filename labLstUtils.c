@@ -6,9 +6,8 @@
 #include "labSetters.h"
 #include "labGetters.h"
 #include "errFuncs.h"
+#include "globalVars.h"
 
-extern int labelFlag;
-extern int instructionCounter;
 
 label *getLabTail(labelLst *lst){
     return lst->tail;
@@ -51,7 +50,7 @@ result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
 
 result flagOnScenario(label **lab, labelLst *labLst, int address, unsigned char isData){
     /* if a label was defined, add to it to the label list */
-    if (labelFlag) {
+    if (getLabelFlag()) {
         setLabData(*lab, isData);
         addLabToLabLst(labLst, lab, L_NONE, address);
         return TRUE;

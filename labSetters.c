@@ -3,6 +3,7 @@
 #include <string.h>
 #include "labSetters.h"
 
+
 void setLabData(label *lab, unsigned char toSet){
     lab->isData = toSet;
 }

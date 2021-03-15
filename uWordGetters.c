@@ -2,6 +2,7 @@
 
 #include "labGetters.h"
 
+
 opWord *getUOpWord(uWord *word){
     return word->op;
 }

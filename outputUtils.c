@@ -11,11 +11,11 @@
 #include "sWordUtils.h"
 #include "rawWordLstUtils.h"
 #include "rawWordUtils.h"
+#include "globalVars.h"
+
 
 #define HEADER_FORMAT "%d %d\n"
-extern int ICF;
-extern int instructionCounter;
-extern int dataCounter;
+
 
 void printInst(FILE *fp, sWord **ptr, int toPrint){
     printAddressToFile(fp, *ptr);
@@ -31,7 +31,7 @@ void printLabel(FILE *fp, label *lab){
 void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
     /* outputs the the main output file containing the translation of the instructions and data to machine code */
     sWord *ptr;
-    fprintf(fp, HEADER_FORMAT, instructionCounter - INITIAL_INSTRUCTION_NUM, dataCounter);
+    fprintf(fp, HEADER_FORMAT, getInstructionCounter() - INITIAL_INSTRUCTION_NUM, getDataCounter());
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
         switch (getSWordStatus(ptr)){
             case OP:

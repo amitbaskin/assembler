@@ -4,14 +4,8 @@
 #include "parseLine.h"
 #include "parseLineUtils.h"
 #include "labUtils.h"
+#include "globalVars.h"
 
-extern int labelFlag;
-extern int errFlag;
-extern int ICF;
-extern int instructionCounter;
-extern int lineCounter;
-extern int dataCounter;
-extern char *curLine;
 
 result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLst){
     /* first parse of an input assembly file returns ERR if error occurred in the process and SUCCESS otherwise */
@@ -26,13 +20,13 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     result isFileEnd = FALSE;
     VALIDATE_VAL(initLab(&lab))
     VALIDATE_VAL(getWordAlloc(&line))
-    curLine = line;
+    setCurLine(line);
     VALIDATE_VAL(getWordAlloc(&word))
     VALIDATE_VAL(initLab(&lab))
     while (isFileEnd != FILE_END){
-        lineCounter++;
-        labelFlag = 0;
-        line = curLine; /* save the pointer for the beginning of the line in order to override it with the next line
+        updateLineCounter();
+        resetLabelFlag();
+        line = getCurLine(); /* save the pointer for the beginning of the line in order to override it with the next line
         * later on */
         isFileEnd = getLine(&line, fp); /* err handled inside, keep finding errs */
         if (isFileEnd == ERR) continue;
@@ -52,8 +46,8 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         res = lookForOperation(&firstOp, &secOp, &word, &line, &lab, labLst, instLst);
         freeHelper(orgFirstOp);
         freeHelper(orgSecOp);
-    } freeHelper(curLine);
+    } freeHelper(getCurLine());
     freeHelper(word);
-    ICF = instructionCounter; /* final instruction counter */
+    setIcf(getInstructionCounter()); /* final instruction counter */
     return res;
 }

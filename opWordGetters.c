@@ -2,6 +2,7 @@
 
 #include "sWordSetters.h"
 
+
 int getOpIndexByObject(opWord *op){
     return op->opIndex;
 }

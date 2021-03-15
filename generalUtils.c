@@ -4,6 +4,7 @@
 #include "generalUtils.h"
 #include "errFuncs.h"
 
+
 result getAlloc(size_t size, void **ptr){
     /* allocates memory in ptr as requested */
     *ptr = calloc(1, size);

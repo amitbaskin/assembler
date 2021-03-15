@@ -4,7 +4,6 @@
 #include "fileUtils.h"
 #include "errFuncs.h"
 
-extern char *inputFileName;
 
 result getNameAlloc(size_t size, char **fName){
     /* get allocation for a character string

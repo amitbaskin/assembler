@@ -11,9 +11,8 @@
 #include "opUtils.h"
 #include "errFuncs.h"
 #include "numsData.h"
+#include "globalVars.h"
 
-extern int labelFlag;
-extern int instructionCounter;
 
 /* bubble up errors and pass TRUE results as SUCCESS */
 #define SWITCH_DATA_RES(res) {\
@@ -53,7 +52,7 @@ result entryScenario(char **line, char **word, label **lab, sWordLst *instLst){
      * statement was valid */
     VALIDATE_VAL(lookForLabel(line, word, lab))
     setLabType(*lab, L_ENT);
-    addLabToInstLst(instLst, *word, instructionCounter, W_ENT, L_ENT, 0);
+    addLabToInstLst(instLst, *word, getInstructionCounter(), W_ENT, L_ENT, 0);
     return TRUE;
 }
 result extScenario(char **line, char **word, label **lab, labelLst *labLst){

@@ -5,6 +5,7 @@
 #include "wordId.h"
 #include "errFuncs.h"
 
+
 static char *regs[] = REGS;
 
 char *getReg(int i){

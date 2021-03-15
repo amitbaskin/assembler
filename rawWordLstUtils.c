@@ -3,6 +3,7 @@
 #include "string.h"
 #include "rawWordUtils.h"
 
+
 void freeRawWordLstHelper(rawWord *word){
     /* frees an entire rawWordLst given its tail */
     rawWord *tmp;

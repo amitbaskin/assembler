@@ -2,6 +2,7 @@
 
 #include "opWordSetters.h"
 
+
 void setOpIndex(opWord *op, int index){
     op->opIndex = index;
 }

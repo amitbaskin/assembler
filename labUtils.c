@@ -8,8 +8,8 @@
 #include "parseLineUtils.h"
 #include "errFuncs.h"
 #include "opDefGetters.h"
+#include "globalVars.h"
 
-extern unsigned char labelFlag;
 
 result checkRel(char **word){
     /* check if the given string is a relative legal label */
@@ -69,7 +69,7 @@ result processLabel(char **line, char **word, label **lab, unsigned long len){
     result res;
     res = getLegalLab(word, lab, len);
     if (res == TRUE) {
-        labelFlag = 1;
+        raiseLabelFlag();
         getWord(line, word, 0);
     } return res;
 }
