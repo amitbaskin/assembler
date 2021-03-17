@@ -11,7 +11,8 @@ result getAlloc(size_t size, void **ptr){
     if (ptr == NULL) {
         allocErr();
         return ERR;
-    } return SUCCESS;
+    }
+    return SUCCESS;
 }
 
 void freeHelper(void *ptr){
@@ -19,10 +20,17 @@ void freeHelper(void *ptr){
     free(ptr);
 }
 
-result getWordAlloc(char **output){
-    /* allocates memory of fixed size for a string which used either for a word parsed or a line from a file */
+result getStrAlloc(size_t size, char **fName){
+    /* get allocation for a character string
+     * being used for processing the name of a file
+     * returns ERR if an allocation error has occurred, else returns SUCCESS */
     void *ptr;
-    VALIDATE_VAL(getAlloc(MAX_LINE_LEN, &ptr))
-    *output = ptr;
+    VALIDATE_VAL(getAlloc(size, &ptr))
+    *fName = ptr;
     return SUCCESS;
+}
+
+result getFixedStrAlloc(char **output){
+    /* allocates memory of fixed size for a string which used either for a word parsed or a line from a file */
+    return getStrAlloc(MAX_LINE_LEN, output);
 }

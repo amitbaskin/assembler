@@ -43,7 +43,8 @@ void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
                     int dist;
                     getRelLabelAddressFromLst(getSULabName(ptr), labLst, getSWordAddress(ptr), &dist);
                     printInst(fp, &ptr, dist);
-                } else printInst(fp, &ptr, getSULabAddress(ptr));
+                }
+                else printInst(fp, &ptr, getSULabAddress(ptr));
                 break;
 
             case W_REG:
@@ -65,7 +66,7 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
     wordStatus status;
     for (ptr = getSWordTail(dataLst); ptr != NULL; promoteSWord(&ptr)) {
         status = getSWordStatus(ptr);
-        setSWordAddress(ptr, getSWordAddress(ptr) + ICF);
+        setSWordAddress(ptr, getSWordAddress(ptr) + getIcf());
         if (status == NUM_DATA) printInst(fp, &ptr, (int) getSUNumData(ptr));
         if(status == CHR_DATA) printInst(fp, &ptr, getSUChrData(ptr));
     }
@@ -84,14 +85,17 @@ result printEntFile(labelLst *lst, char *fName) {
             if (!isEntExists) {
                 isEntExists = 1;
                 VALIDATE_VAL(getEntOutputFile(fName, &fp))
-            } initRawWord(&rWord);
+            }
+            initRawWord(&rWord);
             setRawWordStr(rWord, getLabName(ptr));
             if (isRawStrWordInRLst(rWord, rawLst) == FALSE){
                 addRawWord(rawLst, rWord);
                 printLabel(fp, ptr);
-            } else freeRawWord(rWord);
+            }
+            else freeRawWord(rWord);
         }
-    } freeRawWordLst(rawLst);
+    }
+    freeRawWordLst(rawLst);
     return SUCCESS;
 }
 
@@ -106,9 +110,11 @@ result printExtLst(char *fName, sWordLst *instLst) {
                 if (!isExtExists) {
                     isExtExists = 1;
                     VALIDATE_VAL(getExtOutputFile(fName, &fp))
-                } setSULabAddress(ptr, getSWordAddress(ptr));
+                }
+                setSULabAddress(ptr, getSWordAddress(ptr));
                 printLabel(fp, getSULab(ptr));
             }
         }
-    } return SUCCESS;
+    }
+    return SUCCESS;
 }

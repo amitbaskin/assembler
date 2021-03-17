@@ -5,21 +5,11 @@
 #include "errFuncs.h"
 
 
-result getNameAlloc(size_t size, char **fName){
-    /* get allocation for a character string
-     * being used for processing the name of a file
-     * returns ERR if an allocation error has occurred, else returns SUCCESS */
-    void *ptr;
-    VALIDATE_VAL(getAlloc(size, &ptr))
-    *fName = ptr;
-    return SUCCESS;
-}
-
 char *getFullFileName(char *name, char *suffix){
     char *fullName;
     unsigned long nameLen = strlen(name);
     unsigned long sufLen = strlen(suffix);
-    if (getNameAlloc(nameLen + sufLen + 1, &fullName) == ERR) return NULL;
+    if (getStrAlloc(nameLen + sufLen + 1, &fullName) == ERR) return NULL;
     strcat(fullName, name);
     strcat(fullName, suffix);
     return fullName;
@@ -30,7 +20,8 @@ int removeFile(char *fName){
     if (fName != NULL){
         res = remove(fName);
         freeHelper(fName);
-    } return res;
+    }
+    return res;
 }
 
 result getFile(char *name, FILE **fp, char *mode, char *suffix){
@@ -43,7 +34,8 @@ result getFile(char *name, FILE **fp, char *mode, char *suffix){
     if (*fp == NULL) {
         openFileErr();
         return ERR;
-    } return SUCCESS;
+    }
+    return SUCCESS;
 }
 
 result getReadFile(char *name, FILE **fp){
@@ -72,5 +64,6 @@ result closeFile(FILE *fp){
     if (res) {
         closeFileErr();
         return ERR;
-    } else return SUCCESS;
+    }
+    else return SUCCESS;
 }

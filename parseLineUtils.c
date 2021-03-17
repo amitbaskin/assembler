@@ -30,7 +30,8 @@ result finishLine(char **line){
     if (chr != '\0') {
         lineNotEndErr();
         return ERR;
-    } return SUCCESS;
+    }
+    return SUCCESS;
 }
 
 result isEmptyLine(const char *line){
@@ -38,7 +39,8 @@ result isEmptyLine(const char *line){
      * returns TRUE if so and FALSE otherwise */
     while(*line != '\0'){
         if (*line != ' ' && *line != '\t' && *line != '\n') return FALSE;
-    } return TRUE;
+    }
+    return TRUE;
 }
 
 result getLine(char **line, FILE *fp){
@@ -53,7 +55,8 @@ result getLine(char **line, FILE *fp){
         for (; (fgetc(fp)) != '\n'; ); /* prepare next line */
         lineTooLongErr();
         res = ERR;
-    } else if (chr == EOF) res = FILE_END;
+    }
+    else if (chr == EOF) res = FILE_END;
     else res = SUCCESS;
     (*line)[i] = '\0';
     return res;
@@ -69,9 +72,11 @@ result getWord(char **line, char **word, unsigned char isSep){
     if (chr == LABEL_SUFFIX) {
         (*line)++;
         return LAB_DEC;
-    } if (chr == '\0') return LINE_END;
+    }
+    if (chr == '\0') return LINE_END;
     if (isSep && chr == SEPARATOR) {
         (*line)++;
         return SEP;
-    } return SUCCESS;
+    }
+    return SUCCESS;
 }

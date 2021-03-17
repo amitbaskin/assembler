@@ -1,7 +1,6 @@
 #include "generalUtils.h"
 #ifndef ASSEMBLER_FILE_UTILS_H
 #define ASSEMBLER_FILE_UTILS_H
-result getNameAlloc(size_t size, char **fName);
 char *getFullFileName(char *name, char *suffix);
 int removeFile(char *fName);
 result getReadFile(char *name, FILE **fp);

@@ -19,20 +19,24 @@ result breakDownData(char **line, rawWordLst *lst){
     int counter;
     unsigned char isSep = 1;
     for (counter=0, isContinue=1; isContinue; counter++, setRawWordStr(word, str), addRawWord(lst, word)){
-        VALIDATE_VAL(getWordAlloc(&str))
+        VALIDATE_VAL(getFixedStrAlloc(&str))
         res = getWord(line, &str, 1);
         if (res == LINE_END) {
             isContinue = 0;
             if (*str == '\0') break;
-        } if (!isSep) {
+        }
+        if (!isSep) {
             sepErr();
             return ERR;
-        } if (res != SEP) isSep = 0;
+        }
+        if (res != SEP) isSep = 0;
         VALIDATE_VAL(initRawWord(&word))
-    } if (counter == 0){
+    }
+    if (counter == 0){
         nonNumericDataErr();
         return ERR;
-    } return res;
+    }
+    return res;
 }
 
 result collectData(rawWordLst *lst){
@@ -44,9 +48,11 @@ result collectData(rawWordLst *lst){
         if (isNum(&num, getRawWordStr(ptr)) == ERR) {
             nonNumericDataErr();
             return ERR;
-        } freeHelper(getRawWordStr(ptr));
+        }
+        freeHelper(getRawWordStr(ptr));
         setRawWordNum(ptr, (int) num);
-    } return SUCCESS;
+    }
+    return SUCCESS;
 }
 
 result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst *rawLst){
@@ -56,10 +62,12 @@ result addSWordData(sWordLst *dataLst, labelLst *labLst, label *lab, rawWordLst 
     if (getLabelFlag()) {
         setLabData(lab, 1);
         addLabToLabLst(labLst, &lab, L_NONE, getDataCounter());
-    } for (ptr = getRawWordTail(rawLst); ptr != NULL; promoteRawWord(&ptr)){
+    }
+    for (ptr = getRawWordTail(rawLst); ptr != NULL; promoteRawWord(&ptr)){
         addNumWord(getRawWordNum(ptr), getDataCounter(), NUM_DATA, dataLst);
         updateDataCounter();
-    } freeRawWordLst(rawLst);
+    }
+    freeRawWordLst(rawLst);
     return SUCCESS;
 }
 
@@ -73,5 +81,6 @@ result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst,
         VALIDATE_VAL(collectData(rawLst))
         addSWordData(dataLst, labLst, lab, rawLst);
         return TRUE;
-    } return FALSE;
+    }
+    return FALSE;
 }

@@ -124,7 +124,7 @@ struct operation{
 typedef struct operation operation;
 
 int isReg(char *r);
-char *getReg(int i);
+const char *getReg(int i);
 result isData(char *word);
 result isStringOrder(char *word);
 result isEntryOrder(char *word);

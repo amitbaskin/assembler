@@ -1,6 +1,6 @@
 /* this file is used to provide utilities to handle a linked list of integer data content */
 
-#include "string.h"
+#include <string.h>
 #include "rawWordUtils.h"
 
 
@@ -40,5 +40,6 @@ result isRawStrWordInRLst(rawWord *word, rawWordLst *lst){
     rawWord *ptr;
     for (ptr = getRawWordTail(lst); ptr != NULL; promoteRawWord(&ptr)){
         if (strcmp(getRawWordStr(word), getRawWordStr(ptr)) == 0) return TRUE;
-    } return FALSE;
+    }
+    return FALSE;
 }

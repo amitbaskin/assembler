@@ -7,5 +7,6 @@ int main(int argc, char **args) {
     if (argc == 1) usageErr();
     while (--argc){
         assemble(*++args);
-    } return 0;
+    }
+    return 0;
 }

@@ -2,8 +2,8 @@
 
 #include <string.h>
 #include "wordTrans.h"
-#include "opDefGetters.h"
-#include "opWordGetters.h"
+#include "opDef.h"
+#include "opWordGetSet.h"
 #include "sWordGetters.h"
 
 
@@ -48,7 +48,8 @@ void printWordToFile(FILE *fp, int word){
         len = strlen(str);
         fprintf(fp, STR_WORD_FORMAT, str[len-3], str[len-2], str[len-1]);
         freeHelper(str);
-    } else fprintf(fp, INT_WORD_FORMAT, word);
+    }
+    else fprintf(fp, INT_WORD_FORMAT, word);
 }
 
 void printAddressToFile(FILE *fp, sWord *word){

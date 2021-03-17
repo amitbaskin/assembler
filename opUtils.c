@@ -2,12 +2,12 @@
 
 #include <string.h>
 #include <ctype.h>
-#include "opDefGetters.h"
+#include "opDef.h"
 #include "parseLineUtils.h"
 #include "labUtils.h"
 #include "labSetters.h"
 #include "sWordListUtils.h"
-#include "opWordSetters.h"
+#include "opWordGetSet.h"
 #include "labLstUtils.h"
 #include "errFuncs.h"
 #include "globalVars.h"
@@ -16,7 +16,7 @@
 /* general logic for validating an operand
  * returns ERR if the validation statement returned 0 */
 #define VALIDATE_OP(opValidation) { \
-    if ((opValidation) == 0) {  \
+    if ((opValidation) == 0) {      \
         operandErr();               \
         return ERR;                 \
     }                               \
@@ -35,7 +35,8 @@ ref getOperandType(char **operand, int *regNum, long *num){
     if (isdigit(**operand)) {
         noNumPrefixErr();
         return R_NONE;
-    } if ((*regNum = isReg(*operand)) != NOT_REG) return R_REG;
+    }
+    if ((*regNum = isReg(*operand)) != NOT_REG) return R_REG;
     res = isImmediateNum(num,  *operand);
     if (res == ERR) return R_NONE;
     CHECK_REF_TYPE(res, IM)
@@ -170,14 +171,17 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
     if (**firstOp == '\0'){
         lineEndErr();
         return ERR;
-    } if (res != SEP) {
+    }
+    if (res != SEP) {
         noSepAfterFirstOperand();
         return ERR;
-    } getWord(line, secOp, 0);
+    }
+    getWord(line, secOp, 0);
     if (**secOp == '\0'){
         lineEndErr();
         return ERR;
-    } VALIDATE_VAL(finishLine(line))
+    }
+    VALIDATE_VAL(finishLine(line))
     srcType = getOperandType(firstOp, &srcReg, &srcNum);
     if (srcType == R_NONE) return ERR; /* already handled */
     destType = getOperandType(secOp, &destReg, &destNum);
@@ -185,10 +189,12 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
     if (validateSrcOp(srcType, opIndex) == 0){
         operandErr();
         return ERR;
-    } if (validateDestOp(destType, opIndex) == 0){
+    }
+    if (validateDestOp(destType, opIndex) == 0){
         operandErr();
         return ERR;
-    } processOp(opIndex, 2, srcType, destType, firstOp, secOp, labLst, lab, instLst, srcReg, srcNum, destReg, destNum);
+    }
+    processOp(opIndex, 2, srcType, destType, firstOp, secOp, labLst, lab, instLst, srcReg, srcNum, destReg, destNum);
     return SUCCESS;
 }
 
@@ -206,11 +212,13 @@ result validateOneOp(char **line, int opIndex, char **destOp, labelLst *labLst, 
     if (**destOp == '\0'){
         lineEndErr();
         return ERR;
-    } len = strlen(*destOp);
+    }
+    len = strlen(*destOp);
     if (len == 1 && **destOp == NUM_PREFIX) {
         imNumErr();
         return ERR;
-    } VALIDATE_VAL(finishLine(line))
+    }
+    VALIDATE_VAL(finishLine(line))
     destType = getOperandType(destOp, &destReg, &destNum);
     VALIDATE_OP(validateDestOp(destType, opIndex))
     processOp(opIndex, 1, R_NONE, destType, destOp, NULL, labLst, lab, instLst, NOT_REG, 0, destReg, destNum);

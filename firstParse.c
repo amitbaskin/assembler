@@ -19,9 +19,9 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     char *orgSecOp;
     result isFileEnd = FALSE;
     VALIDATE_VAL(initLab(&lab))
-    VALIDATE_VAL(getWordAlloc(&line))
+    VALIDATE_VAL(getFixedStrAlloc(&line))
     setCurLine(line);
-    VALIDATE_VAL(getWordAlloc(&word))
+    VALIDATE_VAL(getFixedStrAlloc(&word))
     VALIDATE_VAL(initLab(&lab))
     while (isFileEnd != FILE_END){
         updateLineCounter();
@@ -35,10 +35,11 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         if (getWord(&line, &word, 0) == LAB_DEC){
             if (processLabel(&line, &word, &lab, strlen(word)) == ERR) continue;
             /* err handled inside, keep finding errs */
-        } res = lookForData(&word, &line, &lab, labLst, instLst, dataLst);
+        }
+        res = lookForData(&word, &line, &lab, labLst, instLst, dataLst);
         if (res == ERR || res != FALSE) continue;
-        if (getWordAlloc(&firstOp) == ERR) continue; /* err handled inside, keep finding errs */
-        if (getWordAlloc(&secOp) == ERR) continue; /* err handled inside, keep finding errs */
+        if (getFixedStrAlloc(&firstOp) == ERR) continue; /* err handled inside, keep finding errs */
+        if (getFixedStrAlloc(&secOp) == ERR) continue; /* err handled inside, keep finding errs */
         /* saves the pointers to the allocated operands in order to free them later as they might be modified while
          * processing the operator statement */
         orgFirstOp = firstOp;
@@ -46,7 +47,8 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         res = lookForOperation(&firstOp, &secOp, &word, &line, &lab, labLst, instLst);
         freeHelper(orgFirstOp);
         freeHelper(orgSecOp);
-    } freeHelper(getCurLine());
+    }
+    freeHelper(getCurLine());
     freeHelper(word);
     setIcf(getInstructionCounter()); /* final instruction counter */
     return res;

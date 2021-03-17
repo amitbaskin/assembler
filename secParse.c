@@ -27,22 +27,28 @@ result parseInstLst(sWordLst *instLst, labelLst *labLst){
                 useOfUndefinedLabErr(labName);
                 res = ERR; /* handled inside */
                 continue;
-            } setLabType(lab, L_ENT);
-        } else if (status == LAB) {
+            }
+            setLabType(lab, L_ENT);
+        }
+        else if (status == LAB) {
             labName = getSULabName(ptr);
             if (isLabInLst(labLst, &lab, L_NONE, labName) == FALSE) {
                 useOfUndefinedLabErr(labName);
                 res = ERR; /* handled inside */
                 continue;
-            } else if (isSULabRel(ptr)) {
+            }
+            else if (isSULabRel(ptr)) {
                 setSWordAddressType(ptr, A_TYPE);
-            } else if (getLabType(lab) == EXT) {
+            }
+            else if (getLabType(lab) == EXT) {
                 setSWordAddressType(ptr, E_TYPE);
                 setSULabType(ptr, EXT);
-            } else {
+            }
+            else {
                 setSWordAddressType(ptr, R_TYPE);
                 setSULabAddress(ptr, getLabAddress(lab));
             }
         }
-    } return res;
+    }
+    return res;
 }

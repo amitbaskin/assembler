@@ -1,7 +1,7 @@
 /* getters for information of the assembly operators */
 
 #include <string.h>
-#include "opDefGetters.h"
+#include "opDef.h"
 #include "wordId.h"
 
 
@@ -78,5 +78,6 @@ int getOpIndexByStr(char *word){
     int i;
     for (i=0; i < OPERATIONS_AMOUNT; i++){
         if (!strcmp(opLst[i].name, word)) return i;
-    } return NOT_OP;
+    }
+    return NOT_OP;
 }

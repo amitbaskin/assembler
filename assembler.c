@@ -52,11 +52,9 @@ result assembleHelper(char *fName){
 }
 
 result assemble(char *fName) {
-    /* run the assembler and remove files at the end if an error has occurred */
-    result res = assembleHelper(fName);
-    if (res == ERR){
-        removeFile(getFullFileName(fName, MAIN_OUTPUT_SUFFIX));
-        removeFile(getFullFileName(fName, ENT_SUFFIX));
-        removeFile(getFullFileName(fName, EXT_SUFFIX));
-    } return res;
+    /* first remove old files if exist because some or all may not be created again, and then run the assembler */
+    removeFile(getFullFileName(fName, MAIN_OUTPUT_SUFFIX));
+    removeFile(getFullFileName(fName, ENT_SUFFIX));
+    removeFile(getFullFileName(fName, EXT_SUFFIX));
+    return assembleHelper(fName);
 }

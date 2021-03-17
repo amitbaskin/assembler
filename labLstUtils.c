@@ -31,7 +31,8 @@ result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int 
             *dist = (getLabAddress(ptr) - address);
             return SUCCESS;
         }
-    } relLabErr();
+    }
+    relLabErr();
     return ERR;
 }
 
@@ -45,7 +46,8 @@ result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
             VALIDATE_VAL(isLabTypeLegal(*lab, type))
             return TRUE;
         }
-    } return FALSE;
+    }
+    return FALSE;
 }
 
 result flagOnScenario(label **lab, labelLst *labLst, int address, unsigned char isData){
@@ -54,7 +56,8 @@ result flagOnScenario(label **lab, labelLst *labLst, int address, unsigned char 
         setLabData(*lab, isData);
         addLabToLabLst(labLst, lab, L_NONE, address);
         return TRUE;
-    } return FALSE;
+    }
+    return FALSE;
 }
 
 void freeLabLstHelper(label *lab){
@@ -79,7 +82,8 @@ result addLab(labelLst *lst, label *lab){
         if ((type1 == EXT) && type2 == EXT) return SUCCESS;
         labClashErr();
         return ERR;
-    } ADD_TO_LIST(label, lst->tail == NULL, lab)
+    }
+    ADD_TO_LIST(label, lst->tail == NULL, lab)
     return SUCCESS;
 }
 

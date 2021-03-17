@@ -7,7 +7,7 @@
 #include "labGetters.h"
 #include "parseLineUtils.h"
 #include "errFuncs.h"
-#include "opDefGetters.h"
+#include "opDef.h"
 #include "globalVars.h"
 
 
@@ -23,41 +23,47 @@ result isLegalLabHelper(char *word, unsigned long len){
      * returns ERR if not legal and SUCCESS otherwise */
     int i;
     char *opName;
-    char *regName;
+    const char *regName;
     if (len == 0) {
         emptyLabelErr();
         return ERR;
-    } if (len > MAX_LAB_LEN){
+    }
+    if (len > MAX_LAB_LEN){
         labTooLongErr();
         return ERR;
-    } if (!isalpha(word[0])) {
+    }
+    if (!isalpha(word[0])) {
         illegalChrErr();
         return ERR;
-    } if (len == 1) return TRUE;
+    }
+    if (len == 1) return TRUE;
     for (i=1; i<len; i++) {
         if (!isalnum(word[i])) {
             illegalChrErr();
             return ERR;
         }
-    } for (i=0; i < OPERATIONS_AMOUNT; i++){
+    }
+    for (i=0; i < OPERATIONS_AMOUNT; i++){
         opName = getOpName(i);
         if (strcmp(word, opName) == 0) {
             keyWordErr(opName);
             return ERR;
         }
-    } for (i=0; i < REGS_AMOUNT; i++){
+    }
+    for (i=0; i < REGS_AMOUNT; i++){
         regName = getReg(i);
         if (strcmp(word, regName) == 0) {
             keyWordErr(regName);
             return ERR;
         }
-    } return TRUE;
+    }
+    return TRUE;
 }
 
 result getLegalLab(char **word, label **lab, unsigned long len){
     /* gets a new label with the given name and length if it in the right format
      * returns ERR if it is not or if an error has occurred in the process and SUCCESS otherwise */
-    VALIDATE_VAL(isLegalLabHelper(*word, len) );
+    VALIDATE_VAL(isLegalLabHelper(*word, len) )
     VALIDATE_VAL(getNewLabByName(lab, *word))
     return TRUE;
 }
@@ -71,7 +77,8 @@ result processLabel(char **line, char **word, label **lab, unsigned long len){
     if (res == TRUE) {
         raiseLabelFlag();
         getWord(line, word, 0);
-    } return res;
+    }
+    return res;
 }
 
 result initLab(label **lab){
@@ -98,17 +105,20 @@ result isLabTypeLegal(label *lab, labelType type){
             if (getLabType(lab) == EXT) {
                 illegalLabTypeErr(getLabName(lab));
                 return ERR;
-            } break;
+            }
+            break;
 
         case EXT:
             if (getLabType(lab) == L_ENT) {
                 illegalLabTypeErr(getLabName(lab));
                 return ERR;
-            } break;
+            }
+            break;
 
         default:
             return SUCCESS;
-    } return SUCCESS;
+    }
+    return SUCCESS;
 }
 
 void freeLab(label *lab){

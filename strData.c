@@ -11,7 +11,7 @@
 
 void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst){
     /* executes the scenario in case of a string statement
-     * addts the string to the data list such that each character acts as an item, including the null terminator */
+     * adds the string to the data list such that each character acts as an item, including the null terminator */
     unsigned long len = strlen(str);
     int i;
     char chr;
@@ -19,7 +19,8 @@ void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst){
     for (i=1; i<len-1; i++){
         chr = str[i];
         addChrWord(chr, instLst);
-    } addChrWord('\0', instLst);
+    }
+    addChrWord('\0', instLst);
 }
 
 result isStrScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst){
@@ -31,6 +32,7 @@ result isStrScenario(char *word, char **line, label *lab, sWordLst *dataLst, lab
     if (isString(word) == FALSE) {
         nonStrDataErr();
         return ERR;
-    } strScenario(word, lab, labLst, dataLst);
+    }
+    strScenario(word, lab, labLst, dataLst);
     return TRUE;
 }

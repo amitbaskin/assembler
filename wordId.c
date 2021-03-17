@@ -6,9 +6,9 @@
 #include "errFuncs.h"
 
 
-static char *regs[] = REGS;
+static const char *regs[] = REGS;
 
-char *getReg(int i){
+const char *getReg(int i){
     return regs[i];
 }
 
@@ -16,7 +16,8 @@ int isReg(char *r){
     int i;
     for (i=0; i < REGS_AMOUNT; i++){
         if (!strcmp(r, regs[i])) return i;
-    } return NOT_REG;
+    }
+    return NOT_REG;
 }
 
 result isData(char *word){
@@ -61,5 +62,6 @@ result isNum(long *got, char *word){
     *got = strtol(word, &word, 10);
     if (strcmp(word, "\0") != 0) {
         return ERR;
-    } else return TRUE;
+    }
+    else return TRUE;
 }

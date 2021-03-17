@@ -4,7 +4,7 @@
 #include "parseLineUtils.h"
 #include "labUtils.h"
 #include "strData.h"
-#include "opDefGetters.h"
+#include "opDef.h"
 #include "sWordListUtils.h"
 #include "labSetters.h"
 #include "labLstUtils.h"
@@ -43,7 +43,8 @@ result lookForLabel(char **line, char **word, label **lab){
     len = strlen(*word);
     if (getLegalLab(word, lab, len) != TRUE) {
         return ERR; /* handled inside */
-    } return finishLine(line);
+    }
+    return finishLine(line);
 }
 
 result entryScenario(char **line, char **word, label **lab, sWordLst *instLst){
@@ -55,6 +56,7 @@ result entryScenario(char **line, char **word, label **lab, sWordLst *instLst){
     addLabToInstLst(instLst, *word, getInstructionCounter(), W_ENT, L_ENT, 0);
     return TRUE;
 }
+
 result extScenario(char **line, char **word, label **lab, labelLst *labLst){
     /* executes the extern scenario given that an entry statement has been encountered
      * adds the given label to label list */
@@ -80,7 +82,8 @@ result lookForOperation(char **firstOp, char **secOp, char **word, char **line, 
     if (opIndex == NOT_OP) {
         undefinedStatementErr();
         return ERR;
-    } opsAmount = getOperandsAmount(opIndex);
+    }
+    opsAmount = getOperandsAmount(opIndex);
     VALIDATE_VAL(validateOperation(opIndex, opsAmount, line, firstOp, secOp, labLst, lab, instLst))
     return SUCCESS;
 }

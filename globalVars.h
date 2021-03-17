@@ -18,5 +18,4 @@ void setInputFileName(char *name);
 void setIcf(int final);
 void initGlobalVars();
 void resetLabelFlag();
-void resetErrFlag();
 #endif

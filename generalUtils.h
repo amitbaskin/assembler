@@ -5,7 +5,8 @@ enum result {SUCCESS, ERR, TRUE, FALSE, LINE_END, FILE_END, SEP, NOT_REG, LAB_DE
 typedef enum result result;
 result getAlloc(size_t size, void **ptr);
 void freeHelper(void *ptr);
-result getWordAlloc(char **output);
+result getFixedStrAlloc(char **output);
+result getStrAlloc(size_t size, char **fName);
 #define MAX_LINE_LEN 81
 #define INITIAL_INSTRUCTION_NUM 100
 #define MAX_LAB_LEN 31
