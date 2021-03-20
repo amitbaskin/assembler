@@ -97,7 +97,7 @@ void nonStrDataErr(){
 
 void nonNumericDataErr(){
     char msg[80];
-    sprintf(msg, "expected numeric data separated by '%c'", SEPARATOR);
+    sprintf(msg, "expected integer data separated by '%c'", SEPARATOR);
     firstParseErrMsg(msg)
 }
 

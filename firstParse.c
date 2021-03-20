@@ -1,5 +1,4 @@
 /* this file is used to run the general flow of the first parse of an assembly file */
-
 #include <string.h>
 #include "parseLine.h"
 #include "parseLineUtils.h"

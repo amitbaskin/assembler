@@ -1,8 +1,8 @@
 #include "wordId.h"
 #ifndef ASSEMBLER_WORD_TRANS_H
 #define ASSEMBLER_WORD_TRANS_H
-#define STR_WORD_FORMAT "%c%c%c "
-#define INT_WORD_FORMAT "%03X "
+#define WORD_LEN 3
+#define INT_WORD_FORMAT "%03X"
 #define ADDRESS_FORMAT "%04d "
 int transDest(int ref);
 int transSrc(int ref);

@@ -1,7 +1,6 @@
 ;file example2.as
 ;success example
 
-
     .entry LIST
     .extern W
 MAIN:   add     r3, LIST

@@ -40,16 +40,17 @@ int transOp(opWord *op){
 void printWordToFile(FILE *fp, int word){
     void *ptr = NULL;
     char *str = NULL;
+    char *orgStr = NULL;
     unsigned long len;
-    if (word < 0){
-        getAlloc(sizeof(int), &ptr);
-        str = (char *) ptr;
-        sprintf(str, "%X", word);
-        len = strlen(str);
-        fprintf(fp, STR_WORD_FORMAT, str[len-3], str[len-2], str[len-1]);
-        freeHelper(str);
-    }
-    else fprintf(fp, INT_WORD_FORMAT, word);
+    getAlloc(sizeof(int)+1, &ptr);
+    str = (char *) ptr;
+    orgStr = str;
+    sprintf(str, INT_WORD_FORMAT, word);
+    len = strlen(str);
+    str[len] = ' ';
+    str += (len - WORD_LEN);
+    fprintf(fp, "%s", str);
+    freeHelper(orgStr);
 }
 
 void printAddressToFile(FILE *fp, sWord *word){
