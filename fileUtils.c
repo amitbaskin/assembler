@@ -29,6 +29,7 @@ result getFile(char *name, FILE **fp, char *mode, char *suffix){
      * this is being done after opening the requested file successfully in the requested mode
      * if not successful or if a memory allocation error has occurred returns ERR, else returns SUCCESS */
     char *fullName = getFullFileName(name, suffix);
+    if (fullName == NULL) return ERR;
     *fp = fopen(fullName, mode);
     freeHelper(fullName);
     if (*fp == NULL) {

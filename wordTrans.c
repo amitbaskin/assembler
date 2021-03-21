@@ -5,6 +5,7 @@
 #include "opDef.h"
 #include "opWordGetSet.h"
 #include "sWordGetters.h"
+#include "errFuncs.h"
 
 
 int transDest(int ref){
@@ -37,12 +38,12 @@ int transOp(opWord *op){
     return dest + src + funct + opCode;
 }
 
-void printWordToFile(FILE *fp, int word){
+result printWordToFile(FILE *fp, int word){
     void *ptr = NULL;
     char *str = NULL;
     char *orgStr = NULL;
     unsigned long len;
-    getAlloc(sizeof(int)+1, &ptr);
+    VALIDATE_VAL(getAlloc(sizeof(int)+1, &ptr));
     str = (char *) ptr;
     orgStr = str;
     sprintf(str, INT_WORD_FORMAT, word);
@@ -51,12 +52,21 @@ void printWordToFile(FILE *fp, int word){
     str += (len - WORD_LEN);
     fprintf(fp, "%s", str);
     freeHelper(orgStr);
+    return SUCCESS;
 }
 
-void printAddressToFile(FILE *fp, sWord *word){
-    fprintf(fp, ADDRESS_FORMAT, getSWordAddress(word));
+result printAddressToFile(FILE *fp, sWord *word){
+    if (fprintf(fp, ADDRESS_FORMAT, getSWordAddress(word)) < 0) {
+        printErr();
+        return ERR;
+    }
+    return SUCCESS;
 }
 
-void printAddressTypeToFile(FILE *fp, sWord *word){
-    fprintf(fp, "%c\n", getSWordAddressType(word));
+result printAddressTypeToFile(FILE *fp, sWord *word){
+    if (fprintf(fp, "%c\n", getSWordAddressType(word)) < 0){
+        printErr();
+        return ERR;
+    }
+    return SUCCESS;
 }

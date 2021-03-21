@@ -18,6 +18,7 @@ void noSepAfterFirstOperand();
 void sepErr();
 void operandErr();
 void closeFileErr();
+void printErr();
 void undefinedStatementErr();
 void keyWordErr(const char *keyWord);
 void emptyLabelErr();

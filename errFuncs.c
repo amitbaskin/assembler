@@ -13,6 +13,16 @@
     printf(PRE_PARSE_ERR_FORMAT, msg, getInputFileName(), INPUT_FILE_SUFFIX); \
 }
 
+#define POST_PARSE_ERR_FORMAT "\nERROR (post parse): %s\nfile: %s%s\n"
+#define postParseErrMsg(msg){ \
+    printf(POST_PARSE_ERR_FORMAT, msg, getInputFileName(), INPUT_FILE_SUFFIX); \
+}
+
+#define NON_PARSE_ERR_FORMAT "\nERROR (non-parse error): %s\nfile: %s%s, line number: %d, line content: %s\n"
+#define nonParseErrMsg(msg){ \
+    printf(NON_PARSE_ERR_FORMAT, msg, getInputFileName(), INPUT_FILE_SUFFIX, getLineCounter(), getCurLine()); \
+}
+
 #define FIRST_PARSE_ERR_FORMAT "\nERROR (first parse): %s\nfile: %s%s, line number: %d, line content: %s\n"
 #define firstParseErrMsg(msg){ \
     raiseErrFlag();            \
@@ -32,7 +42,7 @@ void usageErr(){
 }
 
 void allocErr(){
-    firstParseErrMsg("memory allocation failure")
+    nonParseErrMsg("memory allocation failure")
 }
 
 void openFileErr(){
@@ -41,6 +51,10 @@ void openFileErr(){
 
 void closeFileErr(){
     preParseErrMsg("failed to close file")
+}
+
+void printErr(){
+    postParseErrMsg("failed to write to file")
 }
 
 void lineTooLongErr(){

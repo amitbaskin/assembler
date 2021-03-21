@@ -10,7 +10,7 @@ int transFunct(int i);
 int transOpcode(int i);
 int transReg(int reg);
 int transOp(opWord *op);
-void printWordToFile(FILE *fp, int word);
-void printAddressToFile(FILE *fp, sWord *word);
-void printAddressTypeToFile(FILE *fp, sWord *word);
+result printWordToFile(FILE *fp, int word);
+result printAddressToFile(FILE *fp, sWord *word);
+result printAddressTypeToFile(FILE *fp, sWord *word);
 #endif
