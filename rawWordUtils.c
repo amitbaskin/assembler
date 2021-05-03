@@ -12,7 +12,7 @@ void setRawData(rawWord *raw, rawData *data){
 }
 
 result initRawWord(rawWord **word){
-    /* allocates memory for a rawWord
+    /* allocates memory for a rawWord.
      * returns ERR if a memory allocation ERR has occurred and SUCCESS otherwise */
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(rawWord), &ptr))

@@ -148,7 +148,7 @@ void processOp(int opIndex, int opsAmount, ref srcType, ref destType, char **fir
     /* processes the operator statement according to the data collected in the arguments of this function */
     opWord *op;
     initOpWord(opIndex, srcType, destType, &op);
-    flagOnScenario(lab, labLst, getInstructionCounter(), 0);
+    labFlagOnScenario(lab, labLst, getInstructionCounter(), 0);
     addOpWord(op, instLst);
     addAllOperandsWord(opsAmount, firstOp, secOp, instLst, srcType, destType, srcReg, srcNum, destReg, destNum);
 }
@@ -157,7 +157,7 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
                        sWordLst *instLst){
     /* makes sure the operator gets two operands in the right format and verifies the suitability of the two given
      * operands to the given operator specified by the opIndex variable, i.e. by it's index in the operators list,
-     * given that this operator indeed accepts two operands
+     * given that this operator indeed accepts two operands.
      * furthermore it adds the operator and operands to the instructions list if all went well and returns ERR
      * otherwise */
     int srcReg;
@@ -173,7 +173,7 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
         return ERR;
     }
     if (res != SEP) {
-        noSepAfterFirstOperand();
+        noSepAfterFirstOperandErr();
         return ERR;
     }
     getWord(line, secOp, 0);
@@ -201,7 +201,7 @@ result validateTwoOps(char **line, int opIndex, char **firstOp, char **secOp, la
 result validateOneOp(char **line, int opIndex, char **destOp, labelLst *labLst, label **lab, sWordLst *instLst){
     /* makes sure the operator gets one operand in the right format and verifies the suitability of the given
      * operand to the given operator specified by the opIndex variable, i.e. by it's index in the operators list,
-     * given that this operator indeed accepts one operand
+     * given that this operator indeed accepts one operand.
      * furthermore it adds the operator and operand to the instructions list if all went well and returns ERR
      * otherwise */
     int destReg;
@@ -227,19 +227,19 @@ result validateOneOp(char **line, int opIndex, char **destOp, labelLst *labLst, 
 
 result validateZeroOps(char **line, int opIndex, label **lab, labelLst *labLst, sWordLst *instLst){
     /* makes sure the operator gets zero operands given that the operator specified by the opIndex variable operator
-     * indeed does accept any operands
+     * indeed doesn't accept any operands.
      * furthermore it adds the operator to the instructions list if all went well and returns ERR otherwise */
     opWord *op;
     initOpWord(opIndex, R_NONE, R_NONE, &op);
-    flagOnScenario(lab, labLst, getInstructionCounter(), 0);
+    labFlagOnScenario(lab, labLst, getInstructionCounter(), 0);
     addOpWord(op, instLst);
     return finishLine(line);
 }
 
 result validateOperands(char **line, int opIndex, int operandsAmount, char **firstOp, char **secOp,
                         labelLst *labLst, label **lab, sWordLst *instLst){
-    /*validates that the right amount of operands was given to the specified operator and furthermore verifies the
-     * validity of the operands if there should be any
+    /* validates that the right amount of operands was given to the specified operator and furthermore verifies the
+     * validity of the operands if there should be any.
      * returns ERR if some error has occurred in the process and SUCCESS otherwise */
     switch (operandsAmount) {
         case 2:
@@ -250,6 +250,7 @@ result validateOperands(char **line, int opIndex, int operandsAmount, char **fir
 
         case 0:
             return validateZeroOps(line, opIndex, lab, labLst, instLst);
+
         default:
             return ERR; /* the switch statement is used here for readability but it should not be possible to
             * get to this default statement because this function should always get operands amount between 0 to 2 */
@@ -258,7 +259,7 @@ result validateOperands(char **line, int opIndex, int operandsAmount, char **fir
 
  result validateOperation(int opIndex, int opsAmount, char **line, char **firstOp, char **secOp, labelLst *labLst,
                          label **lab, sWordLst *instLst){
-    /* the entire for flow for validation an operator statement */
+    /* the entire flow for validating an operator statement */
     VALIDATE_VAL(validateOperands(line, opIndex, opsAmount, firstOp, secOp, labLst, lab, instLst))
     VALIDATE_VAL(finishLine(line))
     return SUCCESS;

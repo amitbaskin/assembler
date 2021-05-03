@@ -62,8 +62,8 @@ result isLegalLabHelper(char *word, unsigned long len){
 
 result getLegalLab(char **word, label **lab, unsigned long len){
     /* gets a new label with the given name and length if it in the right format
-     * returns ERR if it is not or if an error has occurred in the process and SUCCESS otherwise */
-    VALIDATE_VAL(isLegalLabHelper(*word, len) )
+     * returns ERR if it is not or if an error has occurred in the process and TRUE otherwise */
+    VALIDATE_VAL(isLegalLabHelper(*word, len))
     VALIDATE_VAL(getNewLabByName(lab, *word))
     return TRUE;
 }
@@ -71,7 +71,7 @@ result getLegalLab(char **word, label **lab, unsigned long len){
 result processLabel(char **line, char **word, label **lab, unsigned long len){
     /* gets a new label with the given name and length if it in the right format
      * further more turn on the label flag if the name of the label is legal
-     * returns ERR if it is not or if an error has occurred in the process and SUCCESS otherwise */
+     * returns ERR if it is not or if an error has occurred in the process and TRUE otherwise */
     result res;
     res = getLegalLab(word, lab, len);
     if (res == TRUE) {

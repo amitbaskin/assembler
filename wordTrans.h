@@ -3,7 +3,8 @@
 #define ASSEMBLER_WORD_TRANS_H
 #define WORD_LEN 3
 #define INT_WORD_FORMAT "%03X"
-#define ADDRESS_FORMAT "%04d "
+#define INST_ADDRESS_FORMAT "%04d "
+#define LAB_ADDRESS_FORMAT "%04d\n"
 int transDest(int ref);
 int transSrc(int ref);
 int transFunct(int i);

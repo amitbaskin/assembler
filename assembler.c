@@ -22,8 +22,8 @@ void updateDataLabsAddresses(labelLst *labLst){
 }
 
 result assembleHelper(char *fName){
-    /* run entire flow of processing an assembly input and output the requested files
-     * returns SUCCESS unless an error has occurred in the process */
+    /* run the entire flow of processing an assembly input, and output the requested files.
+     * returns SUCCESS unless an error occurred in the process */
     labelLst *labLst = NULL;
     sWordLst *instLst = NULL;
     sWordLst *dataLst = NULL;
@@ -52,7 +52,7 @@ result assembleHelper(char *fName){
 }
 
 result assemble(char *fName) {
-    /* first remove old files if exist because some or all may not be created again, and then run the assembler */
+    /* first remove old files if exist (some or all may not be created again) and then run the assembler */
     removeFile(getFullFileName(fName, MAIN_OUTPUT_SUFFIX));
     removeFile(getFullFileName(fName, ENT_SUFFIX));
     removeFile(getFullFileName(fName, EXT_SUFFIX));

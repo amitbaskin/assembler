@@ -64,7 +64,7 @@ result addLabToInstLst(sWordLst *instLst, char *name, int address, wordStatus st
 }
 
 result addRegWord(int reg, sWordLst *instLst){
-    /* creates a reg sWord and adds it to the instruction list
+    /* creates a reg sWord and adds it to the instruction list.
      * returns ERR if a memory allocation ERR occurred and SUCCESS otherwise */
     sWord *sWordReg;
     VALIDATE_VAL(createAndAddSWord(&sWordReg, W_REG, instLst))
@@ -76,7 +76,7 @@ result addRegWord(int reg, sWordLst *instLst){
 }
 
 void addNumWord(long num, int address, wordStatus status, sWordLst *lst){
-    /* creates an integer sWord and adds it to the instruction list
+    /* creates an integer sWord and adds it to the instruction list.
      * returns ERR if a memory allocation ERR occurred and SUCCESS otherwise */
     sWord *sWordNum;
     createAndAddSWord(&sWordNum, status, lst);
@@ -86,7 +86,7 @@ void addNumWord(long num, int address, wordStatus status, sWordLst *lst){
 }
 
 void addChrWord(char chr, sWordLst *dataLst){
-    /* creates a char sWord and adds it to the instruction list
+    /* creates a char sWord and adds it to the instruction list.
      * returns ERR if a memory allocation ERR occurred and SUCCESS otherwise */
     sWord *sWordChr;
     createAndAddSWord(&sWordChr, CHR_DATA, dataLst);

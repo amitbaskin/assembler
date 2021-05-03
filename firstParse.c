@@ -25,8 +25,8 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
     while (isFileEnd != FILE_END){
         updateLineCounter();
         resetLabelFlag();
-        line = getCurLine(); /* save the pointer for the beginning of the line in order to override it with the next line
-        * later on */
+        line = getCurLine(); /* save the pointer for the beginning of the line in order to overwrite it with the next
+        * line later on */
         isFileEnd = getLine(&line, fp); /* err handled inside, keep finding errs */
         if (isFileEnd == ERR) continue;
         if (*line == COMMENT_CHR || isEmptyLine(line) == TRUE) continue;
@@ -39,8 +39,8 @@ result parseFile(FILE *fp, sWordLst *instLst, sWordLst *dataLst, labelLst *labLs
         if (res == ERR || res != FALSE) continue;
         if (getFixedStrAlloc(&firstOp) == ERR) continue; /* err handled inside, keep finding errs */
         if (getFixedStrAlloc(&secOp) == ERR) continue; /* err handled inside, keep finding errs */
-        /* saves the pointers to the allocated operands in order to free them later as they might be modified while
-         * processing the operator statement */
+        /* the following saves the pointers to the allocated operands in order to free them later as they might be
+         * modified while processing the operator statement */
         orgFirstOp = firstOp;
         orgSecOp = secOp;
         res = lookForOperation(&firstOp, &secOp, &word, &line, &lab, labLst, instLst);

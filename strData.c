@@ -15,7 +15,7 @@ void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst){
     unsigned long len = strlen(str);
     int i;
     char chr;
-    flagOnScenario(&lab, labLst, getDataCounter(), 1);
+    labFlagOnScenario(&lab, labLst, getDataCounter(), 1);
     for (i=1; i<len-1; i++){
         chr = str[i];
         addChrWord(chr, instLst);
@@ -24,7 +24,7 @@ void strScenario(char *str, label *lab, labelLst *labLst, sWordLst *instLst){
 }
 
 result isStrScenario(char *word, char **line, label *lab, sWordLst *dataLst, labelLst *labLst){
-    /* checks whether or not we have a string statement scenario
+    /* checks whether or not we have a string statement scenario.
      * returns ERR if it is a corrupt string statement, FALSE if its not a string statement and TRUE if it is a valid
      * string statement */
     if (isStringOrder(word) == FALSE) return FALSE;

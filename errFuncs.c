@@ -136,7 +136,7 @@ void illegalChrErr(){
     firstParseErrMsg("label contains illegal character\nmust begin with a letter and the rest must be alphanumeric")
 }
 
-void noSepAfterFirstOperand(){
+void noSepAfterFirstOperandErr(){
     char msg[50];
     sprintf(msg, "expected a '%c' after the first operand", SEPARATOR);
     firstParseErrMsg(msg)

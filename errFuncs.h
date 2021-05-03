@@ -14,7 +14,7 @@ void nonStrDataErr();
 void nonNumericDataErr();
 void imNumErr();
 void noNumPrefixErr();
-void noSepAfterFirstOperand();
+void noSepAfterFirstOperandErr();
 void sepErr();
 void operandErr();
 void closeFileErr();

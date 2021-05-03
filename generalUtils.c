@@ -31,6 +31,6 @@ result getStrAlloc(size_t size, char **fName){
 }
 
 result getFixedStrAlloc(char **output){
-    /* allocates memory of fixed size for a string which used either for a word parsed or a line from a file */
+    /* allocates memory of fixed size for a string which is used either for a word parsed or a line from a file */
     return getStrAlloc(MAX_LINE_LEN, output);
 }

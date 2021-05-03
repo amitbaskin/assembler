@@ -20,7 +20,7 @@ int isReg(char *r){
     return NOT_REG;
 }
 
-result isData(char *word){
+result isDataOrder(char *word){
     if (!strcmp(word, DATA_ORDER)) return TRUE;
     return FALSE;
 }

@@ -25,11 +25,11 @@ void printInst(FILE *fp, sWord **ptr, int toPrint){
 
 void printLabel(FILE *fp, label *lab){
     fprintf(fp, "%s ", getLabName(lab));
-    fprintf(fp, "%d\n", getLabAddress(lab));
+    fprintf(fp, LAB_ADDRESS_FORMAT, getLabAddress(lab));
 }
 
 void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
-    /* outputs the the main output file containing the translation of the instructions and data to machine code */
+    /* outputs the main output file containing the translation of the instructions and data to machine code */
     sWord *ptr;
     fprintf(fp, HEADER_FORMAT, getInstructionCounter() - INITIAL_INSTRUCTION_NUM, getDataCounter());
     for (ptr = getSWordTail(instLst); ptr != NULL; promoteSWord(&ptr)){
@@ -56,7 +56,9 @@ void printInstLst(FILE *fp, sWordLst *instLst, labelLst *labLst){
                 break;
 
             default:
-                break;
+                break; /* the switch statement is used here for readability but it should not be possible to
+            * get to this default statement because this function should always get a type of one of the mentioned
+            types above */
         }
     }
 }
@@ -73,7 +75,7 @@ void printDataLst(FILE *fp, sWordLst *dataLst){
 }
 
 result printEntFile(labelLst *lst, char *fName) {
-    /* outputs the entry file if any extern statement exists, making sure the entry statements refer to actual labels */
+    /* outputs the entry file if any entry statement exists, making sure the entry statements refer to actual labels */
     int isEntExists = 0;
     FILE *fp = NULL;
     label *ptr;

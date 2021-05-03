@@ -75,7 +75,7 @@ result isNumDataScenario(char *word, char **line, label *lab, sWordLst *dataLst,
     /* checks if the given word is a data statement and if so operates accordingly in order to collect the data
      * returns ERR if and error has occurred in the process and TRUE otherwise */
     rawWordLst *rawLst;
-    if (isData(word) == TRUE) {
+    if (isDataOrder(word) == TRUE) {
         VALIDATE_VAL(initRawWordLst(&rawLst))
         VALIDATE_VAL(breakDownData(line, rawLst))
         VALIDATE_VAL(collectData(rawLst))

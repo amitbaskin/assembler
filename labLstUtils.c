@@ -50,7 +50,7 @@ result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
     return FALSE;
 }
 
-result flagOnScenario(label **lab, labelLst *labLst, int address, unsigned char isData){
+result labFlagOnScenario(label **lab, labelLst *labLst, int address, unsigned char isData){
     /* if a label was defined, add to it to the label list */
     if (getLabelFlag()) {
         setLabData(*lab, isData);
@@ -89,7 +89,7 @@ result addLab(labelLst *lst, label *lab){
 
 result initLabLst(labelLst **lst){
     /* allocates memory for a new label list
-     * returns ERR if a memory allocation error has occurred and SUCCESS other wise */
+     * returns ERR if a memory allocation error has occurred and SUCCESS otherwise */
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(lst), &ptr))
     *lst = ptr;

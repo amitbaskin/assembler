@@ -23,7 +23,7 @@ void addRawWord(rawWordLst *lst, rawWord *word){
 }
 
 result initRawWordLst(rawWordLst **lst){
-    /* allocates memory for a rawWordLst
+    /* allocates memory for a rawWordLst.
      * returns ERR if a memory allocation error has occurred and SUCCESS otherwise */
     void *ptr;
     VALIDATE_VAL(getAlloc(sizeof(rawWordLst), &ptr))

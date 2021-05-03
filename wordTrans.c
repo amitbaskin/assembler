@@ -50,13 +50,16 @@ result printWordToFile(FILE *fp, int word){
     len = strlen(str);
     str[len] = ' ';
     str += (len - WORD_LEN);
-    fprintf(fp, "%s", str);
+    if(fprintf(fp, "%s", str) < 0){
+        printErr();
+        return ERR;
+    }
     freeHelper(orgStr);
     return SUCCESS;
 }
 
 result printAddressToFile(FILE *fp, sWord *word){
-    if (fprintf(fp, ADDRESS_FORMAT, getSWordAddress(word)) < 0) {
+    if (fprintf(fp, INST_ADDRESS_FORMAT, getSWordAddress(word)) < 0) {
         printErr();
         return ERR;
     }

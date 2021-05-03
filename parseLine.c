@@ -29,10 +29,10 @@
 }
 
 /* general logic for checking if some condition holds and if so executes the appropriate scenario */
-#define SWITCH_REF_RES(checkIfOrder, orderScenario) {\
-    if ((checkIfOrder) == TRUE){                            \
-        return orderScenario;                             \
-    }                                                     \
+#define SWITCH_REF_RES(checkIfOrder, orderScenario) { \
+    if ((checkIfOrder) == TRUE){                      \
+        return orderScenario;                         \
+    }                                                 \
 }
 
 result lookForLabel(char **line, char **word, label **lab){
