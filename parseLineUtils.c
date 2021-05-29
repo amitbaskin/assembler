@@ -13,7 +13,7 @@ unsigned char isSepCond(unsigned char isSep, char chr){
 int getWordLoopCond(char chr, unsigned char isSep){
     /* condition for when to stop reading from the line extracted from an assembly file, and start processing the
      * string being read from now on */
-    return (chr != ' ') && (chr != '\t') && (chr != '\n' &&chr != '\0')  && (chr != LABEL_SUFFIX) &&
+    return (chr != ' ') && (chr != '\t') && (chr != '\n') && (chr != '\0') && (chr != LABEL_SUFFIX) &&
            isSepCond(isSep, chr);
 }
 
@@ -37,7 +37,7 @@ result finishLine(char **line){
 result isEmptyLine(const char *line){
     /* checks whether the given line contains white characters only
      * returns TRUE if so and FALSE otherwise */
-    while(*line != '\0'){
+    while (*line != '\0'){
         if (*line != ' ' && *line != '\t' && *line != '\n') return FALSE;
     }
     return TRUE;

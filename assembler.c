@@ -16,7 +16,7 @@ void updateDataLabsAddresses(labelLst *labLst){
     /* add ICF (instruction counter final) to each address in the data image so that the data image will be at the
      * end of the output */
     label *ptr;
-    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
+    for (ptr = getLabLstTail(labLst); ptr != NULL; promoteLab(&ptr)) {
         if (isLabData(ptr)) setLabAddress(ptr, getLabAddress(ptr) + getIcf());
     }
 }

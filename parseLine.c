@@ -1,4 +1,4 @@
-/* this file is used to process a line for an assembly file */
+/* this file is used to process a line of an assembly file */
 
 #include <string.h>
 #include "parseLineUtils.h"

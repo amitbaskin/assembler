@@ -1,0 +1,2590 @@
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 29, line content: g
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example4.as, line number: 30, line content: externAndRegular: stop
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 34, line content: rt
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example4.as, line number: 35, line content: .extern externAndRegular0
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 39, line content: rg
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example4.as, line number: 40, line content: MAIN: .data 6
+
+ERROR (first parse): line exceeds limit of characters: 81
+file: example4.as, line number: 43, line content: .string "012345678901234567890123456789012345678901234567890123456789012345678901
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 44, line content: gth
+
+ERROR (first parse): label name exceeds limit of characters: 31
+file: example4.as, line number: 45, line content: .extern 01234567890123456789012345678901
+
+ERROR (first parse): label contains illegal character
+must begin with a letter and the rest must be alphanumeric
+file: example4.as, line number: 48, line content: 7rsrgsr: stop
+
+ERROR (first parse): label contains illegal character
+must begin with a letter and the rest must be alphanumeric
+file: example4.as, line number: 49, line content: FARSG$@%!$#%!SAGGGASG: stop
+
+ERROR (first parse): got an empty label
+file: example4.as, line number: 50, line content: .entry
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 51, line content: rwg
+
+ERROR (first parse): got an empty label
+file: example4.as, line number: 52, line content: .extern
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 53, line content: MAIN:
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 54, line content: rh
+
+ERROR (first parse): expected integer data separated by ','
+file: example4.as, line number: 55, line content: .data
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example4.as, line number: 56, line content: .string
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 57, line content: .data5
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 58, line content: thrt
+
+ERROR (first parse): there should be no ',' after operator but there should be one between operands
+file: example4.as, line number: 59, line content: .data 5 6
+
+ERROR (first parse): there should be no ',' after operator but there should be one between operands
+file: example4.as, line number: 60, line content: .data  , 7
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 61, line content: rg
+
+ERROR (first parse): expected integer data separated by ','
+file: example4.as, line number: 62, line content: .data c
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 63, line content: .string"hi"
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 64, line content: gr
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example4.as, line number: 65, line content: .string hi
+
+ERROR (first parse): expected a ',' after the first operand
+file: example4.as, line number: 66, line content: add x x
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 67, line content: d
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example4.as, line number: 68, line content: .string "hi
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example4.as, line number: 69, line content: .string hi"
+
+ERROR (first parse): label declaration clashes with keyword: r0
+file: example4.as, line number: 70, line content: r0: .data 5
+
+ERROR (first parse): undefined statement
+file: example4.as, line number: 71, line content: thryj
+
+ERROR (first parse): label declaration clashes with keyword: dec
+file: example4.as, line number: 72, line content: dec: .data 7
+
+ERROR (first parse): line ended before expected
+file: example4.as, line number: 73, line content: add
+
+ERROR (second parse): use of undefined label
+file: example5.as, label name: r8
+
+ERROR (second parse): use of undefined label
+file: example5.as, label name: r9
+
+ERROR (second parse): use of undefined label
+file: example5.as, label name: entryAlone
+
+ERROR (second parse): label appears to be both exten and entry
+file: example5.as, label name: externAndEntryClash
+
+ERROR (second parse): use of undefined label
+file: example5.as, label name: undefinedLabel
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example6.as, line number: 13, line content: externAndRegular: stop
+
+ERROR (first parse): got an empty label
+file: example6.as, line number: 14, line content: .entry
+
+ERROR (first parse): got an empty label
+file: example6.as, line number: 15, line content: .extern
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 16, line content: MAIN:
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example6.as, line number: 19, line content: .extern externAndRegular0
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 22, line content: SRg
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 23, line content: SR
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 24, line content: debuggerSR
+
+ERROR (first parse): expected integer data separated by ','
+file: example6.as, line number: 30, line content: .data
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example6.as, line number: 31, line content: .string
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 32, line content: .data5
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example6.as, line number: 36, line content: .string hi"
+
+ERROR (first parse): label declaration clashes with keyword: r0
+file: example6.as, line number: 37, line content: r0: .data 5
+
+ERROR (first parse): label declaration clashes with keyword: dec
+file: example6.as, line number: 38, line content: dec: .data 7
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 45, line content: GR
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 46, line content: SRg
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 47, line content: RS
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 48, line content: debugger
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example6.as, line number: 50, line content: MAIN: .data 5
+
+ERROR (first parse): label name exceeds limit of characters: 31
+file: example6.as, line number: 51, line content: .extern a0123456789012345678901234567890
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example6.as, line number: 52, line content: MAIN: .data 6
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 53, line content: rg
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 54, line content: SRg
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 55, line content: r
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 56, line content: Sgr
+
+ERROR (first parse): line exceeds limit of characters: 81
+file: example6.as, line number: 59, line content: .string "012345678901234567890123456789012345678901234567890123456789012345678901
+
+ERROR (first parse): expected integer data separated by ','
+file: example6.as, line number: 66, line content: .data c
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 67, line content: .string"hi"
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example6.as, line number: 68, line content: .string hi
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 70, line content: debuggerGSR
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 71, line content: G
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 72, line content: RSg
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 73, line content: gS
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example6.as, line number: 75, line content: .string "hi
+
+ERROR (first parse): there should be no ',' after operator but there should be one between operands
+file: example6.as, line number: 91, line content: .data 5 6
+
+ERROR (first parse): there should be no ',' after operator but there should be one between operands
+file: example6.as, line number: 92, line content: .data  , 7
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 94, line content: GSRTg
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 95, line content: SRg
+
+ERROR (first parse): undefined statement
+file: example6.as, line number: 96, line content: S
+
+ERROR (second parse): label appears to be both exten and entry
+file: example7.as, label name: externAndEntryClash
+
+ERROR (second parse): use of undefined label
+file: example7.as, label name: undeclaredLabel
+
+ERROR (second parse): use of undefined label
+file: example7.as, label name: entryAlone
+
+ERROR (first parse): got an empty label
+file: example8.as, line number: 20, line content: .entry
+
+ERROR (first parse): got an empty label
+file: example8.as, line number: 21, line content: .extern
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 22, line content: MAIN:
+
+ERROR (first parse): expected integer data separated by ','
+file: example8.as, line number: 23, line content: .data
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example8.as, line number: 24, line content: .string "hi
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example8.as, line number: 25, line content: .string hi"
+
+ERROR (first parse): label declaration clashes with keyword: r0
+file: example8.as, line number: 26, line content: r0: .data 5
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 27, line content: SRg
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 28, line content: SR
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 29, line content: debuggerSR
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 30, line content: gS
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 31, line content: rg
+
+ERROR (first parse): label declaration clashes with keyword: dec
+file: example8.as, line number: 33, line content: dec: .data 7
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 34, line content: SRg
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 35, line content: r
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 36, line content: Sgr
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 41, line content: S
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 42, line content: G
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 43, line content: RSg
+
+ERROR (first parse): label name exceeds limit of characters: 31
+file: example8.as, line number: 45, line content: .extern a0123456789012345678901234567890
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example8.as, line number: 49, line content: .string
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 50, line content: .data5
+
+ERROR (first parse): expected to get a string enclosed with quotation marks
+file: example8.as, line number: 51, line content: .string hi
+
+ERROR (first parse): there should be no ',' after operator but there should be one between operands
+file: example8.as, line number: 55, line content: .data 5 6
+
+ERROR (first parse): there should be no ',' after operator but there should be one between operands
+file: example8.as, line number: 56, line content: .data  , 7
+
+ERROR (first parse): expected integer data separated by ','
+file: example8.as, line number: 57, line content: .data c
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 58, line content: .string"hi"
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example8.as, line number: 60, line content: MAIN: .data 5
+
+ERROR (first parse): line exceeds limit of characters: 81
+file: example8.as, line number: 61, line content: .string "012345678901234567890123456789012345678901234567890123456789012345678901
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example8.as, line number: 62, line content: MAIN: .data 6
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 68, line content: GSRTg
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 69, line content: SRg
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 75, line content: SRg
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 76, line content: RS
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 77, line content: debugger
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 81, line content: GR
+
+ERROR (first parse): undefined statement
+file: example8.as, line number: 83, line content: debuggerGSR
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example8.as, line number: 85, line content: .extern externAndRegular0
+
+ERROR (first parse): label declaration clashes with a pre defined one
+file: example8.as, line number: 90, line content: externAndRegular: stop
+
+ERROR (first parse): undefined statement
+file: example9.as, line number: 9, line content: .externW
+
+ERROR (first parse): expected integer value immediately after '#'
+file: example9.as, line number: 12, line content: MAIN:add     #r3, LIST
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example9.as, line number: 13, line content: LOOP:prn     48
+
+ERROR (first parse): operator got wrong operand type
+file: example9.as, line number: 13, line content: LOOP:prn     48
+
+ERROR (first parse): undefined statement
+file: example9.as, line number: 14, line content: leaW, r6
+
+ERROR (first parse): undefined statement
+file: example9.as, line number: 20, line content: STR .string "abcd"
+
+ERROR (first parse): expected a ',' after the first operand
+file: example9.as, line number: 21, line content: mov     r3 K
+
+ERROR (first parse): expected integer value immediately after '#'
+file: example9.as, line number: 22, line content: sub #r1,1
+
+ERROR (first parse): undefined statement
+file: example9.as, line number: 29, line content: .data-100
+
+ERROR (first parse): undefined statement
+file: example9.as, line number: 30, line content: K .data 31
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example9.as, line number: 41, line content: mov 1,1
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 4, line content: mov
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 5, line content: mov 1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 6, line content: mov #1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 7, line content: mov LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 8, line content: mov %LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 9, line content: mov r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 10, line content: mov 1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 11, line content: mov 1, 1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 12, line content: mov 1, #1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 13, line content: mov 1, LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 14, line content: mov 1, %LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 15, line content: mov 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 16, line content: mov 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 17, line content: mov 1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 18, line content: mov #1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 19, line content: mov #1, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 20, line content: mov #1, #1
+
+ERROR (first parse): expected integer value immediately after '#'
+file: example10.as, line number: 21, line content: mov #1, #1.5
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 23, line content: mov #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 25, line content: mov #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 26, line content: mov #1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 27, line content: mov LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 28, line content: mov LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 29, line content: mov LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 31, line content: mov LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 33, line content: mov LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 34, line content: mov LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 35, line content: mov %LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 36, line content: mov %LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 37, line content: mov %LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 38, line content: mov %LOOP, LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 39, line content: mov %LOOP, %LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 40, line content: mov %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 41, line content: mov %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 42, line content: mov %LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 43, line content: mov r0 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 44, line content: mov r0, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 45, line content: mov r0, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 47, line content: mov r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 49, line content: mov r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 50, line content: mov r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 52, line content: cmp 
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 53, line content: cmp 1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 54, line content: cmp #1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 55, line content: cmp LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 56, line content: cmp %LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 57, line content: cmp r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 58, line content: cmp 1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 59, line content: cmp 1, 1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 60, line content: cmp 1, #1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 61, line content: cmp 1, LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 62, line content: cmp 1, %LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 63, line content: cmp 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 64, line content: cmp 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 65, line content: cmp 1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 66, line content: cmp #1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 67, line content: cmp #1, 1
+
+ERROR (first parse): expected integer value immediately after '#'
+file: example10.as, line number: 69, line content: cmp #1, #1.5
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 71, line content: cmp #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 73, line content: cmp #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 74, line content: cmp #1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 75, line content: cmp LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 76, line content: cmp LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 79, line content: cmp LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 81, line content: cmp LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 82, line content: cmp LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 83, line content: cmp %LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 84, line content: cmp %LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 85, line content: cmp %LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 86, line content: cmp %LOOP, LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 87, line content: cmp %LOOP, %LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 88, line content: cmp %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 89, line content: cmp %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 90, line content: cmp %LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 91, line content: cmp r0 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 92, line content: cmp r0, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 95, line content: cmp r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 97, line content: cmp r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 98, line content: cmp r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 100, line content: add 
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 101, line content: add 1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 102, line content: add #1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 103, line content: add LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 104, line content: add %LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 105, line content: add r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 106, line content: add 1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 107, line content: add 1, 1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 108, line content: add 1, #1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 109, line content: add 1, LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 110, line content: add 1, %LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 111, line content: add 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 112, line content: add 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 113, line content: add 1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 114, line content: add #1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 115, line content: add #1, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 116, line content: add #1, #1
+
+ERROR (first parse): expected integer value immediately after '#'
+file: example10.as, line number: 117, line content: add #1, #1.5
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 119, line content: add #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 121, line content: add #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 122, line content: add #1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 123, line content: add LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 124, line content: add LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 125, line content: add LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 127, line content: add LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 129, line content: add LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 130, line content: add LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 131, line content: add %LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 132, line content: add %LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 133, line content: add %LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 134, line content: add %LOOP, LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 135, line content: add %LOOP, %LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 136, line content: add %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 137, line content: add %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 138, line content: add %LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 139, line content: add r0 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 140, line content: add r0, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 141, line content: add r0, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 143, line content: add r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 145, line content: add r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 146, line content: add r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 148, line content: sub 
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 149, line content: sub 1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 150, line content: sub #1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 151, line content: sub LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 152, line content: sub %LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 153, line content: sub r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 154, line content: sub 1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 155, line content: sub 1, 1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 156, line content: sub 1, #1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 157, line content: sub 1, LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 158, line content: sub 1, %LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 159, line content: sub 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 160, line content: sub 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 161, line content: sub 1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 162, line content: sub #1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 163, line content: sub #1, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 164, line content: sub #1, #1
+
+ERROR (first parse): expected integer value immediately after '#'
+file: example10.as, line number: 165, line content: sub #1, #1.5
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 167, line content: sub #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 169, line content: sub #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 170, line content: sub #1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 171, line content: sub LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 172, line content: sub LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 173, line content: sub LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 175, line content: sub LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 177, line content: sub LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 178, line content: sub LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 179, line content: sub %LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 180, line content: sub %LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 181, line content: sub %LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 182, line content: sub %LOOP, LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 183, line content: sub %LOOP, %LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 184, line content: sub %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 185, line content: sub %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 186, line content: sub %LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 187, line content: sub r0 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 188, line content: sub r0, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 189, line content: sub r0, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 191, line content: sub r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 193, line content: sub r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 194, line content: sub r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 196, line content: lea 
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 197, line content: lea 1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 198, line content: lea #1
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 199, line content: lea LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 200, line content: lea %LOOP
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 201, line content: lea r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 202, line content: lea 1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 203, line content: lea 1, 1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 204, line content: lea 1, #1
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 205, line content: lea 1, LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 206, line content: lea 1, %LOOP
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 207, line content: lea 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 208, line content: lea 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 209, line content: lea 1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 210, line content: lea #1 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 211, line content: lea #1, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 212, line content: lea #1, #1
+
+ERROR (first parse): expected integer value immediately after '#'
+file: example10.as, line number: 213, line content: lea #1, #1.5
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 214, line content: lea #1, LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 215, line content: lea #1, %LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 216, line content: lea #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 217, line content: lea #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 218, line content: lea #1, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 219, line content: lea LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 220, line content: lea LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 221, line content: lea LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 223, line content: lea LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 225, line content: lea LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 226, line content: lea LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 227, line content: lea %LOOP r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 228, line content: lea %LOOP, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 229, line content: lea %LOOP, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 230, line content: lea %LOOP, LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 231, line content: lea %LOOP, %LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 232, line content: lea %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 233, line content: lea %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 234, line content: lea %LOOP, r0, r0
+
+ERROR (first parse): expected a ',' after the first operand
+file: example10.as, line number: 235, line content: lea r0 r0
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 236, line content: lea r0, 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 237, line content: lea r0, #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 238, line content: lea r0, LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 239, line content: lea r0, %LOOP
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 240, line content: lea r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 241, line content: lea r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 242, line content: lea r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 244, line content: clr 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 245, line content: clr 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 245, line content: clr 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 246, line content: clr #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 248, line content: clr %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 250, line content: clr 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 251, line content: clr 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 252, line content: clr 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 253, line content: clr 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 254, line content: clr 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 255, line content: clr 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 256, line content: clr 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 257, line content: clr 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 258, line content: clr #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 259, line content: clr #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 260, line content: clr #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 261, line content: clr #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 262, line content: clr #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 263, line content: clr #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 264, line content: clr #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 265, line content: clr #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 266, line content: clr #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 267, line content: clr LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 268, line content: clr LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 269, line content: clr LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 270, line content: clr LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 271, line content: clr LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 272, line content: clr LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 273, line content: clr LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 274, line content: clr LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 275, line content: clr %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 276, line content: clr %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 277, line content: clr %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 278, line content: clr %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 279, line content: clr %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 280, line content: clr %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 281, line content: clr %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 282, line content: clr %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 283, line content: clr r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 284, line content: clr r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 285, line content: clr r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 286, line content: clr r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 287, line content: clr r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 288, line content: clr r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 289, line content: clr r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 290, line content: clr r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 292, line content: not 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 293, line content: not 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 293, line content: not 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 294, line content: not #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 296, line content: not %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 298, line content: not 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 299, line content: not 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 300, line content: not 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 301, line content: not 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 302, line content: not 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 303, line content: not 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 304, line content: not 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 305, line content: not 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 306, line content: not #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 307, line content: not #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 308, line content: not #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 309, line content: not #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 310, line content: not #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 311, line content: not #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 312, line content: not #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 313, line content: not #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 314, line content: not #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 315, line content: not LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 316, line content: not LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 317, line content: not LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 318, line content: not LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 319, line content: not LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 320, line content: not LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 321, line content: not LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 322, line content: not LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 323, line content: not %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 324, line content: not %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 325, line content: not %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 326, line content: not %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 327, line content: not %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 328, line content: not %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 329, line content: not %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 330, line content: not %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 331, line content: not r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 332, line content: not r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 333, line content: not r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 334, line content: not r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 335, line content: not r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 336, line content: not r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 337, line content: not r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 338, line content: not r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 340, line content: inc 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 341, line content: inc 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 341, line content: inc 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 342, line content: inc #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 344, line content: inc %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 346, line content: inc 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 347, line content: inc 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 348, line content: inc 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 349, line content: inc 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 350, line content: inc 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 351, line content: inc 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 352, line content: inc 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 353, line content: inc 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 354, line content: inc #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 355, line content: inc #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 356, line content: inc #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 357, line content: inc #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 358, line content: inc #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 359, line content: inc #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 360, line content: inc #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 361, line content: inc #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 362, line content: inc #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 363, line content: inc LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 364, line content: inc LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 365, line content: inc LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 366, line content: inc LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 367, line content: inc LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 368, line content: inc LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 369, line content: inc LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 370, line content: inc LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 371, line content: inc %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 372, line content: inc %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 373, line content: inc %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 374, line content: inc %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 375, line content: inc %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 376, line content: inc %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 377, line content: inc %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 378, line content: inc %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 379, line content: inc r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 380, line content: inc r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 381, line content: inc r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 382, line content: inc r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 383, line content: inc r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 384, line content: inc r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 385, line content: inc r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 386, line content: inc r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 388, line content: dec 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 389, line content: dec 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 389, line content: dec 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 390, line content: dec #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 392, line content: dec %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 394, line content: dec 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 395, line content: dec 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 396, line content: dec 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 397, line content: dec 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 398, line content: dec 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 399, line content: dec 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 400, line content: dec 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 401, line content: dec 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 402, line content: dec #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 403, line content: dec #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 404, line content: dec #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 405, line content: dec #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 406, line content: dec #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 407, line content: dec #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 408, line content: dec #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 409, line content: dec #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 410, line content: dec #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 411, line content: dec LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 412, line content: dec LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 413, line content: dec LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 414, line content: dec LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 415, line content: dec LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 416, line content: dec LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 417, line content: dec LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 418, line content: dec LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 419, line content: dec %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 420, line content: dec %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 421, line content: dec %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 422, line content: dec %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 423, line content: dec %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 424, line content: dec %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 425, line content: dec %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 426, line content: dec %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 427, line content: dec r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 428, line content: dec r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 429, line content: dec r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 430, line content: dec r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 431, line content: dec r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 432, line content: dec r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 433, line content: dec r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 434, line content: dec r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 436, line content: jmp 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 437, line content: jmp 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 437, line content: jmp 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 438, line content: jmp #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 441, line content: jmp r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 442, line content: jmp 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 443, line content: jmp 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 444, line content: jmp 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 445, line content: jmp 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 446, line content: jmp 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 447, line content: jmp 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 448, line content: jmp 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 449, line content: jmp 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 450, line content: jmp #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 451, line content: jmp #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 452, line content: jmp #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 453, line content: jmp #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 454, line content: jmp #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 455, line content: jmp #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 456, line content: jmp #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 457, line content: jmp #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 458, line content: jmp #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 459, line content: jmp LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 460, line content: jmp LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 461, line content: jmp LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 462, line content: jmp LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 463, line content: jmp LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 464, line content: jmp LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 465, line content: jmp LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 466, line content: jmp LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 467, line content: jmp %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 468, line content: jmp %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 469, line content: jmp %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 470, line content: jmp %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 471, line content: jmp %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 472, line content: jmp %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 473, line content: jmp %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 474, line content: jmp %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 475, line content: jmp r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 476, line content: jmp r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 477, line content: jmp r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 478, line content: jmp r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 479, line content: jmp r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 480, line content: jmp r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 481, line content: jmp r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 482, line content: jmp r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 484, line content: bne 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 485, line content: bne 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 485, line content: bne 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 486, line content: bne #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 489, line content: bne r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 490, line content: bne 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 491, line content: bne 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 492, line content: bne 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 493, line content: bne 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 494, line content: bne 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 495, line content: bne 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 496, line content: bne 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 497, line content: bne 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 498, line content: bne #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 499, line content: bne #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 500, line content: bne #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 501, line content: bne #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 502, line content: bne #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 503, line content: bne #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 504, line content: bne #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 505, line content: bne #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 506, line content: bne #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 507, line content: bne LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 508, line content: bne LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 509, line content: bne LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 510, line content: bne LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 511, line content: bne LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 512, line content: bne LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 513, line content: bne LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 514, line content: bne LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 515, line content: bne %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 516, line content: bne %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 517, line content: bne %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 518, line content: bne %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 519, line content: bne %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 520, line content: bne %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 521, line content: bne %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 522, line content: bne %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 523, line content: bne r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 524, line content: bne r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 525, line content: bne r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 526, line content: bne r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 527, line content: bne r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 528, line content: bne r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 529, line content: bne r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 530, line content: bne r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 532, line content: jsr 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 533, line content: jsr 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 533, line content: jsr 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 534, line content: jsr #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 537, line content: jsr r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 538, line content: jsr 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 539, line content: jsr 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 540, line content: jsr 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 541, line content: jsr 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 542, line content: jsr 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 543, line content: jsr 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 544, line content: jsr 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 545, line content: jsr 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 546, line content: jsr #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 547, line content: jsr #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 548, line content: jsr #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 549, line content: jsr #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 550, line content: jsr #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 551, line content: jsr #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 552, line content: jsr #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 553, line content: jsr #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 554, line content: jsr #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 555, line content: jsr LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 556, line content: jsr LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 557, line content: jsr LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 558, line content: jsr LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 559, line content: jsr LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 560, line content: jsr LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 561, line content: jsr LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 562, line content: jsr LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 563, line content: jsr %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 564, line content: jsr %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 565, line content: jsr %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 566, line content: jsr %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 567, line content: jsr %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 568, line content: jsr %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 569, line content: jsr %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 570, line content: jsr %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 571, line content: jsr r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 572, line content: jsr r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 573, line content: jsr r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 574, line content: jsr r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 575, line content: jsr r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 576, line content: jsr r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 577, line content: jsr r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 578, line content: jsr r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 580, line content: red 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 581, line content: red 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 581, line content: red 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 582, line content: red #1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 584, line content: red %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 586, line content: red 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 587, line content: red 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 588, line content: red 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 589, line content: red 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 590, line content: red 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 591, line content: red 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 592, line content: red 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 593, line content: red 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 594, line content: red #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 595, line content: red #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 596, line content: red #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 597, line content: red #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 598, line content: red #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 599, line content: red #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 600, line content: red #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 601, line content: red #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 602, line content: red #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 603, line content: red LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 604, line content: red LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 605, line content: red LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 606, line content: red LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 607, line content: red LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 608, line content: red LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 609, line content: red LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 610, line content: red LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 611, line content: red %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 612, line content: red %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 613, line content: red %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 614, line content: red %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 615, line content: red %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 616, line content: red %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 617, line content: red %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 618, line content: red %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 619, line content: red r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 620, line content: red r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 621, line content: red r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 622, line content: red r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 623, line content: red r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 624, line content: red r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 625, line content: red r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 626, line content: red r0, r0, r0
+
+ERROR (first parse): line ended before expected
+file: example10.as, line number: 628, line content: prn 
+
+ERROR (first parse): an operand must not start with a digit
+in case of a numeric operand, it must have the '#' prefix
+file: example10.as, line number: 629, line content: prn 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 629, line content: prn 1
+
+ERROR (first parse): operator got wrong operand type
+file: example10.as, line number: 632, line content: prn %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 634, line content: prn 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 635, line content: prn 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 636, line content: prn 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 637, line content: prn 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 638, line content: prn 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 639, line content: prn 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 640, line content: prn 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 641, line content: prn 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 642, line content: prn #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 643, line content: prn #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 644, line content: prn #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 645, line content: prn #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 646, line content: prn #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 647, line content: prn #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 648, line content: prn #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 649, line content: prn #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 650, line content: prn #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 651, line content: prn LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 652, line content: prn LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 653, line content: prn LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 654, line content: prn LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 655, line content: prn LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 656, line content: prn LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 657, line content: prn LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 658, line content: prn LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 659, line content: prn %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 660, line content: prn %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 661, line content: prn %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 662, line content: prn %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 663, line content: prn %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 664, line content: prn %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 665, line content: prn %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 666, line content: prn %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 667, line content: prn r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 668, line content: prn r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 669, line content: prn r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 670, line content: prn r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 671, line content: prn r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 672, line content: prn r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 673, line content: prn r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 674, line content: prn r0, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 677, line content: rts 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 678, line content: rts #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 679, line content: rts LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 680, line content: rts %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 681, line content: rts r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 682, line content: rts 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 683, line content: rts 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 684, line content: rts 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 685, line content: rts 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 686, line content: rts 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 687, line content: rts 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 688, line content: rts 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 689, line content: rts 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 690, line content: rts #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 691, line content: rts #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 692, line content: rts #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 693, line content: rts #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 694, line content: rts #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 695, line content: rts #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 696, line content: rts #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 697, line content: rts #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 698, line content: rts #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 699, line content: rts LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 700, line content: rts LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 701, line content: rts LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 702, line content: rts LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 703, line content: rts LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 704, line content: rts LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 705, line content: rts LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 706, line content: rts LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 707, line content: rts %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 708, line content: rts %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 709, line content: rts %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 710, line content: rts %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 711, line content: rts %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 712, line content: rts %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 713, line content: rts %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 714, line content: rts %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 715, line content: rts r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 716, line content: rts r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 717, line content: rts r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 718, line content: rts r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 719, line content: rts r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 720, line content: rts r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 721, line content: rts r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 722, line content: rts r0, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 725, line content: stop 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 726, line content: stop #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 727, line content: stop LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 728, line content: stop %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 729, line content: stop r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 730, line content: stop 1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 731, line content: stop 1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 732, line content: stop 1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 733, line content: stop 1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 734, line content: stop 1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 735, line content: stop 1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 736, line content: stop 1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 737, line content: stop 1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 738, line content: stop #1 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 739, line content: stop #1, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 740, line content: stop #1, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 741, line content: stop #1, #1.5
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 742, line content: stop #1, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 743, line content: stop #1, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 744, line content: stop #1, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 745, line content: stop #1, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 746, line content: stop #1, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 747, line content: stop LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 748, line content: stop LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 749, line content: stop LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 750, line content: stop LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 751, line content: stop LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 752, line content: stop LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 753, line content: stop LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 754, line content: stop LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 755, line content: stop %LOOP r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 756, line content: stop %LOOP, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 757, line content: stop %LOOP, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 758, line content: stop %LOOP, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 759, line content: stop %LOOP, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 760, line content: stop %LOOP, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 761, line content: stop %LOOP, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 762, line content: stop %LOOP, r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 763, line content: stop r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 764, line content: stop r0, 1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 765, line content: stop r0, #1
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 766, line content: stop r0, LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 767, line content: stop r0, %LOOP
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 768, line content: stop r0, r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 769, line content: stop r0, r0 r0
+
+ERROR (first parse): line did not end when expected
+file: example10.as, line number: 770, line content: stop r0, r0, r0
+
+ERROR (pre parse): failed to open file
+file: example11.as

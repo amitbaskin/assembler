@@ -11,7 +11,7 @@
 
 
 result breakDownData(char **line, rawWordLst *lst){
-    /* breaks down a line to consecutive words and makes sure the are separators between them */
+    /* breaks down a line to consecutive words and makes sure that there are separators between them */
     result res;
     char *str;
     rawWord *word;

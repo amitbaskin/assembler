@@ -82,7 +82,7 @@ result printEntFile(labelLst *lst, char *fName) {
     rawWordLst *rawLst;
     rawWord *rWord;
     initRawWordLst(&rawLst);
-    for (ptr = getLabTail(lst); ptr != NULL; promoteLab(&ptr)) {
+    for (ptr = getLabLstTail(lst); ptr != NULL; promoteLab(&ptr)) {
         if (getLabType(ptr) == L_ENT) {
             if (!isEntExists) {
                 isEntExists = 1;

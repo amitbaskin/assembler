@@ -11,7 +11,7 @@
 
 void addSWord(sWordLst *lst, sWord *word){
     /* adds a given sWord to the given sWordLst list */
-    ADD_TO_LIST(sWord, getSWordTail(lst) == NULL, word)
+    ADD_TO_LIST(getSWordTail(lst), word)
 }
 
 result createAndAddSWord(sWord **word, wordStatus status, sWordLst *lst){

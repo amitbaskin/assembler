@@ -19,92 +19,71 @@
 #define R_TYPE 'R'
 #define E_TYPE 'E'
 typedef unsigned char reg; /* type for registers */
-enum ref {R_NONE, IM, DIR, REL, R_REG}; /* operands' references */
-typedef enum ref ref;
-enum wordStatus {OP, LAB, W_ENT, W_REG, IM_NUM, NUM_DATA, CHR_DATA}; /* status of parsed words to later translate to
+typedef enum {R_NONE, IM, DIR, REL, R_REG} ref; /* operands' references */
+typedef enum {OP, LAB, W_ENT, W_REG, IM_NUM, NUM_DATA, CHR_DATA} wordStatus; /* status of parsed words to later translate to
  * machine code for the output */
-typedef enum wordStatus wordStatus;
-enum labelType {L_NONE, L_ENT, EXT}; /* type for the declared labels in the assembly file */
-typedef enum labelType labelType;
+typedef enum {L_NONE, L_ENT, EXT} labelType; /* type for the declared labels in the assembly file */
 
 /* an instruction word which represents an operator */
-struct opWord{
+typedef struct {
     int opIndex;
     ref src;
     ref dest;
-};
-
-typedef struct opWord opWord;
+} opWord;
 
 /* label data structure */
-struct label{
+typedef struct label {
     char *name;
     int address;
     struct label *next;
     labelType type;
     unsigned char isData;
     unsigned char isRel;
-};
+} label;
 
-typedef struct label label;
-
-struct labelLst{
+typedef struct {
     label *tail;
     label **head;
-};
+} labelLst;
 
-typedef struct labelLst labelLst;
-
-union uWord{
+typedef union {
   opWord *op;
   label *lab;
   reg reg;
   long numData;
   char chrData;
-};
+} uWord;
 
-typedef union uWord uWord;
-
-struct sWord{
+typedef struct sWord{
     uWord *uWord;
     int address;
     char addressType;
     wordStatus status;
     struct sWord *next;
-};
+} sWord;
 
-typedef struct sWord sWord;
-
-struct sWordLst{
+typedef struct {
     sWord **head;
     sWord *tail;
-};
+} sWordLst;
 
-typedef struct sWordLst sWordLst;
-
-union rawData{
+typedef union {
     char *word;
     int num;
-};
+} rawData;
 
-typedef union rawData rawData;
-
-struct rawWord{
+typedef struct rawWord {
     rawData *data;
     struct rawWord *next;
-};
+} rawWord;
 
-typedef struct rawWord rawWord;
-
-struct rawWordLst{
+typedef struct {
     rawWord **head;
     rawWord *tail;
-};
-
-typedef struct rawWordLst rawWordLst;
+} rawWordLst;
 
 /* operation data structure */
-struct operation{
+typedef struct {
     unsigned char index;
     char *name;
     unsigned char opAmount;
@@ -118,10 +97,8 @@ struct operation{
     unsigned char isDirDest;
     unsigned char isRelDest;
     unsigned char isRegDest;
-}; /* index specified just for convenience so it is easy to see what is the index of each operation, as this is used
+} operation; /* index specified just for convenience so it is easy to see what is the index of each operation, as this is used
  * throughout the code in order to identify operators */
-
-typedef struct operation operation;
 
 int isReg(char *r);
 const char *getReg(int i);

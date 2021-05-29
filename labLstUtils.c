@@ -9,7 +9,7 @@
 #include "globalVars.h"
 
 
-label *getLabTail(labelLst *lst){
+label *getLabLstTail(labelLst *lst){
     return lst->tail;
 }
 
@@ -26,7 +26,7 @@ result getRelLabelAddressFromLst(char *name, labelLst *labLst, int address, int 
     /* get the relative address of given label name from the given address
      * returns ERR if the specified label wasn't found and SUCCESS otherwise */
     label *ptr;
-    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)) {
+    for (ptr = getLabLstTail(labLst); ptr != NULL; promoteLab(&ptr)) {
         if (strcmp(name, getLabName(ptr)) == 0) {
             *dist = (getLabAddress(ptr) - address);
             return SUCCESS;
@@ -40,7 +40,7 @@ result isLabInLst(labelLst *labLst, label **lab, labelType type, char *name){
     /* used in the second parse to confirm that a used label is defined and that it wasn't defined with clashing
      * types, else returns ERR */
     label *ptr;
-    for (ptr = getLabTail(labLst); ptr != NULL; promoteLab(&ptr)){
+    for (ptr = getLabLstTail(labLst); ptr != NULL; promoteLab(&ptr)){
         if (strcmp(getLabName(ptr), name) == 0) {
             *lab = ptr;
             VALIDATE_VAL(isLabTypeLegal(*lab, type))
@@ -75,7 +75,7 @@ result addLab(labelLst *lst, label *lab){
     label *ptr;
     labelType type1;
     labelType type2;
-    for (ptr = getLabTail(lst); ptr != NULL; promoteLab(&ptr)){
+    for (ptr = getLabLstTail(lst); ptr != NULL; promoteLab(&ptr)){
         if (strcmp(getLabName(lab), getLabName(ptr)) != 0) continue;
         type1 = getLabType(ptr);
         type2 = getLabType(lab);
@@ -83,7 +83,7 @@ result addLab(labelLst *lst, label *lab){
         labClashErr();
         return ERR;
     }
-    ADD_TO_LIST(label, lst->tail == NULL, lab)
+    ADD_TO_LIST(getLabLstTail(lst), lab)
     return SUCCESS;
 }
 
@@ -98,5 +98,5 @@ result initLabLst(labelLst **lst){
 
 void freeLabLst(labelLst *lst){
     /* frees the allocated memory of the given list */
-    freeLabLstHelper(getLabTail(lst));
+    freeLabLstHelper(getLabLstTail(lst));
 }

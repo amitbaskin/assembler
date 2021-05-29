@@ -8,7 +8,7 @@
 result getAlloc(size_t size, void **ptr){
     /* allocates memory in ptr as requested */
     *ptr = calloc(1, size);
-    if (ptr == NULL) {
+    if (*ptr == NULL) {
         allocErr();
         return ERR;
     }
