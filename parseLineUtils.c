@@ -68,6 +68,7 @@ result getWord(char **line, char **word, unsigned char isSep){
     int i;
     for (; (chr = **line) == ' ' || chr == '\t'; (*line)++);
     for (i=0; getWordLoopCond((chr = **line), i); (*word)[i] = (char) chr, (*line)++, i++);
+    for (; (chr = **line) == ' ' || chr == '\t'; (*line)++);
     (*word)[i] = '\0';
     if (chr == LABEL_SUFFIX) {
         (*line)++;

@@ -21,14 +21,14 @@ result getStrAlloc(size_t size, char **fName);
 
 /* general logic for adding an element to a linked list */
 #define ADD_TO_LIST(lstTail, item){ \
-    if ((lstTail) == NULL){           \
-        lst->tail = item;              \
-        lst->head = &(lst->tail);      \
-    }                                  \
-    else{                              \
+    if ((lstTail) == NULL){         \
+        lst->tail = item;           \
+        lst->head = &(lst->tail);   \
+    }                               \
+    else{                           \
         lst->head = &((*(lst->head))->next); \
-        *(lst->head) = item;           \
-    }                                  \
+        *(lst->head) = item;        \
+    }                               \
 }
 
 #endif

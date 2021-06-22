@@ -1,4 +1,43 @@
 
+ERROR (first parse): expected a ',' after the first operand
+file: example2.as, line number: 7, line content: MAIN:   add     r3  ,       LIST
+
+ERROR (first parse): expected a ',' after the first operand
+file: example2.as, line number: 9, line content: lea               W       ,       r6
+
+ERROR (first parse): expected a ',' after the first operand
+file: example2.as, line number: 11, line content: mov     r3      ,       K
+
+ERROR (first parse): expected a ',' after the first operand
+file: example2.as, line number: 12, line content: sub     r1      ,         r4
+
+ERROR (first parse): expected a ',' after the first operand
+file: example2.as, line number: 14, line content: cmp     K       ,        #-6
+
+ERROR (first parse): expected a ',' after the first operand
+file: example2.as, line number: 19, line content: add           L3        ,       L3
+
+ERROR (first parse): there should be no ',' after operator but there should be one between operands
+file: example2.as, line number: 23, line content: LIST:        .data       6     ,        -9
+
+ERROR (first parse): expected a ',' after the first operand
+file: example3.as, line number: 12, line content: MAIN:        add     r3     ,       LIST
+
+ERROR (first parse): expected a ',' after the first operand
+file: example3.as, line number: 14, line content: lea            W        ,        r6
+
+ERROR (first parse): expected a ',' after the first operand
+file: example3.as, line number: 18, line content: mov     r3      ,     K
+
+ERROR (first parse): expected a ',' after the first operand
+file: example3.as, line number: 19, line content: sub          r1     ,       r4
+
+ERROR (first parse): there should be no ',' after operator but there should be one between operands
+file: example3.as, line number: 22, line content: LIST: .data 6       ,   -9
+
+ERROR (first parse): expected a ',' after the first operand
+file: example3.as, line number: 32, line content: add     L3      ,      L3
+
 ERROR (first parse): undefined statement
 file: example4.as, line number: 29, line content: g
 
